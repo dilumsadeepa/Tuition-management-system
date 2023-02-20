@@ -2,7 +2,9 @@ import React from 'react'
 
 const Register = () =>{
     return(
-        <div>Registered</div>
+        <div>Registered
+            <button className='btn btn-info'>Register</button>
+        </div>
     )
 }
 
