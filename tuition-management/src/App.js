@@ -4,8 +4,8 @@ import './App.css';
 import Auth from "./components/User/Auth";
 import StudentReg from "./components/Student/Register";
 import EnterForm from "./components/Student/EnterForm";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+// import Footer from "./components/Footer";
+// import Header from "./components/Header";
 
 function App() {
   return (
@@ -17,8 +17,7 @@ function App() {
           <Route path="EnterForm" element={<EnterForm/>}/>
       </Routes>
    </BrowserRouter>
-   <Header />
-   <Footer />
+   
    </div>
    
   );

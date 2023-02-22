@@ -6,7 +6,8 @@
 }
 
 .auth-box{
-    transform: translateY(20%);
+    margin-top: 50px;
+    margin-bottom: 70px;
     background-color: #071330;
     border-radius: 24px;
     
