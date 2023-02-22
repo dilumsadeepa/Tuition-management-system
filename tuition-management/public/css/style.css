@@ -1,13 +1,19 @@
 
 .auth-main{
-    background-color: #071330;
+    background-color: #738FA7;
     color: white;
     height: 100vh;
 }
 
 .auth-box{
     transform: translateY(20%);
-    background-color: #0C4160;
+    background-color: #071330;
+    border-radius: 24px;
+    
+}
+
+.auth-box h2{
+    text-align: center;
 }
 
 .auth-btn{
@@ -36,4 +42,8 @@
 .r-btn{
     display: block;
     margin-left: 50px;
+}
+
+.err-text{
+    color: red;
 }
