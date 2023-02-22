@@ -1,9 +1,9 @@
-import {Sequelize, DataTypes} from "sequelize";
+import {Sequelize} from "sequelize";
 import db from "../config/Database.js";
  
 const {DataTypes} = Sequelize;
  
-const Student = db.define('students',{
+const Attendance = db.define('attendances',{
     auserid:{
         type:DataTypes.STRING,
         allowNull:false,
@@ -24,7 +24,7 @@ const Student = db.define('students',{
     freezeTableName:true
 });
  
-export default Student;
+export default Attendance;
  
 (async()=>{
     await db.sync();
