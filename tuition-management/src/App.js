@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 
+import Auth from "./components/User/Auth";
 import StudentReg from "./components/Student/Register";
 import EnterForm from "./components/Student/EnterForm";
 import Footer from "./components/Footer";
