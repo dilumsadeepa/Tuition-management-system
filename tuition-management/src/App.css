@@ -24,6 +24,24 @@
   color: white;
 }
 
+.footer{
+  position: absolute;
+  bottom: 0;
+  background-color: #071330;
+  color:white;
+  width: 100%;
+  text-align: center
+}
+
+.header{
+    position: absolute;
+    top: 0;
+    background-color: #071330;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+
 .App-link {
   color: #61dafb;
 }

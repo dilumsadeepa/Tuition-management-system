@@ -20,6 +20,11 @@ function EnterForm() {
 
   return (
 
+    <div className='container'>
+      <div className='row'>
+
+        <div className='col-sm-6'>
+
     <form onSubmit={handleSubmit}>
 
 <div class="mb-3 mt-3">
@@ -64,9 +69,14 @@ function EnterForm() {
       <input type="date" id="DOB" name="DOB" class="form-control" value={email} onChange={(e) => setDOB(e.target.value)} /><br /><br />
     </div>
 
-
+    
       <button type="submit">Submit</button>
+ 
     </form>
+
+    </div>
+    </div>
+    </div>
 
   );
 }
