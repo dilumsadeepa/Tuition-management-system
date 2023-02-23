@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+import Apiurl from '../Apiurl';
 
 const Auth = () =>{
 
@@ -11,26 +13,35 @@ const Auth = () =>{
     const[cpwd, setcpwd] = useState("");
     const role = 4;
     const[err, setErr] = useState("");
+    const[loerr, setLoerr] = useState("");
 
     const navigate = useNavigate();
 
+    const [cookies, setCookie] = useCookies(['user']);
+
+    // Register user
     const registeruser = async(e) =>{
         e.preventDefault();
 
+        // register validation
         if (username === "" || email === "" || tel === "" || password === "" || cpwd === "") {
             setErr("All Filds is Requierd");
         }else if (password !== cpwd) {
             setErr("Enter the Same passwords");
+        }else if(tel.length !== 12 || !tel.includes("+94")){
+            setErr("Phone number must have 12 caracters and start with +94");
+        }else if(password.length < 8){
+            setErr("Password must have at least 8 charectors")
         }else{
             try {
-                await axios.post("http://localhost:5000/users",{
+                await axios.post(`${Apiurl}/users/`,{
                    username,
                    email,
                    tel,
                    password,
                    role, 
                 });
-                navigate("/");
+                loginuser();
             } catch (error) {
                 console.log(error);
             }
@@ -38,6 +49,31 @@ const Auth = () =>{
 
     }
 
+
+    // login user
+    const loginuser = async(e) =>{
+        e.preventDefault();
+        try {
+            const response = await axios.get(`${Apiurl}/users/${email}`);
+            if (response.data.password === password) {
+                if (response.data.role === 1) {
+                    setCookie('email', response.data.email, { path: '/' });
+                    setCookie('username', response.data.username, { path: '/' });
+                    setCookie('role', response.data.role, { path: '/' });
+                    navigate("admin");
+                }else{
+                    console.log(response.data.role);
+                }
+            }else{
+                setLoerr("Email or Password is does not match");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+    // change the form
     const changereg = () =>{
         document.getElementById('register').style.display = "none";
         document.getElementById('login').style.display = "block";
@@ -62,25 +98,48 @@ const Auth = () =>{
 
                     <div className='login' id='login'>
                         <h2>Login</h2>
-                        <form action="/action_page.php">
-                            <div class="mb-3 mt-3">
-                                <label for="email" class="form-label">Email:</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" />
+                        <br/>
+                        <p className='err-text'>{loerr}</p>
+                        <form onSubmit={loginuser}>
+                            <div className="mb-3 mt-3">
+                                <label for="email" className="form-label">Email:</label>
+                                <input 
+                                    type="email" 
+                                    className="form-control" 
+                                    id="email" 
+                                    placeholder="Enter email" 
+                                    name="email"
+                                    value={email} 
+                                    onChange={(e) =>setEmail(e.target.value)}
+                                />
                             </div>
-                            <div class="mb-3">
-                                <label for="pwd" class="form-label">Password:</label>
-                                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" />
+                            <div className="mb-3">
+                                <label for="pwd" className="form-label">Password:</label>
+                                <input 
+                                    type="password" 
+                                    className="form-control" 
+                                    id="pwd" 
+                                    placeholder="Enter password" 
+                                    name="pswd" 
+                                    value={password}
+                                    onChange={(e)=>setPassword(e.target.value)}
+                                />
                             </div>
-                            <div class="form-check mb-3">
-                                <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="remember" /> Remember me
+                            <div className="form-check mb-3">
+                                <label className="form-check-label">
+                                <input 
+                                    className="form-check-input" 
+                                    type="checkbox" 
+                                    name="remember" 
+                                /> 
+                                Remember me
                                 </label>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" className="btn btn-primary">Submit</button>
                         </form>
                         <br></br>
                         <div className='auth-btn'>
-                            <p>If you do not have a account  </p><button className='btn btn-primary r-btn ml-4' id='r-btn' onClick={changelogin}>Register</button>
+                            <p>If you do not have a account  -  <span onClick={changelogin} className="link-btn">Register in the System</span></p>
                         </div>
                     </div>
 
@@ -90,11 +149,11 @@ const Auth = () =>{
                         <p className='err-text'>{err}</p>
                         <form onSubmit={registeruser}>
 
-                            <div class="mb-3 mt-3">
-                                <label for="username" class="form-label">UserName:</label>
+                            <div className="mb-3 mt-3">
+                                <label for="username" className="form-label">UserName:</label>
                                 <input 
                                     type="text" 
-                                    class="form-control" 
+                                    className="form-control" 
                                     id="username" 
                                     placeholder="Enter UserName" 
                                     name="username" 
@@ -103,11 +162,11 @@ const Auth = () =>{
                                 />
                             </div>
 
-                            <div class="mb-3 mt-3">
-                                <label for="email" class="form-label">Email:</label>
+                            <div className="mb-3 mt-3">
+                                <label for="email" className="form-label">Email:</label>
                                 <input 
                                     type="email" 
-                                    class="form-control" 
+                                    className="form-control" 
                                     id="email" 
                                     placeholder="Enter email" 
                                     name="email" 
@@ -116,11 +175,11 @@ const Auth = () =>{
                                 />
                             </div>
 
-                            <div class="mb-3 mt-3">
-                                <label for="tel" class="form-label">Whatsapp Mobile NUmber:</label>
+                            <div className="mb-3 mt-3">
+                                <label for="tel" className="form-label">Whatsapp Mobile NUmber:</label>
                                 <input 
-                                    type="number" 
-                                    class="form-control" 
+                                    type="text" 
+                                    className="form-control" 
                                     id="tel" 
                                     placeholder="Enter Whatsapp number" 
                                     name="tel" 
@@ -129,11 +188,11 @@ const Auth = () =>{
                                 />
                             </div>
 
-                            <div class="mb-3">
-                                <label for="pwd" class="form-label">Password:</label>
+                            <div className="mb-3">
+                                <label for="pwd" className="form-label">Password:</label>
                                 <input 
                                     type="password" 
-                                    class="form-control" 
+                                    className="form-control" 
                                     id="pwd" 
                                     placeholder="Enter password" 
                                     name="pswd" 
@@ -142,11 +201,11 @@ const Auth = () =>{
                                 />
                             </div>
 
-                            <div class="mb-3">
-                                <label for="pwd" class="form-label">Conferm Password:</label>
+                            <div className="mb-3">
+                                <label for="pwd" className="form-label">Conferm Password:</label>
                                 <input 
                                     type="password" 
-                                    class="form-control" 
+                                    className="form-control" 
                                     id="cpwd" 
                                     placeholder="Enter password" 
                                     name="cpwd" 
@@ -156,11 +215,11 @@ const Auth = () =>{
                             </div>
 
                             
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" className="btn btn-primary">Submit</button>
                         </form>
                         <br></br>
                         <div className='auth-btn'>
-                            <p>Login to your account </p> <button className='btn btn-primary l-btn' id='l-btn' onClick={changereg}>Login</button>
+                            <p>If you have an account  -  <span onClick={changereg} className="link-btn">Login to your account</span></p> 
                         </div>
                     </div>
 
