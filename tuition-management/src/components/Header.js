@@ -3,7 +3,11 @@ import React from 'react';
 const Header=()=>{
     return(
         <div className='header'>
-            <h3>Tuition management system Header</h3>
+             <a href="#default" class="logo">CompanyLogo</a>
+  {/* <div class="header-right"> */}
+    <a class="active" href="#home">Home</a>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
         </div>
     )
 }
