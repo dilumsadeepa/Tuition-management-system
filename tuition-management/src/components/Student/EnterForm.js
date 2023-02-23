@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import '../../App.css';
+import Header from '../Header';
+import '../Header';
 
 
 function EnterForm() {
@@ -21,6 +24,7 @@ function EnterForm() {
   return (
 
     <div className='container'>
+      <Header />
       <div className='row'>
 
         <div className='col-sm-6'>
