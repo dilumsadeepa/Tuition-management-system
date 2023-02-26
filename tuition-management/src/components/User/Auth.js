@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
@@ -18,6 +18,14 @@ const Auth = () =>{
     const navigate = useNavigate();
 
     const [cookies, setCookie] = useCookies(['user']);
+
+    useEffect(() =>{
+        if (cookies.user) {
+            if (cookies.email !== "") {
+                navigate("admin");
+            }
+        }
+    })
 
     // Register user
     const registeruser = async(e) =>{
