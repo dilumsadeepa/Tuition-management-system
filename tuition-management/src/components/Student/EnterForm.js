@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import '../../App.css';
 import Header from '../Header';
-import '../Header';
-
+import Footer from '../Footer';
 
 function EnterForm() {
   const [UID, setUID] = useState('');
@@ -80,6 +79,7 @@ function EnterForm() {
 
     </div>
     </div>
+    <Footer />
     </div>
 
   );
