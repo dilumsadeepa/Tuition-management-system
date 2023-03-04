@@ -28,11 +28,28 @@
     border-radius: 24px;
 }
 
+.login h2{
+    color: white;
+}
+
+.login label{
+    color: white;
+}
+
 .register{
     display: none;
     padding: 20px;
     margin: 20px;
     border-radius: 24px;
+    color: white;
+}
+
+.register h2{
+    color: white;
+}
+
+.register label{
+    color: white;
 }
 
 .l-btn{
