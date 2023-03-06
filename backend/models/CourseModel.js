@@ -1,43 +1,38 @@
-import {Sequelize, DataTypes} from "sequelize";
+import {Sequelize} from "sequelize";
 import db from "../config/Database.js";
  
-// const {DataTypes} = Sequelize;
+const {DataTypes} = Sequelize;
  
-const Student = db.define('students',{
-    userid:{
-        type:DataTypes.INTEGER,
-        unique:true,
-        allowNull:false,
-    },
-    sfullname:{
+const Course = db.define('courses',{
+    courseid:{
         type:DataTypes.STRING,
         allowNull:false,
     },
-    snamewithini:{
+    coursename:{
         type:DataTypes.STRING,
         allowNull:false,
     },
-    saddress:{
+    coursebanner:{
         type:DataTypes.STRING,
         allowNull:false,
     },
-    sdob:{
+    courseprofile:{
         type:DataTypes.STRING,
         allowNull:false,
     },
-    sgender:{
-        type:DataTypes.STRING,
+    coursedes:{
+        type:DataTypes.TEXT,
         allowNull:false,
     },
-    snic:{
+    courseprice:{
         type:DataTypes.STRING,
-        allowNull:true,
-    },
+        allowNull:false,
+    }
 },{
     freezeTableName:true
 });
  
-export default Student;
+export default Course;
  
 (async()=>{
     await db.sync();

@@ -22,37 +22,3 @@ export const getAttById = async(req, res) =>{
     }
 }
  
-// export const createAtt = async(req, res) =>{
-//     try {
-//         await Attendance.create(req.body);
-//         res.status(201).json({msg: "User Created"});
-//     } catch (error) {
-//         console.log(error.message);
-//     }
-// }
- 
-// export const updateAtt = async(req, res) =>{
-//     try {
-//         await Attendance.update(req.body,{
-//             where:{
-//                 id: req.params.id
-//             }
-//         });
-//         res.status(200).json({msg: "User Updated"});
-//     } catch (error) {
-//         console.log(error.message);
-//     }
-// }
- 
-// export const deleteAtt = async(req, res) =>{
-//     try {
-//         await Attendance.destroy({
-//             where:{
-//                 id: req.params.id
-//             }
-//         });
-//         res.status(200).json({msg: "User Deleted"});
-//     } catch (error) {
-//         console.log(error.message);
-//     }
-// }

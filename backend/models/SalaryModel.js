@@ -1,26 +1,27 @@
-import {Sequelize, DataTypes} from "sequelize";
+import {Sequelize} from "sequelize";
 import db from "../config/Database.js";
  
-// const {DataTypes} = Sequelize;
+const {DataTypes} = Sequelize;
  
-const Parent = db.define('parents',{
-    pfullname:{
+const Salary = db.define('salaries',{
+    s_userid:{
         type:DataTypes.STRING,
         allowNull:false,
     },
-    puserid:{
+    s_salary:{
         type:DataTypes.STRING,
         allowNull:false,
     },
-    stuid:{
-        type:DataTypes.STRING,
+    month:{
+        type:DataTypes.DATEONLY,
         allowNull:false,
     },
+    
 },{
     freezeTableName:true
 });
  
-export default Parent;
+export default Salary;
  
 (async()=>{
     await db.sync();
