@@ -1,13 +1,13 @@
 import React from 'react';
-import { useCookies } from 'react-cookie';
+// import { useCookies } from 'react-cookie';
 
-import Sidebar from '../vendor/Sidebar';
-import Dashhead from '../vendor/Dashhead';
+import Sidebar from './AdminSidebar';
+import Dashhead from './Dashhead';
 
 
 const Admin = () =>{
 
-    const [cookies] = useCookies(['user']);
+    // const [cookies] = useCookies(['user']);
 
     return(
         <section>
