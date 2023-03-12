@@ -13,7 +13,7 @@ import { getsts, getStuData } from "../controllers/StudentController.js";
 import { getPas } from "../controllers/ParentsController.js";
 import { getTes } from "../controllers/TeacherController.js";
 import { getCos } from "../controllers/CourseController.js";
-import { getCSs } from "../controllers/CoursestudentController.js";
+import { getCSs, stucourse } from "../controllers/CoursestudentController.js";
 import { getPays } from "../controllers/PaymentController.js";
 import { getSPs } from "../controllers/Salarypresent.js";
 import { getsals } from "../controllers/SalaryController.js";
@@ -29,6 +29,7 @@ router.delete('/users/:id', deleteUser);
 
 //admin
 router.get('/astudata', getStuData);
+router.get('/stucourse', stucourse);
 
 
 

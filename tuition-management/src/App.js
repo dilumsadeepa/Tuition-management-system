@@ -6,6 +6,7 @@ import StudentReg from "./components/Student/Register";
 import EnterForm from "./components/Student/EnterForm";
 import Admin from "./components/Admin/Admin";
 import ViewStudent from "./components/Admin/ViewStudent";
+import StudenttoCourse from "./components/Admin/StudenttoCourse";
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
 
@@ -19,6 +20,7 @@ function App() {
           {/* admin part */}
           <Route path="admin" element={<Admin />}/>
           <Route path="adminstudent" element={<ViewStudent/>}/>
+          <Route path="studentcourse" element={<StudenttoCourse/>}/>
 
           {/* student part */}
           <Route path="Stureg" element={<StudentReg/>}/>

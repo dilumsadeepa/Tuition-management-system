@@ -12,6 +12,10 @@ const Coursestudent = db.define('coursestudents',{
         type:DataTypes.STRING,
         allowNull:false,
     },
+    aprovel:{
+        type:DataTypes.STRING,
+        allowNull: false,
+    }
     
 },{
     freezeTableName:true

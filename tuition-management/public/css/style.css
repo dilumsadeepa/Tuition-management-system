@@ -100,3 +100,24 @@
     padding: 20px;
 }
 
+.debtn{
+    color: white;
+    background-color: #071330;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    outline: none;
+    text-decoration: none;
+}
+
+.debtn:hover{
+    color: white;
+    background-color: #071330;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    outline: none;
+    text-decoration: none;
+}
