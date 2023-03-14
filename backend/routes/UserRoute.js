@@ -11,7 +11,7 @@ import { getAtts, getAttById } from "../controllers/AttendanceController.js";
 
 import { getsts, getStuData } from "../controllers/StudentController.js";
 import { getPas } from "../controllers/ParentsController.js";
-import { getTes } from "../controllers/TeacherController.js";
+import { getTes,createTeacher } from "../controllers/TeacherController.js";
 import { getCos, createCourse } from "../controllers/CourseController.js";
 import { getCSs, stucourse } from "../controllers/CoursestudentController.js";
 import { getPays } from "../controllers/PaymentController.js";
@@ -42,7 +42,6 @@ router.get('/att/:id', getAttById);
 
 router.get('/stu', getsts);
 router.get('/parent', getPas);
-router.get('/teacher', getTes);
 router.get('/course', getCos);
 router.get('/coursestudent', getCSs);
 router.get('/payment', getPays);
@@ -50,4 +49,8 @@ router.get('/salarypresent', getSPs);
 router.get('/salary', getsals);
 router.get('/notice', getNotis);
  
+// Teacher
+router.get('/teacher', getTes);
+router.post('/teacher',createTeacher);
+
 export default router;
