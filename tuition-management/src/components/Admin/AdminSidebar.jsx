@@ -54,6 +54,11 @@ const Sidebar =() =>{
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="/course">
+                                <i class="bi bi-book-half"></i> Courses
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="#s">
                                     <i class="bi bi-chat"></i> Messages
                                     <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">6</span>

@@ -12,7 +12,7 @@ import { getAtts, getAttById } from "../controllers/AttendanceController.js";
 import { getsts, getStuData } from "../controllers/StudentController.js";
 import { getPas } from "../controllers/ParentsController.js";
 import { getTes } from "../controllers/TeacherController.js";
-import { getCos } from "../controllers/CourseController.js";
+import { getCos, createCourse } from "../controllers/CourseController.js";
 import { getCSs, stucourse } from "../controllers/CoursestudentController.js";
 import { getPays } from "../controllers/PaymentController.js";
 import { getSPs } from "../controllers/Salarypresent.js";
@@ -30,6 +30,8 @@ router.delete('/users/:id', deleteUser);
 //admin
 router.get('/astudata', getStuData);
 router.get('/stucourse', stucourse);
+router.post('/crestecourse', createCourse);
+router.get('/course', getCos);
 
 
 

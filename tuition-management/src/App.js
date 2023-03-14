@@ -7,6 +7,8 @@ import EnterForm from "./components/Student/EnterForm";
 import Admin from "./components/Admin/Admin";
 import ViewStudent from "./components/Admin/ViewStudent";
 import StudenttoCourse from "./components/Admin/StudenttoCourse";
+import Course from "./components/Admin/Course";
+import CreateCourse from "./components/Admin/CreateCourse";
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
 
@@ -21,6 +23,9 @@ function App() {
           <Route path="admin" element={<Admin />}/>
           <Route path="adminstudent" element={<ViewStudent/>}/>
           <Route path="studentcourse" element={<StudenttoCourse/>}/>
+          <Route path="course" element={<Course/>}/>
+          <Route path="course/create" element={<CreateCourse/>}/>
+
 
           {/* student part */}
           <Route path="Stureg" element={<StudentReg/>}/>
