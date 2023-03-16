@@ -22,4 +22,14 @@ export const createCourse = async(req, res) =>{
     } catch (error) {
         console.log(error.message);
     }
+} 
+
+export const getCotData = async(req, res) =>{
+    const sesql = "SELECT teachers.*, courses.* FROM courses INNER JOIN teachers ON courses.courseteacher=teachers.t_userid ";
+    try {
+        const response = await db.query(sesql, { type: QueryTypes.SELECT });
+        res.status(200).json(response);
+    } catch (error) {
+        console.log(error.message);
+    }
 }

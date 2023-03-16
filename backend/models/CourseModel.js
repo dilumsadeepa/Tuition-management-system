@@ -27,6 +27,10 @@ const Course = db.define('courses',{
     courseprice:{
         type:DataTypes.STRING,
         allowNull:false,
+    },
+    courseteacher:{
+        type:DataTypes.STRING,
+        allowNull:false,
     }
 },{
     freezeTableName:true

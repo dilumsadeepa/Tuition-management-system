@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import axios from 'axios';
 import Apiurl from '../Apiurl';
@@ -10,33 +10,53 @@ import Dashhead from './Dashhead';
 
 const CreateCourse = () => {
 
-    const [cid, setCid] = useState("");
-    const [cname, setCname] = useState("");
-    const [cbanner, setCbanner] = useState("");
-    const [cprofile , setCprofile] = useState("");
-    const [cdes, setCdes] = useState("");
-    const [cprice, setCprice] = useState("");
+    const [courseid, setCid] = useState("");
+    const [coursename, setCname] = useState("");
+    const [coursebanner, setCbanner] = useState("");
+    const [courseprofile , setCprofile] = useState("");
+    const [coursedes, setCdes] = useState("");
+    const [courseprice, setCprice] = useState("");
+    const [courseteacher, setct] = useState("");
     const [succ, setsucc] = useState("");
     const [err, seterr] = useState("");
 
 
     const editorRef = useRef(null);
+
+    const [teachers, setTeachers] = useState([]);
+    
+
+    const gette = async(e) =>{
+        try {
+            const response = await axios.get(`${Apiurl}/teacher`);
+            setTeachers(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.log("error in getting data")
+        }
+    }
+
+    useEffect(()=>{
+        gette();
+    },[])
     
 
     const create = async() =>{
 
         setCdes(editorRef.current.getContent())
 
-        if (cid === "" || cname === "" || cbanner === "" || cprofile === "" || cdes === "" || cprice === "") {
+        if (courseid === "" || coursename === "" || coursebanner === "" || courseprofile === "" || coursedes === "" || courseprice === "" || courseteacher === "") {
             seterr("Fill All the Fileds");
+            console.log(courseid +','+coursename+','+ coursebanner +','+courseprofile +','+coursedes +','+courseprice +','+ courseteacher);
         }
         else{
-            let courseid = cid;
-            let coursename = cname;
-            let coursebanner = cbanner;
-            let courseprofile = cprofile;
-            let coursedes = cdes;
-            let courseprice = cprice;
+            // let courseid = cid;
+            // let coursename = cname;
+            // let coursebanner = cbanner;
+            // let courseprofile = cprofile;
+            // let coursedes = cdes;
+            // let courseprice = cprice;
+            console.log(courseid +','+coursename+','+ coursebanner +','+courseprofile +','+coursedes +','+courseprice);
             try {
                 await axios.post(`${Apiurl}/crestecourse/`,{
                    courseid,
@@ -45,6 +65,7 @@ const CreateCourse = () => {
                    courseprofile,
                    coursedes,
                    courseprice, 
+                   courseteacher,
                 });
                 
             } catch (error) {
@@ -52,6 +73,7 @@ const CreateCourse = () => {
             }
             setsucc("course cerated");
             seterr("");
+            setCid("");
         }
     }
 
@@ -183,6 +205,16 @@ const CreateCourse = () => {
                                                 placeholder="Enter the Course Price"
                                                 onChange={(e) => setCprice(e.target.value)}
                                             />
+                                        </div>
+
+                                        <div className="mb-5 mt-3">
+                                            <label className="form-label">Teacher:</label>
+                                            <select className='form-control' onChange={(e) => setct(e.target.value)}>
+                                                <option value="">Select One</option>
+                                                {teachers.map((t) =>
+                                                    <option value={t.t_userid}>{t.t_fullname}</option>
+                                                )}
+                                            </select>
                                         </div>
 
                                         <div class="mb-5 mt-5">

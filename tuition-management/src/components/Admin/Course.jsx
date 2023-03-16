@@ -9,19 +9,19 @@ import Dashhead from './Dashhead';
 const Course = () =>{
 
     const [courses, setCourses] = useState([]);
+    
 
-    const getstu = async(e) =>{
+    const getcou = async(e) =>{
         try {
-            const response = await axios.get(`${Apiurl}/getCos`);
+            const response = await axios.get(`${Apiurl}/courseteacher`);
             setCourses(response.data);
-            
         } catch (error) {
             console.log("error in getting data")
         }
     }
 
     useEffect(()=>{
-        getstu();
+        getcou();
     },[])
 
     return(
@@ -80,16 +80,16 @@ const Course = () =>{
                                                     <th>Course ID</th>
                                                     <th>Course NAme</th>
                                                     <th>Course Price</th>
-                                                    
+                                                    <th>Teacher</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            {courses.map((student) => 
+                                            {courses.map((course) => 
                                                 <tr>
-                                                <td>{courses.courseid}</td>
-                                                <td>{courses.coursename}</td>
-                                                <td>{courses.courseprice}</td>
-                                                
+                                                <td>{course.courseid}</td>
+                                                <td>{course.coursename}</td>
+                                                <td>{course.courseprice}</td>
+                                                <td>{course.t_fullname}</td>
                                                 </tr>
                                             )}
                                             </tbody>
