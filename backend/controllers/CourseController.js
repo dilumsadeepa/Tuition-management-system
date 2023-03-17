@@ -3,6 +3,7 @@ import Course from '../models/CourseModel.js';
 
 
 
+
 //admin
 
 
@@ -25,7 +26,7 @@ export const createCourse = async(req, res) =>{
 } 
 
 export const getCotData = async(req, res) =>{
-    const sesql = "SELECT teachers.*, courses.* FROM courses INNER JOIN teachers ON courses.courseteacher=teachers.t_userid ";
+    const sesql = "SELECT courses.*, teachers.* FROM courses JOIN teachers ON courses.courseteacher = teachers.id;";
     try {
         const response = await db.query(sesql, { type: QueryTypes.SELECT });
         res.status(200).json(response);

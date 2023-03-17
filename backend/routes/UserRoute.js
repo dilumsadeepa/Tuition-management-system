@@ -34,7 +34,7 @@ router.get('/stucourse', stucourse);
 router.post('/crestecourse', createCourse);
 router.get('/course', getCos);
 router.get('/getCts', getCts);
-router.get('/courseteacher', getCotData);
+router.get('/cte', getCotData);
 
 
 //student

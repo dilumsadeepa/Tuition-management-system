@@ -1,5 +1,6 @@
 import {Sequelize} from "sequelize";
 import db from "../config/Database.js";
+import Teacher from "./TeacherModel.js";
  
 const {DataTypes} = Sequelize;
  
@@ -35,7 +36,10 @@ const Course = db.define('courses',{
 },{
     freezeTableName:true
 });
- 
+
+Teacher.hasMany(Course);
+Course.belongsTo(Teacher);
+
 export default Course;
  
 (async()=>{
