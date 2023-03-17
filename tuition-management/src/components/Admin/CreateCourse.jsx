@@ -16,7 +16,7 @@ const CreateCourse = () => {
     const [courseprofile , setCprofile] = useState("");
     const [coursedes, setCdes] = useState("");
     const [courseprice, setCprice] = useState("");
-    const [courseteacher, setct] = useState("");
+    const [teacherId, setct] = useState("");
     const [succ, setsucc] = useState("");
     const [err, seterr] = useState("");
 
@@ -45,9 +45,9 @@ const CreateCourse = () => {
 
         setCdes(editorRef.current.getContent())
 
-        if (courseid === "" || coursename === "" || coursebanner === "" || courseprofile === "" || coursedes === "" || courseprice === "" || courseteacher === "") {
+        if (courseid === "" || coursename === "" || coursebanner === "" || courseprofile === "" || coursedes === "" || courseprice === "" || teacherId === "") {
             seterr("Fill All the Fileds");
-            console.log(courseid +','+coursename+','+ coursebanner +','+courseprofile +','+coursedes +','+courseprice +','+ courseteacher);
+            console.log(courseid +','+coursename+','+ coursebanner +','+courseprofile +','+coursedes +','+courseprice +','+ teacherId);
         }
         else{
             // let courseid = cid;
@@ -56,7 +56,7 @@ const CreateCourse = () => {
             // let courseprofile = cprofile;
             // let coursedes = cdes;
             // let courseprice = cprice;
-            console.log(courseid +','+coursename+','+ coursebanner +','+courseprofile +','+coursedes +','+courseprice);
+            console.log(courseid +','+coursename+','+ coursebanner +','+courseprofile +','+coursedes +','+courseprice+''+teacherId);
             try {
                 await axios.post(`${Apiurl}/crestecourse/`,{
                    courseid,
@@ -65,7 +65,7 @@ const CreateCourse = () => {
                    courseprofile,
                    coursedes,
                    courseprice, 
-                   courseteacher,
+                   teacherId,
                 });
                 
             } catch (error) {
@@ -148,6 +148,7 @@ const CreateCourse = () => {
                                                 className="form-control" 
                                                 placeholder="Enter the Course Code"
                                                 onChange={(e) => setCid(e.target.value)}
+                                                required
                                             />
                                         </div>
 
@@ -157,6 +158,7 @@ const CreateCourse = () => {
                                                 className="form-control" 
                                                 placeholder="Enter the Course Name"
                                                 onChange={(e) => setCname(e.target.value)}
+                                                required
                                             />
                                         </div>
 
@@ -166,6 +168,7 @@ const CreateCourse = () => {
                                                 className="form-control" 
                                                 placeholder="Enter the Course Image URL"
                                                 onChange={(e) => setCbanner(e.target.value)}
+                                                required
                                             />
                                         </div>
 
@@ -175,6 +178,7 @@ const CreateCourse = () => {
                                                 className="form-control" 
                                                 placeholder="Enter the Course Profile Url"
                                                 onChange={(e) => setCprofile(e.target.value)}
+                                                required
                                             />
                                         </div>
 
@@ -204,6 +208,7 @@ const CreateCourse = () => {
                                                 className="form-control" 
                                                 placeholder="Enter the Course Price"
                                                 onChange={(e) => setCprice(e.target.value)}
+                                                required
                                             />
                                         </div>
 
@@ -212,7 +217,7 @@ const CreateCourse = () => {
                                             <select className='form-control' onChange={(e) => setct(e.target.value)}>
                                                 <option value="">Select One</option>
                                                 {teachers.map((t) =>
-                                                    <option value={t.t_userid}>{t.t_fullname}</option>
+                                                    <option value={t.id}>{t.t_fullname}</option>
                                                 )}
                                             </select>
                                         </div>

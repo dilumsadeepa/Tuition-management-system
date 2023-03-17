@@ -13,10 +13,20 @@ const Course = () =>{
 
     const getcou = async(e) =>{
         try {
-            const response = await axios.get(`${Apiurl}/courseteacher`);
+            const response = await axios.get(`${Apiurl}/coursedata`);
             setCourses(response.data);
         } catch (error) {
             console.log("error in getting data")
+        }
+    }
+
+    const deletecourse = async(id) =>{
+        console.log(`${Apiurl}/deletecourse/${id}`);
+        try {
+            const deleted = await axios.delete(`${Apiurl}/deletecourse/${id}`);
+            console.log(deleted.data);
+        } catch (error) {
+            console.log("error on deleting" + error);
         }
     }
 
@@ -81,6 +91,7 @@ const Course = () =>{
                                                     <th>Course NAme</th>
                                                     <th>Course Price</th>
                                                     <th>Teacher</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -89,7 +100,8 @@ const Course = () =>{
                                                 <td>{course.courseid}</td>
                                                 <td>{course.coursename}</td>
                                                 <td>{course.courseprice}</td>
-                                                <td>{course.t_fullname}</td>
+                                                <td>{course.teacher.t_fullname}</td>
+                                                <td><button className='btn btn-danger' onClick={()=> deletecourse(course.id)}>Delete</button></td>
                                                 </tr>
                                             )}
                                             </tbody>

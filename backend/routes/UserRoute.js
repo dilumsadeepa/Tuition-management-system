@@ -12,7 +12,7 @@ import { getAtts, getAttById } from "../controllers/AttendanceController.js";
 import { getsts, getStuData } from "../controllers/StudentController.js";
 import { getPas } from "../controllers/ParentsController.js";
 import { getTes,createTeacher } from "../controllers/TeacherController.js";
-import { getCos, createCourse, getCotData } from "../controllers/CourseController.js";
+import { getCos, createCourse, CourseData, deleteCourse } from "../controllers/CourseController.js";
 import { getCSs, stucourse } from "../controllers/CoursestudentController.js";
 import { getPays } from "../controllers/PaymentController.js";
 import { getSPs } from "../controllers/Salarypresent.js";
@@ -34,7 +34,8 @@ router.get('/stucourse', stucourse);
 router.post('/crestecourse', createCourse);
 router.get('/course', getCos);
 router.get('/getCts', getCts);
-router.get('/cte', getCotData);
+router.get('/coursedata', CourseData);
+router.delete('/deletecourse/:id', deleteCourse);
 
 
 //student

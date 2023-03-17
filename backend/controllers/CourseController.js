@@ -1,4 +1,5 @@
 import Course from '../models/CourseModel.js';
+import Teacher from '../models/TeacherModel.js';
 
 
 
@@ -23,14 +24,48 @@ export const createCourse = async(req, res) =>{
     } catch (error) {
         console.log(error.message);
     }
-} 
+}
 
-export const getCotData = async(req, res) =>{
-    const sesql = "SELECT courses.*, teachers.* FROM courses JOIN teachers ON courses.courseteacher = teachers.id;";
+export const CourseData = async(req, res) =>{
     try {
-        const response = await db.query(sesql, { type: QueryTypes.SELECT });
+        const response = await Course.findAll({
+            include: [Teacher]
+          });
         res.status(200).json(response);
     } catch (error) {
         console.log(error.message);
     }
 }
+
+export const deleteCourse = async(req, res) =>{
+    try {
+        await Course.destroy({
+            where:{
+                id: req.params.id
+            }
+        });
+        // res.status(200).json({msg: "Course Deleted"});
+        // const course = await Course.findById(req.params.id);
+
+        // if (!course) {
+        //     return res.status(404).json({ error: 'Course not found' });
+        // }
+
+        // await course.remove();
+
+        // res.status(204).json({msg: "Course Deleted"});
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+
+// export const getCotData = async(req, res) =>{
+//     const sesql = "SELECT courses.*, teachers.* FROM courses JOIN teachers ON courses.courseteacher = teachers.id;";
+//     try {
+//         const response = await db.query(sesql, { type: QueryTypes.SELECT });
+//         res.status(200).json(response);
+//     } catch (error) {
+//         console.log(error.message);
+//     }
+// }
