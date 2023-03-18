@@ -10,12 +10,20 @@ const Notice = db.define('notices',{
     },
     notice_from:{
         type:DataTypes.STRING,
-        allowNull:false,
+        allowNull:true,
     },
-    notice:{
+    notice_title:{
+        type:DataTypes.STRING,
+        allowNull:true,
+    },
+    notice_desc:{
         type:DataTypes.TEXT,
         allowNull:false,
     },
+    files:{
+        type:DataTypes.STRING,
+        allowNull:true,
+    }
     
 },{
     freezeTableName:true

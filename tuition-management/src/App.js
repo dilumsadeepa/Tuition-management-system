@@ -9,6 +9,7 @@ import ViewStudent from "./components/Admin/ViewStudent";
 import StudenttoCourse from "./components/Admin/StudenttoCourse";
 import Course from "./components/Admin/Course";
 import CreateCourse from "./components/Admin/CreateCourse";
+import Notice from "./components/Common/Notice";
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
 
@@ -31,6 +32,9 @@ function App() {
           <Route path="Stureg" element={<StudentReg/>}/>
           <Route path="EnterForm" element={<EnterForm/>}/>
          
+
+         {/* Common */}
+         <Route path="notice" element={<Notice/>}/>
       </Routes>
    </BrowserRouter>
    
