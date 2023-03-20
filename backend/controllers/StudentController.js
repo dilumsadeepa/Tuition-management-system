@@ -33,3 +33,4 @@ export const getStuData = async(req, res) =>{
         console.log(error.message);
     }
 }
+

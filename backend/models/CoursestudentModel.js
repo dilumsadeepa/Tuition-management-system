@@ -1,17 +1,11 @@
 import {Sequelize} from "sequelize";
 import db from "../config/Database.js";
+import Course from "./CourseModel.js";
+import Student from "./StudentModel.js";
  
 const {DataTypes} = Sequelize;
  
 const Coursestudent = db.define('coursestudents',{
-    cid:{
-        type:DataTypes.STRING,
-        allowNull:false,
-    },
-    suid:{
-        type:DataTypes.STRING,
-        allowNull:false,
-    },
     aprovel:{
         type:DataTypes.STRING,
         allowNull: false,
@@ -20,6 +14,11 @@ const Coursestudent = db.define('coursestudents',{
 },{
     freezeTableName:true
 });
+
+Coursestudent.belongsTo(Student);
+Coursestudent.belongsTo(Course);
+Student.hasMany(Coursestudent);
+Course.hasMany(Coursestudent);
  
 export default Coursestudent;
  

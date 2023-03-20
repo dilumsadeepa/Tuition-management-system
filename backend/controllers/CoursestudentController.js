@@ -1,4 +1,6 @@
+import Course from '../models/CourseModel.js';
 import Coursestudent from '../models/CoursestudentModel.js';
+import Student from '../models/StudentModel.js';
  
 export const getCSs = async(req, res) =>{
     try {
@@ -17,10 +19,26 @@ export const getCSs = async(req, res) =>{
 //admin
 
 export const stucourse = async(req, res) =>{
-    const sesql = "SELECT users.*, students.*, coursestudents.*, courses.* FROM users INNER JOIN students ON users.id=students.userid JOIN coursestudents ON users.id = coursestudents.suid JOIN courses ON coursestudents.cid = courses.id";
     try {
-        const response = await db.query(sesql, { type: QueryTypes.SELECT });
+        const response = await Coursestudent.findAll({
+            include: [
+                Student,Course
+            ]
+        });
         res.status(200).json(response);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+export const updateCS = async(req, res) =>{
+    try {
+        await Coursestudent.update(req.body,{
+            where:{
+                id: req.params.id
+            }
+        });
+        res.status(200).json({msg: "Data Updated"});
     } catch (error) {
         console.log(error.message);
     }

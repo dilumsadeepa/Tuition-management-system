@@ -9,6 +9,7 @@ import ViewStudent from "./components/Admin/ViewStudent";
 import StudenttoCourse from "./components/Admin/StudenttoCourse";
 import Course from "./components/Admin/Course";
 import CreateCourse from "./components/Admin/CreateCourse";
+import AssignStudents from "./components/Admin/AssignStudents";
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="studentcourse" element={<StudenttoCourse/>}/>
           <Route path="course" element={<Course/>}/>
           <Route path="course/create" element={<CreateCourse/>}/>
+          <Route path="assignstudent" element={<AssignStudents/>}/>
 
 
           {/* student part */}
