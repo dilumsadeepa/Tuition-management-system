@@ -63,4 +63,5 @@ router.get('/salary', getsals);
 router.get('/notice', getNotis);
 
 
+
 export default router;

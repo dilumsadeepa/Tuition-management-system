@@ -21,8 +21,16 @@ const Notice = db.define('notices',{
         allowNull:false,
     },
     files:{
-        type:DataTypes.STRING,
+        type:DataTypes.TEXT,
         allowNull:true,
+    },
+    cloudFiles:{
+        type:DataTypes.TEXT,
+        allowNull:true,
+    },
+    backup:{
+        type:DataTypes.BOOLEAN,
+        allowNull:false,
     }
     
 },{

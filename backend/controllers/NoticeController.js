@@ -8,3 +8,13 @@ export const getNotis = async(req, res) =>{
         console.log(error.message);
     }
 }
+
+
+export const createNotice = async(req, res) =>{
+    try {
+        await User.create(req.body);
+        res.status(201).json({msg: "Notice Created"});
+    } catch (error) {
+        console.log(error.message);
+    }
+}

@@ -1,7 +1,6 @@
 import React, {useRef, useEffect, useState} from "react";
 import * as Yup from "yup";
 import axios, { formToJSON } from "axios";
-import Switch from 'react-switch';
 import Apiurl from '../Apiurl';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -11,13 +10,11 @@ function Notice() {
     const [noticeTitle, setNoticeTitle] = useState("");
     const [noticeDescription, setNoticeDescription] = useState("");
     const [attachFiles, setAttachFiles] = useState([]);
-    const [isChecked, setIsChecked] = useState(true);
 
     const handleFileInputChange = (event) => {
       const files = event.target.files;
       setAttachFiles(Array.from(files));
     };
-
 
     const validationSchema = Yup.object().shape({
       audience: Yup.string().required("Target audience is required"),
@@ -264,7 +261,6 @@ function Notice() {
         data.append("notice_title", noticeTitle);
         data.append("notice_desc", noticeDescription);
         data.append("files", uniqueFileNames);
-        data.append("backup", isChecked)
       
         // try {
         //   const res = await axios.post(`${Apiurl}/multiple`, data);
@@ -364,14 +360,6 @@ function Notice() {
             <div className="mb-3 mt-3">
                 <label htmlFor="files">Attachments</label>
                 <input type="file" className={`form-control ${errors.attachFiles && "is-invalid"}`} multiple onChange={handleFileInputChange} />
-
-                <div className="d-flex align-items-center mt-2 ms-1 ps-0">
-                <Switch
-                  checked={isChecked}
-                  onChange={value => setIsChecked(value)}
-                />
-                <label className="form-check-label ms-2" for="flexSwitchCheckChecked">Cloud Backup</label>
-                </div>
                 {errors.attachFiles && (
                   <div className="badge rounded-pill text-bg-danger">{errors.attachFiles}</div>
                 )}
@@ -398,7 +386,6 @@ function Notice() {
                 <small>Max File Size : 10MB</small>
                 </div>
             </div>
-
 
             {/* <div className="mb-3 mt-3">
                 <button type="submit" className="btn btn-primary">Submit</button>

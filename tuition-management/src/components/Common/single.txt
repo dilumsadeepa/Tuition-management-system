@@ -1,0 +1,247 @@
+import React, {useRef, useEffect, useState} from "react";
+import * as yup from "yup";
+import axios, { formToJSON } from "axios";
+import Apiurl from '../Apiurl';
+
+
+function Notice() {
+    const fileRef = useRef(null);
+    const [audience, setAudience] = useState("");
+    const [noticeTitle, setNoticeTitle] = useState("");
+    const [noticeDescription, setNoticeDescription] = useState("");
+    const [attachFiles, setAttachFiles] = useState();
+
+
+    const noticeSchema = yup.object().shape({
+        notice_to: yup.string().required(),
+        notice_title: yup.string().min(3).max(255).required(),
+        notice_desc: yup.string().required(),
+    });
+
+
+
+
+
+
+    // const createNotice = async (e) => {
+    //     e.preventDefault();
+    //     let formData = {
+    //         notice_to: e.target.notice_to.value,
+    //         notice_title: e.target.notice_title.value,
+    //         notice_desc: e.target.notice_desc.value,
+    //         files: e.target.files.value,
+    //     };
+
+
+    //     const isValid = await noticeSchema.isValid(formData);
+    //     console.log(isValid);
+    //     if (isValid) {
+
+    //         axios.post(`${Apiurl}/multiple`, {
+    //             notice_to: audience,
+    //             notice_title: noticeTitle,
+    //             notice_desc: noticeDescription,
+    //             files: attachFiles,
+    //         }, {
+    //             headers: {
+    //                 "Content-Type": "multipart/form-data",
+    //             },
+    //         })
+    //         .then((res) => {
+    //             console.log(res);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    //         console.log(formData);
+    //     }
+    // };
+
+    //----------------------------------
+
+
+        //     const files = fileRef?.current?.files;
+        //     if (files) {
+        //         const fileArr = Array.from(files);
+        //         fileArr.forEach((file) => {
+        //             formData.append("files", file);
+        //         });
+        // }
+
+
+    //     e.preventDefault();
+    //     const form = e.target;
+    //     const data = formToJSON(form.elements);
+    //     const formData = new FormData();
+    //     const files = fileRef?.current?.files;
+    //     if (files) {
+    //         const fileArr = Array.from(files);
+    //         fileArr.forEach((file) => {
+    //             formData.append("files", file);
+    //         });
+    //     }
+    //     formData.append("notice_to", data.notice_to);
+    //     formData.append("notice_title", data.notice_title);
+    //     formData.append("notice_desc", data.notice_desc);
+    //     axios
+    //         .post(`${Apiurl}/multiple`, formData, {
+    //             headers: {
+    //                 "Content-Type": "multipart/form-data",
+    //             },
+    //         })
+    //         .then((res) => {
+    //             console.log(res);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // };
+    // notice_to: audience,
+    // notice_title: noticeTitle,
+    // notice_desc: noticeDescription,
+    // files: attachFiles,
+
+    
+    // const form = document.querySelector('form');
+    // form.addEventListener('submit', (e) => {
+        
+    //     e.preventDefault();
+    //     // Prevents HTML handling submission
+    //     const notice_to = document.getElementById("audience");
+    //     const notice_title = document.getElementById("title");
+    //     const notice_desc = document.getElementById("noticeData");
+    //     const files = document.getElementById("files");
+    //     const formData = new FormData();
+    //     // Creates empty formData object
+    //     formData.append("notice_to", notice_to.value);
+    //     formData.append("notice_title", notice_title.value);
+    //     formData.append("notice_desc", notice_desc.value);
+
+    //     // Appends value of text input
+    //     for(let i =0; i < files.files.length; i++) {
+    //         formData.append("files", files.files[i]);
+    //     }
+    //     // Appends value(s) of file input
+    //     // Post data to Node and Express server:
+    //     fetch(`${Apiurl}/multiple`, {
+    //         method: 'POST',
+    //         body: formData, // Payload is formData object
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => console.log(data));
+    // })
+
+    
+//"https://httpbin.org/anything"      `${Apiurl}/multiple`
+
+
+// const handleUpload =(event) => {
+//     setAttachFiles(event.target.files);
+//     };
+
+    const send = event => {
+        const data = new FormData();
+        // for(let i = 0; i < attachFiles.length; i++){
+        //     data.append(`files[${i}]`, attachFiles[0])
+        // }
+        data.append("notice_to", audience);
+        data.append("notice_title", noticeTitle);
+        data.append("notice_desc", noticeDescription);
+        data.append("files", attachFiles);
+
+        // data.append("uploads", attachFiles[0]")
+    
+        // const fileArr = Array.from(files);
+        // data.fileArray = fileArr;
+        // console.log("file array: ", data.fileArray);
+        // const dbFileArray = [];
+        // console.log("fileArr : "+fileArr);
+        // fileArr.forEach((file) => {
+        //     dbFileArray.push(file.lastModified+"__"+file.name);
+            
+        //     console.log("dbFileArray : "+dbFileArray);
+        // });
+        // data.fileNames = dbFileArray;
+
+
+
+
+
+        axios.post(`${Apiurl}/single` , data)
+          .then(res => console.log(res))
+          .catch(err => console.log(err));
+      };
+
+
+
+  return (
+    <div>
+      <div className="row">
+        <div className="col-sm-2"></div>
+
+        <div className="col-sm-8 debox">
+        <form action="#">
+            <div className="mb-3 mt-3">
+                <label htmlFor="audience" >Target Audience</label>
+                <select className="form-control" id="audience" name="notice_to" value={audience} onChange={(event) => {setAudience(event.target.value)}} >
+                    <option value="" selected disabled hidden>Select Audience You Want To Cover</option>
+                    <option value="5">All</option>
+                    <option value="2">Staff</option>
+                    <option value="3">Teacher</option>
+                    <option value="4">Student</option>
+                </select>
+            </div>
+            <div className="mb-3 mt-3">
+                <label htmlFor="title" >Notice Title</label>
+                <input type="text" className="form-control" id="title" name="notice_title" placeholder="Enter Title" value={noticeTitle} onChange={(event) => {setNoticeTitle(event.target.value)}} />
+            </div>
+            <div className="mb-3 mt-3">
+                <label htmlFor="noticeData" >Notice Description</label>
+                {/* <input type="text" className="form-control" id="noticeData" name="notice_desc" placeholder="Enter Title" /> */}
+                <textarea className="form-control" id="noticeData" name="notice_desc" placeholder="Enter Title" rows="3" onChange={(event) => {setNoticeDescription(event.target.value)}}></textarea>
+            </div>
+
+            <div className="mb-3 mt-3">
+                <label htmlFor="files" >Attachments</label>
+                <input type="file"  name="attach_files" id="files" onChange={event => {const file = event.target.files[0]; setAttachFiles(file)}} />
+                {/* <input type="file" multiple name="attach_files" id="files" onChange={handleUpload} /> */}
+                <div className="form-files">
+                <small>File Supported : zip",
+                "xml",
+                "xhtml+xml",
+                "plain",
+                "svg+xml",
+                "rtf",
+                "pdf",
+                "jpeg",
+                "png",
+                "jpg",
+                "ogg",
+                "json",
+                "html",
+                "gif",
+                "csv"</small>
+                </div>
+
+                <div className="form-files">
+                <small>Max File Size : 10MB</small>
+                </div>
+            </div>
+
+            {/* <div className="mb-3 mt-3">
+                <button type="submit" className="btn btn-primary">Submit</button>
+            </div> */}
+        </form>
+        <div className="mb-3 mt-3">
+                <button onClick={send} className="btn btn-primary">Submit</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Notice
+
+
+
