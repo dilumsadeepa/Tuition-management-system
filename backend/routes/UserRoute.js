@@ -36,7 +36,8 @@ router.get('/course', getCos);
 router.get('/getCts', getCts);
 router.get('/coursedata', CourseData);
 router.delete('/deletecourse/:id', deleteCourse);
-router.patch('updateCS/:id', updateCS);
+router.patch('/updateCS/:id', updateCS);
+router.get('/salary', getsals);
 
 //student
 
@@ -59,7 +60,7 @@ router.get('/course', getCos);
 router.get('/coursestudent', getCSs);
 router.get('/payment', getPays);
 router.get('/salarypresent', getSPs);
-router.get('/salary', getsals);
+
 router.get('/notice', getNotis);
 
 

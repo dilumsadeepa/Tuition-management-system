@@ -5,7 +5,7 @@ import Sidebar from './AdminSidebar';
 import Dashhead from './Dashhead';
 
 
-const AssignStudents = () => {
+const SalaryPresent = () => {
 
     const [students, setStudents] = useState([]);
 
@@ -56,23 +56,8 @@ const AssignStudents = () => {
                     
                         <div class="container">
 
-                            {/* <div className="row">
-                                <div className="col-sm-8 d-flex justify-content-center">
-                                <div className="search">
-                                    <input 
-                                        type="text" 
-                                        className="form-control searchTerm" 
-                                        placeholder="What are you looking for?"
-                                    />
-                                    <button type="submit" className="searchButton">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </div>
-                                </div>
-                            </div> */}
-
                             <div className="row mt-5">
-                               <h2>Unaproved</h2>
+                               <h2>Salary</h2>
                                 <div className="col-sm-12">
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
@@ -107,41 +92,7 @@ const AssignStudents = () => {
                                 </div>
                             </div>
 
-                            <div className="row mt-5">
-                               <h2>Aproved</h2>
-                               <div className="col-sm-12">
-                                   <div class="table-responsive">
-                                       <table class="table table-bordered">
-                                           <thead>
-                                               <tr>
-                                                   <th>Full Name</th>
-                                                   <th>NIC</th>
-                                                   <th>CourseID</th>
-                                                   <th>Course</th>
-                                                   <th>Aprovel</th>
-                                                   <th>Action</th>
-                                               </tr>
-                                           </thead>
-                                           <tbody>
-                                           {students.map((student) => 
-                                              <>
-                                               {student.aprovel === '1' &&
-                                               <tr>
-                                                   <td>{student.student.sfullname}</td>
-                                                   <td>{student.student.snic}</td>
-                                                   <td>{student.course.courseid}</td>
-                                                   <td>{student.course.coursename}</td>
-                                                   <td>Aproved</td>
-                                                   <td><button type='button' onClick={(e) => updateCS(student.id,student.courseId,student.studentId,'0')} className='debtn'>Unaprove</button></td>
-                                               </tr>
-                                               }
-                                              </>  
-                                           )}
-                                           </tbody>
-                                       </table>
-                                   </div>
-                               </div>
-                           </div>
+                            
                             
                         </div>
                     </main>
@@ -155,4 +106,4 @@ const AssignStudents = () => {
     )
 }
 
-export default AssignStudents;
+export default SalaryPresent;

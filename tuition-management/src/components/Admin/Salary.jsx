@@ -5,23 +5,25 @@ import Sidebar from './AdminSidebar';
 import Dashhead from './Dashhead';
 
 
+const Salary = () => {
 
-const ViewStudent = () =>{
+    const [salary, setSalary] = useState([]);
 
-    const [students, setStudents] = useState([]);
-
-    const getstu = async(e) =>{
+    const getsalary = async(e) =>{
         try {
-            const response = await axios.get(`${Apiurl}/astudata`);
-            setStudents(response.data);
+            const response = await axios.get(`${Apiurl}/salary`);
+            setSalary(response.data);
+            console.log(response.data);
             
         } catch (error) {
             console.log("error in getting data")
         }
     }
 
+   
+
     useEffect(()=>{
-        getstu();
+        getsalary();
     },[])
 
     return(
@@ -43,6 +45,13 @@ const ViewStudent = () =>{
                     
                         <div class="container">
 
+
+                            <div className="row mt-3">
+                                <div className="col-sm-12">
+                                    <h2>Salary</h2>
+                                </div>
+                            </div>
+
                             <div className="row">
                                 <div class="col-xl-4 col-sm-6 col-12">
                                     <div class="card shadow border-0">
@@ -50,11 +59,11 @@ const ViewStudent = () =>{
                                             <div class="row">
                                                 <div class="col">
                                                     {/* <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span> */}
-                                                    <span class="h4 mb-0"><a href="/assignstudent" className='debtn'>Assing Students</a></span>
+                                                    <span class="h4 mb-0"><a href="/salarypresentage" className='debtn'>Salary Prentage</a></span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
-                                                    <i class="bi bi-people"></i>
+                                                    <i class="bi bi-bookmark-plus-fill"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -77,27 +86,21 @@ const ViewStudent = () =>{
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>UserID</th>
                                                     <th>Full Name</th>
-                                                    <th>Email</th>
-                                                    <th>Phone Number</th>
-                                                    <th>Address</th>
-                                                    <th>DOB</th>
-                                                    <th>Gender</th>
                                                     <th>NIC</th>
+                                                    <th>Salary</th>
+                                                    <th>Month</th>
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            {students.map((student) => 
+                                            {salary.map((s) => 
                                                 <tr>
-                                                <td>{student.userid}</td>
-                                                <td>{student.sfullname}</td>
-                                                <td>{student.email}</td>
-                                                <td>{student.tel}</td>
-                                                <td>{student.saddress}</td>
-                                                <td>{student.sdob}</td>
-                                                <td>{student.sgender}</td>
-                                                <td>{student.snic}</td>
+                                                    <td>{s.teacher.t_fullname}</td>
+                                                    <td>{s.teacher.t_nic}</td>
+                                                    <td>{s.s_salary}</td>
+                                                    <td>{s.month}</td>
+                                                    
                                                 </tr>
                                             )}
                                             </tbody>
@@ -105,6 +108,8 @@ const ViewStudent = () =>{
                                     </div>
                                 </div>
                             </div>
+
+                            
                             
                         </div>
                     </main>
@@ -118,4 +123,4 @@ const ViewStudent = () =>{
     )
 }
 
-export default ViewStudent;
+export default Salary;

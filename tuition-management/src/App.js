@@ -10,6 +10,8 @@ import StudenttoCourse from "./components/Admin/StudenttoCourse";
 import Course from "./components/Admin/Course";
 import CreateCourse from "./components/Admin/CreateCourse";
 import AssignStudents from "./components/Admin/AssignStudents";
+import Salary from "./components/Admin/Salary";
+import SalaryPresent from "./components/Admin/SalaryPresent";
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
 
@@ -27,6 +29,8 @@ function App() {
           <Route path="course" element={<Course/>}/>
           <Route path="course/create" element={<CreateCourse/>}/>
           <Route path="assignstudent" element={<AssignStudents/>}/>
+          <Route path="salary" element={<Salary/>}/>
+          <Route path="salarypresentage" element={<SalaryPresent/>}/>
 
 
           {/* student part */}
