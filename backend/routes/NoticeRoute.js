@@ -7,7 +7,8 @@ import NoticeModel from '../models/NoticeModel.js';
 import multer from "multer"; // use for file handeling
 import path from "path";
 
-import cloudinary from '../clouds/cloudinary.js'; 
+import cloudinary from '../clouds/cloudinary.js';
+
 
 // const cloudinary = require('../clouds/cloudinary');
 
@@ -21,10 +22,11 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         console.log('filenamereq :', file);
         console.log('backendfile :', file);
-        cb(null, Date.now() +"--"+ file.originalname);
+        // cb(null, Date.now() +"--"+ file.originalname);
+        cb(null, file.originalname);
     }
 });
-
+ 
 const upload = multer({
      storage: storage,
      limits: {fileSize: 10000000},
@@ -177,6 +179,44 @@ router.post("/multiple", upload.array("myFieldName"), async (req, res, next) => 
     res.status(201).json(notice);
 });
 
+
+
+
+
+router.post("/cloud", upload.array("cloudStorage"), async (req, res, next) => {
+    const notice = await NoticeModel.create(req.body);
+    console.log("body :",req.body);
+    console.log("file List: ",req.files);
+    console.log("file Names csv: ",req.body.files);
+
+    const { notice_to, notice_title, notice_desc ,files, backup} = req.body;
+
+         // Upload files to Cloudinary
+            const cloudUrls = await Promise.all(
+  
+                req.files.map(async (file) => {
+                const filenameWithoutExt = path.parse(file.filename).name; // Get filename without extension
+                console.log("filenameWithoutExt :",filenameWithoutExt);
+                const result = await cloudinary.v2.uploader.upload(file.path, {
+                    folder: "Susipwan_BackupData/Notices",
+                    public_id: filenameWithoutExt,
+                    // resource_type: "auto"
+                });
+                    return result.secure_url;
+                })
+            );
+
+            // Update the notice object with the Cloudinary URLs
+            notice.cloudOnly = cloudUrls.join(','); // Join URLs with commas
+
+            // Save the notice to the database
+            await notice.save();
+
+
+            // res.status(201).json(notice);
+
+    res.status(201).json(notice);
+});
 
 // router.post("/single",upload.single("files"), async (req, res, next) => {
 //     const notice = await NoticeModel.create(req.body);

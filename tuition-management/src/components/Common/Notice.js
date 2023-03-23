@@ -4,6 +4,8 @@ import axios, { formToJSON } from "axios";
 import Switch from 'react-switch';
 import Apiurl from '../Apiurl';
 import { v4 as uuidv4 } from 'uuid';
+import { Image } from 'cloudinary-react';
+// import parse from 'csv-parse';
 
 
 function Notice() {
@@ -11,66 +13,83 @@ function Notice() {
     const [noticeTitle, setNoticeTitle] = useState("");
     const [noticeDescription, setNoticeDescription] = useState("");
     const [attachFiles, setAttachFiles] = useState([]);
+    const [cloudFiles, setCloudFiles] = useState([]);
     const [isChecked, setIsChecked] = useState(true);
+    const [uploadProgress, setUploadProgress] = useState(0);
+    const [filePreviews, setFilePreviews] = useState([]);
+
+    const uniqueFileNames = [];
+    const cloudUniqueFileNames = [];
+
 
     const handleFileInputChange = (event) => {
       const files = event.target.files;
       setAttachFiles(Array.from(files));
     };
 
+    const handleCloudFileInputChange = (event) => {
+      const files = event.target.files;
+      setCloudFiles(Array.from(files));
+    };
+
+
+
+    const fileSchema = Yup.array()
+    .nullable()
+    .compact()
+    .test(
+      "fileSize",
+      "File size too large",
+      (value) => {
+        if (!value) {
+          return true;
+        }
+        const size = value.reduce((acc, file) => acc + file.size, 0);
+        return size / 1024 / 1024 <= 10;
+      }
+    )
+    .test(
+      "fileType",
+      "Unsupported file format",
+      (value) => {
+        if (!value) {
+          return true;
+        }
+        const supportedTypes = [
+          "application/zip",
+          "application/xml",
+          "application/xhtml+xml",
+          "text/plain",
+          "image/svg+xml",
+          "application/rtf",
+          "application/pdf",
+          "image/jpeg",
+          "image/png",
+          "image/jpg",
+          "audio/ogg",
+          "application/json",
+          "text/html",
+          "image/gif",
+          "text/csv",
+        ];
+        const types = value.map((file) => file.type);
+        return types.every((type) => supportedTypes.includes(type));
+      }
+    )
+    .transform((value, originalValue) => {
+      if (originalValue === "") {
+        return null;
+      }
+      return value;
+    });
+
 
     const validationSchema = Yup.object().shape({
       audience: Yup.string().required("Target audience is required"),
       noticeTitle: Yup.string().required("Notice title is required"),
       noticeDescription: Yup.string().required("Notice description is required"),
-      attachFiles: Yup.array()
-        .nullable()
-        .compact()
-        .test(
-          "fileSize",
-          "File size too large",
-          (value) => {
-            if (!value) {
-              return true;
-            }
-            const size = value.reduce((acc, file) => acc + file.size, 0);
-            return size / 1024 / 1024 <= 10;
-          }
-        )
-        .test(
-          "fileType",
-          "Unsupported file format",
-          (value) => {
-            if (!value) {
-              return true;
-            }
-            const supportedTypes = [
-              "application/zip",
-              "application/xml",
-              "application/xhtml+xml",
-              "text/plain",
-              "image/svg+xml",
-              "application/rtf",
-              "application/pdf",
-              "image/jpeg",
-              "image/png",
-              "image/jpg",
-              "audio/ogg",
-              "application/json",
-              "text/html",
-              "image/gif",
-              "text/csv",
-            ];
-            const types = value.map((file) => file.type);
-            return types.every((type) => supportedTypes.includes(type));
-          }
-        )
-        .transform((value, originalValue) => {
-          if (originalValue === "") {
-            return null;
-          }
-          return value;
-        }),
+      attachFiles: fileSchema,
+      cloudFiles: fileSchema,
     });
 
     const [errors, setErrors] = useState({});
@@ -101,6 +120,7 @@ function Notice() {
           noticeTitle,
           noticeDescription,
           attachFiles: attachFiles.length > 0 ? attachFiles : null, // check if attachFiles is an empty array
+          cloudFiles: cloudFiles.length > 0 ? cloudFiles : null, // check if cloudFiles is an empty array
         }, { abortEarly: false });
         return true;
       } catch (err) {
@@ -252,8 +272,17 @@ function Notice() {
       const isValid = await validateForm();
       if (isValid) {
         const data = new FormData();
-        const uniqueFileNames = [];
+        // const uniqueFileNames = [];
+        // const cloudUniqueFileNames = [];
     
+        //cloud files
+        for (let i = 0; i < cloudFiles.length; i++) {
+          const cloudUniqueFileName = `${uuidv4()}_${cloudFiles[i].name}`;
+          cloudUniqueFileNames.push(cloudUniqueFileName);
+          data.append('myFieldName', cloudFiles[i], cloudUniqueFileName);   
+        }
+
+        //local files or both
         for (let i = 0; i < attachFiles.length; i++) {
           const uniqueFileName = `${uuidv4()}_${attachFiles[i].name}`;
           uniqueFileNames.push(uniqueFileName);
@@ -263,7 +292,7 @@ function Notice() {
         data.append("notice_to", audience);
         data.append("notice_title", noticeTitle);
         data.append("notice_desc", noticeDescription);
-        data.append("files", uniqueFileNames);
+        data.append("files", uniqueFileNames);  //file names csv
         data.append("backup", isChecked)
       
         // try {
@@ -286,6 +315,81 @@ function Notice() {
       }
 
 
+
+
+      const upload = async event => {
+        event.preventDefault();
+        const isValid = await validateForm();
+        if (isValid) {
+          const data = new FormData();
+
+      
+          //cloud files
+          for (let i = 0; i < cloudFiles.length; i++) {
+            const cloudUniqueFileName = `${uuidv4()}_${cloudFiles[i].name}`;
+            cloudUniqueFileNames.push(cloudUniqueFileName);
+            data.append('cloudStorage', cloudFiles[i], cloudUniqueFileName);   
+          }
+  
+          //local files or both
+          for (let i = 0; i < attachFiles.length; i++) {
+            const uniqueFileName = `${uuidv4()}_${attachFiles[i].name}`;
+            uniqueFileNames.push(uniqueFileName);
+            data.append('myFieldName', attachFiles[i], uniqueFileName);
+          }
+
+
+        
+          data.append("notice_to", audience);
+          data.append("notice_title", noticeTitle);
+          data.append("notice_desc", noticeDescription);
+          data.append("files", cloudUniqueFileNames);  //file names csv
+          data.append("backup", isChecked)
+
+
+          // Configure axios request
+          const config = {
+            onUploadProgress: (progressEvent) => {
+              const progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
+              setUploadProgress(progress);
+            },
+          };
+        
+
+
+          axios.post(`${Apiurl}/cloud` , data, config)
+          .then((res) => {
+              setUploadProgress(0);
+              setCloudFiles([]);
+              console.log(res);
+
+              console.log(cloudUniqueFileNames);
+
+              const filePreviews = cloudUniqueFileNames.map((publicId) => {
+                return (
+  
+                  <a key={publicId} href={`https://res.cloudinary.com/de32z3ml9/image/upload/v1679565150/Susipwan_BackupData/Notices/${publicId}`} className="mb-4 col-6 col-sm-4 img-fluid"
+                      data-fancybox="images" data-caption={publicId}>
+                    <img key={publicId} className="rounded img-fluid img-thumbnail" src={`https://res.cloudinary.com/de32z3ml9/image/upload/v1679565150/Susipwan_BackupData/Notices/${publicId}`} alt={publicId} />
+                  </a>
+
+                  // <img
+                  //   key={publicId}
+                  //   src={`https://res.cloudinary.com/de32z3ml9/image/upload/v1679565150/Susipwan_BackupData/Notices/${publicId}`}
+                  //   alt={`"img" ${publicId}`}
+                  //   className="rounded img-thumbnail"
+                  // />
+                );
+              });
+              setFilePreviews(filePreviews);
+          })
+          .catch(err => console.log(err));
+        };
+     
+
+}
+
+// const publicIds = parse(cloudUniqueFileNames, { delimiter: ',' });
 
 
     // const send = async event => {
@@ -362,9 +466,19 @@ function Notice() {
             </div>
 
             <div className="mb-3 mt-3">
-                <label htmlFor="files">Attachments</label>
+              <div className="d-flex align-items-center">
+              <div className="flex-grow-1 align-items-center pe-2">
+              <label htmlFor="cloudFiles">Attachments - cloud storage only</label>
+              <input type="file" className={`form-control ${errors.attachFiles && "is-invalid"}`} multiple onChange={handleCloudFileInputChange} />
+              </div>
+             <div className="pt-6"><button onClick={upload} className="btn btn-primary">upload</button></div>
+            </div>
+              
+                {errors.cloudFiles && (
+                  <div className="badge rounded-pill text-bg-danger">{errors.cloudFiles}</div>
+                )}
+                <label htmlFor="files" className="mt-2">Attachments</label>
                 <input type="file" className={`form-control ${errors.attachFiles && "is-invalid"}`} multiple onChange={handleFileInputChange} />
-
                 <div className="d-flex align-items-center mt-2 ms-1 ps-0">
                 <Switch
                   checked={isChecked}
@@ -404,11 +518,28 @@ function Notice() {
                 <button type="submit" className="btn btn-primary">Submit</button>
             </div> */}
         </form>
+        
+        {/* Progress bar */}
+      {uploadProgress > 0 && (
+        <div>
+          <div>Upload Progress: {uploadProgress}%</div>
+          <progress value={uploadProgress} max="100" />
+        </div>
+      )}
+
+      {console.log("Uploaded files", cloudUniqueFileNames)}
+      <div className="container fancy-gallery mb-5" >
+      <div className="d-flex align-content-start flex-wrap">    
+          {filePreviews}
+      </div>
+      </div>
+
+  
         <div className="mb-3 mt-3">
                 <button onClick={send} className="btn btn-primary">Submit</button>
             </div>
         </div>
-      </div>
+      </div> 
     </div>
   );
 }

@@ -31,6 +31,10 @@ const Notice = db.define('notices',{
     backup:{
         type:DataTypes.BOOLEAN,
         allowNull:false,
+    },
+    cloudOnly:{
+        type:DataTypes.TEXT,
+        allowNull:true,
     }
     
 },{

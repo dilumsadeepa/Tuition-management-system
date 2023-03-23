@@ -10,6 +10,7 @@ import StudenttoCourse from "./components/Admin/StudenttoCourse";
 import Course from "./components/Admin/Course";
 import CreateCourse from "./components/Admin/CreateCourse";
 import Notice from "./components/Common/Notice";
+import Test from "./components/Common/Test";
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
 
@@ -35,6 +36,7 @@ function App() {
 
          {/* Common */}
          <Route path="notice" element={<Notice/>}/>
+         <Route path="test" element={<Test/>}/>
       </Routes>
    </BrowserRouter>
    
