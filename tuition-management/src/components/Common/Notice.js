@@ -5,6 +5,10 @@ import Switch from 'react-switch';
 import Apiurl from '../Apiurl';
 import { v4 as uuidv4 } from 'uuid';
 import { Image } from 'cloudinary-react';
+import CloudinaryFileList from './CloudinaryFileList';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Editor } from '@tinymce/tinymce-react';
 // import parse from 'csv-parse';
 
 
@@ -14,23 +18,16 @@ function Notice() {
     const [noticeDescription, setNoticeDescription] = useState("");
     const [attachFiles, setAttachFiles] = useState([]);
     const [cloudFiles, setCloudFiles] = useState([]);
+    const [cloudUrls, setCloudUrls] = useState([]);
     const [isChecked, setIsChecked] = useState(true);
     const [uploadProgress, setUploadProgress] = useState(0);
     const [filePreviews, setFilePreviews] = useState([]);
+  
 
     const uniqueFileNames = [];
     const cloudUniqueFileNames = [];
 
 
-    const handleFileInputChange = (event) => {
-      const files = event.target.files;
-      setAttachFiles(Array.from(files));
-    };
-
-    const handleCloudFileInputChange = (event) => {
-      const files = event.target.files;
-      setCloudFiles(Array.from(files));
-    };
 
 
 
@@ -57,6 +54,8 @@ function Notice() {
         }
         const supportedTypes = [
           "application/zip",
+          "application/x-rar-compressed",
+          "application/x-7z-compressed",
           "application/xml",
           "application/xhtml+xml",
           "text/plain",
@@ -67,10 +66,22 @@ function Notice() {
           "image/png",
           "image/jpg",
           "audio/ogg",
+          "audio/mpeg",
           "application/json",
           "text/html",
           "image/gif",
+          "video/mp4",
+          "video/mpeg",
+          "video/x-matroska",
+          "video/x-flv",
+          "video/x-msvideo",
           "text/csv",
+          "application/vnd.ms-powerpoint",
+          "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+          "application/vnd.ms-excel",
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "application/vnd.ms-word",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         ];
         const types = value.map((file) => file.type);
         return types.every((type) => supportedTypes.includes(type));
@@ -113,15 +124,38 @@ function Notice() {
     //   }
     // };
 
+    // const validateForm = async () => {
+    //   try {
+    //     await validationSchema.validate({
+    //       audience,
+    //       noticeTitle,
+    //       noticeDescription,
+    //       attachFiles: attachFiles.length > 0 ? attachFiles : null, // check if attachFiles is an empty array
+    //       cloudFiles: cloudFiles.length > 0 ? cloudFiles : null, // check if cloudFiles is an empty array
+    //     }, { abortEarly: false });
+    //     return true;
+    //   } catch (err) {
+    //     const newErrors = {};
+    //     err.inner.forEach(error => {
+    //       newErrors[error.path] = error.message;
+    //     });
+    //     setErrors(newErrors);
+    //     return false;
+    //   }
+    // };
+
+
+
     const validateForm = async () => {
       try {
         await validationSchema.validate({
           audience,
           noticeTitle,
           noticeDescription,
-          attachFiles: attachFiles.length > 0 ? attachFiles : null, // check if attachFiles is an empty array
-          cloudFiles: cloudFiles.length > 0 ? cloudFiles : null, // check if cloudFiles is an empty array
+          attachFiles: attachFiles.length > 0 ? attachFiles : null,
+          cloudFiles: cloudFiles.length > 0 ? cloudFiles : null,
         }, { abortEarly: false });
+        setErrors({});
         return true;
       } catch (err) {
         const newErrors = {};
@@ -132,6 +166,38 @@ function Notice() {
         return false;
       }
     };
+
+
+
+
+    const handleAudienceChange = (event) => {
+      setAudience(event.target.value);
+      validateForm();
+    };
+  
+    const handleNoticeTitleChange = (event) => {
+      setNoticeTitle(event.target.value);
+      validateForm();
+    };
+  
+    const handleNoticeDescriptionChange = (content) => {
+      setNoticeDescription(content);
+      validateForm();
+    };
+
+
+  const handleFileInputChange = (event) => {
+    const files = event.target.files;
+    setAttachFiles(Array.from(files));
+    validateForm();
+  };
+
+  const handleCloudFileInputChange = (event) => {
+    const files = event.target.files;
+    setCloudFiles(Array.from(files));
+    validateForm();
+  };
+
 
 
 
@@ -357,37 +423,113 @@ function Notice() {
         
 
 
+
+
           axios.post(`${Apiurl}/cloud` , data, config)
           .then((res) => {
               setUploadProgress(0);
+              setCloudFiles([]);      // Clear the list of cloud files
+            
+              // Update the list of Cloudinary URLs
+              const urls = res.data.cloudOnly.split(',').map(url => url.trim());
+              setCloudUrls(urls);
+
+              // Clear the list of cloud files
               setCloudFiles([]);
+
+              console.log("urls :",urls);
+
+
               console.log(res);
 
               console.log(cloudUniqueFileNames);
 
-              const filePreviews = cloudUniqueFileNames.map((publicId) => {
-                return (
+          //     const filePreviews = cloudUniqueFileNames.map((publicId) => {
+          //       return (
   
-                  <a key={publicId} href={`https://res.cloudinary.com/de32z3ml9/image/upload/v1679565150/Susipwan_BackupData/Notices/${publicId}`} className="mb-4 col-6 col-sm-4 img-fluid"
-                      data-fancybox="images" data-caption={publicId}>
-                    <img key={publicId} className="rounded img-fluid img-thumbnail" src={`https://res.cloudinary.com/de32z3ml9/image/upload/v1679565150/Susipwan_BackupData/Notices/${publicId}`} alt={publicId} />
-                  </a>
+          //         <a key={publicId} href={`https://res.cloudinary.com/de32z3ml9/image/upload/v1679565150/Susipwan_BackupData/Notices/${publicId}`} className="mb-4 col-6 col-sm-4 img-fluid"
+          //             data-fancybox="images" data-caption={publicId}>
+          //           <img key={publicId} className="rounded img-fluid img-thumbnail" src={`https://res.cloudinary.com/de32z3ml9/image/upload/v1679565150/Susipwan_BackupData/Notices/${publicId}`} alt={publicId} />
+          //         </a>
 
-                  // <img
-                  //   key={publicId}
-                  //   src={`https://res.cloudinary.com/de32z3ml9/image/upload/v1679565150/Susipwan_BackupData/Notices/${publicId}`}
-                  //   alt={`"img" ${publicId}`}
-                  //   className="rounded img-thumbnail"
-                  // />
-                );
-              });
-              setFilePreviews(filePreviews);
-          })
-          .catch(err => console.log(err));
+          //       );
+          //     });
+          //     setFilePreviews(filePreviews);
+          // })
+
+
+
+
+
+          // const filePreviews = cloudUniqueFileNames.map((publicId) => {
+          //   const extension = publicId.split(".").pop().toLowerCase(); // get the file extension
+          
+          //   if (extension === "jpg" || extension === "jpeg" || extension === "png") {
+          //     return (
+          //         <ul className="list-group full-width">
+          //           <li className="list-group-item list-group-item-primary full-width rounded-0">
+          //               <i class="fa-regular fa-image me-2"></i> {publicId}
+          //           </li>
+          //         </ul>
+          //     );
+          //   } else if (extension === "pdf") {
+          //     return (
+          //         <ul className="list-group full-width">
+          //           <li className="list-group-item list-group-item-primary full-width rounded-0">
+          //           <i class="fa-regular fa-file-pdf me-2"></i> {publicId}
+          //           </li>
+          //         </ul>
+          //     );
+          //   } else if (extension === "mp4" || extension === "webm" || extension === "mkv") {
+          //     return (
+          //         <ul className="list-group full-width">
+          //           <li className="list-group-item list-group-item-primary full-width rounded-0">
+          //           <i class="fa-solid fa-photo-film me-2"></i> {publicId}
+          //           </li>
+          //         </ul>
+          //     );
+          //   } else if (extension === "mp3" || extension === "wav" || extension === "ogg") {
+          //     return (
+          //       <ul className="list-group full-width">
+          //           <li className="list-group-item list-group-item-primary full-width rounded-0">
+          //           <i class="fa-light fa-file-audio me-2"></i> {publicId}
+          //           </li>
+          //         </ul>
+          //     );
+          //   } else {
+          //     return (
+          //       <div key={publicId} className="container">
+          //         <ul className="list-group full-width">
+          //           <li className="list-group-item list-group-item-primary full-width rounded-0">
+          //           <i class="fa-regular fa-file me-2"></i> {publicId}
+          //           </li>
+          //         </ul>
+          //       </div>
+          //     );
+          //   }
+
+
+          // })
+
+
+
+
+          // setFilePreviews(filePreviews);
+
+          toast.success("Notice created successfully", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
+
+        }).catch(err => console.log(err));
         };
-     
-
-}
+  }
 
 // const publicIds = parse(cloudUniqueFileNames, { delimiter: ',' });
 
@@ -429,7 +571,9 @@ function Notice() {
 
 
   return (
+
     <div>
+      <ToastContainer autoClose={3000} />
       <div className="row">
         <div className="col-sm-2"></div>
 
@@ -437,8 +581,8 @@ function Notice() {
         <form action="#">
             <div className="mb-3 mt-3">
                 <label htmlFor="audience" >Target Audience</label>
-                <select className={`form-control ${errors.audience && "is-invalid"}`} id="audience" name="notice_to"  value={audience} onChange={(event) => {setAudience(event.target.value)}} >
-                    <option value="" selected disabled hidden>Select Audience You Want To Cover</option>
+                <select className={`form-control ${errors.audience && "is-invalid"}`} id="audience" name="notice_to"  value={audience} onChange={handleAudienceChange} >
+                    <option value="" disabled hidden>Select Audience You Want To Cover</option>
                     <option value="5">All</option>
                     <option value="2">Staff</option>
                     <option value="3">Teacher</option>
@@ -451,19 +595,62 @@ function Notice() {
             </div>
             <div className="mb-3 mt-3">
                 <label htmlFor="title" >Notice Title</label>
-                <input type="text" id="title" className={`form-control ${errors.noticeTitle && "is-invalid"}`} name="notice_title" placeholder="Enter Title" value={noticeTitle} onChange={(event) => {setNoticeTitle(event.target.value)}} />
+                <input type="text" id="title" className={`form-control ${errors.noticeTitle && "is-invalid"}`} name="notice_title" placeholder="Enter Title" value={noticeTitle} onChange={handleNoticeTitleChange} />
                 {errors.noticeTitle && (
                     <div className="badge rounded-pill text-bg-danger">{errors.noticeTitle}</div>
                   )}
             </div>
-            <div className="mb-3 mt-3">
+            {/* <div className="mb-3 mt-3">
                 <label htmlFor="noticeData" >Notice Description</label>
-                {/* <input type="text" className="form-control" id="noticeData" name="notice_desc" placeholder="Enter Title" /> */}
-                <textarea id="noticeData" className={`form-control ${errors.noticeDescription && "is-invalid"}`} name="notice_desc" placeholder="Enter Title" rows="3" onChange={(event) => {setNoticeDescription(event.target.value)}}></textarea>
+                <textarea id="noticeData" className={`form-control ${errors.noticeDescription && "is-invalid"}`} name="notice_desc" placeholder="Enter Title" rows="3" value={noticeDescription} onChange={handleNoticeDescriptionChange}></textarea>
                 {errors.noticeDescription && (
                   <div className="badge rounded-pill text-bg-danger">{errors.noticeDescription}</div>
                 )}
-            </div>
+            </div> */}
+
+
+      <div className="mb-3 mt-3">
+        <label htmlFor="noticeData">Notice Description</label>
+        <Editor
+  id="noticeData"
+  apiKey="<your-api-key>"
+  initialValue={noticeDescription}
+  onEditorChange={handleNoticeDescriptionChange}
+  init={{
+    height: 300,
+    menubar: false,
+    plugins: [
+      'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount advlist autolink lists link image charmap print preview anchor',
+      'searchreplace visualblocks code fullscreen',
+      'insertdatetime media table paste code help wordcount',
+      'imagetools',
+      'uploadimage',
+      'filemanager'
+    ],
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat | insertfile image media link | forecolor backcolor | filemanager',
+    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+    images_upload_url: 'your-image-upload-url',
+    file_picker_types: 'file image media',
+    file_picker_callback: function(callback, value, meta) {
+      if (meta.filetype == 'file') {
+        // Open file picker dialog for file selection
+      } else if (meta.filetype == 'image') {
+        // Open file picker dialog for image selection
+      } else if (meta.filetype == 'media') {
+        // Open file picker dialog for media selection
+      }
+    }
+  }}
+/>
+        {errors.noticeDescription && (
+          <div className="badge rounded-pill text-bg-danger">
+            {errors.noticeDescription}
+          </div>
+        )}
+      </div>
+
+
+
 
             <div className="mb-3 mt-3">
               <div className="d-flex align-items-center">
@@ -484,28 +671,17 @@ function Notice() {
                   checked={isChecked}
                   onChange={value => setIsChecked(value)}
                 />
-                <label className="form-check-label ms-2" for="flexSwitchCheckChecked">Cloud Backup</label>
+                <label className="form-check-label ms-2" htmlFor="flexSwitchCheckChecked">Cloud Backup</label>
                 </div>
                 {errors.attachFiles && (
                   <div className="badge rounded-pill text-bg-danger">{errors.attachFiles}</div>
                 )}
 
                 <div className="form-files">
-                <small>File Supported : zip",
-                "xml",
-                "xhtml+xml",
-                "plain",
-                "svg+xml",
-                "rtf",
-                "pdf",
-                "jpeg",
-                "png",
-                "jpg",
-                "ogg",
-                "json",
-                "html",
-                "gif",
-                "csv"</small>
+                <p>
+                  File Supported : "zip","rar","7z","xml","xhtml","txt","svg","rtf","pdf","jpeg","png","jpg","ogg","mp3","json","html",
+                  "gif","mp4","mpeg","mkv","flv","avi","csv","ppt","pptx","xls","xlsx","doc","docx"
+                </p>
                 </div>
 
                 <div className="form-files">
@@ -527,19 +703,94 @@ function Notice() {
         </div>
       )}
 
-      {console.log("Uploaded files", cloudUniqueFileNames)}
-      <div className="container fancy-gallery mb-5" >
-      <div className="d-flex align-content-start flex-wrap">    
-          {filePreviews}
+
+    {/* <div className="preview container">
+      {cloudFiles.map((file, index) => {
+        if (file.type.startsWith("image/")) {
+          return <div className="file_gallery mb-3 me-1 fancy-gallery d-inline-flex">
+                    <div className="">
+                <a key={index} href={URL.createObjectURL(file)} className="mb-4 img-fluid"  data-fancybox="images" data-caption={file.name}>
+                <img className="img-thumbnail" key={index} src={URL.createObjectURL(file)} alt={file.name} /> 
+              </a>
+          </div>
+          </div>;
+        } else if (file.type.startsWith("video/")) {
+          return <div className="file_gallery mb-3 me-1 fancy-gallery d-inline-flex">
+          <div className="">
+      <a key={index} href={URL.createObjectURL(file)} className="mb-4 img-fluid"  data-fancybox="videos" data-caption={file.name}>
+      <video key={index} className="video-thumbnail" src={URL.createObjectURL(file)} controls />
+    </a>
+</div>
+</div>;
+        } else {
+          return <div className="px-1"><ul className="list-group"><li className="list-group-item list-group-item-info"><a key={index} href={URL.createObjectURL(file)} download>{file.name}</a></li></ul></div>;
+        }
+      })}
+    </div> */}
+      
+
+
+  <div className="preview container">
+  {cloudFiles.map((file) => {
+    if (file.type.startsWith("image/")) {
+      return (
+        <div key={file.name} className="file_gallery my-3 me-1 fancy-gallery d-inline-flex">
+          <div>
+            <a href={URL.createObjectURL(file)} className=""  data-fancybox="images" data-caption={file.name}>
+              <img className="img-thumbnail" src={URL.createObjectURL(file)} alt={file.name} /> 
+            </a>
+          </div>
+        </div>
+      );
+    } else if (file.type.startsWith("video/")) {
+      return (
+        <div key={file.name} className="file_gallery my-3 me-1 fancy-gallery d-inline-flex">
+          <div className="video-thumbnail">
+            <a href={URL.createObjectURL(file)} className=""  data-fancybox="images" data-caption={file.name}>
+              <video src={URL.createObjectURL(file)} controls muted />
+            </a>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div key={file.name} className="d-flex flex-column">
+          <div className="py-2">
+            <ul className="list-group">
+              <li className="list-group-item list-group-item-info">
+                <a href={URL.createObjectURL(file)} download>{file.name}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      );
+    }
+  })}
+</div>
+
+
+
+
+      
+      <div className="container mb-5" >
+
+      <div className="row">
+      <div>
+      <CloudinaryFileList cloudUrls={cloudUrls} />
+    </div>
+      </div>
+
+      <div className="row">
+      {/* {filePreviews} */}
       </div>
       </div>
 
-  
-        <div className="mb-3 mt-3">
+        <div className="mb-3">
                 <button onClick={send} className="btn btn-primary">Submit</button>
             </div>
         </div>
       </div> 
+
     </div>
   );
 }

@@ -151,9 +151,34 @@ progress {
     border-radius: 10px;
   }
 
-  .img-thumbnail{
-    /* max-height: 150px !important; 
-    max-width: 150px !important;
-    object-fit: cover; */
+  .file_gallery{
+    display: flex;
+    justify-content: flex-start;
+    justify-items: flex-start;
+    align-items: center;
+    align-content: start;
+  }
 
+  .img-thumbnail{
+    height: 120px !important; 
+    width: 120px !important;
+    object-fit: cover;
+    /* display: inline-flexbox; */
+  } 
+
+  .video-thumbnail{
+    width: 180px !important;
+    height: auto; 
+    /* display: inline-flexbox;
+    /* height: 120px !important; 
+    width: 120px !important; */
+    padding-top: 20px;
+  } 
+
+  .preview{
+    background-color: #007bff;
+  }
+
+  .full-width{
+    min-width: 600px !important;
   }
