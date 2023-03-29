@@ -6,4 +6,3 @@ const StudentReg = () =>{
     )
 }
 export default StudentReg;
-//update
