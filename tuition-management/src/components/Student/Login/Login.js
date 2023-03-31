@@ -21,5 +21,6 @@ const handleSubmit=async()=>{
         email:emailRef.current.value,
         password:passRef.current.value,
     }
+    console.log('inside submit');
 }
 }
