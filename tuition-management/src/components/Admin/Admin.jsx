@@ -44,9 +44,7 @@ const Admin = () =>{
                                                 </div>
                                             </div>
                                             <div class="mt-2 mb-0 text-sm">
-                                                <span class="badge badge-pill bg-soft-success text-success me-2">
-                                                    <i class="bi bi-arrow-up me-1"></i>13%
-                                                </span>
+                                                
                                                 <span class="text-nowrap text-xs text-muted">Since last month</span>
                                             </div>
                                         </div>
@@ -57,8 +55,8 @@ const Admin = () =>{
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">New projects</span>
-                                                    <span class="h3 font-bold mb-0">215</span>
+                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">All Students</span>
+                                                    <span class="h3 font-bold mb-0">1500</span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
@@ -67,10 +65,7 @@ const Admin = () =>{
                                                 </div>
                                             </div>
                                             <div class="mt-2 mb-0 text-sm">
-                                                <span class="badge badge-pill bg-soft-success text-success me-2">
-                                                    <i class="bi bi-arrow-up me-1"></i>30%
-                                                </span>
-                                                <span class="text-nowrap text-xs text-muted">Since last month</span>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -80,8 +75,8 @@ const Admin = () =>{
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total hours</span>
-                                                    <span class="h3 font-bold mb-0">1.400</span>
+                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">All Teachers</span>
+                                                    <span class="h3 font-bold mb-0">10</span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
@@ -90,10 +85,7 @@ const Admin = () =>{
                                                 </div>
                                             </div>
                                             <div class="mt-2 mb-0 text-sm">
-                                                <span class="badge badge-pill bg-soft-danger text-danger me-2">
-                                                    <i class="bi bi-arrow-down me-1"></i>-5%
-                                                </span>
-                                                <span class="text-nowrap text-xs text-muted">Since last month</span>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -103,8 +95,8 @@ const Admin = () =>{
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Work load</span>
-                                                    <span class="h3 font-bold mb-0">95%</span>
+                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">All Classes</span>
+                                                    <span class="h3 font-bold mb-0">30</span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
@@ -113,10 +105,7 @@ const Admin = () =>{
                                                 </div>
                                             </div>
                                             <div class="mt-2 mb-0 text-sm">
-                                                <span class="badge badge-pill bg-soft-success text-success me-2">
-                                                    <i class="bi bi-arrow-up me-1"></i>10%
-                                                </span>
-                                                <span class="text-nowrap text-xs text-muted">Since last month</span>
+                                                
                                             </div>
                                         </div>
                                     </div>
