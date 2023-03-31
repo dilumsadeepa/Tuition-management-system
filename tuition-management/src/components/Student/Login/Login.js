@@ -5,7 +5,7 @@ import axios from 'axios';
 import {toast} from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-import logo from './gb.png';
+import logo from './Slogo.png';
 import { Context } from 'react';
 
 const Login =()=>{
