@@ -22,5 +22,18 @@ const handleSubmit=async()=>{
         password:passRef.current.value,
     }
     console.log('inside submit');
+    try {
+        const res = await axios.post('http://localhost:5000/api/register/auth',loginCred);
+        // alert('ceredentials are correct');
+        toast.success('Logged In successfully');
+        // window.location.replace('/dash');
+        // console.log(user.data);
+        dispatch({type:'LOGIN_SUCCESS',payload:res.data});
+        navigate('/dash');
+    } catch (error) {
+        console.log(error);
+        toast.error('Credentials are incorrect');
+        dispatch({type:'LOGIN_Failure'});
+    }
 }
 }
