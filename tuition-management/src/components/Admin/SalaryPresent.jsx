@@ -100,7 +100,7 @@ const SalaryPresent = () => {
 
                             <div className="row mt-5">
 
-                               <h2>Add Salary presentage</h2>
+                               <h2>Salary presentage</h2>
 
                                 <div className="d-flex justify-content-center mt-5">
                                     <form action="">
@@ -128,10 +128,12 @@ const SalaryPresent = () => {
                                 </div>
                             </div>
 
+                            <br /><hr />
+
                             <div className="row mt-5">
                                 <div className="col-sm-12">
                                     <div class="table-responsive">
-                                        <table class="table">
+                                        <table class="table table-dark">
                                             <thead>
                                                 <tr>
                                                     <th>User Role</th>
