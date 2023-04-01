@@ -33,7 +33,7 @@ function App() {
 
           {/* student part */}
           
-          <Route path="StudentLogin" element={<Login />} />
+          {/* <Route path="StudentLogin" element={<Login />} /> */}
 
           <Route path="Stureg" element={<StudentReg />} />
           <Route path="EnterForm" element={<EnterForm />} />
