@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-
 import Auth from "./components/User/Auth";
 import StudentReg from "./components/Student/Register";
 import EnterForm from "./components/Student/EnterForm";
@@ -18,32 +17,29 @@ import SalaryPresent from "./components/Admin/SalaryPresent";
 function App() {
   return (
     <div className="App">
-    <BrowserRouter>
-      <Routes>
+      <BrowserRouter>
+        <Routes>
           <Route path="/" element={<Auth />} />
 
           {/* admin part */}
-          <Route path="admin" element={<Admin />}/>
-          <Route path="adminstudent" element={<ViewStudent/>}/>
-          <Route path="studentcourse" element={<StudenttoCourse/>}/>
-          <Route path="course" element={<Course/>}/>
-          <Route path="course/create" element={<CreateCourse/>}/>
-          <Route path="assignstudent" element={<AssignStudents/>}/>
-          <Route path="salary" element={<Salary/>}/>
-          <Route path="salarypresentage" element={<SalaryPresent/>}/>
-
+          <Route path="admin" element={<Admin />} />
+          <Route path="adminstudent" element={<ViewStudent />} />
+          <Route path="studentcourse" element={<StudenttoCourse />} />
+          <Route path="course" element={<Course />} />
+          <Route path="course/create" element={<CreateCourse />} />
+          <Route path="assignstudent" element={<AssignStudents />} />
+          <Route path="salary" element={<Salary />} />
+          <Route path="salarypresentage" element={<SalaryPresent />} />
 
           {/* student part */}
-          {/* <Route path="StudentLogin" element={<Login/>}/> */}
+          
+          <Route path="StudentLogin" element={<Login />} />
 
-          <Route path="Stureg" element={<StudentReg/>}/>
-          <Route path="EnterForm" element={<EnterForm/>}/>
-         
-      </Routes>
-   </BrowserRouter>
-   
-   </div>
-   
+          <Route path="Stureg" element={<StudentReg />} />
+          <Route path="EnterForm" element={<EnterForm />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
