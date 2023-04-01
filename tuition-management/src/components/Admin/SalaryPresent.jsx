@@ -5,6 +5,7 @@ import Sidebar from './AdminSidebar';
 import Dashhead from './Dashhead';
 
 
+
 const SalaryPresent = () => {
 
    const [userrole, setUrole] = useState('');
@@ -107,7 +108,7 @@ const SalaryPresent = () => {
 
                                         <div class="col mb-3 mt-3">
                                             <label className="form-label">User Role:</label>
-                                            <select class="form-select" onChange={(e) => setUrole(e.target.value)}>
+                                            <select className="form-select" onChange={(e) => setUrole(e.target.value)}>
                                                 <option value={""}>--- Select one ---</option>
                                                 <option value={"1"}>Admnistration</option>
                                                 <option value={"2"}>Staff</option>
@@ -143,8 +144,8 @@ const SalaryPresent = () => {
                                             {salary.map((s) =>
                                                 <tbody>
                                                     <tr>
-                                                        <td>{s.userrole}</td>
-                                                        <td>{s.presentage} %</td>
+                                                        <td><span>{s.userrole}</span><span><input type="text" value={s.userrole} className="form-control" /></span></td>
+                                                        <td><span>{s.presentage} %</span><span><input type="text" value={s.presentage} className="form-control" /></span></td>
                                                     </tr>
                                                 </tbody>
                                             )}
