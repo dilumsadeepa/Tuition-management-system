@@ -8,3 +8,15 @@ export const getSPs = async(req, res) =>{
         console.log(error.message);
     }
 }
+
+
+//admin
+
+export const createPre = async(req, res) =>{
+    try {
+        await Salarypresent.create(req.body);
+        res.status(201).json({msg: "Presentage Created"});
+    } catch (error) {
+        console.log(error.message);
+    }
+}

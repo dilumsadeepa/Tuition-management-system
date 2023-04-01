@@ -15,7 +15,7 @@ import { getTes,createTeacher } from "../controllers/TeacherController.js";
 import { getCos, createCourse, CourseData, deleteCourse } from "../controllers/CourseController.js";
 import { getCSs, stucourse, updateCS } from "../controllers/CoursestudentController.js";
 import { getPays } from "../controllers/PaymentController.js";
-import { getSPs } from "../controllers/Salarypresent.js";
+import { getSPs, createPre } from "../controllers/Salarypresent.js";
 import { getsals } from "../controllers/SalaryController.js";
 import { getNotis } from "../controllers/NoticeController.js";
 import { getCts } from "../controllers/CourseteacherController.js";
@@ -38,6 +38,8 @@ router.get('/coursedata', CourseData);
 router.delete('/deletecourse/:id', deleteCourse);
 router.patch('/updateCS/:id', updateCS);
 router.get('/salary', getsals);
+router.post('/createSpresent', createPre);
+router.get('/salarypresent', getSPs);
 
 //student
 
@@ -59,7 +61,7 @@ router.get('/parent', getPas);
 router.get('/course', getCos);
 router.get('/coursestudent', getCSs);
 router.get('/payment', getPays);
-router.get('/salarypresent', getSPs);
+
 
 router.get('/notice', getNotis);
 

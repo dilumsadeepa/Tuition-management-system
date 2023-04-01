@@ -7,35 +7,47 @@ import Dashhead from './Dashhead';
 
 const SalaryPresent = () => {
 
-    const [students, setStudents] = useState([]);
+   const [userrole, setUrole] = useState('');
+   const [presentage, setPre] = useState('');
+   const [succ, setsucc] = useState("");
+    const [err, seterr] = useState("");
+    const [salary, setSalary] = useState([]);
 
-    const getstu = async(e) =>{
+    const getsal = async(e) =>{
         try {
-            const response = await axios.get(`${Apiurl}/stucourse`);
-            setStudents(response.data);
-            console.log(response.data);
-            
+            const response = await axios.get(`${Apiurl}/salarypresent`);
+            setSalary(response.data);
         } catch (error) {
             console.log("error in getting data")
         }
     }
 
-    const updateCS = async (id,cid,sid,ap) => {
-        // e.preventDefault();
-        console.log("clicked");
-        await axios.patch(`${Apiurl}/updateCS/${id}`,{
-            aprovel: ap,
-            studentId: sid,
-            courseId:cid
-        });
+   const setSPre = async() =>{
 
-        getstu();
-        
-    }
+    console.log(`${userrole},${presentage}`);
 
-    useEffect(()=>{
-        getstu();
-    },[])
+        if (userrole === "" || presentage === "") {
+            seterr("Fill All the filds");
+            setsucc("");
+        }else{
+            try {
+                await axios.post(`${Apiurl}/createSpresent/`,{
+                    userrole,
+                    presentage
+                 });
+            } catch (error) {
+                seterr(error);
+            }
+
+            seterr("");
+            setsucc("Presentage cerated");
+        }
+
+   }
+
+   useEffect(() => {
+        getsal();
+   })
 
     return(
         <section> 
@@ -55,38 +67,85 @@ const SalaryPresent = () => {
                     <main class="py-6 bg-surface-secondary">
                     
                         <div class="container">
+                            <div className="row mt-5 mb-5">
+
+                                <div className="col-sm-1"></div>
+
+                                <div className="col-sm-10">
+                                    {succ.length > 0 &&
+                                        <>
+                                            <div class="alert alert-success alert-dismissible fade show">
+                                                
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                                    <strong>Success!</strong> {succ}
+                                            </div>
+                                        </>
+                                    }
+                                    {err.length > 0 &&
+                                        <>
+                                            <div class="alert alert-danger alert-dismissible fade show">
+                                                
+                                                
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                                    <strong>Error!</strong> {err}
+                                                
+                                            </div>
+                                        </>
+                                    }
+                                </div>
+
+                                <div className="col-sm-1"></div>
+
+                            </div>
 
                             <div className="row mt-5">
-                               <h2>Salary</h2>
+
+                               <h2>Add Salary presentage</h2>
+
+                                <div className="d-flex justify-content-center mt-5">
+                                    <form action="">
+
+                                        <div class="col mb-3 mt-3">
+                                            <label className="form-label">User Role:</label>
+                                            <select class="form-select" onChange={(e) => setUrole(e.target.value)}>
+                                                <option value={""}>--- Select one ---</option>
+                                                <option value={"1"}>Admnistration</option>
+                                                <option value={"2"}>Staff</option>
+                                                <option value={"3"}>Teacher</option>
+                                                
+                                            </select>
+                                        </div>
+
+                                        <div class="col mb-3 mt-3">
+                                            <label className="form-label">Presentage (Enter presentage without % mark):</label>
+                                            <input type="text" className="form-control" onChange={(e) => setPre(e.target.value)} placeholder="Enter presentage" />
+                                        </div>
+
+                                        <button type='button'onClick={setSPre} className='debtn'>Create</button>
+
+                                    </form>
+
+                                </div>
+                            </div>
+
+                            <div className="row mt-5">
                                 <div className="col-sm-12">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered">
+                                        <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th>Full Name</th>
-                                                    <th>NIC</th>
-                                                    <th>CourseID</th>
-                                                    <th>Course</th>
-                                                    <th>Aprovel</th>
-                                                    <th>Action</th>
+                                                    <th>User Role</th>
+                                                    <th>Salary Presentage</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                            {students.map((student) => 
-                                               <>
-                                                {student.aprovel === '0' &&
-                                                <tr>
-                                                    <td>{student.student.sfullname}</td>
-                                                    <td>{student.student.snic}</td>
-                                                    <td>{student.course.courseid}</td>
-                                                    <td>{student.course.coursename}</td>
-                                                    <td>Unaproved</td>
-                                                    <td><button type='button' onClick={(e) => updateCS(student.id,student.courseId,student.studentId,'1')} className='debtn'>Aprove</button></td>
-                                                </tr>
-                                                }
-                                               </>  
+                                            {salary.map((s) =>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{s.userrole}</td>
+                                                        <td>{s.presentage} %</td>
+                                                    </tr>
+                                                </tbody>
                                             )}
-                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
