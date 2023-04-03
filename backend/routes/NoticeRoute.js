@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-// import { getNotis,createNotice } from "../controllers/NoticeController.js";
+import { getNotices, createNotice, deleteNotice, viewNotice } from "../controllers/NoticeController.js";
 import NoticeModel from '../models/NoticeModel.js';
 // import upload from 'express-fileupload';
 import { CloudinaryStorage } from "multer-storage-cloudinary";
@@ -15,15 +15,16 @@ import cloudinary from '../clouds/cloudinary.js';
 const cloudinaryStorageOption = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
-        resource_type: "raw",
-        // use_filename: true,
-        unique_filename: false,
-        folder: "Susipwan_BackupData/Notices"
+      resource_type: "raw",
+      unique_filename: false,
+      folder: "Susipwan_BackupData/Notices/Backup",
+      public_id: (req, file) => file.originalname,
+      upload_preset: "xveddqrz",
       },
     filename: function(req, file, cb) {
       cb(null, file.originalname);
-      console.log('cloudfilelist :', file);
-        console.log('cloudfilenamereq :', file.originalname);
+      // console.log('cloudfilelist :', file);
+        console.log('cloudfilenamereq cloudOnly :', file.originalname);
     }
   });
   
@@ -40,11 +41,11 @@ const cloudinaryStorageOption = new CloudinaryStorage({
       }else{
         cb("Error: File upload only supports the following filetypes - " + fileTypes);
       }
-    },
-    filename: function(req, file, cb) {
-      cb(null, file.originalname);
-      console.log('cloudfilenamereq :', file.originalname);
     }
+    // filename: function(req, file, cb) {
+    //   cb(null, file.originalname);
+    //   // console.log('cloudfilenamereq :', file.originalname);
+    // }
   });
 
 // const cloudinaryUploads = multer({ storage: cloudinaryStorageOption });
@@ -208,9 +209,10 @@ router.post("/multiple", upload.array("myFieldName"), async (req, res, next) => 
 
 
 
-                        const cloudUrls = await Promise.all(
+                const cloudUrls = await Promise.all(
   
                 req.files.map(async (file) => {
+                  console.log("fileNames inside route: ",file.filename);
                 const filenameWithoutExt = path.parse(file.filename).name; // Get filename without extension
                 console.log("filenameWithoutExt :",filenameWithoutExt);
                 const result = await cloudinary.uploader.upload(file.path, {
@@ -244,131 +246,22 @@ router.post("/multiple", upload.array("myFieldName"), async (req, res, next) => 
 
 
 
-
-// router.post("/cloud", upload.array("cloudStorage"), async (req, res, next) => {
-//     const notice = await NoticeModel.create(req.body);
-//     console.log("body :",req.body);
-//     console.log("file List: ",req.files);
-//     console.log("file Names csv: ",req.body.files);
-
-//     const { notice_to, notice_title, notice_desc ,files, backup} = req.body;
-
-//          // Upload files to Cloudinary
-//             const cloudUrls = await Promise.all(
-  
-//                 req.files.map(async (file) => {
-//                 const filenameWithoutExt = path.parse(file.filename).name; // Get filename without extension
-//                 console.log("filenameWithoutExt :",filenameWithoutExt);
-//                 const result = await cloudinary.v2.uploader.upload(file.path, {
-//                     folder: "Susipwan_BackupData/Notices",
-//                     public_id: filenameWithoutExt,
-//                     resource_type: "raw",
-//                     upload_preset: "xveddqrz"
-//                 });
-//                     return result.secure_url;
-//                 })
-//             );
-
-//             // Update the notice object with the Cloudinary URLs
-//             notice.cloudOnly = cloudUrls.join(','); // Join URLs with commas
-
-//             // Save the notice to the database
-//             await notice.save();
-
-
-
-//     res.status(201).json(notice);
-// });
-
-
-
-
-
-
-// router.post("/cloud", cloudinaryUploads.array("cloudStorage"), async (req, res, next) => {
-//     const notice = await NoticeModel.create(req.body);
-//     console.log("body :", req.body);
-//     console.log("file List: ", req.files);
-//     console.log("file Names csv: ", req.body.files);
-  
-//     const { notice_to, notice_title, notice_desc, files, backup } = req.body;
-  
-//     // Upload files to Cloudinary
-//     const cloudUrls = await Promise.all(
-//       req.files.map(async (file) => {
-//         const filenameWithoutExt = path.parse(file.filename).name; // Get filename without extension
-//         console.log("filenameWithoutExt :", filenameWithoutExt);
-//         const result = await cloudinary.uploader.upload(file.path, {
-//           resource_type: "raw",
-//           folder: "Susipwan_BackupData/Notices",
-//           public_id: filenameWithoutExt,
-//           upload_preset: "xveddqrz",
-//         });
-//         return result.secure_url;
-//       })
-//     );
-  
-//     // Update the notice object with the Cloudinary URLs
-//     notice.cloudOnly = cloudUrls.join(","); // Join URLs with commas
-  
-//     // Save the notice to the database
-//     await notice.save();
-  
-//     res.status(201).json(notice);
-//   });
-
-
-//-------------------------------
-
-// router.post("/cloud", cloudinaryUploads.array("cloudStorage"), async (req, res, next) => {
-//     const notice = await NoticeModel.create(req.body);
-//     console.log("body :", req.body);
-//     console.log("file List: ", req.files);
-//     console.log("file Names csv: ", req.body.files);
-  
-//     const { notice_to, notice_title, notice_desc, files, backup } = req.body;
-  
-//     // Upload files to Cloudinary
-//     const cloudUrls = await Promise.all(
-//       req.files.map(async (file) => {
-//         const filenameWithoutExt = path.parse(file.filename).name; // Get filename without extension
-//         console.log("filenameWithoutExt :", filenameWithoutExt);
-//         const result = await cloudinary.uploader.upload(file.path, {
-//           folder: "Susipwan_BackupData/Notices",
-//           public_id: filenameWithoutExt,
-//           resource_type: "raw",
-//           upload_preset: "xveddqrz",
-//         });
-//         return result.secure_url;
-//       })
-//     );
-  
-//     // Update the notice object with the Cloudinary URLs
-//     notice.cloudOnly = cloudUrls.join(","); // Join URLs with commas
-  
-//     // Save the notice to the database
-//     await notice.save();
-  
-//     res.status(201).json(notice);
-//   });
-
-
-
-
-
-
-
-
-
 router.post("/cloud", cloudinaryUploads.array("cloudStorage"), async (req, res, next) => {
   const notice = await NoticeModel.create(req.body);
-
+  console.log("file List: ",req.files);
+  console.log("file Names csv: ",req.body.files);
+ 
   const { notice_to, notice_title, notice_desc, files, backup } = req.body;
+
 
   // Upload files to Cloudinary
   const cloudUrls = await Promise.all(
     req.files.map(async (file) => {
       console.log("filename: ", file.originalname);
+
+      // const filenameWithoutExt = path.parse(file.filename).name; // Get filename without extension
+      // console.log("filenameWithoutExt :",filenameWithoutExt);
+
       const result = await cloudinary.uploader.upload(file.path, {
         resource_type: "raw",
         folder: "Susipwan_BackupData/Notices",
@@ -395,16 +288,62 @@ router.post("/cloud", cloudinaryUploads.array("cloudStorage"), async (req, res, 
 
 
 
-// router.post("/single",upload.single("files"), async (req, res, next) => {
-//     const notice = await NoticeModel.create(req.body);
-//     console.log(req.body);
-//     console.log(req.file);
+router.post("/single",upload.single("files"), async (req, res, next) => {
+    const notice = await NoticeModel.create(req.body);
+    console.log(req.body);
+    console.log(req.file);
 
-//       res.status(201).json(notice);
+      res.status(201).json(notice);
+});
+
+
+
+// router.post("/cloud", cloudinaryUploads.array("cloudStorage"), async (req, res, next) => {
+//   const notice = await NoticeModel.create(req.body);
+//   console.log("file List: ", req.files);
+//   console.log("file Names csv: ", req.body.files);
+
+//   const { notice_to, notice_title, notice_desc, files, backup } = req.body;
+
+//   // Upload files to Cloudinary
+//   const uploadResults = await Promise.all(
+//     req.files.map(async (file) => {
+//       console.log("filename: ", file.originalname);
+
+//       const result = await cloudinary.uploader.upload(file.path, {
+//         resource_type: "raw",
+//         folder: "Susipwan_BackupData/Notices",
+//         public_id: file.originalname,
+//         upload_preset: "xveddqrz",
+//       });
+
+//       return {
+//         publicId: result.public_id,
+//         secureUrl: result.secure_url,
+//       };
+//     })
+//   );
+
+//   // Extract public IDs and Cloudinary URLs
+//   const publicIds = uploadResults.map((result) => result.publicId);
+//   const cloudUrls = uploadResults.map((result) => result.secureUrl);
+
+//   // Update the notice object with the Cloudinary URLs and public IDs
+//   notice.publicIdList = publicIds;
+//   notice.cloudOnly = cloudUrls.join(","); // Join URLs with commas
+
+//   // Save the notice to the database
+//   await notice.save();
+
+//   res.status(201).json(notice);
 // });
 
-// router.get('/notice', getNotis);
-// router.post('/notice', createNotice);
 
+
+router.get('/notice', getNotices);
+router.delete('/notice/:id', deleteNotice);
+router.get('/notice/byId/:id', viewNotice );
+// router.post('/notice', createNotice);
+ 
 
 export default router; 

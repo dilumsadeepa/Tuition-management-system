@@ -9,7 +9,10 @@ import ViewStudent from "./components/Admin/ViewStudent";
 import StudenttoCourse from "./components/Admin/StudenttoCourse";
 import Course from "./components/Admin/Course";
 import CreateCourse from "./components/Admin/CreateCourse";
+import CreateNotice from "./components/Common/CreateNotice";
 import Notice from "./components/Common/Notice";
+import EditNotice from "./components/Common/EditNotice";
+import NoticesList from "./components/Common/NoticesList";
 import Test from "./components/Common/Test";
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
@@ -35,7 +38,11 @@ function App() {
          
 
          {/* Common */}
-         <Route path="notice" element={<Notice/>}/>
+
+         <Route path="notice" element={<NoticesList/>}/>
+         <Route path="notice/create" element={<CreateNotice/>}/>
+         <Route path="notice/:id" element={<Notice/>}/>
+         <Route path="notice/edit/:id" element={<EditNotice/>}/>
          <Route path="test" element={<Test/>}/>
       </Routes>
    </BrowserRouter>

@@ -2,9 +2,23 @@ import express from "express";
 import cors from "cors";
 import UserRoute from "./routes/UserRoute.js";
 import NoticeRoute from "./routes/NoticeRoute.js";
+import { fileURLToPath } from 'url';
+import path from 'path';
 
- 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+
+
 const app = express();
+
+
+// Serve static files from the "uploads" folder
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
+
+
 // app.use(upload());
 // app.post('/upload', (req, res) => {
 //     console.log(req.body);

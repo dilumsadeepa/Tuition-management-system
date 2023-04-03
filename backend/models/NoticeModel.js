@@ -24,6 +24,14 @@ const Notice = db.define('notices',{
         type:DataTypes.TEXT,
         allowNull:true,
     },
+    localFiles:{
+        type:DataTypes.TEXT,
+        allowNull:true,
+    },
+    publicIdList:{
+        type:DataTypes.TEXT,
+        allowNull:true,
+    },
     cloudFiles:{
         type:DataTypes.TEXT,
         allowNull:true,

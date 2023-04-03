@@ -1,14 +1,11 @@
 import React from 'react';
 
 
-function CloudinaryFileList({ cloudUrls }) {
-
-  if (cloudUrls.length === 0) {
-    return (null);
-  }
+function CloudBackupFilesList({ cloudFiles }) {
+    // console.log('CloudBackupFilesList: ', cloudFiles);
 
   const renderFiles = () => {
-    return cloudUrls.map((url, index) => {
+    return cloudFiles.map((url, index) => {
       // Extract the file name from the URL
       const fileName = url.substring(url.lastIndexOf('/') + 1);
       // Extract the file extension from the file name
@@ -69,10 +66,10 @@ function CloudinaryFileList({ cloudUrls }) {
 
   return (
     <div>
-      <h5 className='my-5'>Cloud Only Storage</h5>
+      <h5 className='my-5'>Cloud Backup Storage</h5>
       {renderFiles()}
     </div>
   );
 }
 
-export default CloudinaryFileList;
+export default CloudBackupFilesList;
