@@ -1,15 +1,16 @@
 import {Sequelize} from "sequelize";
 import db from "../config/Database.js";
+import Teacher from "./TeacherModel.js";
  
 const {DataTypes} = Sequelize;
  
 const Salary = db.define('salaries',{
-    s_userid:{
-        type:DataTypes.STRING,
+    s_role:{
+        type:DataTypes.INTEGER,
         allowNull:false,
     },
     s_salary:{
-        type:DataTypes.STRING,
+        type:DataTypes.INTEGER,
         allowNull:false,
     },
     month:{
@@ -20,6 +21,9 @@ const Salary = db.define('salaries',{
 },{
     freezeTableName:true
 });
+
+Teacher.hasMany(Salary);
+Salary.belongsTo(Teacher);
  
 export default Salary;
  

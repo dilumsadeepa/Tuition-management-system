@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-
 import Auth from "./components/User/Auth";
 import StudentReg from "./components/Student/Register";
 import EnterForm from "./components/Student/EnterForm";
@@ -14,30 +13,36 @@ import Notice from "./components/Common/Notice";
 import EditNotice from "./components/Common/EditNotice";
 import NoticesList from "./components/Common/NoticesList";
 import Test from "./components/Common/Test";
+import AssignStudents from "./components/Admin/AssignStudents";
+import Salary from "./components/Admin/Salary";
+import SalaryPresent from "./components/Admin/SalaryPresent";
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
 
 function App() {
   return (
     <div className="App">
-    <BrowserRouter>
-      <Routes>
+      <BrowserRouter>
+        <Routes>
           <Route path="/" element={<Auth />} />
 
           {/* admin part */}
-          <Route path="admin" element={<Admin />}/>
-          <Route path="adminstudent" element={<ViewStudent/>}/>
-          <Route path="studentcourse" element={<StudenttoCourse/>}/>
-          <Route path="course" element={<Course/>}/>
-          <Route path="course/create" element={<CreateCourse/>}/>
-
+          <Route path="admin" element={<Admin />} />
+          <Route path="adminstudent" element={<ViewStudent />} />
+          <Route path="studentcourse" element={<StudenttoCourse />} />
+          <Route path="course" element={<Course />} />
+          <Route path="course/create" element={<CreateCourse />} />
+          <Route path="assignstudent" element={<AssignStudents />} />
+          <Route path="salary" element={<Salary />} />
+          <Route path="salarypresentage" element={<SalaryPresent />} />
 
           {/* student part */}
           <Route path="Stureg" element={<StudentReg/>}/>
           <Route path="EnterForm" element={<EnterForm/>}/>
-         
+          {/* <Route path="StudentLogin" element={<Login />} /> */}
 
          {/* Common */}
+
 
          <Route path="notice" element={<NoticesList/>}/>
          <Route path="notice/create" element={<CreateNotice/>}/>

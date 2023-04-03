@@ -44,16 +44,7 @@ export const deleteCourse = async(req, res) =>{
                 id: req.params.id
             }
         });
-        // res.status(200).json({msg: "Course Deleted"});
-        // const course = await Course.findById(req.params.id);
-
-        // if (!course) {
-        //     return res.status(404).json({ error: 'Course not found' });
-        // }
-
-        // await course.remove();
-
-        // res.status(204).json({msg: "Course Deleted"});
+        
     } catch (error) {
         console.log(error.message);
     }

@@ -50,7 +50,7 @@ const ViewStudent = () =>{
                                             <div class="row">
                                                 <div class="col">
                                                     {/* <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span> */}
-                                                    <span class="h4 mb-0"><a href="/studentcourse" className='debtn'>Assing Students</a></span>
+                                                    <span class="h4 mb-0"><a href="/assignstudent" className='debtn'>Assing Students</a></span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">

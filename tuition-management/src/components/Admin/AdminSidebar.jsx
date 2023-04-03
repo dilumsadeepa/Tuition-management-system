@@ -14,7 +14,7 @@ const Sidebar =() =>{
                     </button>
                     {/* <!-- Brand --> */}
                     <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="#s">
-                        <img src="https://preview.webpixels.io/web/img/logos/clever-primary.svg" alt="..." />
+                        <img className='alogo' src="https://scontent.fcmb8-1.fna.fbcdn.net/v/t39.30808-6/298373379_584753116627363_5516008892077423700_n.jpg?stp=dst-jpg_s960x960&_nc_cat=104&ccb=1-7&_nc_sid=e3f864&_nc_ohc=4aMTPY6dT4MAX8RQbiG&_nc_ht=scontent.fcmb8-1.fna&oh=00_AfB9lMVUz6dTY_-qwFmNxziT3d26jYnQGq8T-4Wx7YLAsA&oe=642B3B64" alt="..." />
                     </a>
                     {/* <!-- User menu (mobile) --> */}
                     <div class="navbar-user d-lg-none">
@@ -59,16 +59,21 @@ const Sidebar =() =>{
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="/salary">
+                                <i class="bi bi-cash-stack"></i> Salary
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="#s">
                                     <i class="bi bi-chat"></i> Messages
                                     <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">6</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            {/* <li class="nav-item">
                                 <a class="nav-link" href="#s">
                                     <i class="bi bi-bookmarks"></i> Collections
                                 </a>
-                            </li>
+                            </li> */}
                             <li class="nav-item">
                                 <a class="nav-link" href="#s">
                                     <i class="bi bi-people"></i> Users
