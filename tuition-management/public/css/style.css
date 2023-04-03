@@ -171,4 +171,10 @@
     height: 100px;
   }
 
- 
+ .upbtn{
+    display: none;
+ }
+
+ .crbtn{
+    display: block;
+ }

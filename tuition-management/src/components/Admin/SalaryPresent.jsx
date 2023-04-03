@@ -46,7 +46,37 @@ const SalaryPresent = () => {
 
    }
 
+   const edit = (id,urole,pre) =>{
+        console.log(urole+','+pre);
+        document.getElementById('urolev').value = urole;
+        document.getElementById('uroled').innerHTML = urole;
+        document.getElementById('pre').value = pre;
+        document.getElementById('sid').value = id;
+        document.getElementById('crbtn').style.display = "none";
+        document.getElementById('upbtn').style.display = "block";
+   }
+
+   const updatePRE = async (e) => {
+        // e.preventDefault();
+        console.log("clicked");
+        let id = document.getElementById('sid').value;
+        let ro = document.getElementById('urolev').value;
+        let pr = document.getElementById('pre').value;
+
+        await axios.patch(`${Apiurl}/updatepre/${id}`,{
+            userrole:ro,
+            presentage:pr
+        });
+
+        getsal();
+
+        document.getElementById('crbtn').style.display = "block";
+        document.getElementById('upbtn').style.display = "none";
+    
+    }
+
    useEffect(() => {
+        document.getElementById('upbtn').style.display = "none";
         getsal();
    })
 
@@ -105,11 +135,11 @@ const SalaryPresent = () => {
 
                                 <div className="d-flex justify-content-center mt-5">
                                     <form action="">
-
+                                        <input type="hidden" id='sid' value={""} />
                                         <div class="col mb-3 mt-3">
                                             <label className="form-label">User Role:</label>
                                             <select className="form-select" onChange={(e) => setUrole(e.target.value)}>
-                                                <option value={""}>--- Select one ---</option>
+                                                <option id='urolev' value={""}><span id='uroled'>--- Select one ---</span></option>
                                                 <option value={"1"}>Admnistration</option>
                                                 <option value={"2"}>Staff</option>
                                                 <option value={"3"}>Teacher</option>
@@ -119,10 +149,11 @@ const SalaryPresent = () => {
 
                                         <div class="col mb-3 mt-3">
                                             <label className="form-label">Presentage (Enter presentage without % mark):</label>
-                                            <input type="text" className="form-control" onChange={(e) => setPre(e.target.value)} placeholder="Enter presentage" />
+                                            <input type="text" className="form-control" id='pre' onChange={(e) => setPre(e.target.value)} placeholder="Enter presentage" />
                                         </div>
 
-                                        <button type='button'onClick={setSPre} className='debtn'>Create</button>
+                                        <button type='button' id='upbtn' className='btn btn-primary upbtn' onClick={updatePRE}>Update</button>
+                                        <button type='button' id='crbtn' onClick={setSPre} className='debtn crbtn'>Create</button>
 
                                     </form>
 
@@ -139,13 +170,15 @@ const SalaryPresent = () => {
                                                 <tr>
                                                     <th>User Role</th>
                                                     <th>Salary Presentage</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             {salary.map((s) =>
                                                 <tbody>
                                                     <tr>
-                                                        <td><span>{s.userrole}</span><span><input type="text" value={s.userrole} className="form-control" /></span></td>
-                                                        <td><span>{s.presentage} %</span><span><input type="text" value={s.presentage} className="form-control" /></span></td>
+                                                        <td>{s.userrole}</td>
+                                                        <td>{s.presentage} %</td>
+                                                        <td><button type='button' onClick={(e) => edit(s.id,s.userrole,s.presentage)} className='btn btn-info mr-3'>Edit</button> <button type='button' className='btn btn-danger'>Delete</button></td>
                                                     </tr>
                                                 </tbody>
                                             )}
