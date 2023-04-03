@@ -17,24 +17,27 @@ import { Editor } from '@tinymce/tinymce-react';
 function EditNotice() {
     let { id } = useParams();
     const [noticeObject, setNoticeObject] = useState({});
-    const [initialNoticeTitle, setInitialNoticeTitle] = useState("");
-
-    useEffect(() => {
-        axios.get(`${Apiurl}/notice/byId/${id}`).then((response) => {
-            // console.log(response.data)
-            setNoticeObject(response.data);
-            setInitialNoticeTitle(response.data.notice_title);
-            // setNoticeTitle(response.data.notice_title);
-        });
-    });
+    // const [initialNoticeTitle, setInitialNoticeTitle] = useState("");
 
 
-    const initialTitle = initialNoticeTitle;
- 
+
+    // useEffect(() => {
+    //     axios.get(`${Apiurl}/notice/byId/${id}`).then((response) => {
+    //         // console.log(response.data)
+    //         setNoticeObject(response.data);
+    //         // setInitialNoticeTitle(response.data.notice_title);
+    //         // setNoticeTitle(response.data.notice_title);
+          
+    //     });
+    // });
+
+
+    const initialTitle = noticeObject.notice_title;
+    // console.log(typeof initialTitle);
 
     const [audience, setAudience] = useState("");
-    const [noticeTitle, setNoticeTitle] = useState(`${initialTitle}`);
-
+    // const [noticeTitle, setNoticeTitle] = useState(`${initialTitle}`);
+    const [noticeTitle, setNoticeTitle] = useState("");
     const [noticeDescription, setNoticeDescription] = useState('');
     const [attachFiles, setAttachFiles] = useState([]);
     const [cloudFiles, setCloudFiles] = useState([]);
@@ -49,6 +52,18 @@ function EditNotice() {
     const cloudFileNames = [];
 
 
+
+    useEffect(() => {
+      axios.get(`${Apiurl}/notice/byId/${id}`).then((response) => {
+        setNoticeObject(response.data);
+      });
+    }, [id]);
+    
+    useEffect(() => {
+      setAudience(noticeObject.notice_to || "");
+      setNoticeTitle(noticeObject.notice_title || "");
+      setNoticeDescription(noticeObject.notice_desc || "");
+    }, [noticeObject]);
 
     // console.log(noticeObject.notice_title
     //     );
@@ -214,6 +229,7 @@ function EditNotice() {
           data.append('myFieldName', attachFiles[i], uniqueFileName);
         }
       
+        data.append("id", id);
         data.append("notice_to", audience);
         data.append("notice_title", noticeTitle);
         data.append("notice_desc", noticeDescription);
@@ -223,7 +239,7 @@ function EditNotice() {
       
 
 
-        axios.post(`${Apiurl}/multiple` , data)
+        axios.put(`${Apiurl}/multiple` , data)
         .then(res => {
           
           setCloudFiles([]);      // Clear the list of cloud files
@@ -244,7 +260,7 @@ function EditNotice() {
 
 
           
-          toast.success("Notice created successfully", {
+          toast.success("Notice Updated Successfully", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -287,6 +303,7 @@ function EditNotice() {
 
 
         
+          data.append("id", id);
           data.append("notice_to", audience);
           data.append("notice_title", noticeTitle);
           data.append("notice_desc", noticeDescription);
@@ -306,7 +323,7 @@ function EditNotice() {
 
 
 
-          axios.post(`${Apiurl}/cloud` , data, config)
+          axios.put(`${Apiurl}/cloud` , data, config)
           .then((res) => {
               setUploadProgress(0);
               setCloudFiles([]);      // Clear the list of cloud files
@@ -326,7 +343,7 @@ function EditNotice() {
               console.log(cloudUniqueFileNames);
 
 
-          toast.success("Notice created successfully", {
+          toast.success("Notice Updated Successfully", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -362,7 +379,7 @@ function EditNotice() {
       <form action="#">
           <div className="mb-3 mt-3">
               <label htmlFor="audience" >Target Audience</label>
-              <select className={`form-control ${errors.audience && "is-invalid"}`} id="audience" name="notice_to"  value={noticeObject.notice_to} onChange={handleAudienceChange} >
+              <select className={`form-control ${errors.audience && "is-invalid"}`} id="audience" name="notice_to"  value={audience} onChange={handleAudienceChange} >
                   <option value="" disabled hidden>Select Audience You Want To Cover</option>
                   <option value="5">All</option>
                   <option value="2">Staff</option>
