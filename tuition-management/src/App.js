@@ -13,6 +13,7 @@ import Notice from "./components/Common/Notice";
 import EditNotice from "./components/Common/EditNotice";
 import NoticesList from "./components/Common/NoticesList";
 import Test from "./components/Common/Test";
+import PageNotFound from "./components/Common/PageNotFound";
 import AssignStudents from "./components/Admin/AssignStudents";
 import Salary from "./components/Admin/Salary";
 import SalaryPresent from "./components/Admin/SalaryPresent";
@@ -49,6 +50,7 @@ function App() {
          <Route path="notice/:id" element={<Notice/>}/>
          <Route path="notice/edit/:id" element={<EditNotice/>}/>
          <Route path="test" element={<Test/>}/>
+         <Route path="*" element={<PageNotFound/>}/>
       </Routes>
    </BrowserRouter>
    
