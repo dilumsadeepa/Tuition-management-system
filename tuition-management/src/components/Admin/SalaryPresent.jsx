@@ -13,6 +13,7 @@ const SalaryPresent = () => {
    const [succ, setsucc] = useState("");
     const [err, seterr] = useState("");
     const [salary, setSalary] = useState([]);
+    const [said, setsaid] = useState("");
 
     const getsal = async(e) =>{
         try {
@@ -52,31 +53,46 @@ const SalaryPresent = () => {
         document.getElementById('uroled').innerHTML = urole;
         document.getElementById('pre').value = pre;
         document.getElementById('sid').value = id;
+        setsaid(id);
         document.getElementById('crbtn').style.display = "none";
         document.getElementById('upbtn').style.display = "block";
    }
 
    const updatePRE = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         console.log("clicked");
-        let id = document.getElementById('sid').value;
+       
+        // let id = document.getElementById('sid').value;
+        let id = said;
         let ro = document.getElementById('urolev').value;
         let pr = document.getElementById('pre').value;
+
+        console.log(id+','+ro+','+pr);
 
         await axios.patch(`${Apiurl}/updatepre/${id}`,{
             userrole:ro,
             presentage:pr
         });
 
-        getsal();
+        
 
         document.getElementById('crbtn').style.display = "block";
         document.getElementById('upbtn').style.display = "none";
     
     }
 
+    const deletepr = async(id) =>{
+        console.log(`${Apiurl}/deletespre/${id}`);
+        try {
+            const deleted = await axios.delete(`${Apiurl}/deletespre/${id}`);
+            setsucc("Presentage Deleted, "+deleted);
+        } catch (error) {
+            console.log("error on deleting" + error);
+        }
+    }
+
    useEffect(() => {
-        document.getElementById('upbtn').style.display = "none";
+        // document.getElementById('upbtn').style.display = "none";
         getsal();
    })
 
@@ -178,7 +194,7 @@ const SalaryPresent = () => {
                                                     <tr>
                                                         <td>{s.userrole}</td>
                                                         <td>{s.presentage} %</td>
-                                                        <td><button type='button' onClick={(e) => edit(s.id,s.userrole,s.presentage)} className='btn btn-info mr-3'>Edit</button> <button type='button' className='btn btn-danger'>Delete</button></td>
+                                                        <td><button type='button' onClick={(e) => edit(s.id,s.userrole,s.presentage)} className='btn btn-info mr-3'>Edit</button> <button type='button' onClick={(e) => deletepr(s.id)} className='btn btn-danger'>Delete</button></td>
                                                     </tr>
                                                 </tbody>
                                             )}

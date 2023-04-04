@@ -22,6 +22,7 @@ export const createPre = async(req, res) =>{
 }
 
 export const updateSP = async(req, res) =>{
+    console.log("connected");
     try {
         await Salarypresent.update(req.body,{
             where:{
@@ -34,5 +35,18 @@ export const updateSP = async(req, res) =>{
     }
 }
 
+
+export const deletespre = async(req, res) =>{
+    try {
+        await Salarypresent.destroy({
+            where:{
+                id: req.params.id
+            }
+        });
+        
+    } catch (error) {
+        console.log(error.message);
+    }
+}
 
   
