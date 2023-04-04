@@ -49,7 +49,7 @@ const Course = () =>{
                     <Dashhead />
 
                     {/* <!-- Main --> */}
-                    <main class="py-6 bg-surface-secondary">
+                     <main>
                     
                         <div class="container">
 
