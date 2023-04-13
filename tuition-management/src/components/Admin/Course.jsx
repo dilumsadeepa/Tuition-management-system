@@ -52,7 +52,7 @@ const Course = () =>{
                      <main>
                     
                         <div class="container">
-
+                            <h2 className='mt-3 mb-3'>Course</h2>
                             <div className="row">
                                 <div class="col-xl-4 col-sm-6 col-12">
                                     <div class="card shadow border-0">

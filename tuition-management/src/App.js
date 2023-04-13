@@ -17,6 +17,7 @@ import PageNotFound from "./components/Common/PageNotFound";
 import AssignStudents from "./components/Admin/AssignStudents";
 import Salary from "./components/Admin/Salary";
 import SalaryPresent from "./components/Admin/SalaryPresent";
+import AddStudent from "./components/Admin/AddStudent";
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="assignstudent" element={<AssignStudents />} />
           <Route path="salary" element={<Salary />} />
           <Route path="salarypresentage" element={<SalaryPresent />} />
+          <Route path="addstudent" element={<AddStudent />} />
 
           {/* student part */}
           <Route path="Stureg" element={<StudentReg/>}/>
