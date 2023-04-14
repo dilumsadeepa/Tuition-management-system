@@ -1,9 +1,11 @@
-import express from "express";
+// import express from "express";
 import cors from "cors";
 import UserRoute from "./routes/UserRoute.js";
 import NoticeRoute from "./routes/NoticeRoute.js";
 import { fileURLToPath } from 'url';
 import path from 'path';
+
+const express = require('express');
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,8 +15,6 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 
-// Serve static files from the "uploads" folder
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 
@@ -44,7 +44,18 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use(cors());
 app.use(express.json());
+
+app.get('/', function(req,res){
+    res.set('Conten-Type','text/html; charset = utf-8');
+    res.send("<h1>Hello... I am working...</h1>");
+});
+
 app.use(UserRoute);
 app.use(NoticeRoute);
+
+// Serve static files from the "uploads" folder
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
  
-app.listen(5000, ()=> console.log('Server up and running...'));
+// app.listen(5000, ()=> console.log('Server up and running...'));
+app.listen(process.env.PORT || 5000);

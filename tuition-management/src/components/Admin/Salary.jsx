@@ -67,15 +67,30 @@ const Salary = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            {/* <div class="mt-2 mb-0 text-sm">
-                                                <span class="badge badge-pill bg-soft-success text-success me-2">
-                                                    <i class="bi bi-arrow-up me-1"></i>13%
-                                                </span>
-                                                <span class="text-nowrap text-xs text-muted">Since last month</span>
-                                            </div> */}
+                                            
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-xl-4 col-sm-6 col-12">
+                                    <div class="card shadow border-0">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col">
+                                                    {/* <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span> */}
+                                                    <span class="h4 mb-0"><a href="/gensalary" className='debtn'>Salary Generate</a></span>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
+                                                    <i class="bi bi-bookmark-plus-fill"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
 
 
