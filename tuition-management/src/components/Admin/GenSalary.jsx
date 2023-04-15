@@ -39,7 +39,7 @@ const GenSalary = () => {
                             <div className="row mt-5">
                                
                                 <div className="col-sm-12">
-                                    <label class="form-label">Select the User role:</label>
+                                    <label class="form-label">Select the User role for genarate the salary:</label>
                                     <div class="input-group mb-3">
                                         <select class="form-select">
                                             <option>-- Select role --</option>

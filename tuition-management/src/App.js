@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import Welcome from "./components/Welcome";
 import Auth from "./components/User/Auth";
 import StudentReg from "./components/Student/Register";
 import EnterForm from "./components/Student/EnterForm";
@@ -19,6 +20,8 @@ import Salary from "./components/Admin/Salary";
 import SalaryPresent from "./components/Admin/SalaryPresent";
 import AddStudent from "./components/Admin/AddStudent";
 import GenSalary from "./components/Admin/GenSalary";
+import Login from "./components/User/Login";
+
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
 
@@ -27,7 +30,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Auth />} />
+          <Route path="/" element={<Welcome />} />
+          <Route path="auth" element={<Auth />} />
+          <Route path="login" element={<Login />} />
 
           {/* admin part */}
           <Route path="admin" element={<Admin />} />
