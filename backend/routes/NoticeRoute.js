@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { getNotices, createNotice, deleteNotice, viewNotice } from "../controllers/NoticeController.js";
+import { getNotices, createNotice, deleteNotice, viewNotice, getNoticesCount, getTodaysNotices } from "../controllers/NoticeController.js";
 import NoticeModel from '../models/NoticeModel.js';
 // import upload from 'express-fileupload';
 import { CloudinaryStorage } from "multer-storage-cloudinary";
@@ -662,6 +662,7 @@ router.post("/single",upload.single("files"), async (req, res, next) => {
 
 
 router.get('/notice', getNotices);
+router.get('/notice', getNoticesCount);
 router.delete('/notice/:id', deleteNotice);
 router.get('/notice/byId/:id', viewNotice );
 // router.post('/notice', createNotice);
