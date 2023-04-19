@@ -1,51 +1,53 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 import Apiurl from '../Apiurl';
 
 
-const Login = () => {
+const Register = () =>{
 
+    const[username, setUsername] = useState("");
     const[email, setEmail] = useState("");
+    const[tel, setTel] = useState("");
     const[password, setPassword] = useState("");
+    const[cpwd, setcpwd] = useState("");
+    const role = 4;
     const[err, setErr] = useState("");
 
     const navigate = useNavigate();
 
-    const [cookies, setCookie] = useCookies(['user']);
-
-    useEffect(() =>{
-        if (cookies.user) {
-            if (cookies.email !== "") {
-                navigate("/admin");
-            }
-        }
-    })
-
-    // login user
-    const loginuser = async(e) =>{
+     // Register user
+     const registeruser = async(e) =>{
         e.preventDefault();
-        console.log("clicked");
-        console.log(email+','+password);
-        try {
-            const response = await axios.get(`${Apiurl}/users/${email}`);
-            if (response.data.password === password) {
-                if (response.data.role === 1) {
-                    setCookie('email', response.data.email, { path: '/' });
-                    setCookie('username', response.data.username, { path: '/' });
-                    setCookie('role', response.data.role, { path: '/' });
-                    navigate("/admin");
-                }else{
-                    console.log(response.data.role);
-                }
-            }else{
-                setErr("Email or Password is does not match");
+
+        // register validation
+        if (username === "" || email === "" || tel === "" || password === "" || cpwd === "") {
+            setErr("All Filds are Requierd");
+        }else if (password !== cpwd) {
+            setErr("Enter the Same passwords");
+        }else if(tel.length !== 10){
+            setErr("Phone number must have 12 caracters and start with +94");
+        }else if(password.length < 8){
+            setErr("Password must have at least 8 charectors")
+        }else{
+            try {
+                await axios.post(`${Apiurl}/users/`,{
+                   username,
+                   email,
+                   tel,
+                   password,
+                   role, 
+                });
+
+                navigate("/login");
+                
+            } catch (error) {
+                console.log(error);
             }
-        } catch (error) {
-            console.log(error);
         }
+
     }
+
 
     return(
         <div className="auth-page-wrapper pt-5">
@@ -83,17 +85,36 @@ const Login = () => {
                                         <div className="d-inline-block auth-logo">
                                             <img src="https://document360.com/wp-content/uploads/2022/01/Ultimate-guide-to-writing-instructions-for-a-user-manual-Document360.png" alt="lobac" height={80} />
                                         </div>
-                                        <h3 className="text-dark mt-3">Login to Your Account</h3>
+                                        <h3 className="text-dark mt-3">Register as a new Student</h3>
                                     </div>
 
                                     <div className="p-2 mt-3">
+
+                                        <div className="mb-3">
+                                            <label className="form-label">Username</label>
+                                            <input 
+                                                type="text" 
+                                                onChange={(e) => setUsername(e.target.value)} 
+                                                className="form-control" 
+                                                placeholder="Enter username" />
+                                        </div>
+
                                         <div className="mb-3">
                                             <label className="form-label">Email</label>
                                             <input 
                                                 type="email" 
                                                 onChange={(e) => setEmail(e.target.value)} 
                                                 className="form-control" 
-                                                placeholder="Enter username" />
+                                                placeholder="Enter Email" />
+                                        </div>
+
+                                        <div className="mb-3">
+                                            <label className="form-label">Phone number</label>
+                                            <input 
+                                                type="tel" 
+                                                onChange={(e) => setTel(e.target.value)} 
+                                                className="form-control" 
+                                                placeholder="Enter Phone number" />
                                         </div>
 
                                         <div className="mb-3">
@@ -109,18 +130,25 @@ const Login = () => {
                                             </div>
                                         </div>
 
-                                        <div className="form-check">
-                                            <input className="form-check-input" type="checkbox" value="" id="auth-remember-check" />
-                                            <label className="form-check-label">Remember me</label>
-                                            <a href="#s" className="text-muted float-end">Forgot password?</a>
+                                        <div className="mb-3">
+                                            <label className="form-label">Conferm Password</label>
+                                            <div className="position-relative auth-pass-inputgroup mb-3">
+                                                <input 
+                                                    type="password" 
+                                                    onChange={(e) => setcpwd(e.target.value)} 
+                                                    className="form-control pe-5 password-input" 
+                                                    placeholder="Re-Enter password" />
+
+                                                <button className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i className="ri-eye-fill align-middle"></i></button>
+                                            </div>
                                         </div>
 
                                         <div className="mt-4 mb-3">
-                                            <input type="button" onClick={(e)=>loginuser(e)} value="Login" id="btnlogin" className="btn btn-primary w-100" />
+                                            <input type="button" onClick={(e) => registeruser(e)} value="Register" id="btnlogin" className="btn btn-primary w-100" />
                                         </div>
                                         <div className="mt-6">
-                                            <label className="form-check-label">Do not have an account</label>
-                                            <a href="/register" className="text-muted float-end">Register</a>
+                                            <label className="form-check-label">If you have an account</label>
+                                            <a href="/login" className="text-muted float-end">Login</a>
                                         </div>
                                     </div>
                                 </div>
@@ -140,5 +168,4 @@ const Login = () => {
 }
 
 
-
-export default Login;
+export default Register;
