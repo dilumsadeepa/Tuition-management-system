@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Welcome from "./components/Welcome";
 import Auth from "./components/User/Auth";
+import Student from "./components/Student/Student";
 import StudentReg from "./components/Student/Register";
 import EnterForm from "./components/Student/EnterForm";
 import Admin from "./components/Admin/Admin";
@@ -47,6 +48,7 @@ function App() {
           <Route path="gensalary" element={<GenSalary />} />
 
           {/* student part */}
+          <Route path="student" element={<Student />} />
           <Route path="Stureg" element={<StudentReg/>}/>
           <Route path="EnterForm" element={<EnterForm/>}/>
           {/* <Route path="StudentLogin" element={<Login />} /> */}

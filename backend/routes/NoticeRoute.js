@@ -662,7 +662,7 @@ router.post("/single",upload.single("files"), async (req, res, next) => {
 
 
 router.get('/notice', getNotices);
-router.get('/notice', getNoticesCount);
+router.get('/notice/count', getNoticesCount);
 router.delete('/notice/:id', deleteNotice);
 router.get('/notice/byId/:id', viewNotice );
 // router.post('/notice', createNotice);

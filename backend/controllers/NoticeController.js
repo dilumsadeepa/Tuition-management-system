@@ -18,28 +18,7 @@ export const getNotices = async(req, res) =>{
     }
 }
 
-// export const getNoticesCount = async (req, res) => {
-//   try {
-//     console.log(req.query);
-//     const { date } = req.query;
-//     console.log(date);
-//     const startOfDay = new Date(date);
-//     startOfDay.setHours(0, 0, 0, 0); // Set hours to 00:00:00 to get notices from the start of the day
-//     const endOfDay = new Date(date);
-//     endOfDay.setHours(23, 59, 59, 999); // Set hours to 23:59:59:999 to get notices until the end of the day
-//     const count = await Notice.count({
-//       where: {
-//         createdAt: {
-//           [Op.gte]: startOfDay,
-//           [Op.lte]: endOfDay,
-//         },
-//       },
-//     });
-//     res.status(200).json({ count });
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
+
 
 
 
