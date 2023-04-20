@@ -22,6 +22,7 @@ import SalaryPresent from "./components/Admin/SalaryPresent";
 import AddStudent from "./components/Admin/AddStudent";
 import GenSalary from "./components/Admin/GenSalary";
 import Login from "./components/User/Login";
+import Register from "./components/User/Register";
 
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
@@ -34,6 +35,7 @@ function App() {
           <Route path="/" element={<Welcome />} />
           <Route path="auth" element={<Auth />} />
           <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
 
           {/* admin part */}
           <Route path="admin" element={<Admin />} />
