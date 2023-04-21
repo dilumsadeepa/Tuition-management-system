@@ -1,14 +1,11 @@
 import {Sequelize, DataTypes} from "sequelize";
 import db from "../config/Database.js";
+import User from "./UserModel.js";
  
 // const {DataTypes} = Sequelize;
  
 const Student = db.define('students',{
-    userid:{
-        type:DataTypes.INTEGER,
-        unique:true,
-        allowNull:false,
-    },
+   
     sfullname:{
         type:DataTypes.STRING,
         allowNull:false,
@@ -36,6 +33,9 @@ const Student = db.define('students',{
 },{
     freezeTableName:true
 });
+
+User.hasOne(Student);
+Student.belongsTo(User);
  
 export default Student;
  

@@ -3,6 +3,7 @@ import axios from 'axios';
 import Apiurl from '../Apiurl';
 import Sidebar from './AdminSidebar';
 import Dashhead from './Dashhead';
+import { Link } from 'react-router-dom';
 
 
 
@@ -122,6 +123,7 @@ const ViewStudent = () =>{
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
+                                                    <th>Action</th>
                                                     <th>UserID</th>
                                                     <th>Full Name</th>
                                                     <th>Email</th>
@@ -135,7 +137,8 @@ const ViewStudent = () =>{
                                             <tbody>
                                             {data.map((student) => 
                                                 <tr>
-                                                <td>{student.userid}</td>
+                                                <td><Link to={`/singlestudent/${student.userId}`} className='btn btn-info'>View</Link></td>
+                                                <td>{student.userId}</td>
                                                 <td>{student.sfullname}</td>
                                                 <td>{student.email}</td>
                                                 <td>{student.tel}</td>

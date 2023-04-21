@@ -17,6 +17,7 @@
     "formik": "^2.2.9",
     "he": "^1.2.0",
     "lodash.debounce": "^4.0.8",
+    "qrcode.react": "^3.1.0",
     "react": "^18.2.0",
     "react-cookie": "^4.1.1",
     "react-doc-viewer": "^0.1.5",

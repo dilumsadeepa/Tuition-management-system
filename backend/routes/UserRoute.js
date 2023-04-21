@@ -9,7 +9,7 @@ import {
 
 import { getAtts, getAttById } from "../controllers/AttendanceController.js";
 
-import { getsts, getStuData } from "../controllers/StudentController.js";
+import { getsts, getStuData, getStudentById } from "../controllers/StudentController.js";
 import { getPas } from "../controllers/ParentsController.js";
 import { getTes,createTeacher } from "../controllers/TeacherController.js";
 import { getCos, createCourse, CourseData, deleteCourse } from "../controllers/CourseController.js";
@@ -27,7 +27,7 @@ router.get('/users/:id', getUserById);
 router.post('/users', createUser);
 router.patch('/users/:id', updateUser);
 router.delete('/users/:id', deleteUser);
-
+ 
 //admin
 router.get('/astudata', getStuData);
 router.get('/stucourse', stucourse);
@@ -41,7 +41,8 @@ router.get('/salary', getsals);
 router.post('/createSpresent', createPre);
 router.get('/salarypresent', getSPs);
 router.patch('/updatepre/:id', updateSP);
-router.delete('/deletespre/:id', deletespre)
+router.delete('/deletespre/:id', deletespre);
+router.get('/student/:id', getStudentById);
 
 //student
 

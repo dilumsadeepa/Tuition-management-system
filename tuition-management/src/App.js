@@ -22,6 +22,7 @@ import AddStudent from "./components/Admin/AddStudent";
 import GenSalary from "./components/Admin/GenSalary";
 import Login from "./components/User/Login";
 import Register from "./components/User/Register";
+import SingleStudent from "./components/Admin/SingleStudent";
 
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
@@ -47,6 +48,7 @@ function App() {
           <Route path="salarypresentage" element={<SalaryPresent />} />
           <Route path="addstudent" element={<AddStudent />} />
           <Route path="gensalary" element={<GenSalary />} />
+          <Route path="singlestudent/:id" element={<SingleStudent />} />
 
           {/* student part */}
           <Route path="Stureg" element={<StudentReg/>}/>
