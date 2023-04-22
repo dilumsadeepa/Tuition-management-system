@@ -2,6 +2,8 @@ import Student from "../models/StudentModel.js";
 // import {Sequelize} from "sequelize";
 import {QueryTypes} from "sequelize";
 import User from "../models/UserModel.js";
+import Course from "../models/CourseModel.js";
+import Coursestudent from "../models/CoursestudentModel.js";
 
 import db from "../config/Database.js";
 
@@ -37,12 +39,46 @@ export const getStuData = async(req, res) =>{
 
 export const getStudentById = async(req, res) =>{
     const id = req.params.id;
-    const sesql = "SELECT users.*, students.* FROM users INNER JOIN students ON users.id=students.userid WHERE users.id = '"+id+"';";
+    const sql = "SELECT users.*, students.* FROM users INNER JOIN students ON users.id=students.userid WHERE users.id = '"+id+"';";
+    
     try {
-        const response = await db.query(sesql, { type: QueryTypes.SELECT });
+        const response = await db.query(sql, { type: QueryTypes.SELECT });
+               
         res.status(200).json(response);
     } catch (error) {
         console.log(error.message);
     }
+    
 }
+
+export const getCourseById = async(req, res) =>{
+    const id = req.params.id;
+       
+    const sesql = "SELECT c.* FROM courses c INNER JOIN coursestudents cs ON cs.courseId = c.id INNER JOIN students s ON s.id = cs.studentId INNER JOIN users u ON u.id = s.userId WHERE u.id = '"+id+"';";
+
+    try {
+       const response = await db.query(sesql, { type: QueryTypes.SELECT });
+        // const response = Course.findAll({
+        //     include: [{
+        //       model: Coursestudent,
+        //       include: [{
+        //         model: Student,
+        //         include: [{
+        //           model: User,
+        //           where: {
+        //             id: id
+        //           }
+        //         }]
+        //       }]
+        //     }]
+        //   });
+        
+        res.status(200).json(response);
+    } catch (error) {
+        console.log(error.message);
+    }
+    
+}
+
+
 

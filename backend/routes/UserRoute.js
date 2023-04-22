@@ -9,7 +9,7 @@ import {
 
 import { getAtts, getAttById } from "../controllers/AttendanceController.js";
 
-import { getsts, getStuData, getStudentById } from "../controllers/StudentController.js";
+import { getsts, getStuData, getStudentById, getCourseById } from "../controllers/StudentController.js";
 import { getPas } from "../controllers/ParentsController.js";
 import { getTes,createTeacher } from "../controllers/TeacherController.js";
 import { getCos, createCourse, CourseData, deleteCourse } from "../controllers/CourseController.js";
@@ -43,6 +43,7 @@ router.get('/salarypresent', getSPs);
 router.patch('/updatepre/:id', updateSP);
 router.delete('/deletespre/:id', deletespre);
 router.get('/student/:id', getStudentById);
+router.get('/couserbystu/:id', getCourseById);
 
 //student
 
