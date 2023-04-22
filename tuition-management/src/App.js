@@ -25,6 +25,8 @@ import Login from "./components/User/Login";
 import Register from "./components/User/Register";
 import SingleStudent from "./components/Admin/SingleStudent";
 
+import StudentDetils from "./components/Student/StudentDetils";
+
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
 
@@ -55,6 +57,9 @@ function App() {
           <Route path="student" element={<Student />} />
           <Route path="Stureg" element={<StudentReg/>}/>
           <Route path="EnterForm" element={<EnterForm/>}/>
+
+          <Route path="studentdata" element={<StudentDetils/>}/>
+
           {/* <Route path="StudentLogin" element={<Login />} /> */}
 
          {/* Common */}
