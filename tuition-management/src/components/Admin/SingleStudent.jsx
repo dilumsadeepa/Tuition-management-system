@@ -15,26 +15,30 @@ const SingleStudent = () =>{
 
     const [data, setData] = useState([]);
     const [course, setCourse] = useState([]);
+    const [courseids, setCourseids] = useState([]);
 
     const cardRef = useRef(null);
 
     let count = 0;
 
+    let qrj = {'userid': id, 'courses': courseids}
+    let qrtext = JSON.stringify(qrj);
 
-    const getstu = async(e) =>{
-       
+
+    async function getstu(e) {
+
         try {
             if (count === 0) {
                 const response = await axios.get(`${Apiurl}/student/${id}`);
                 setData(response.data);
-                
-                
+
+
             }
 
         } catch (error) {
-            console.log("error in getting data")
+            console.log("error in getting data");
         }
-        count = count+1;
+        count = count + 1;
     }
 
     const getco = async(e) =>{
@@ -47,8 +51,23 @@ const SingleStudent = () =>{
         } catch (error) {
             console.log("error in getting data")
         }
-        count = count+1;
+       
     }
+
+    const getcoid = async(e) =>{
+       
+        try {
+            const response = await axios.get(`${Apiurl}/stcoid/${id}`);
+            setCourseids(response.data);
+            // console.log(courseids);
+            
+            
+        } catch (error) {
+            console.log("error in getting data")
+        }
+       
+    }
+    
 
     const downloadImage = () => {
         html2canvas(cardRef.current).then(canvas => {
@@ -62,6 +81,7 @@ const SingleStudent = () =>{
    
     useEffect(()=>{
         getco();
+        getcoid();
         getstu();
         
    
@@ -118,7 +138,7 @@ const SingleStudent = () =>{
                                     </div>
                                     <div className="card mb-4 mb-lg-0">
                                     <div className="card-body p-0">
-                                        <QRCode value={id} />
+                                        <QRCode value={qrtext} />
                                         <br />
                                         <button onClick={()=>downloadImage()} className='debtn'>Download my student ID</button>
                                     </div>
@@ -230,7 +250,7 @@ const SingleStudent = () =>{
                                                 <div className="row g-1 stcard">
                                                     
                                                     <div className="col-md-4">
-                                                        <QRCode value={id} className='mt-4 mr-3 card-qr' />
+                                                        <QRCode value={qrtext} className='mt-4 mr-3 card-qr' />
                                                     </div>
                                                     <div className="col-md-8">
                                                         <div className="card-body c-data">
