@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import "./studentDetailsForm.css";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faUser, faEnvelope, faPhone, faAddressCard } from "@fortawesome/free-solid-svg-icons";
 
 const StudentDetailsForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [Level, setLevel] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -60,6 +59,18 @@ const StudentDetailsForm = () => {
           className="input-field"
         />
       </div>
+
+      <div className="input-container">
+      <i class="fa-solid fa-user-graduate"></i>
+        <textarea
+          id="Level"
+          value={Level}
+          onChange={(e) => setLevel(e.target.value)}
+          placeholder="Enter your educational level"
+          className="input-field"
+        />
+      </div>
+
       <button type="submit" className="submit-button">
         Submit
       </button>
