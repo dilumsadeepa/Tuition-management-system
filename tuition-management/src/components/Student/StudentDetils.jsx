@@ -14,6 +14,7 @@ const StudentDetailsForm = () => {
   };
 
   return (
+    
     <form onSubmit={handleSubmit} className="form-container">
       <h2 className="form-title">Student Details</h2>
       <div className="input-container">
