@@ -3,8 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Welcome from "./components/Welcome";
 import Auth from "./components/User/Auth";
 import Student from "./components/Student/Student";
-import StudentReg from "./components/Student/Register";
-import EnterForm from "./components/Student/EnterForm";
+
 import Admin from "./components/Admin/Admin";
 import ViewStudent from "./components/Admin/ViewStudent";
 import StudenttoCourse from "./components/Admin/StudenttoCourse";
@@ -56,6 +55,10 @@ function App() {
           {/* student part */}
           <Route path="student" element={<Student />} />
           
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3a3524f3d8e5e7f064fb099a7dea41edcc4074bf
           <Route path="studentdata" element={<StudentDetils/>}/>
 
           {/* <Route path="StudentLogin" element={<Login />} /> */}
