@@ -16,15 +16,32 @@ function DropdownMenu() {
   return (
     <form onSubmit={handleSubmit}>
       <div className="dropdown-container">
+
+      <h1>Advanced Level</h1>
         <select className="dropdown" value={selectedOption} onChange={handleChange}>
-          <option value="">Choose an option</option>
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
+          <option value="option1">Combined Maths</option>
+          <option value="option1">Biology</option>
+          <option value="option1">Chemistry</option>
+          <option value="option1">Physics</option>
+          <option value="option2">Commerce</option>
+          <option value="option3">Technology</option>
+          <option value="option3">Arts</option>
         </select>
+
+        <h1>Ordinary level</h1>
+        <select className="dropdown" value={selectedOption} onChange={handleChange}>
+          <option value="option1">Science</option>
+          <option value="option2">commerce</option>
+          <option value="option3">maths</option>
+          <option value="option3">english</option>
+          <option value="option3">history</option>
+          <option value="option3">Arts</option>
+          <option value="option3">Dancing</option>
+        </select>
+
         <div className="dropdown-arrow"></div>
       </div>
-      <button className="submit-button" type="submit">Submit</button>
+      <button className="submit-button" type="submit">Apply for class</button>
     </form>
   );
 }
