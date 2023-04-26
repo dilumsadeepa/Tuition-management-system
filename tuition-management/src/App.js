@@ -25,6 +25,7 @@ import Register from "./components/User/Register";
 import SingleStudent from "./components/Admin/SingleStudent";
 
 import StudentDetils from "./components/Student/StudentDetils";
+import Classes from "./components/Student/classes";
 
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
@@ -57,7 +58,7 @@ function App() {
           
 
           <Route path="studentdata" element={<StudentDetils/>}/>
-          
+          <Route path="classeslist" element={<Classes/>}/>
 
           {/* <Route path="StudentLogin" element={<Login />} /> */}
 
