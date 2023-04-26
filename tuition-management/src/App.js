@@ -55,9 +55,7 @@ function App() {
 
           {/* student part */}
           <Route path="student" element={<Student />} />
-          <Route path="Stureg" element={<StudentReg/>}/>
-          <Route path="EnterForm" element={<EnterForm/>}/>
-
+          
           <Route path="studentdata" element={<StudentDetils/>}/>
 
           {/* <Route path="StudentLogin" element={<Login />} /> */}
