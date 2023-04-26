@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import "./studentDetailsForm.css";
 
+
 const StudentDetailsForm = () => {
+
+
+
+  
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -76,7 +81,15 @@ const StudentDetailsForm = () => {
         Submit
       </button>
     </form>
+    
   );
+
+
+ 
+
+
+
 };
 
 export default StudentDetailsForm;
+

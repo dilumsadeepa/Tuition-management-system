@@ -68,41 +68,20 @@ const Sidebar =() =>{
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/adminstudent">
-                                <i class='bx bx-user'></i> Students
+                                <i class='bx bx-user'></i> Profile
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/course">
-                                <i class="bi bi-book-half"></i> Courses
+                                <i class="bi bi-book-half"></i> Classes
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/salary">
-                                <i class="bi bi-cash-stack"></i> Salary
+                                <i class="bi bi-cash-stack"></i> Attendance
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#s">
-                                    <i class="bi bi-chat"></i> Messages
-                                    <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">6</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/notice">
-                                    <i class="bi bi-chat"></i> Notices
-                                    <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">{noticesCount}</span>
-                                </a>
-                            </li>
-                            {/* <li class="nav-item">
-                                <a class="nav-link" href="#s">
-                                    <i class="bi bi-bookmarks"></i> Collections
-                                </a>
-                            </li> */}
-                            <li class="nav-item">
-                                <a class="nav-link" href="#s">
-                                    <i class="bi bi-people"></i> Users
-                                </a>
-                            </li>
+                            
                         </ul>
                         {/* <!-- Divider --> */}
                         <hr class="navbar-divider my-5 opacity-20" />

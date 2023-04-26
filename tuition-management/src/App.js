@@ -57,6 +57,7 @@ function App() {
           
 
           <Route path="studentdata" element={<StudentDetils/>}/>
+          
 
           {/* <Route path="StudentLogin" element={<Login />} /> */}
 
