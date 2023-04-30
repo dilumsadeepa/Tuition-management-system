@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "./studentDetailsForm.css";
 
 
+
+
+
 const StudentDetailsForm = () => {
 
 
@@ -19,7 +22,7 @@ const StudentDetailsForm = () => {
   };
 
   return (
-    
+    <div className="Clist-background">
     <form onSubmit={handleSubmit} className="form-container">
       <h2 className="form-title">Student Details</h2>
       <div className="input-container">
@@ -81,7 +84,7 @@ const StudentDetailsForm = () => {
         Submit
       </button>
     </form>
-    
+    </div>
   );
 
 

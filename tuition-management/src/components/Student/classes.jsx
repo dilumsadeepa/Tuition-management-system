@@ -1,49 +1,43 @@
-import React, { useState } from 'react';
-import './classesStyle.css';
+import * as React from 'react';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Button from '@mui/material/Button';
 
-function DropdownMenu() {
-  const [selectedOption, setSelectedOption] = useState('');
 
-  const handleChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    alert(`You submitted option ${selectedOption}`);
-  };
-
+export default function DisableElevation() {
+  
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="dropdown-container">
 
-      <h1>Advanced Level</h1>
-        <select className="dropdown" value={selectedOption} onChange={handleChange}>
-          <option value="option1">Combined Maths</option>
-          <option value="option1">Biology</option>
-          <option value="option1">Chemistry</option>
-          <option value="option1">Physics</option>
-          <option value="option2">Commerce</option>
-          <option value="option3">Technology</option>
-          <option value="option3">Arts</option>
-        </select>
+    
+    <ButtonGroup
+      disableElevation
+      variant="contained"
+      aria-label="Disabled elevation buttons"
+    >
+<div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+    <Button> Ordinary Level</Button>
 
-        <h1>Ordinary level</h1>
-        <select className="dropdown" value={selectedOption} onChange={handleChange}>
-          <option value="option1">Science</option>
-          <option value="option2">commerce</option>
-          <option value="option3">maths</option>
-          <option value="option3">english</option>
-          <option value="option3">history</option>
-          <option value="option3">Arts</option>
-          <option value="option3">Dancing</option>
-        </select>
+      <Button>Grade 6</Button>
+      <Button>Grade 7</Button>
+      <Button>Grade 8</Button>
+      <Button>Grade 9</Button>
+      <Button>Grade 10</Button>
+      <Button>Grade 11</Button>
+      
 
-        <div className="dropdown-arrow"></div>
+    <Button> Advancved Level </Button>
+
+      <Button>Combined Maths</Button>
+      <Button>Chemistry</Button>
+      <Button>Physics</Button>
+      <Button>Biology</Button>
+      <Button>ICT</Button>
+      <Button>Science for technology</Button>
+      <Button>Engineering technology</Button>
+      <Button>Biosystem technology</Button>
+      <Button>Accounting</Button>
+
       </div>
-      <button className="submit-button" type="submit">Apply for class</button>
-    </form>
+    </ButtonGroup>
   );
-}
 
-export default DropdownMenu;
+}

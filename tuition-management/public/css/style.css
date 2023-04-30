@@ -358,3 +358,7 @@ body {
 .c-data{
   color: black !important;
 }
+
+.Clist-background{
+  background-image: url("../../../img/background.png");
+}
