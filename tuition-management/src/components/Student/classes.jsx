@@ -7,17 +7,17 @@ export default function DisableElevation() {
   
   return (
 
-    
+    <div className="Clist-background">
     <ButtonGroup
       disableElevation
       variant="contained"
       aria-label="Disabled elevation buttons"
     >
 
-       <div>classes</div> 
+       <div><h1>classes</h1></div> 
 
 
-<      div style={{ display: 'flex', flexDirection: 'column' ,justifyContent: 'space-evenly', padding:50 , margin:100}}>
+<      div style={{ display: 'flex', flexDirection: 'column' ,justifyContent: 'space-evenly', padding:60 , margin:100}}>
       <Button> Ordinary Level</Button>
 
       <Button>Grade 6</Button>
@@ -44,6 +44,8 @@ export default function DisableElevation() {
 
       </div>
     </ButtonGroup>
+
+    </div>
   );
 
 }
