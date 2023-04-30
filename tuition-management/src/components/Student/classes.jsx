@@ -13,8 +13,12 @@ export default function DisableElevation() {
       variant="contained"
       aria-label="Disabled elevation buttons"
     >
-<div style={{ display: 'flex', flexDirection: 'row' ,justifyContent: 'space-between' }}>
-    <Button> Ordinary Level</Button>
+
+       <div>classes</div> 
+
+
+<      div style={{ display: 'flex', flexDirection: 'column' ,justifyContent: 'space-evenly', padding:50 , margin:100}}>
+      <Button> Ordinary Level</Button>
 
       <Button>Grade 6</Button>
       <Button>Grade 7</Button>
@@ -23,9 +27,10 @@ export default function DisableElevation() {
       <Button>Grade 10</Button>
       <Button>Grade 11</Button>
       
-     
+      </div>
 
-    <Button> Advancved Level </Button>
+      <div style={{ display: 'flex', flexDirection: 'column' ,justifyContent: 'space-evenly',padding:50 , margin:100 }}>
+      <Button> Advancved Level </Button>
 
       <Button>Combined Maths</Button>
       <Button>Chemistry</Button>
