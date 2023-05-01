@@ -10,12 +10,40 @@ const Notice = db.define('notices',{
     },
     notice_from:{
         type:DataTypes.STRING,
-        allowNull:false,
+        allowNull:true,
     },
-    notice:{
+    notice_title:{
+        type:DataTypes.STRING,
+        allowNull:true,
+    },
+    notice_desc:{
         type:DataTypes.TEXT,
         allowNull:false,
     },
+    files:{
+        type:DataTypes.TEXT,
+        allowNull:true,
+    },
+    localFiles:{
+        type:DataTypes.TEXT,
+        allowNull:true,
+    },
+    publicIdList:{
+        type:DataTypes.TEXT,
+        allowNull:true,
+    },
+    cloudFiles:{
+        type:DataTypes.TEXT,
+        allowNull:true,
+    },
+    backup:{
+        type:DataTypes.BOOLEAN,
+        allowNull:false,
+    },
+    cloudOnly:{
+        type:DataTypes.TEXT,
+        allowNull:true,
+    }
     
 },{
     freezeTableName:true

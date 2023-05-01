@@ -49,10 +49,10 @@ const Course = () =>{
                     <Dashhead />
 
                     {/* <!-- Main --> */}
-                    <main class="py-6 bg-surface-secondary">
+                     <main>
                     
                         <div class="container">
-
+                            <h2 className='mt-3 mb-3'>Course</h2>
                             <div className="row">
                                 <div class="col-xl-4 col-sm-6 col-12">
                                     <div class="card shadow border-0">
@@ -101,7 +101,7 @@ const Course = () =>{
                                                 <td>{course.coursename}</td>
                                                 <td>{course.courseprice}</td>
                                                 <td>{course.teacher.t_fullname}</td>
-                                                <td><button className='btn btn-danger' onClick={()=> deletecourse(course.id)}>Delete</button></td>
+                                                <td><button type='button' className='btn btn-primary mr-5'>Edit</button><button className='btn btn-danger' onClick={()=> deletecourse(course.id)}>Delete</button></td>
                                                 </tr>
                                             )}
                                             </tbody>
