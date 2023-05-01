@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./studentDetailsForm.css";
 
-
+import Sidebar from './StudentSidebar';
+import Dashhead from './Dashhead';
 
 
 
