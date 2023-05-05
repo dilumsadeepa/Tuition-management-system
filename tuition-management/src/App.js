@@ -54,8 +54,8 @@ function App() {
           <Route path="singlestudent/:id" element={<SingleStudent />} />
 
           {/* student part */}
-          <Route path="student" element={<Student />} />
-          
+
+          {/* <Route path="StudentLogin" element={<Login />} /> */}
 
           <Route path="studentdata" element={<StudentDetils/>}/>
           <Route path="classeslist" element={<Classes/>}/>
