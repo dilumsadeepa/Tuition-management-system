@@ -2,10 +2,27 @@ import * as React from 'react';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
 
+import Sidebar from './StudentSidebar';
+import Dashhead from './Dashhead';
+
 
 export default function DisableElevation() {
   
   return (
+<section>
+    {/* <!-- Dashboard --> */}
+    <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+
+    <Sidebar />
+
+
+    {/* <!-- Main content --> */}
+    <div class="h-screen flex-grow-1 overflow-y-lg-auto">
+
+      {/* <!-- Header --> */}
+      <Dashhead />
+
+
 
     <div className="Clist-background">
     <ButtonGroup
@@ -46,6 +63,9 @@ export default function DisableElevation() {
     </ButtonGroup>
 
     </div>
+    </div>
+    </div>
+    </section>
   );
 
 }
