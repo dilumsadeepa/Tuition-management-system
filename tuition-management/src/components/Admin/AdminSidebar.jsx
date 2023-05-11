@@ -72,6 +72,11 @@ const Sidebar =() =>{
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="/adminstudent">
+                                <i class="fa-solid fa-chalkboard-user"></i>Teachers
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="/course">
                                 <i class="bi bi-book-half"></i> Courses
                                 </a>
