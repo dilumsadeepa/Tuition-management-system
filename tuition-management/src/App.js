@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Welcome from "./components/Welcome";
 import Auth from "./components/User/Auth";
-import Student from "./components/Student/Student";
+// import Student from "./components/Student/Student";
 
 import Admin from "./components/Admin/Admin";
 import ViewStudent from "./components/Admin/ViewStudent";
@@ -23,9 +23,13 @@ import GenSalary from "./components/Admin/GenSalary";
 import Login from "./components/User/Login";
 import Register from "./components/User/Register";
 import SingleStudent from "./components/Admin/SingleStudent";
+import AddParentData from "./components/Admin/AddParentsData";
+import Parent from "./components/Admin/Parent";
 
 import StudentDetils from "./components/Student/StudentDetils";
 import Classes from "./components/Student/classes";
+
+
 
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
@@ -52,6 +56,8 @@ function App() {
           <Route path="addstudent" element={<AddStudent />} />
           <Route path="gensalary" element={<GenSalary />} />
           <Route path="singlestudent/:id" element={<SingleStudent />} />
+          <Route path="addparent/:id" element={<AddParentData />} />
+          <Route path="parent/:id" element={<Parent />} />
 
           {/* student part */}
 
@@ -61,6 +67,9 @@ function App() {
           <Route path="classeslist" element={<Classes/>}/>
 
           {/* <Route path="StudentLogin" element={<Login />} /> */}
+
+          {/* parents */}
+          
 
          {/* Common */}
 
