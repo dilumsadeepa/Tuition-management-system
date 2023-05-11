@@ -98,6 +98,7 @@ const Sidebar =() =>{
                                     <i class="bi bi-bookmarks"></i> Collections
                                 </a>
                             </li> */}
+                            
                             <li class="nav-item">
                                 <a class="nav-link" href="#s">
                                     <i class="bi bi-people"></i> Users

@@ -124,6 +124,7 @@ const ViewStudent = () =>{
                                             <thead>
                                                 <tr>
                                                     <th>Action</th>
+                                                    <th>Parent</th>
                                                     <th>UserID</th>
                                                     <th>Full Name</th>
                                                     <th>Email</th>
@@ -138,6 +139,7 @@ const ViewStudent = () =>{
                                             {data.map((student) => 
                                                 <tr>
                                                 <td><Link to={`/singlestudent/${student.userId}`} className='btn btn-info'>View</Link></td>
+                                                <td><td><Link to={`/parent/${student.userId}`} className='btn btn-info'>Parents</Link></td></td>
                                                 <td>{student.userId}</td>
                                                 <td>{student.sfullname}</td>
                                                 <td>{student.email}</td>
