@@ -45,7 +45,7 @@ const Admin = () =>{
                                             </div>
                                             <div class="mt-2 mb-0 text-sm">
                                                 
-                                                <span class="text-nowrap text-xs text-muted">Since last month</span>
+                                                {/* <span class="text-nowrap text-xs text-muted">Since last month</span> */}
                                             </div>
                                         </div>
                                     </div>

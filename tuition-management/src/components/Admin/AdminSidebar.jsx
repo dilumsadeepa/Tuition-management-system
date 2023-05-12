@@ -72,7 +72,7 @@ const Sidebar =() =>{
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/adminstudent">
+                                <a class="nav-link" href="/adminteacher">
                                 <i class="fa-solid fa-chalkboard-user"></i>Teachers
                                 </a>
                             </li>
