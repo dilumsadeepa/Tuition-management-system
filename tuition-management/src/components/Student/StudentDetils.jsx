@@ -45,7 +45,7 @@ const StudentDetailsForm = () => {
               <h2 className="form-title">Student Details </h2>
 
               <div className="input-container">
-                <i class="fa-solid fa-envelope"></i>
+                <i class="bi bi-award-fill"></i>
                 <input
                   type="id"
                   id="id"
