@@ -1,5 +1,7 @@
 import {Sequelize, DataTypes} from "sequelize";
 import db from "../config/Database.js";
+import User from "./UserModel.js";
+import Student from "./StudentModel.js";
  
 // const {DataTypes} = Sequelize;
  
@@ -19,6 +21,9 @@ const Parent = db.define('parents',{
 },{
     freezeTableName:true
 });
+
+Parent.hasOne(User);
+Student.belongsTo(Parent);
  
 export default Parent;
  
