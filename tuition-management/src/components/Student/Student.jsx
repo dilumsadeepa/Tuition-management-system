@@ -5,11 +5,14 @@ import Sidebar from './StudentSidebar';
 import Dashhead from './Dashhead';
 
 
-const Admin = () =>{
-
+const student = () =>{
+    
     // const [cookies] = useCookies(['user']);
 
     return(
+
+
+        
         <section>
 
             {/* <!-- Dashboard --> */}
@@ -17,17 +20,20 @@ const Admin = () =>{
                 
                 <Sidebar />
 
-
+                
                 {/* <!-- Main content --> */}
                 <div class="h-screen flex-grow-1 overflow-y-lg-auto">
                     
                     {/* <!-- Header --> */}
                     <Dashhead />
-
+            
+                    
                     {/* <!-- Main --> */}
                     <main class="py-6 bg-surface-secondary">
+                    
                         <div class="container-fluid">
                             {/* <!-- Card stats --> */}
+                            
                             <div class="row g-6 mb-6">
                                 <div class="col-xl-3 col-sm-6 col-12">
                                     <div class="card shadow border-0">
@@ -113,16 +119,19 @@ const Admin = () =>{
                             </div>
                             
                         </div>
+                        
                     </main>
+                    
                 </div>
                 
                  
             </div>
 
-
+            
         </section>
         
+    
     )
 }
 
-export default Admin;
+export default student;

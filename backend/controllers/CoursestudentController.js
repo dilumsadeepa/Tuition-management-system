@@ -1,6 +1,7 @@
 import Course from '../models/CourseModel.js';
 import Coursestudent from '../models/CoursestudentModel.js';
 import Student from '../models/StudentModel.js';
+import User from '../models/UserModel.js';
  
 export const getCSs = async(req, res) =>{
     try {
@@ -43,3 +44,5 @@ export const updateCS = async(req, res) =>{
         console.log(error.message);
     }
 }
+
+

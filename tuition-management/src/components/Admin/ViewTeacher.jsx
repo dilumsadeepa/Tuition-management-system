@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 
 
-const ViewStudent = () =>{
+const ViewTeacher = () =>{
 
     const [students, setStudents] = useState([]);
 
@@ -75,11 +75,11 @@ const ViewStudent = () =>{
                                             <div class="row">
                                                 <div class="col">
                                                     {/* <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span> */}
-                                                    <span class="h4 mb-0"><a href="/assignstudent" className='debtn'>Assign Students</a></span>
+                                                    <span class="h4 mb-0"><a href="/assignstudent" className='debtn'>Assign Teachers</a></span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
-                                                    <i class="bi bi-people"></i>
+                                                    <i class="fa-solid fa-chalkboard-user"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -94,11 +94,11 @@ const ViewStudent = () =>{
                                             <div class="row">
                                                 <div class="col">
                                                     {/* <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span> */}
-                                                    <span class="h4 mb-0"><a href="/addstudent" className='debtn'>Add Students</a></span>
+                                                    <span class="h4 mb-0"><a href="/addteacher" className='debtn'>Add Teachers</a></span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
-                                                    <i class="bi bi-people"></i>
+                                                    <i class="fa-solid fa-chalkboard-user"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -168,4 +168,4 @@ const ViewStudent = () =>{
     )
 }
 
-export default ViewStudent;
+export default ViewTeacher;

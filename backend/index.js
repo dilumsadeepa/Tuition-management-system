@@ -9,16 +9,10 @@ import path from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
-
 const app = express();
 
-
 // Serve static files from the "uploads" folder
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
-
-
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // app.use(upload());
 // app.post('/upload', (req, res) => {
@@ -26,7 +20,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 //     console.log("filesssssss: ",req.files);
 //     if(req.files){
 //         var file = req.files[0];
-//         console.log("single file :",file); 
+//         console.log("single file :",file);
 //         var filename = file.name;
 //         console.log(filename);
 
@@ -37,11 +31,9 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 //                 res.send('File uploaded!');
 //             }
 //     })
-    
+
 //     }
 // });
-
-
 
 app.use(cors());
 app.use(express.json());
@@ -49,4 +41,4 @@ app.use(UserRoute);
 app.use(NoticeRoute);
 app.use(TimetableRoute);
  
-app.listen(5000, ()=> console.log('Server up and running...'));
+app.listen(4000, ()=> console.log('Server up and running...'));
