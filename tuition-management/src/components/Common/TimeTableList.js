@@ -10,8 +10,19 @@ import withReactContent from 'sweetalert2-react-content'
 import CloudinaryFileList from './CloudinaryFileList';
 import CloudBackupFilesList from './CloudBackupFilesList';
 import LocalFileList from './LocalFileList';
+import $ from 'jquery';
+import "datatables.net-dt/css/jquery.dataTables.css";
+import "datatables.net-dt/js/dataTables.dataTables.js";
+import "datatables.net-dt/css/jquery.dataTables.css";
+import "datatables.net-buttons-dt/css/buttons.dataTables.css";
+import "datatables.net-buttons/js/dataTables.buttons.js";
+import "datatables.net-buttons/js/buttons.html5.js";
+import "datatables.net-buttons/js/buttons.print.js";
+import "datatables.net-buttons/js/buttons.colVis.js";
 
 function TimeTableList() {
+    const tableRef = useRef(null);
+
     const [timeTables, setTimeTables] = useState([]);
     const [fileCount, setFileCount] = useState(0);
     const [noticeToText, setNoticeToText] = useState('');
@@ -49,6 +60,60 @@ function TimeTableList() {
             console.log(err);
           })
       }, []);
+
+
+      useEffect(() => {
+        // Initialize the DataTable
+        $(tableRef.current).DataTable();
+      }, []);
+
+
+    // useEffect(() => {
+    //     // Fetch your data here, for example:
+    //     const fetchData = async () => {
+    //       const response = await fetch('your-data-api-url');
+    //       const data = await response.json();
+      
+    //       // Destroy existing DataTable (if any)
+    //       if ($.fn.DataTable.isDataTable(tableRef.current)) {
+    //         $(tableRef.current).DataTable().destroy();
+    //       }
+      
+    //       // Initialize DataTable
+    //       $(tableRef.current).DataTable({
+    //         data: data,
+    //         columns: [
+    //           { title: 'TimeTable Title', data: 'time_title' },
+    //           { title: 'Grade', data: 'grade' },
+    //           { title: 'Files', data: 'files', render: (files) => files ? files.split(",").length : 0 },
+    //           { title: 'Date', data: 'createdAt', render: (createdAt) => createdAt.split("T")[0] },
+    //           {
+    //             title: 'Action',
+    //             data: 'id',
+    //             render: (id) => (
+    //               <>
+    //                 <button className="btn btn-sm btn-secondary me-1" onClick={() => handleShowModal(id)}><i className="fa-solid fa-eye"></i></button>
+    //                 <button className="btn btn-sm btn-secondary me-1" onClick={() => navigate(`/timetable/edit/${id}`)}><i className="fa-solid fa-pen-to-square"></i></button>
+    //                 <button className="btn btn-sm btn-danger me-1" onClick={() => handleDeleteTimeTable(id)}><i className="fa-solid fa-trash"></i></button>
+    //               </>
+    //             )
+    //           }
+    //         ],
+    //         dom: 'Bfrtip', // Add the required buttons
+    //         buttons: [
+    //           'copyHtml5',
+    //           'excelHtml5',
+    //           'csvHtml5',
+    //           'pdfHtml5',
+    //           'print'
+    //         ],
+    //       });
+    //     };
+      
+    //     fetchData();
+    //   }, []);
+      
+      
 
 
 
@@ -190,7 +255,7 @@ function TimeTableList() {
                                
                                 <div className="col-sm-12">
                                     <div class="table-responsive">
-                                        <table id="#example" className="table table-striped" style={{width:"100%"}}>
+                                        <table ref={tableRef} className="table table-striped" style={{ width: "100%" }}>
                                             <thead>
                                                 <tr>
                                                     <th>TimeTable Title</th>
@@ -201,7 +266,26 @@ function TimeTableList() {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            {timeTables.map((timeTable, index) => (
+                                            {timeTables.map((timeTable) => (
+          <tr key={timeTable.id}>
+            <td>{timeTable.time_title}</td>
+            <td>{timeTable.grade}</td>
+            <td>{timeTable.files ? timeTable.files.split(",").length : 0}</td>
+            <td>{timeTable.createdAt.split("T")[0]}</td>
+            <td>
+              <button className='btn btn-sm btn-secondary me-1' onClick={() => handleShowModal(timeTable.id)}>
+                <i className="fa-solid fa-eye"></i>
+              </button>
+              <button className='btn btn-sm btn-secondary me-1' onClick={() => navigate(`/timetable/edit/${timeTable.id}`)}>
+                <i className="fa-solid fa-pen-to-square"></i>
+              </button>
+              <button className='btn btn-sm btn-danger me-1' onClick={() => handleDeleteTimeTable(timeTable.id)}>
+                <i className="fa-solid fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        ))}
+                                            {/* {timeTables.map((timeTable, index) => (
                                                 <tr key={timeTable.id}>
                                                     <td>{timeTable.time_title}</td>
                                                     <td>{timeTable.grade}</td>
@@ -209,13 +293,13 @@ function TimeTableList() {
                                                     <td>{timeTable.createdAt.split("T")[0]}</td>
                                                     <td>
                                                      
-                                                     {/* <button className='btn btn-sm btn-warning' onClick={()=> navigate(`/notice/${notice.id}`)}>View</button> */}
+                                                     
                                                      <button className='btn btn-sm btn-secondary me-1' onClick={() => handleShowModal(timeTable.id)}><i class="fa-solid fa-eye"></i></button>
                                                      <button className='btn btn-sm btn-secondary me-1' onClick={() => {navigate(`/timetable/edit/${timeTable.id}`)}}><i class="fa-solid fa-pen-to-square"></i></button>
                                                      <button className='btn btn-sm btn-danger me-1' onClick={()=> handleDeleteTimeTable(timeTable.id)}><i class="fa-solid fa-trash"></i></button>
                                                      </td>
                                                 </tr>
-                                                ))}
+                                                ))} */}
                                             </tbody>
 
 
