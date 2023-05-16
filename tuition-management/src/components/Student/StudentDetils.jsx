@@ -10,7 +10,7 @@ const StudentDetailsForm = () => {
 
 
 
-
+  const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -43,6 +43,19 @@ const StudentDetailsForm = () => {
           <div className="Clist-background">
             <form onSubmit={handleSubmit} className="form-container">
               <h2 className="form-title">Student Details </h2>
+
+              <div className="input-container">
+                <i class="bi bi-award-fill"></i>
+                <input
+                  type="id"
+                  id="id"
+                  value={id}
+                  onChange={(e) => setId(e.target.value)}
+                  placeholder="Enter your student id"
+                  className="input-field"
+                />
+              </div>
+              
               <div className="input-container">
                 <i class="fa-solid fa-user"></i>
                 <input
