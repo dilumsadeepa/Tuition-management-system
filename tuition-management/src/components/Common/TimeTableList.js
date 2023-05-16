@@ -11,23 +11,8 @@ import CloudinaryFileList from './CloudinaryFileList';
 import CloudBackupFilesList from './CloudBackupFilesList';
 import LocalFileList from './LocalFileList';
 
-
-function NoticesList() {
-
-    // const [listOfNotices, setListOfNotices] = useState([]);
-
-    // useEffect(() => {
-    //     axios.get(`${Apiurl}/notice`)
-    //     .then(res => {
-    //         console.log(res.data);
-    //     })
-    //     .catch(err => {
-    //         console.log(err);
-    //     })
-    // }, [])
-
-
-    const [notices, setNotices] = useState([]);
+function TimeTableList() {
+    const [timeTables, setTimeTables] = useState([]);
     const [fileCount, setFileCount] = useState(0);
     const [noticeToText, setNoticeToText] = useState('');
     const [cloudFiles, setCloudFiles] = useState([]);
@@ -38,7 +23,7 @@ function NoticesList() {
   
     const [showModal, setShowModal] = useState(false);
     // const handleShowModal = () => setShowModal(true);
-    const [noticeObject, setNoticeObject] = useState({});
+    const [timeTableObject, setTimeTableObject] = useState({});
 
     const MySwal = withReactContent(Swal) // Create a new instance of SweetAlert with React content
     
@@ -46,31 +31,19 @@ function NoticesList() {
 
 
     useEffect(() => {
-        axios.get(`${Apiurl}/notice`)
+        axios.get(`${Apiurl}/timetable`)
           .then(res => {
-            const noticesData = res.data;
-            setNotices(noticesData);
+            const timeTabelsData = res.data;
+            setTimeTables(timeTabelsData);
             // Extract filenames and noticeTo values from the response data
-            const filenames = noticesData.map(notice => notice.files);
+            const filenames = timeTabelsData.map(notice => notice.files);
             // Get the number of files for each notice
+            if (filenames.length>0){
             const fileCounts = filenames.map(files => files.split(',').length);
             // Update the state with the file counts
             setFileCount(fileCounts);
             // Set the noticeTo text based on the notice_to value
-            const noticeToTexts = noticesData.map(notice => {
-              let text = '';
-              if (notice.notice_to === '5') {
-                text = 'All';
-              } else if (notice.notice_to === '2') {
-                text = 'Staff';
-              } else if (notice.notice_to === '3') {
-                text = 'Teacher';
-              } else if (notice.notice_to === '4') {
-                text = 'Student';
-              }
-              return text;
-            });
-            setNoticeToText(noticeToTexts);
+            }
           })
           .catch(err => {
             console.log(err);
@@ -79,20 +52,20 @@ function NoticesList() {
 
 
 
-      const deleteNotice = async(id) =>{
-        console.log(`${Apiurl}/notice/${id}`);
+      const deleteTimeTable = async(id) =>{
+        console.log(`${Apiurl}/timetable/${id}`);
         try {
-          const deleted = await axios.delete(`${Apiurl}/notice/${id}`);
+          const deleted = await axios.delete(`${Apiurl}/timetable/${id}`);
           console.log(deleted.data);
           // Update the state of the notices array after deleting the notice
-          setNotices(notices.filter(notice => notice.id !== id));
+          setTimeTables(timeTables.filter(timetable => timetable.id !== id));
         } catch (error) {
           console.log("error on deleting" + error);
         }
       }
 
 
-    const handleDeleteNotice = (noticeId) => {
+    const handleDeleteTimeTable = (noticeId) => {
         MySwal.fire({
           title: 'Are you sure?',
           text: 'You are about to delete this notice.',
@@ -103,7 +76,7 @@ function NoticesList() {
           confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
           if (result.isConfirmed) {
-            deleteNotice(noticeId)
+            deleteTimeTable(noticeId)
             MySwal.fire(
               'Deleted!',
               'The notice has been deleted.',
@@ -114,10 +87,10 @@ function NoticesList() {
       }
 
 
-      const viewNotice = async(id) =>{  
+      const viewTimeTable = async(id) =>{  
         try {
-            const notice = await axios.get(`${Apiurl}/notice/${id}`);
-            console.log("dataaaaaaa",notice.data);
+            const timetable = await axios.get(`${Apiurl}/timetable/${id}`);
+            console.log("dataaaaaaa",timetable.data);
 
 
         } catch (error) {
@@ -126,9 +99,9 @@ function NoticesList() {
     }
 
 
-    const handleShowModal = (noticeId) => {
-        axios.get(`${Apiurl}/notice/byId/${noticeId}`).then((response) => {
-          setNoticeObject(response.data);
+    const handleShowModal = (timetableId) => {
+        axios.get(`${Apiurl}/timetable/byId/${timetableId}`).then((response) => {
+          setTimeTableObject(response.data);
           setShowModal(true);
 
 
@@ -160,24 +133,12 @@ function NoticesList() {
 
 
 
-      function getRecipientText(recipient) {
-        switch(recipient) {
-          case "2":
-            return 'Staff';
-          case "3":
-            return 'Teacher';
-          case "4":
-            return 'Student';
-          case "5":
-            return 'All';
-          default:
-            return '';
-        }
-      }
+
+
 
   return (
     <div>
-         <section> 
+          <section> 
             {/* <!-- Dashboard --> */}
                 <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
                         
@@ -196,13 +157,21 @@ function NoticesList() {
                         <div class="container">
 
                             <div className="row">
-                                <div class="col-xl-4 col-sm-6 col-12">
+
+
+                            <div class="d-flex mt-3">
+  <div class="p-2 flex-grow-1"><h2>TimeTable</h2></div>
+  <div class="p-2"><a href="/timetable/create" className="btn-grad">Create TimeTable</a></div>
+</div>
+
+
+                                {/* <div class="col-xl-4 col-sm-6 col-12">
                                     <div class="card shadow border-0">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col py-3">
-                                                    {/* <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span> */}
-                                                    <a href="/notice/create" className="btn-grad">Create Notice</a>
+                                                   
+                                                    <a href="/timetable/create" className="btn-grad">Create TimeTable</a>
                                                 </div>
                                                 <div class="col-auto py-5">
                                                     <div class="icon icon-shape text-white text-lg rounded-circle" style={{backgroundColor: "#0C4160"}}>
@@ -210,15 +179,10 @@ function NoticesList() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            {/* <div class="mt-2 mb-0 text-sm">
-                                                <span class="badge badge-pill bg-soft-success text-success me-2">
-                                                    <i class="bi bi-arrow-up me-1"></i>13%
-                                                </span>
-                                                <span class="text-nowrap text-xs text-muted">Since last month</span>
-                                            </div> */}
+                               
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
 
 
@@ -229,26 +193,26 @@ function NoticesList() {
                                         <table id="#example" className="table table-striped" style={{width:"100%"}}>
                                             <thead>
                                                 <tr>
-                                                    <th>Notice To</th>
-                                                    <th>Notice Title</th>
-                                                    <th>Attachments</th>
+                                                    <th>TimeTable Title</th>
+                                                    <th>Grade</th>
+                                                    <th>Files</th>
                                                     <th>Date</th>
                                                     <th>Action</th> 
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            {notices.map((notice, index) => (
-                                                <tr key={notice.id}>
-                                                    <td>{noticeToText[index]}</td>
-                                                    <td>{notice.notice_title}</td>
-                                                    <td>{notice.files ? notice.files.split(",").length : 0}</td>
-                                                    <td>{notice.createdAt.split("T")[0]}</td>
+                                            {timeTables.map((timeTable, index) => (
+                                                <tr key={timeTable.id}>
+                                                    <td>{timeTable.time_title}</td>
+                                                    <td>{timeTable.grade}</td>
+                                                    <td>{timeTable.files ? timeTable.files.split(",").length : 0}</td>
+                                                    <td>{timeTable.createdAt.split("T")[0]}</td>
                                                     <td>
                                                      
                                                      {/* <button className='btn btn-sm btn-warning' onClick={()=> navigate(`/notice/${notice.id}`)}>View</button> */}
-                                                     <button className='btn btn-sm btn-warning' onClick={() => handleShowModal(notice.id)}>View</button>
-                                                     <button className='btn btn-sm btn-info' onClick={() => {navigate(`/notice/edit/${notice.id}`)}}>Edit</button>
-                                                     <button className='btn btn-sm btn-danger' onClick={()=> handleDeleteNotice(notice.id)}>Delete</button>
+                                                     <button className='btn btn-sm btn-secondary me-1' onClick={() => handleShowModal(timeTable.id)}><i class="fa-solid fa-eye"></i></button>
+                                                     <button className='btn btn-sm btn-secondary me-1' onClick={() => {navigate(`/timetable/edit/${timeTable.id}`)}}><i class="fa-solid fa-pen-to-square"></i></button>
+                                                     <button className='btn btn-sm btn-danger me-1' onClick={()=> handleDeleteTimeTable(timeTable.id)}><i class="fa-solid fa-trash"></i></button>
                                                      </td>
                                                 </tr>
                                                 ))}
@@ -274,7 +238,7 @@ function NoticesList() {
                                                 <div className="modal-content">
                                                     <div className="modal-header bg-light bg-gradient">
                                                     <h5 className="modal-title" id="noticeModalLabel">
-                                                    <span className="fw-bold">{getRecipientText(noticeObject.notice_to)} Notice :</span> {noticeObject.notice_title}
+                                                    <span className="fw-bold">Time Table :</span> {timeTableObject.time_title}
                                                     </h5>
                                                     <button
                                                         type="button"
@@ -285,9 +249,8 @@ function NoticesList() {
                                                     ></button>
                                                     </div>
                                                     <div className="modal-body">
-                                                    <h2 className="text-center mb-5" style={{ fontFamily: 'Merriweather', }}>{noticeObject.notice_title}</h2>
-                                                    <p className="my-5">Notice To: {getRecipientText(noticeObject.notice_to)}</p>
-                                                    <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(noticeObject.notice_desc) }} className="my-5"></p> 
+                                                    <h2 className="text-center mb-5" style={{ fontFamily: 'Merriweather', }}>{timeTableObject.time_title}</h2>
+                                                    <p className="my-5">Grade: {timeTableObject.grade}</p>
 
                                                     <div className="row">
                                                     <div>
@@ -303,22 +266,14 @@ function NoticesList() {
 
                                                     <div className="row">
                                                     <div>
-                                                        {noticeObject && noticeObject.localFiles && (
+                                                        {timeTableObject && timeTableObject.localFiles && (
                                                             <>
-                                                                {console.log("noticeObject.files:", noticeObject.localFiles)}
-                                                                {console.log("fileNames:", noticeObject.localFiles.split(","))}
-                                                                <LocalFileList fileNames={noticeObject.localFiles.split(",")} />
+                                                                {console.log("timeTableObject.files:", timeTableObject.localFiles)}
+                                                                {console.log("fileNames:", timeTableObject.localFiles.split(","))}
+                                                                <LocalFileList fileNames={timeTableObject.localFiles.split(",")} />
                                                             </>
                                                         )}
-                                                        {/* <LocalFileList localUrls={localUrls} /> */}
-                                                        {/* <CloudinaryFileList cloudUrls={noticeObject.files.split(",")} /> */}
-                                                        {/* <img src="http://localhost:3000/uploads/notices/e81a46c8-17bf-446b-aa69-17bc303c1cf6_Image 001.png" alt="../../../../backend/uploads/notices/e81a46c8-17bf-446b-aa69-17bc303c1cf6_Image 001"></img> */}
-
-                                                    {/* {noticeObject.localFiles && noticeObject.localFiles.split(",").map((file, index) => (
-                                                    <div key={index}>
-                                                        <a href={`${Apiurl}/uploads/notices/${file}`} download>{file}</a>
-                                                    </div>
-                                                    ))} */}
+                                                      
                                                     </div>
                                                     </div>
 
@@ -358,4 +313,4 @@ function NoticesList() {
   )
 }
 
-export default NoticesList
+export default TimeTableList

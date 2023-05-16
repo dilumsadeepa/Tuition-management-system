@@ -18,6 +18,7 @@ import { getPays } from "../controllers/PaymentController.js";
 import { getSPs, createPre, updateSP, deletespre } from "../controllers/Salarypresent.js";
 import { getsals } from "../controllers/SalaryController.js";
 import { getNotices, deleteNotice, viewNotice, getNoticesCount } from "../controllers/NoticeController.js";
+import { getTimetables, createTimetable, deleteTimetable, viewTimetable } from "../controllers/TimetableController.js";
 import { getCts } from "../controllers/CourseteacherController.js";
  
 const router = express.Router();
@@ -69,6 +70,10 @@ router.get('/notice', getNotices);
 router.get('/notice/count', getNoticesCount);
 router.delete('/notice/:id', deleteNotice);
 router.get('/notice/byId/:id', viewNotice);
+
+router.get('/timetable', getTimetables);
+router.delete('/timetable/:id', deleteTimetable);
+router.get('/timetable/byId/:id', viewTimetable);
 
 
 

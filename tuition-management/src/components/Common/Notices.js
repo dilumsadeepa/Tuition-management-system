@@ -117,6 +117,14 @@ function Notices() {
           
 
             <Form className="formContainer">
+            <div class="row mb-4">
+              <div class="col">
+
+              </div>
+              <div class="col">
+                
+              </div>
+            </div>
               <div class="mb-3 mt-3">
                 <label for="inputAudience" className="form-label">
                   Target Audience

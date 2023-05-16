@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import UserRoute from "./routes/UserRoute.js";
 import NoticeRoute from "./routes/NoticeRoute.js";
+import TimetableRoute from "./routes/TimetableRoute.js";
 import { fileURLToPath } from 'url';
 import path from 'path';
 
@@ -46,5 +47,6 @@ app.use(cors());
 app.use(express.json());
 app.use(UserRoute);
 app.use(NoticeRoute);
+app.use(TimetableRoute);
  
 app.listen(5000, ()=> console.log('Server up and running...'));

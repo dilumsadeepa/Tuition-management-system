@@ -8,14 +8,11 @@ import { Image } from 'cloudinary-react';
 import CloudinaryFileList from './CloudinaryFileList';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Editor } from '@tinymce/tinymce-react';
-// import parse from 'csv-parse';
 
 
-function CreateNotice() {
-    const [audience, setAudience] = useState("");
-    const [noticeTitle, setNoticeTitle] = useState("");
-    const [noticeDescription, setNoticeDescription] = useState('');
+function CreateTimeTable() {
+    const [tableTitle, setTableTitle] = useState("");
+    const [grade, setGrade] = useState('');
     const [attachFiles, setAttachFiles] = useState([]);
     const [cloudFiles, setCloudFiles] = useState([]);
     const [cloudUrls, setCloudUrls] = useState([]);
@@ -30,20 +27,15 @@ function CreateNotice() {
 
 
 
-    const handleAudienceChange = (event) => {
-      setAudience(event.target.value);
+    const handleTableTitleChange = (event) => {
+      setTableTitle(event.target.value);
       validateForm();
     };
   
-    const handleNoticeTitleChange = (event) => {
-      setNoticeTitle(event.target.value);
-      validateForm();
+    const handleGradeChange = (event) => {
+      setGrade(event.target.value);
     };
   
-    const handleNoticeDescriptionChange = (content, editor) => {
-      setNoticeDescription(content);
-      validateForm();
-    };
 
 
   const handleFileInputChange = (event) => {
@@ -130,9 +122,7 @@ function CreateNotice() {
 
 
     const validationSchema = Yup.object().shape({
-      audience: Yup.string().required("Target audience is required"),
-      noticeTitle: Yup.string().required("Notice title is required"),
-      noticeDescription: Yup.string().required("Notice description is required"),
+      tableTitle: Yup.string().required("TimeTable Title is required"),
       attachFiles: fileSchema,
       cloudFiles: fileSchema,
     });
@@ -144,9 +134,7 @@ function CreateNotice() {
     const validateForm = async () => {
       try {
         await validationSchema.validate({
-          audience,
-          noticeTitle,
-          noticeDescription,
+          tableTitle,
           attachFiles: attachFiles.length > 0 ? attachFiles : null,
           cloudFiles: cloudFiles.length > 0 ? cloudFiles : null,
         }, { abortEarly: false });
@@ -189,16 +177,15 @@ function CreateNotice() {
           data.append('myFieldName', attachFiles[i], uniqueFileName);
         }
       
-        data.append("notice_to", audience);
-        data.append("notice_title", noticeTitle);
-        data.append("notice_desc", noticeDescription);
+        data.append("time_title", tableTitle);
+        data.append("grade", grade);
         data.append("files", uniqueFileNames);  //file names csv
         data.append("localFiles", uniqueFileNames);
         data.append("backup", isChecked)
       
 
 
-        axios.post(`${Apiurl}/multiple` , data)
+        axios.post(`${Apiurl}/timemultiple` , data)
         .then(res => {
           
           setCloudFiles([]);      // Clear the list of cloud files
@@ -219,7 +206,7 @@ function CreateNotice() {
 
 
           
-          toast.success("Notice created successfully", {
+          toast.success("Time Table created successfully", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -262,9 +249,8 @@ function CreateNotice() {
 
 
         
-          data.append("notice_to", audience);
-          data.append("notice_title", noticeTitle);
-          data.append("notice_desc", noticeDescription);
+          data.append("time_title", tableTitle);
+          data.append("grade", grade);
           data.append("files", cloudUniqueFileNames);  //file names csv
           data.append("backup", isChecked)
 
@@ -281,7 +267,7 @@ function CreateNotice() {
 
 
 
-          axios.post(`${Apiurl}/cloud` , data, config)
+          axios.post(`${Apiurl}/timecloud` , data, config)
           .then((res) => {
               setUploadProgress(0);
               setCloudFiles([]);      // Clear the list of cloud files
@@ -301,7 +287,7 @@ function CreateNotice() {
               console.log(cloudUniqueFileNames);
 
 
-          toast.success("Notice created successfully", {
+          toast.success("Timetable created successfully", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -319,123 +305,50 @@ function CreateNotice() {
 
 
 
-  return (
 
+  return (
     <div>
       <ToastContainer autoClose={3000} />
       <div className="d-flex justify-content-center">
         <div className="col-sm-10 debox px-5">
         <form action="#">
             <div class="row mb-4">
-              <div class="col">
-                  <div className="mb-3 mt-3">
-                    <label htmlFor="audience" className="my-1"><i className="fa-solid fa-users-gear fa-lg mx-2"></i> Target Audience</label>
-                    <select className={`form-control ${errors.audience && "is-invalid"}`} id="audience" name="notice_to"  value={audience} onChange={handleAudienceChange} >
-                        <option value="" disabled hidden>Select Audience You Want To Cover</option>
-                        <option value="5">All</option>
-                        <option value="2">Staff</option>
-                        <option value="3">Teacher</option>
-                        <option value="4">Student</option>
-                    </select>
-
-                    {errors.audience && (
-                      <div className="badge rounded-pill text-bg-danger">{errors.audience}</div>
-                      )}
-                </div>
-              </div>
-              <div class="col">
+            <div class="col">
               <div className="mb-3 mt-3">
-                <label htmlFor="title" className="my-1"><i className="fa-regular fa-note-sticky fa-lg mx-2"></i> Notice Title</label>
-                <input type="text" id="title" className={`form-control ${errors.noticeTitle && "is-invalid"}`} name="notice_title" placeholder="Enter Title" value={noticeTitle} onChange={handleNoticeTitleChange} />
-                {errors.noticeTitle && (
-                    <div className="badge rounded-pill text-bg-danger">{errors.noticeTitle}</div>
+                <label htmlFor="title" className="my-1"><i className="fa-regular fa-note-sticky fa-lg mx-2"></i> Time Table Title</label>
+                <input type="text" id="title" className={`form-control ${errors.tableTitle && "is-invalid"}`} name="tableTitle" placeholder="Enter Title" value={tableTitle} onChange={handleTableTitleChange} />
+                {errors.tableTitle && (
+                    <div className="badge rounded-pill text-bg-danger">{errors.tableTitle}</div>
                   )}
             </div>
               </div>
+              
+              <div class="col">
+                  <div className="mb-3 mt-3">
+                    <label htmlFor="tableTitle" className="my-1"><i className="fa-solid fa-users-gear fa-lg mx-2"></i> Grade</label>
+                    <select className={`form-control ${errors.grade && "is-invalid"}`} id="tableTitle" name="grade"  value={grade} onChange={handleGradeChange} >
+                        <option value="" disabled hidden>Select Grade</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="Revision">Revision</option>
+                        <option value="Paper Class">Paper Class</option>
+                    </select>
+
+                    {errors.grade && (
+                      <div className="badge rounded-pill text-bg-danger">{errors.grade}</div>
+                      )}
+                </div>
+              </div>
+
             </div>
             
            
-            {/* <div className="mb-3 mt-3">
-                <label htmlFor="noticeData" >Notice Description</label>
-                <textarea id="noticeData" className={`form-control ${errors.noticeDescription && "is-invalid"}`} name="notice_desc" placeholder="Enter Title" rows="3" value={noticeDescription} onChange={handleNoticeDescriptionChange}></textarea>
-                {errors.noticeDescription && (
-                  <div className="badge rounded-pill text-bg-danger">{errors.noticeDescription}</div>
-                )}
-            </div> */}
-
-
-      <div className="mb-3 mt-3">
-        <label htmlFor="noticeData" className="my-1"><i className="fa-regular fa-note-sticky fa-lg mx-2"></i> Notice Description</label>
-        {/* <Editor
-      id="noticeData"
-      apiKey="<your-api-key>"
-      initialValue={noticeDescription}
-      onEditorChange={handleNoticeDescriptionChange}
-      init={{
-        height: 300,
-        menubar: false,
-        plugins: [
-          'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount advlist autolink lists link image charmap print preview anchor',
-          'searchreplace visualblocks code fullscreen',
-          'insertdatetime media table paste code help wordcount',
-          'imagetools',
-          'uploadimage',
-          'filemanager'
-        ],
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat | insertfile image media link | forecolor backcolor | filemanager',
-        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px; direction:ltr; }',
-        images_upload_url: 'your-image-upload-url',
-        file_picker_types: 'file image media',
-        file_picker_callback: function(callback, value, meta) {
-          if (meta.filetype == 'file') {
-            // Open file picker dialog for file selection
-          } else if (meta.filetype == 'image') {
-            // Open file picker dialog for image selection
-          } else if (meta.filetype == 'media') {
-            // Open file picker dialog for media selection
-          }
-        }
-      }}
-    /> */}
-
-
-
-        <Editor
-          id="noticeData"
-          onEditorChange={handleNoticeDescriptionChange}
-          initialValue=""
-          init={{
-          height: 300,
-          menubar: false,
-          plugins: [
-            'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount advlist autolink lists link image charmap print preview anchor',
-            'searchreplace visualblocks code fullscreen',
-            'insertdatetime media table paste code help wordcount',
-            'imagetools',
-            'uploadimage',
-            'filemanager'
-          ],
-          toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat | insertfile image media link | forecolor backcolor | filemanager',
-          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px; direction:ltr; }',
-          images_upload_url: 'your-image-upload-url',
-          file_picker_types: 'file image media',
-          file_picker_callback: function(callback, value, meta) {
-            if (meta.filetype == 'file') {
-              // Open file picker dialog for file selection
-            } else if (meta.filetype == 'image') {
-              // Open file picker dialog for image selection
-            } else if (meta.filetype == 'media') {
-              // Open file picker dialog for media selection
-            }
-          }
-        }}
-      />
-        {errors.noticeDescription && (
-          <div className="badge rounded-pill text-bg-danger">
-            {errors.noticeDescription}
-          </div>
-        )}
-      </div>
 
 
 
@@ -484,10 +397,6 @@ function CreateNotice() {
                 </div>
           
 
-
-            {/* <div className="mb-3 mt-3">
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </div> */}
         </form>
         
         {/* Progress bar */}
@@ -498,30 +407,6 @@ function CreateNotice() {
         </div>
       )}
 
-
-    {/* <div className="preview container">
-      {cloudFiles.map((file, index) => {
-        if (file.type.startsWith("image/")) {
-          return <div className="file_gallery mb-3 me-1 fancy-gallery d-inline-flex">
-                    <div className="">
-                <a key={index} href={URL.createObjectURL(file)} className="mb-4 img-fluid"  data-fancybox="images" data-caption={file.name}>
-                <img className="img-thumbnail" key={index} src={URL.createObjectURL(file)} alt={file.name} /> 
-              </a>
-          </div>
-          </div>;
-        } else if (file.type.startsWith("video/")) {
-          return <div className="file_gallery mb-3 me-1 fancy-gallery d-inline-flex">
-          <div className="">
-      <a key={index} href={URL.createObjectURL(file)} className="mb-4 img-fluid"  data-fancybox="videos" data-caption={file.name}>
-      <video key={index} className="video-thumbnail" src={URL.createObjectURL(file)} controls />
-    </a>
-</div>
-</div>;
-        } else {
-          return <div className="px-1"><ul className="list-group"><li className="list-group-item list-group-item-info"><a key={index} href={URL.createObjectURL(file)} download>{file.name}</a></li></ul></div>;
-        }
-      })}
-    </div> */}
       
 
 
@@ -585,12 +470,8 @@ function CreateNotice() {
             </div>
         </div>
       </div> 
-
     </div>
-  );
+  )
 }
 
-export default CreateNotice
-
-
-
+export default CreateTimeTable
