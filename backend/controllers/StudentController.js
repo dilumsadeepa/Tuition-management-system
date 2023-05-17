@@ -96,5 +96,9 @@ export const getAllStudentqr = async(req, res) =>{
     
 }
 
+//student
+
+
+
 
 
