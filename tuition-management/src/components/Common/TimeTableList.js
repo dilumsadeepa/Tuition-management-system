@@ -19,6 +19,9 @@ import "datatables.net-buttons/js/dataTables.buttons.js";
 import "datatables.net-buttons/js/buttons.html5.js";
 import "datatables.net-buttons/js/buttons.print.js";
 import "datatables.net-buttons/js/buttons.colVis.js";
+import "datatables.net-buttons/js/buttons.flash.js";
+import "pdfmake/build/pdfmake.js";
+import "pdfmake/build/vfs_fonts.js";
 
 function TimeTableList() {
     const tableRef = useRef(null);
@@ -62,10 +65,140 @@ function TimeTableList() {
       }, []);
 
 
-      useEffect(() => {
-        // Initialize the DataTable
-        $(tableRef.current).DataTable();
-      }, []);
+    //   useEffect(() => {
+    //     // Initialize the DataTable
+    //     $(tableRef.current).DataTable();
+    //   }, []);
+
+
+    // useEffect(() => {
+    //   // Fetch your data here, for example:
+    //   const fetchData = async () => {
+    //     const response = await fetch(`${Apiurl}/timetable`);
+    //     const data = await response.json();
+    
+    //     // Destroy existing DataTable (if any)
+    //     if ($.fn.DataTable.isDataTable(tableRef.current)) {
+    //       $(tableRef.current).DataTable().destroy();
+    //     }
+    
+    //     // Initialize DataTable
+    //     const table = $(tableRef.current).DataTable({
+    //       data: data,
+    //       columns: [
+    //         { title: 'TimeTable Title', data: 'time_title' },
+    //         { title: 'Grade', data: 'grade' },
+    //         { title: 'Files', data: 'files', render: (files) => files ? files.split(",").length : 0 },
+    //         { title: 'Date', data: 'createdAt', render: (createdAt) => createdAt.split("T")[0] },
+    //         {
+    //           title: 'Action',
+    //           data: 'id',
+    //           render: (id) => (
+    //             `<button class="btn btn-sm btn-secondary me-1 view-btn"><i class="fa-solid fa-eye"></i></button>` +
+    //             `<button class="btn btn-sm btn-secondary me-1 edit-btn"><i class="fa-solid fa-pen-to-square"></i></button>` +
+    //             `<button class="btn btn-sm btn-danger me-1 delete-btn"><i class="fa-solid fa-trash"></i></button>`
+    //           )
+    //         }
+    //       ],
+    //       dom: 'Bfrtip', // Add the required buttons
+    //       buttons: [
+    //         'copyHtml5',
+    //         'excelHtml5',
+    //         'csvHtml5',
+    //         'pdfHtml5',
+    //         'print'
+    //       ],
+    //     });
+    
+    //     // Event listeners for action buttons
+    //     $(tableRef.current).on('click', '.view-btn', function() {
+    //       const rowData = table.row($(this).closest('tr')).data();
+    //       handleShowModal(rowData.id);
+    //     });
+    
+    //     $(tableRef.current).on('click', '.edit-btn', function() {
+    //       const rowData = table.row($(this).closest('tr')).data();
+    //       navigate(`/timetable/edit/${rowData.id}`);
+    //     });
+    
+    //     $(tableRef.current).on('click', '.delete-btn', function() {
+    //       const rowData = table.row($(this).closest('tr')).data();
+    //       handleDeleteTimeTable(rowData.id);
+    //     });
+    //   };
+    
+    //   fetchData();
+    // }, []);
+
+
+
+
+
+    useEffect(() => {
+      // Fetch your data here, for example:
+      const fetchData = async () => {
+        const response = await fetch(`${Apiurl}/timetable`);
+        const data = await response.json();
+    
+        // Destroy existing DataTable (if any)
+        if ($.fn.DataTable.isDataTable(tableRef.current)) {
+          $(tableRef.current).DataTable().destroy();
+        }
+    
+        // Initialize DataTable
+        const table = $(tableRef.current).DataTable({
+          data: data,
+          columns: [
+            { title: 'TimeTable Title', data: 'time_title' },
+            { title: 'Grade', data: 'grade' },
+            { title: 'Files', data: 'files', render: (files) => files ? files.split(",").length : 0 },
+            { title: 'Date', data: 'createdAt', render: (createdAt) => createdAt.split("T")[0] },
+            {
+              title: 'Action',
+              data: 'id',
+              render: (id) => (
+                `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>` +
+                `<button class="btn btn-sm btn-secondary me-1 edit-btn" data-id="${id}"><i class="fa-solid fa-pen-to-square"></i></button>` +
+                `<button class="btn btn-sm btn-danger me-1 delete-btn" data-id="${id}"><i class="fa-solid fa-trash"></i></button>`
+              )
+            }
+          ],
+          dom: 'Bfrtip', // Add the required buttons
+          buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5',
+            'print'
+          ],
+        });
+    
+        // Event listeners for action buttons
+        $(tableRef.current).on('click', '.view-btn', function() {
+          const id = $(this).data('id');
+          handleShowModal(id);
+        });
+    
+        $(tableRef.current).on('click', '.edit-btn', function() {
+          const id = $(this).data('id');
+          navigate(`/timetable/edit/${id}`);
+        });
+    
+        $(tableRef.current).on('click', '.delete-btn', function() {
+          const id = $(this).data('id');
+          handleDeleteTimeTable(id);
+        });
+      };
+    
+      fetchData();
+    }, []);
+    
+    
+
+
+
+
+
 
 
     // useEffect(() => {
@@ -255,7 +388,7 @@ function TimeTableList() {
                                
                                 <div className="col-sm-12">
                                     <div class="table-responsive">
-                                        <table ref={tableRef} className="table table-striped" style={{ width: "100%" }}>
+                                        {/* <table ref={tableRef} className="table table-striped" style={{ width: "100%" }}>
                                             <thead>
                                                 <tr>
                                                     <th>TimeTable Title</th>
@@ -267,46 +400,61 @@ function TimeTableList() {
                                             </thead>
                                             <tbody>
                                             {timeTables.map((timeTable) => (
-          <tr key={timeTable.id}>
-            <td>{timeTable.time_title}</td>
-            <td>{timeTable.grade}</td>
-            <td>{timeTable.files ? timeTable.files.split(",").length : 0}</td>
-            <td>{timeTable.createdAt.split("T")[0]}</td>
-            <td>
-              <button className='btn btn-sm btn-secondary me-1' onClick={() => handleShowModal(timeTable.id)}>
-                <i className="fa-solid fa-eye"></i>
-              </button>
-              <button className='btn btn-sm btn-secondary me-1' onClick={() => navigate(`/timetable/edit/${timeTable.id}`)}>
-                <i className="fa-solid fa-pen-to-square"></i>
-              </button>
-              <button className='btn btn-sm btn-danger me-1' onClick={() => handleDeleteTimeTable(timeTable.id)}>
-                <i className="fa-solid fa-trash"></i>
-              </button>
-            </td>
-          </tr>
-        ))}
-                                            {/* {timeTables.map((timeTable, index) => (
                                                 <tr key={timeTable.id}>
-                                                    <td>{timeTable.time_title}</td>
-                                                    <td>{timeTable.grade}</td>
-                                                    <td>{timeTable.files ? timeTable.files.split(",").length : 0}</td>
-                                                    <td>{timeTable.createdAt.split("T")[0]}</td>
-                                                    <td>
-                                                     
-                                                     
-                                                     <button className='btn btn-sm btn-secondary me-1' onClick={() => handleShowModal(timeTable.id)}><i class="fa-solid fa-eye"></i></button>
-                                                     <button className='btn btn-sm btn-secondary me-1' onClick={() => {navigate(`/timetable/edit/${timeTable.id}`)}}><i class="fa-solid fa-pen-to-square"></i></button>
-                                                     <button className='btn btn-sm btn-danger me-1' onClick={()=> handleDeleteTimeTable(timeTable.id)}><i class="fa-solid fa-trash"></i></button>
-                                                     </td>
+                                                  <td>{timeTable.time_title}</td>
+                                                  <td>{timeTable.grade}</td>
+                                                  <td>{timeTable.files ? timeTable.files.split(",").length : 0}</td>
+                                                  <td>{timeTable.createdAt.split("T")[0]}</td>
+                                                  <td>
+                                                    <button className='btn btn-sm btn-secondary me-1' onClick={() => handleShowModal(timeTable.id)}>
+                                                      <i className="fa-solid fa-eye"></i>
+                                                    </button>
+                                                    <button className='btn btn-sm btn-secondary me-1' onClick={() => navigate(`/timetable/edit/${timeTable.id}`)}>
+                                                      <i className="fa-solid fa-pen-to-square"></i>
+                                                    </button>
+                                                    <button className='btn btn-sm btn-danger me-1' onClick={() => handleDeleteTimeTable(timeTable.id)}>
+                                                      <i className="fa-solid fa-trash"></i>
+                                                    </button>
+                                                  </td>
                                                 </tr>
-                                                ))} */}
+                                              ))}
+       
                                             </tbody>
-
-
-
                                             
-                                        </table>
+                                        </table> */}
 
+<table ref={tableRef} className="table table-striped" style={{ width: "100%" }}>
+  <thead>
+    <tr>
+      <th>TimeTable Title</th>
+      <th>Grade</th>
+      <th>Files</th>
+      <th>Date</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {timeTables.map((timeTable) => (
+      <tr key={timeTable.id}>
+        <td>{timeTable.time_title}</td>
+        <td>{timeTable.grade}</td>
+        <td>{timeTable.files ? timeTable.files.split(",").length : 0}</td>
+        <td>{timeTable.createdAt.split("T")[0]}</td>
+        <td>
+          <button className='btn btn-sm btn-secondary me-1 view-btn'>
+            <i className="fa-solid fa-eye"></i>
+          </button>
+          <button className='btn btn-sm btn-secondary me-1 edit-btn'>
+            <i className="fa-solid fa-pen-to-square"></i>
+          </button>
+          <button className='btn btn-sm btn-danger me-1 delete-btn'>
+            <i className="fa-solid fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
 
 
                                               {/* The modal */}
