@@ -323,32 +323,38 @@ function CreateNotice() {
 
     <div>
       <ToastContainer autoClose={3000} />
-      <div className="row">
-        <div className="col-sm-2"></div>
-
-        <div className="col-sm-8 debox">
+      <div className="d-flex justify-content-center">
+        <div className="col-sm-10 debox px-5">
         <form action="#">
-            <div className="mb-3 mt-3">
-                <label htmlFor="audience" >Target Audience</label>
-                <select className={`form-control ${errors.audience && "is-invalid"}`} id="audience" name="notice_to"  value={audience} onChange={handleAudienceChange} >
-                    <option value="" disabled hidden>Select Audience You Want To Cover</option>
-                    <option value="5">All</option>
-                    <option value="2">Staff</option>
-                    <option value="3">Teacher</option>
-                    <option value="4">Student</option>
-                </select>
+            <div class="row mb-4">
+              <div class="col">
+                  <div className="mb-3 mt-3">
+                    <label htmlFor="audience" className="my-1"><i className="fa-solid fa-users-gear fa-lg mx-2"></i> Target Audience</label>
+                    <select className={`form-control ${errors.audience && "is-invalid"}`} id="audience" name="notice_to"  value={audience} onChange={handleAudienceChange} >
+                        <option value="" disabled hidden>Select Audience You Want To Cover</option>
+                        <option value="5">All</option>
+                        <option value="2">Staff</option>
+                        <option value="3">Teacher</option>
+                        <option value="4">Student</option>
+                    </select>
 
-                {errors.audience && (
-                  <div className="badge rounded-pill text-bg-danger">{errors.audience}</div>
-                  )}
-            </div>
-            <div className="mb-3 mt-3">
-                <label htmlFor="title" >Notice Title</label>
+                    {errors.audience && (
+                      <div className="badge rounded-pill text-bg-danger">{errors.audience}</div>
+                      )}
+                </div>
+              </div>
+              <div class="col">
+              <div className="mb-3 mt-3">
+                <label htmlFor="title" className="my-1"><i className="fa-regular fa-note-sticky fa-lg mx-2"></i> Notice Title</label>
                 <input type="text" id="title" className={`form-control ${errors.noticeTitle && "is-invalid"}`} name="notice_title" placeholder="Enter Title" value={noticeTitle} onChange={handleNoticeTitleChange} />
                 {errors.noticeTitle && (
                     <div className="badge rounded-pill text-bg-danger">{errors.noticeTitle}</div>
                   )}
             </div>
+              </div>
+            </div>
+            
+           
             {/* <div className="mb-3 mt-3">
                 <label htmlFor="noticeData" >Notice Description</label>
                 <textarea id="noticeData" className={`form-control ${errors.noticeDescription && "is-invalid"}`} name="notice_desc" placeholder="Enter Title" rows="3" value={noticeDescription} onChange={handleNoticeDescriptionChange}></textarea>
@@ -359,7 +365,7 @@ function CreateNotice() {
 
 
       <div className="mb-3 mt-3">
-        <label htmlFor="noticeData">Notice Description</label>
+        <label htmlFor="noticeData" className="my-1"><i className="fa-regular fa-note-sticky fa-lg mx-2"></i> Notice Description</label>
         {/* <Editor
       id="noticeData"
       apiKey="<your-api-key>"
@@ -433,43 +439,50 @@ function CreateNotice() {
 
 
 
-
-            <div className="mb-3 mt-3">
-              <div className="d-flex align-items-center">
-              <div className="flex-grow-1 align-items-center pe-2">
-              <label htmlFor="cloudFiles">Attachments - cloud storage only</label>
-              <input type="file" className={`form-control ${errors.attachFiles && "is-invalid"}`} multiple onChange={handleCloudFileInputChange} />
-              </div>
-             <div className="pt-6"><button onClick={upload} className="btn btn-primary">upload</button></div>
-            </div>
-              
+          <div className="row mb-3">
+            <div className="col">
+                  <div className="d-flex align-items-center">
+                  <div className="flex-grow-1 align-items-center pe-2">
+                  <label htmlFor="cloudFiles" className="my-2"><i class="fa-solid fa-link fa-lg mx-2"></i> Attachments - cloud storage only</label>
+                  <input type="file" className={`form-control ${errors.attachFiles && "is-invalid"}`} multiple onChange={handleCloudFileInputChange} />
+                  </div>
+                <div className="pt-10"><button onClick={upload} className="btn btn-primary">upload</button></div>
+                </div>
                 {errors.cloudFiles && (
                   <div className="badge rounded-pill text-bg-danger">{errors.cloudFiles}</div>
                 )}
-                <label htmlFor="files" className="mt-2">Attachments</label>
-                <input type="file" className={`form-control ${errors.attachFiles && "is-invalid"}`} multiple onChange={handleFileInputChange} />
-                <div className="d-flex align-items-center mt-2 ms-1 ps-0">
-                <Switch
-                  checked={isChecked}
-                  onChange={value => setIsChecked(value)}
-                />
-                <label className="form-check-label ms-2" htmlFor="flexSwitchCheckChecked">Cloud Backup</label>
-                </div>
-                {errors.attachFiles && (
-                  <div className="badge rounded-pill text-bg-danger">{errors.attachFiles}</div>
-                )}
+            </div>
+              <div className="col">
+                  <label htmlFor="files" className="my-2"><i class="fa-solid fa-link fa-lg mx-2"></i> Attachments</label>
+                    <input type="file" className={`form-control ${errors.attachFiles && "is-invalid"}`} multiple onChange={handleFileInputChange} />
+                    <div className="d-flex align-items-center mt-2 ms-1 ps-0">
+                    <Switch
+                      checked={isChecked}
+                      onChange={value => setIsChecked(value)}
+                    />
+                    <label className="form-check-label ms-2" htmlFor="flexSwitchCheckChecked">Cloud Backup</label>
+                    </div>
+                    {errors.attachFiles && (
+                      <div className="badge rounded-pill text-bg-danger">{errors.attachFiles}</div>
+                    )}
+              </div>
+            </div>
+           
+              
 
-                <div className="form-files">
-                <p>
-                  File Supported : "zip","rar","7z","xml","xhtml","txt","svg","rtf","pdf","jpeg","png","jpg","ogg","mp3","json","html",
-                  "gif","mp4","mpeg","mkv","flv","avi","csv","ppt","pptx","xls","xlsx","doc","docx"
-                </p>
+               
+
+                <div className="formdes">
+                  <small>
+                  File Supported : "zip","rar","7z","xml","xhtml","txt","svg","rtf","pdf","jpeg","png","jpg","ogg","mp3","json","html","gif","mp4","mpeg","mkv","flv","avi","csv","ppt","pptx","xls","xlsx","doc","docx"
+                  </small>
+                 
                 </div>
 
                 <div className="form-files">
                 <small>Max File Size : 10MB</small>
                 </div>
-            </div>
+          
 
 
             {/* <div className="mb-3 mt-3">

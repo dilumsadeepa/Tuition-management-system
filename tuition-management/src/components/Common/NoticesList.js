@@ -77,6 +77,8 @@ function NoticesList() {
           })
       }, []);
 
+
+
       const deleteNotice = async(id) =>{
         console.log(`${Apiurl}/notice/${id}`);
         try {
@@ -198,12 +200,12 @@ function NoticesList() {
                                     <div class="card shadow border-0">
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col">
+                                                <div class="col py-3">
                                                     {/* <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span> */}
-                                                    <span class="h4 mb-0"><a href="/notice/create" className='debtn'>Create Notice</a></span>
+                                                    <a href="/notice/create" className="btn-grad">Create Notice</a>
                                                 </div>
-                                                <div class="col-auto">
-                                                    <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
+                                                <div class="col-auto py-5">
+                                                    <div class="icon icon-shape text-white text-lg rounded-circle" style={{backgroundColor: "#0C4160"}}>
                                                     <i class="bi bi-book-half"></i>
                                                     </div>
                                                 </div>
@@ -224,7 +226,7 @@ function NoticesList() {
                                
                                 <div className="col-sm-12">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered">
+                                        <table id="#example" className="table table-striped" style={{width:"100%"}}>
                                             <thead>
                                                 <tr>
                                                     <th>Notice To</th>
