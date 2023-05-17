@@ -38,6 +38,7 @@ import Parent from "./components/Admin/Parent";
 
 import StudentDetils from "./components/Student/StudentDetils";
 import Classes from "./components/Student/classes";
+import Attendance from "./components/Student/attendance";
 
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
@@ -70,11 +71,10 @@ function App() {
           <Route path="parent/:id" element={<Parent />} />
 
           {/* student part */}
-
           {/* <Route path="StudentLogin" element={<Login />} /> */}
-
           <Route path="studentdata" element={<StudentDetils />} />
           <Route path="classeslist" element={<Classes />} />
+          <Route path="Attendance" element={<Attendance />} />
 
           {/* <Route path="StudentLogin" element={<Login />} /> */}
 
