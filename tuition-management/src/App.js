@@ -15,6 +15,7 @@ import CreateNoticeNew from "./components/Common/CreateNoticeNew";
 import Notice from "./components/Common/Notice";
 import EditNotice from "./components/Common/EditNotice";
 import NoticesList from "./components/Common/NoticesList";
+import EditCourse from "./components/Admin/EditCourse";
 
 import CreateTimeTable from "./components/Common/CreateTimeTable";
 import TimeTable from "./components/Common/TimeTable";
@@ -69,6 +70,7 @@ function App() {
           <Route path="singlestudent/:id" element={<SingleStudent />} />
           <Route path="addparent/:id" element={<AddParentData />} />
           <Route path="parent/:id" element={<Parent />} />
+          <Route path="editcourse/:id" element={<EditCourse />} />
 
           {/* student part */}
           {/* <Route path="StudentLogin" element={<Login />} /> */}
