@@ -36,7 +36,10 @@ const Login = () => {
                     setCookie('username', response.data.username, { path: '/' });
                     setCookie('role', response.data.role, { path: '/' });
                     navigate("/admin");
-                }else{
+                }else if(response.data.role===3){
+                    navigate("/teacher");
+                }
+                else{
                     console.log(response.data.role);
                 }
             }else{

@@ -39,6 +39,7 @@ import Parent from "./components/Admin/Parent";
 import StudentDetils from "./components/Student/StudentDetils";
 import Classes from "./components/Student/classes";
 import Attendance from "./components/Student/attendance";
+import Teacher from "../../backend/models/TeacherModel";
 
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
@@ -70,6 +71,9 @@ function App() {
           <Route path="addparent/:id" element={<AddParentData />} />
           <Route path="parent/:id" element={<Parent />} />
 
+          {/* Teacher part */}
+          <Route path="teacher" element={<ViewTeacher />}></Route>
+
           {/* student part */}
           {/* <Route path="StudentLogin" element={<Login />} /> */}
           <Route path="studentdata" element={<StudentDetils />} />
@@ -78,23 +82,21 @@ function App() {
 
           {/* <Route path="StudentLogin" element={<Login />} /> */}
 
-         <Route path="notice" element={<NoticesList/>}/>
-         <Route path="notice/create" element={<CreateNoticeNew/>}/>
-         <Route path="notice/:id" element={<Notice/>}/>
+          <Route path="notice" element={<NoticesList />} />
+          <Route path="notice/create" element={<CreateNoticeNew />} />
+          <Route path="notice/:id" element={<Notice />} />
 
-         <Route path="timetable" element={<TimeTableList/>}/>
-         <Route path="timetable/create" element={<CreateTimeTableNew/>}/>
-         <Route path="timetable/:id" element={<TimeTable/>}/>
-         <Route path="timetable/edit/:id" element={<EditTimeTable/>}/>
+          <Route path="timetable" element={<TimeTableList />} />
+          <Route path="timetable/create" element={<CreateTimeTableNew />} />
+          <Route path="timetable/:id" element={<TimeTable />} />
+          <Route path="timetable/edit/:id" element={<EditTimeTable />} />
 
-         <Route path="notice/edit/:id" element={<EditNotice/>}/>
-         <Route path="test" element={<Test/>}/>
-         <Route path="*" element={<PageNotFound/>}/>
-      </Routes>
-   </BrowserRouter>
-   
-   </div>
-   
+          <Route path="notice/edit/:id" element={<EditNotice />} />
+          <Route path="test" element={<Test />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
