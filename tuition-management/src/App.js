@@ -39,7 +39,6 @@ import Parent from "./components/Admin/Parent";
 import StudentDetils from "./components/Student/StudentDetils";
 import Classes from "./components/Student/classes";
 import Attendance from "./components/Student/attendance";
-import Teacher from "../../backend/models/TeacherModel";
 
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
