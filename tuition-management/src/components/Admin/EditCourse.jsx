@@ -47,7 +47,8 @@ const EditCourse = () => {
             setCourses(response.data);
             console.log(courses);
             courses.forEach((course)=>{
-                setCid(course.courseid);
+                document.getElementById('courseid').value=course.courseid;
+                console.log(course.courseid);
             });
             gette();
         } catch (error) {
