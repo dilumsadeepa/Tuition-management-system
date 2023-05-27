@@ -22,8 +22,9 @@ const EditCourse = () => {
     const [teacherId, setct] = useState("");
     const [succ, setsucc] = useState("");
     const [err, seterr] = useState("");
+    const [edes, setEdes]  = useState("");
     
-
+    let count = 0;
 
     const editorRef = useRef(null);
 
@@ -48,7 +49,11 @@ const EditCourse = () => {
             console.log(courses);
             courses.forEach((course)=>{
                 document.getElementById('courseid').value=course.courseid;
-                console.log(course.courseid);
+                document.getElementById('coursename').value=course.coursename;
+                document.getElementById('coursebanner').value=course.coursebanner;
+                document.getElementById('courseprofile').value=course.courseprofile;
+                document.getElementById('price').value=course.courseprice;
+                setEdes(course.coursedes);
             });
             gette();
         } catch (error) {
@@ -57,9 +62,10 @@ const EditCourse = () => {
     }
 
     useEffect(()=>{
+        
         coursedata();
         
-    })
+    }, [])
     
 
     const create = async() =>{
@@ -212,7 +218,7 @@ const EditCourse = () => {
                                             <label className="form-label">Course Description:</label>
                                             <Editor
                                                 onInit={(evt, editor) => editorRef.current = editor}
-                                                // initialValue={course.coursedes}
+                                                initialValue={edes}
                                                 init={{
                                                 height: 500,
                                                 menubar: false,
