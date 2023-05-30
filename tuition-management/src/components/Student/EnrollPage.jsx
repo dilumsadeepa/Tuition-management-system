@@ -11,6 +11,10 @@ const EnrollPage = (props) => {
       <h1>Enroll Page</h1>
       <p>Enrolling for Course ID: {courseId}</p>
       {/* Add the necessary UI components and logic for the enroll page */}
+
+      <h2>enrolling details</h2>
+
+
     </div>
   );
 };
