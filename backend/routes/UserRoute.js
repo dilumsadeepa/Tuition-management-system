@@ -18,9 +18,9 @@ import {
     getAllStudentqr 
 } from "../controllers/StudentController.js";
 
-import { getPas, getPadata, createParent } from "../controllers/ParentsController.js";
+import { getPas, getPadata, createParent, getParentStu } from "../controllers/ParentsController.js";
 import { getTes,createTeacher } from "../controllers/TeacherController.js";
-import { getCos, createCourse, CourseData, deleteCourse } from "../controllers/CourseController.js";
+import { getCos, createCourse, CourseData, deleteCourse, CourseDataId, updateCourse } from "../controllers/CourseController.js";
 import { getCSs, stucourse, updateCS } from "../controllers/CoursestudentController.js";
 import { getPays } from "../controllers/PaymentController.js";
 import { getSPs, createPre, updateSP, deletespre } from "../controllers/Salarypresent.js";
@@ -57,6 +57,8 @@ router.get('/stcoid/:id', getStudentcourseId);
 router.get('/allstqr', getAllStudentqr);
 router.get('/getpadata/:id', getPadata);
 router.post('/parent', createParent);
+router.get('/editcourse/:id', CourseDataId);
+router.patch('/updatecourse/:id', updateCourse);
 
 
 //student
@@ -70,6 +72,10 @@ router.get('/att/:id', getAttById);
 // Teacher
 router.get('/teacher', getTes);
 router.post('/teacher',createTeacher);
+
+//parent
+
+router.get('/getparentstu/:id', getParentStu);
 
 
 //other

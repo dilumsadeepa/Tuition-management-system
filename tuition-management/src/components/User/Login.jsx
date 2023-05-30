@@ -36,7 +36,11 @@ const Login = () => {
                     setCookie('username', response.data.username, { path: '/' });
                     setCookie('role', response.data.role, { path: '/' });
                     navigate("/admin");
-                }else{
+                }else if(response.data.role===3){
+                    navigate("/teacher");
+                }
+                
+                else{
                     console.log(response.data.role);
                 }
             }else{
@@ -109,11 +113,8 @@ const Login = () => {
                                             </div>
                                         </div>
 
-                                        <div className="form-check">
-                                            <input className="form-check-input" type="checkbox" value="" id="auth-remember-check" />
-                                            <label className="form-check-label">Remember me</label>
-                                            <a href="#s" className="text-muted float-end">Forgot password?</a>
-                                        </div>
+                                       
+                                       
 
                                         <div className="mt-4 mb-3">
                                             <input type="button" onClick={(e)=>loginuser(e)} value="Login" id="btnlogin" className="btn btn-primary w-100" />

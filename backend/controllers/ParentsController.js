@@ -32,3 +32,20 @@ export const createParent = async(req, res) =>{
         console.log(error.message);
     }
 }
+
+export const getParentStu = async (req, res) => {
+    const id = req.params.id;
+    const sql =
+      "SELECT s.* FROM students s INNER JOIN users u ON s.userId = u.id INNER JOIN parents p ON u.id = p.stuid WHERE p.id = '" +
+      id +
+      "'";
+  
+    try {
+      const response = await db.query(sql, { type: QueryTypes.SELECT });
+  
+      res.status(200).json(response);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  

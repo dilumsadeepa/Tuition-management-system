@@ -8,7 +8,7 @@ import Teacher from '../models/TeacherModel.js';
 //admin
 
 
-export const getCos = async(req, res) =>{
+export const getCos = async (req, res) => {
     try {
         const response = await Course.findAll();
         res.status(200).json(response);
@@ -17,34 +17,62 @@ export const getCos = async(req, res) =>{
     }
 }
 
-export const createCourse = async(req, res) =>{
+export const createCourse = async (req, res) => {
     try {
         await Course.create(req.body);
-        res.status(201).json({msg: "Course Created"});
+        res.status(201).json({ msg: "Course Created" });
     } catch (error) {
         console.log(error.message);
     }
 }
 
-export const CourseData = async(req, res) =>{
+export const CourseData = async (req, res) => {
     try {
         const response = await Course.findAll({
             include: [Teacher]
-          });
+        });
         res.status(200).json(response);
     } catch (error) {
         console.log(error.message);
     }
 }
 
-export const deleteCourse = async(req, res) =>{
+export const deleteCourse = async (req, res) => {
     try {
         await Course.destroy({
-            where:{
+            where: {
                 id: req.params.id
             }
         });
-        
+
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+export const CourseDataId = async (req, res) => {
+    const courseId = req.params.id;
+
+    try {
+        const response = await Course.findAll({
+            where: { id: courseId },
+            include: [Teacher],
+        });
+        res.status(200).json(response);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+
+export const updateCourse = async (req, res) => {
+    try {
+        await Course.update(req.body, {
+            where: {
+                id: req.params.id
+            }
+        });
+        res.status(200).json({ msg: "Course Updated" });
     } catch (error) {
         console.log(error.message);
     }

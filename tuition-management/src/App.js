@@ -10,13 +10,14 @@ import ViewTeacher from "./components/Admin/ViewTeacher";
 import StudenttoCourse from "./components/Admin/StudenttoCourse";
 import Course from "./components/Admin/Course";
 import CreateCourse from "./components/Admin/CreateCourse";
-import CreateNotice from "./components/Common/CreateNotice";
+// import CreateNotice from "./components/Common/CreateNotice";
 import CreateNoticeNew from "./components/Common/CreateNoticeNew";
 import Notice from "./components/Common/Notice";
 import EditNotice from "./components/Common/EditNotice";
 import NoticesList from "./components/Common/NoticesList";
+import EditCourse from "./components/Admin/EditCourse";
 
-import CreateTimeTable from "./components/Common/CreateTimeTable";
+// import CreateTimeTable from "./components/Common/CreateTimeTable";
 import TimeTable from "./components/Common/TimeTable";
 import CreateTimeTableNew from "./components/Common/CreateTimeTableNew";
 import EditTimeTable from "./components/Common/EditTimeTable";
@@ -39,6 +40,10 @@ import Parent from "./components/Admin/Parent";
 import StudentDetils from "./components/Student/StudentDetils";
 import Classes from "./components/Student/classes";
 import Attendance from "./components/Student/attendance";
+import ParentDashboard from "./components/Parent/Parent";
+import ViewStudentParent from "./components/Parent/VewStudentParent";
+
+import Payment from "./components/Parent/Payment";
 
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
@@ -69,6 +74,10 @@ function App() {
           <Route path="singlestudent/:id" element={<SingleStudent />} />
           <Route path="addparent/:id" element={<AddParentData />} />
           <Route path="parent/:id" element={<Parent />} />
+          <Route path="editcourse/:id" element={<EditCourse />} />
+
+          {/* Teacher part */}
+          <Route path="teacher" element={<ViewTeacher />}></Route>
 
           {/* student part */}
           {/* <Route path="StudentLogin" element={<Login />} /> */}
@@ -78,23 +87,28 @@ function App() {
 
           {/* <Route path="StudentLogin" element={<Login />} /> */}
 
-         <Route path="notice" element={<NoticesList/>}/>
-         <Route path="notice/create" element={<CreateNoticeNew/>}/>
-         <Route path="notice/:id" element={<Notice/>}/>
+          {/* parents */}
+          <Route path="parent" element={<ParentDashboard />} />
+          <Route path="parentstudent" element={<ViewStudentParent />} />
+          <Route path="paymentp/:id" element={<Payment />} />
 
-         <Route path="timetable" element={<TimeTableList/>}/>
-         <Route path="timetable/create" element={<CreateTimeTableNew/>}/>
-         <Route path="timetable/:id" element={<TimeTable/>}/>
-         <Route path="timetable/edit/:id" element={<EditTimeTable/>}/>
+          {/* Common */}
 
-         <Route path="notice/edit/:id" element={<EditNotice/>}/>
-         <Route path="test" element={<Test/>}/>
-         <Route path="*" element={<PageNotFound/>}/>
-      </Routes>
-   </BrowserRouter>
-   
-   </div>
-   
+          <Route path="notice" element={<NoticesList />} />
+          <Route path="notice/create" element={<CreateNoticeNew />} />
+          <Route path="notice/:id" element={<Notice />} />
+
+          <Route path="timetable" element={<TimeTableList />} />
+          <Route path="timetable/create" element={<CreateTimeTableNew />} />
+          <Route path="timetable/:id" element={<TimeTable />} />
+          <Route path="timetable/edit/:id" element={<EditTimeTable />} />
+
+          <Route path="notice/edit/:id" element={<EditNotice />} />
+          <Route path="test" element={<Test />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
