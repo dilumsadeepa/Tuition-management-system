@@ -39,7 +39,12 @@ import Parent from "./components/Admin/Parent";
 
 import StudentDetils from "./components/Student/StudentDetils";
 import Classes from "./components/Student/classes";
+<<<<<<< Updated upstream
 import Attendance from "./components/Student/attendance";
+=======
+import ParentDashboard from "./components/Parent/Parent";
+import ViewStudentParent from "./components/Parent/VewStudentParent";
+>>>>>>> Stashed changes
 
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
@@ -83,6 +88,15 @@ function App() {
 
           {/* <Route path="StudentLogin" element={<Login />} /> */}
 
+<<<<<<< Updated upstream
+=======
+          {/* parents */}
+          <Route path="parent" element={<ParentDashboard />} />
+          <Route path="parentstudent" element={<ViewStudentParent />} />
+
+          {/* Common */}
+
+>>>>>>> Stashed changes
           <Route path="notice" element={<NoticesList />} />
           <Route path="notice/create" element={<CreateNoticeNew />} />
           <Route path="notice/:id" element={<Notice />} />
