@@ -6,13 +6,14 @@ import Sidebar from './AdminSidebar';
 import Dashhead from './Dashhead';
 
 const AddTeacher = () => {
-  const [teacherid, setTeacherId] = useState("");
-  const [fullname, setFullName] = useState("");
-  const [address, setAddress] = useState("");
-  const [gender, setGender] = useState("");
-  const [nic, setNic] = useState("");
-  const [education, setEducation] = useState("");
-  const [description, setDescription] = useState("");
+  const [t_userid, setTeacherId] = useState("");
+  const [t_fullname, setFullName] = useState("");
+  const [t_address, setAddress] = useState("");
+  const [t_gender, setGender] = useState("");
+  const [t_nic, setNic] = useState("");
+  const [t_education, setEducation] = useState("");
+  const [t_dis, setDescription] = useState("");
+  const [succ, setsucc] = useState("");
   const [errors, setErrors] = useState({});
 
   const navigate = useNavigate();
@@ -24,25 +25,25 @@ const AddTeacher = () => {
     const validationErrors = {};
 
     // register validation
-    if (teacherid.trim() === "") {
+    if (t_userid.trim() === "") {
       validationErrors.teacherid = "Teacher ID is required";
     }
-    if (fullname.trim() === "") {
+    if (t_userid.trim() === "") {
       validationErrors.fullname = "Full Name is required";
     }
-    if (address.trim() === "") {
+    if (t_address.trim() === "") {
       validationErrors.address = "Address is required";
     }
-    if (!gender) {
+    if (!t_gender) {
       validationErrors.gender = "Gender is required";
     }
-    if (nic.trim() === "") {
+    if (t_nic.trim() === "") {
       validationErrors.nic = "NIC is required";
     }
-    if (education.trim() === "") {
+    if (t_education.trim() === "") {
       validationErrors.education = "Education is required";
     }
-    if (description.trim() === "") {
+    if (t_dis.trim() === "") {
         validationErrors.description = "Description is required";
       }
 
@@ -50,18 +51,20 @@ const AddTeacher = () => {
       setErrors(validationErrors);
     } else {
       try {
-        await axios.post(`${Apiurl}/users/`, {
-          teacherid,
-          fullname,
-          address,
-          gender,
-          nic,
-          education,
-          description
+        await axios.post(`${Apiurl}/teacher/`, {
+          t_userid,
+          t_fullname,
+          t_address,
+          t_gender,
+          t_nic,
+          t_education,
+          t_dis
         });
 
-        navigate("/login");
-
+        navigate("/addteacher");
+        setsucc("Teacher added success!");
+        setErrors(false)
+        
       } catch (error) {
         console.log(error);
       }
@@ -83,6 +86,15 @@ const AddTeacher = () => {
           <main className="py-6 bg-surface-secondary">
             <div className="container">
               <h2>Add Teachers</h2>
+              {succ.length > 0 &&
+                                        <>
+                                            <div class="alert alert-success alert-dismissible fade show">
+                                                
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                                    <strong>Success!</strong> {succ}
+                                            </div>
+                                        </>
+                                    }
 
               <div className="row mt-5">
                 <div className="col-sm-8 debox">
@@ -93,7 +105,7 @@ const AddTeacher = () => {
                         type="text"
                         className="form-control"
                         placeholder="Enter Teacher ID"
-                        value={teacherid}
+                        value={t_userid}
                         onChange={(e) => setTeacherId(e.target.value)}
                       />
                       {errors.teacherid && <p style={{ color: 'red' }} className="error">{errors.teacherid}</p>}
@@ -105,7 +117,7 @@ const AddTeacher = () => {
                         type="text"
                         className="form-control"
                         placeholder="Enter Teacher Full Name"
-                        value={fullname}
+                        value={t_fullname}
                         onChange={(e) => setFullName(e.target.value)}
                       />
                       {errors.fullname && <p style={{ color: 'red' }} className="error">{errors.fullname}</p>}
@@ -117,7 +129,7 @@ const AddTeacher = () => {
                         type="text"
                         className="form-control"
                         placeholder="Enter address"
-                        value={address}
+                        value={t_address}
                         onChange={(e) => setAddress(e.target.value)}
                       />
                       {errors.address && <p style={{ color: 'red' }} className="error">{errors.address}</p>}
@@ -132,7 +144,7 @@ const AddTeacher = () => {
                           name="gender"
                           id="male"
                           value="male"
-                          checked={gender === "male"}
+                          checked={t_gender === "male"}
                           onChange={(e) => setGender(e.target.value)}
                         />
                         <label className="form-check-label" htmlFor="male">Male</label>
@@ -145,7 +157,7 @@ const AddTeacher = () => {
                           name="gender"
                           id="female"
                           value="female"
-                          checked={gender === "female"}
+                          checked={t_gender === "female"}
                           onChange={(e) => setGender(e.target.value)}
                         />
                         <label className="form-check-label" htmlFor="female">Female</label>
@@ -163,7 +175,7 @@ const AddTeacher = () => {
                         type="text"
                         className="form-control"
                         placeholder="Enter National Identity Card Number"
-                        value={nic}
+                        value={t_nic}
                         onChange={(e) => setNic(e.target.value)}
                       />
                       {errors.nic && <p style={{ color: 'red' }} className="error">{errors.nic}</p>}
@@ -174,7 +186,7 @@ const AddTeacher = () => {
                       <textarea
                         className="form-control"
                         placeholder="Enter education qualifications"
-                        value={education}
+                        value={t_education}
                         onChange={(e) => setEducation(e.target.value)}
                       ></textarea>
                       {errors.education && <p style={{ color: 'red' }} className="error">{errors.education}</p>}
@@ -185,7 +197,7 @@ const AddTeacher = () => {
                       <textarea
                         className="form-control"
                         placeholder="Enter some details"
-                        value={description}
+                        value={t_dis}
                         onChange={(e) => setDescription(e.target.value)}
                       ></textarea>
                        {errors.description && <p style={{ color: 'red' }} className="error">{errors.description}</p>}
