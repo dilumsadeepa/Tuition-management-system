@@ -10,14 +10,14 @@ import ViewTeacher from "./components/Admin/ViewTeacher";
 import StudenttoCourse from "./components/Admin/StudenttoCourse";
 import Course from "./components/Admin/Course";
 import CreateCourse from "./components/Admin/CreateCourse";
-import CreateNotice from "./components/Common/CreateNotice";
+// import CreateNotice from "./components/Common/CreateNotice";
 import CreateNoticeNew from "./components/Common/CreateNoticeNew";
 import Notice from "./components/Common/Notice";
 import EditNotice from "./components/Common/EditNotice";
 import NoticesList from "./components/Common/NoticesList";
 import EditCourse from "./components/Admin/EditCourse";
 
-import CreateTimeTable from "./components/Common/CreateTimeTable";
+// import CreateTimeTable from "./components/Common/CreateTimeTable";
 import TimeTable from "./components/Common/TimeTable";
 import CreateTimeTableNew from "./components/Common/CreateTimeTableNew";
 import EditTimeTable from "./components/Common/EditTimeTable";

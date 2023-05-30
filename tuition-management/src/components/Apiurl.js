@@ -1,3 +1,3 @@
-const Apiurl = "http://localhost:6000";
+const Apiurl = "http://localhost:5000";
 
 export default Apiurl;
