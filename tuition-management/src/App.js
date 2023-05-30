@@ -43,6 +43,8 @@ import Attendance from "./components/Student/attendance";
 import ParentDashboard from "./components/Parent/Parent";
 import ViewStudentParent from "./components/Parent/VewStudentParent";
 
+import Payment from "./components/Parent/Payment";
+
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
 
@@ -88,6 +90,7 @@ function App() {
           {/* parents */}
           <Route path="parent" element={<ParentDashboard />} />
           <Route path="parentstudent" element={<ViewStudentParent />} />
+          <Route path="paymentp/:id" element={<Payment />} />
 
           {/* Common */}
 
