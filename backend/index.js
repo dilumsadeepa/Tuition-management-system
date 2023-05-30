@@ -41,4 +41,4 @@ app.use(UserRoute);
 // app.use(NoticeRoute);
 // app.use(TimetableRoute);
 
-app.listen(6000, () => console.log("Server up and running..."));
+app.listen(4000, () => console.log("Server up and running..."));
