@@ -53,7 +53,7 @@ export default function DisableElevation() {
                         <div class="card-body">
                           <h5 class="card-title">{course.coursename}</h5>
                           <p class="card-text">{course.courseprice}</p>
-                          <a href="#s" class="btn btn-primary">Go somewhere</a>
+                          <a href="#s" class="btn btn-primary">Enroll to class</a>
                         </div>
                     </div>
                   )}
