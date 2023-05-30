@@ -47,6 +47,8 @@ import Payment from "./components/Parent/Payment";
 import EnrollPage from "./components/Student/EnrollPage";
 import StudentProfile from "./components/Student/studentProfile";
 
+import Teacher from "./components/Teacher/Teacher";
+
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
 
@@ -79,7 +81,7 @@ function App() {
           <Route path="editcourse/:id" element={<EditCourse />} />
 
           {/* Teacher part */}
-          <Route path="teacher" element={<ViewTeacher />}></Route>
+          <Route path="teacher" element={<Teacher />}></Route>
 
           {/* student part */}
           {/* <Route path="StudentLogin" element={<Login />} /> */}
