@@ -85,6 +85,9 @@ function App() {
           <Route path="classeslist" element={<Classes />} />
           <Route path="Attendance" element={<Attendance />} />
 
+
+
+
           {/* <Route path="StudentLogin" element={<Login />} /> */}
 
           {/* parents */}
