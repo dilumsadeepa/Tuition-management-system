@@ -64,6 +64,15 @@ const AddTeacher = () => {
         navigate("/addteacher");
         setsucc("Teacher added success!");
         setErrors(false)
+
+    // Clear form fields
+      setTeacherId("");
+      setFullName("");
+      setAddress("");
+      setGender("");
+      setNic("");
+      setEducation("");
+      setDescription("");
         
       } catch (error) {
         console.log(error);
