@@ -67,7 +67,7 @@ const Sidebar =() =>{
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/studentProfile">
+                                <a class="nav-link" href="/Profile">
                                 <i class='bx bx-user'></i> Profile
                                 </a>
                             </li>

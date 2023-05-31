@@ -1,13 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import Apiurl from '../Apiurl';
 
 import Sidebar from './StudentSidebar';
 import Dashhead from './Dashhead';
 import axios from 'axios';
 
-
 export default function DisableElevation() {
-
   const [courses, setCourses] = useState([]);
 
   const getcou = async (e) => {
@@ -25,49 +24,40 @@ export default function DisableElevation() {
 
   return (
     <section>
-      {/* <!-- Dashboard --> */}
-      <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
-
+      {/* Dashboard */}
+      <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+        {/* Sidebar */}
         <Sidebar />
 
-
-        {/* <!-- Main content --> */}
-        <div class="h-screen flex-grow-1 overflow-y-lg-auto">
-
-          {/* <!-- Header --> */}
+        {/* Main content */}
+        <div className="h-screen flex-grow-1 overflow-y-lg-auto">
+          {/* Header */}
           <Dashhead />
 
           <main>
             <div className='container'>
               <div className="row mt-3 mb-3">
-                <h2>Classess</h2>
+                <h2>Classes</h2>
               </div>
 
               <div className="row mb-3 mt-3">
                 <div className="col-sm-3">
-
-                  {courses.map((course)=>
-                  
-                    <div class="card">
-                      <img src={course.coursebanner} class="card-img-top" alt="..." />
-                        <div class="card-body">
-                          <h5 class="card-title">{course.coursename}</h5>
-                          <p class="card-text">{course.courseprice}</p>
-                          <a href="#s" class="btn btn-primary">Enroll to class</a>
-                        </div>
+                  {courses.map((course) => (
+                    <div className="card" key={course.id}>
+                      <img src={course.coursebanner} className="card-img-top" alt="..." />
+                      <div className="card-body">
+                        <h5 className="card-title">{course.coursename}</h5>
+                        <p className="card-text">{course.courseprice}</p>
+                        <Link to={`/enroll/${course.id}`} className="btn btn-primary">Enroll to class</Link>
+                      </div>
                     </div>
-                  )}
-
+                  ))}
                 </div>
               </div>
-
             </div>
           </main>
-
-
         </div>
       </div>
     </section>
   );
-
 }
