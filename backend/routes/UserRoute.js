@@ -20,13 +20,14 @@ import {
 
 import { getPas, getPadata, createParent } from "../controllers/ParentsController.js";
 import { getTes,createTeacher } from "../controllers/TeacherController.js";
-import { getCos, createCourse, CourseData, deleteCourse } from "../controllers/CourseController.js";
+import { getCos, createCourse, CourseData, deleteCourse, courseName } from "../controllers/CourseController.js";
 import { getCSs, stucourse, updateCS } from "../controllers/CoursestudentController.js";
 import { getPays } from "../controllers/PaymentController.js";
 import { getSPs, createPre, updateSP, deletespre } from "../controllers/Salarypresent.js";
 import { getsals } from "../controllers/SalaryController.js";
 import { getNotices, deleteNotice, viewNotice, getNoticesCount } from "../controllers/NoticeController.js";
 import { getTimetables, createTimetable, deleteTimetable, viewTimetable } from "../controllers/TimetableController.js";
+import { getNewTimetables, createNewTimetable, deleteNewTimetable, viewNewTimetable, timecourseId } from "../controllers/NewtimetableController.js";
 import { getCts } from "../controllers/CourseteacherController.js";
  
 const router = express.Router();
@@ -44,6 +45,7 @@ router.post('/crestecourse', createCourse);
 router.get('/course', getCos);
 router.get('/getCts', getCts);
 router.get('/coursedata', CourseData);
+router.get('/coursename/:id', courseName);
 router.delete('/deletecourse/:id', deleteCourse);
 router.patch('/updateCS/:id', updateCS);
 router.get('/salary', getsals);
@@ -90,6 +92,10 @@ router.get('/timetable', getTimetables);
 router.delete('/timetable/:id', deleteTimetable);
 router.get('/timetable/byId/:id', viewTimetable);
 
-
+router.get('/newtimetable', getNewTimetables);
+router.delete('/newtimetable/:id', deleteNewTimetable);
+router.get('/newtimetable/byId/:id', viewNewTimetable);
+router.post('/newtimetable/create', createNewTimetable);
+router.get('/newtimetableid/:id', timecourseId ); 
 
 export default router;

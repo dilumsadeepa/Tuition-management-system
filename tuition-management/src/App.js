@@ -22,6 +22,11 @@ import CreateTimeTableNew from "./components/Common/CreateTimeTableNew";
 import EditTimeTable from "./components/Common/EditTimeTable";
 import TimeTableList from "./components/Common/TimeTableList";
 
+import NewTimeTable from "./components/Common/NewTimeTable";
+import CreateNewTimeTable from "./components/Common/CreateNewTimeTable";
+import NewTimeTableList from "./components/Common/NewTimeTableList";
+import CreateTimeTableDashboard from "./components/Common/CreateTimeTableDashboard";
+
 import Test from "./components/Common/Test";
 import PageNotFound from "./components/Common/PageNotFound";
 import AssignStudents from "./components/Admin/AssignStudents";
@@ -86,6 +91,10 @@ function App() {
          <Route path="timetable/create" element={<CreateTimeTableNew/>}/>
          <Route path="timetable/:id" element={<TimeTable/>}/>
          <Route path="timetable/edit/:id" element={<EditTimeTable/>}/>
+
+         <Route path="newtimetable" element={<NewTimeTableList/>}/>
+         <Route path="newtimetabledash" element={<CreateTimeTableDashboard/>}/>
+         <Route path="newtimetable/create" element={<CreateNewTimeTable/>}/>
 
          <Route path="notice/edit/:id" element={<EditNotice/>}/>
          <Route path="test" element={<Test/>}/>

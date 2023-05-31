@@ -358,7 +358,7 @@ function TimeTableList() {
 
 
                             <div class="d-flex mt-3">
-  <div class="p-2 flex-grow-1"><h2>TimeTable</h2></div>
+  <div class="p-2 flex-grow-1"><h2>TimeTable Post</h2></div>
   <div class="p-2"><a href="/timetable/create" className="btn-grad">Create TimeTable</a></div>
 </div>
 
@@ -423,38 +423,38 @@ function TimeTableList() {
                                             
                                         </table> */}
 
-<table ref={tableRef} className="table table-striped" style={{ width: "100%" }}>
-  <thead>
-    <tr>
-      <th>TimeTable Title</th>
-      <th>Grade</th>
-      <th>Files</th>
-      <th>Date</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    {timeTables.map((timeTable) => (
-      <tr key={timeTable.id}>
-        <td>{timeTable.time_title}</td>
-        <td>{timeTable.grade}</td>
-        <td>{timeTable.files ? timeTable.files.split(",").length : 0}</td>
-        <td>{timeTable.createdAt.split("T")[0]}</td>
-        <td>
-          <button className='btn btn-sm btn-secondary me-1 view-btn'>
-            <i className="fa-solid fa-eye"></i>
-          </button>
-          <button className='btn btn-sm btn-secondary me-1 edit-btn'>
-            <i className="fa-solid fa-pen-to-square"></i>
-          </button>
-          <button className='btn btn-sm btn-danger me-1 delete-btn'>
-            <i className="fa-solid fa-trash"></i>
-          </button>
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</table>
+                                          <table ref={tableRef} className="table table-striped" style={{ width: "100%" }}>
+                                            <thead>
+                                              <tr>
+                                                <th>TimeTable Title</th>
+                                                <th>Grade</th>
+                                                <th>Files</th>
+                                                <th>Date</th>
+                                                <th>Action</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              {timeTables.map((timeTable) => (
+                                                <tr key={timeTable.id}>
+                                                  <td>{timeTable.time_title}</td>
+                                                  <td>{timeTable.grade}</td>
+                                                  <td>{timeTable.files ? timeTable.files.split(",").length : 0}</td>
+                                                  <td>{timeTable.createdAt.split("T")[0]}</td>
+                                                  <td>
+                                                    <button className='btn btn-sm btn-secondary me-1 view-btn'>
+                                                      <i className="fa-solid fa-eye"></i>
+                                                    </button>
+                                                    <button className='btn btn-sm btn-secondary me-1 edit-btn'>
+                                                      <i className="fa-solid fa-pen-to-square"></i>
+                                                    </button>
+                                                    <button className='btn btn-sm btn-danger me-1 delete-btn'>
+                                                      <i className="fa-solid fa-trash"></i>
+                                                    </button>
+                                                  </td>
+                                                </tr>
+                                              ))}
+                                            </tbody>
+                                          </table>
 
 
                                               {/* The modal */}
