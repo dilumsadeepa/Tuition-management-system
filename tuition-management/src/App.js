@@ -93,7 +93,7 @@ function App() {
           <Route path="profile" element={<StudentProfile />} />
 
 
-          <Route path="StuDashboard" element={<StuDashboard />} />
+          <Route path="studashboard" element={<StuDashboard />} />
 
 
 

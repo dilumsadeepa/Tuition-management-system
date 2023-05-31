@@ -41,7 +41,14 @@ const Login = () => {
                     navigate("/admin");
                 }else if(response.data.role===3){
                     navigate("/teacher");
-                }else if(response.data.role === 5){
+                }else if(response.data.role === 4){
+                    setCookie('id', response.data.id, { path: '/' });
+                    setCookie('email', response.data.email, { path: '/' });
+                    setCookie('username', response.data.username, { path: '/' });
+                    setCookie('role', response.data.role, { path: '/' });
+                    navigate("/studashboard");
+                }
+                else if(response.data.role === 5){
                     setCookie('id', response.data.id, { path: '/' });
                     setCookie('email', response.data.email, { path: '/' });
                     setCookie('username', response.data.username, { path: '/' });
