@@ -92,6 +92,7 @@ function App() {
           <Route path="Enrollpage" element={<EnrollPage />} />
           <Route path="profile" element={<StudentProfile />} />
 
+
           <Route path="StuDashboard" element={<StuDashboard />} />
 
 

@@ -15,7 +15,8 @@ import {
     getStudentById, 
     getCourseById, 
     getStudentcourseId, 
-    getAllStudentqr 
+    getAllStudentqr,
+    createStudent,
 } from "../controllers/StudentController.js";
 
 import { getPas, getPadata, createParent, getParentStu } from "../controllers/ParentsController.js";
@@ -65,6 +66,7 @@ router.patch('/updatecourse/:id', updateCourse);
 
 router.get('/att', getAtts);
 router.get('/att/:id', getAttById);
+router.post('/studentdata', createStudent);
 
 
 
