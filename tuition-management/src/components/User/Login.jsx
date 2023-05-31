@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import Apiurl from '../Apiurl';
+import User from "../User";
 
 
 const Login = () => {
@@ -31,6 +32,7 @@ const Login = () => {
         try {
             const response = await axios.get(`${Apiurl}/users/${email}`);
             if (response.data.password === password) {
+                User.setUser(response.data);
                 if (response.data.role === 1) {
                     setCookie('email', response.data.email, { path: '/' });
                     setCookie('username', response.data.username, { path: '/' });
