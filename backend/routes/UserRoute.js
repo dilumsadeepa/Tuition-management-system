@@ -69,7 +69,7 @@ router.post('/crestecourse', createCourse);
 router.get('/course', getCos);
 router.get('/getCts', getCts);
 router.get('/coursedata', CourseData);
-router.get('/coursename/:id', courseName);
+// router.get('/coursename/:id', courseName);
 router.delete('/deletecourse/:id', deleteCourse);
 router.patch('/updateCS/:id', updateCS);
 router.get('/salary', getsals);
@@ -83,8 +83,6 @@ router.get('/stcoid/:id', getStudentcourseId);
 router.get('/allstqr', getAllStudentqr);
 router.get('/getpadata/:id', getPadata);
 router.post('/parent', createParent);
-
-const router = express.Router();
 
 router.get("/users", getUsers);
 router.get("/users/:id", getUserById);
