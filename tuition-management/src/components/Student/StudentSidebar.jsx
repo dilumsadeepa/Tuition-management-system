@@ -62,7 +62,7 @@ const Sidebar =() =>{
                         {/* <!-- Navigation --> */}
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="/student">
+                                <a class="nav-link" href="/StuDashboard">
                                     <i class="bi bi-house"></i> Dashboard
                                 </a>
                             </li>
