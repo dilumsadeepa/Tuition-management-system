@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, {useState, useEffect} from "react";
 import "./studentDetailsForm.css";
 import Apiurl from '../Apiurl';
 import axios from "axios";
+// import { useCookies } from 'react-cookie';
 
 import Sidebar from './StudentSidebar';
 import Dashhead from './Dashhead';
@@ -12,6 +13,8 @@ const StudentDetailsForm = () => {
 
 
 
+
+  // const [cookies, setcookie] = usecookies(['user']);
   const [id, setId] = useState("");
   const [fullname, setfullname] = useState("");
   const [nameini, setnameini] = useState("");
@@ -22,6 +25,14 @@ const StudentDetailsForm = () => {
   const [createtime, setcreatetime] = useState("");
   const [updatetime, setupdatetime] = useState("");
   const [userid, setuserid] = useState("");
+
+
+//   useEffect(() =>{
+//     console.log(cookies.userId);
+//     if (cookies.user) {
+//       console.log("user idddddd"+cookies.userid);
+//     }
+// })
 
   const handleSubmit = (e) => {
     e.preventDefault();
