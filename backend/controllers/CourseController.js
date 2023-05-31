@@ -96,7 +96,7 @@ export const stucourseall = async(req, res) =>{
       const response = await Coursestudent.findAll({
           include: [
               Student,Course
-          ]
+          ] 
       });
       res.status(200).json(response);
   } catch (error) {
