@@ -50,6 +50,7 @@ import StuDashboard from "./components/Student/StuDashboard";
 
 import Teacher from "./components/Teacher/Teacher";
 import AddTeacherDetails from "./components/Admin/AddTeacherDetails";
+import TeacherCourse from "./components/Teacher/TeacherCourse";
 
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
@@ -85,6 +86,7 @@ function App() {
           {/* Teacher part */}
           <Route path="teacher" element={<Teacher />}></Route>
           <Route path="teacherdetails" element={<AddTeacherDetails />}></Route>
+          <Route path="teachercourse" element={<TeacherCourse />}></Route>
 
           {/* student part */}
           {/* <Route path="StudentLogin" element={<Login />} /> */}

@@ -77,7 +77,7 @@ const TeacherSidebar =() =>{
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/course">
+                                <a class="nav-link" href="/teachercourse">
                                 <i class="bi bi-book-half"></i> Courses
                                 </a>
                             </li>
