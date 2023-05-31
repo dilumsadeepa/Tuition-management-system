@@ -34,12 +34,19 @@ const Login = () => {
             if (response.data.password === password) {
                 User.setUser(response.data);
                 if (response.data.role === 1) {
+                    setCookie('id', response.data.id, { path: '/' });
                     setCookie('email', response.data.email, { path: '/' });
                     setCookie('username', response.data.username, { path: '/' });
                     setCookie('role', response.data.role, { path: '/' });
                     navigate("/admin");
                 }else if(response.data.role===3){
                     navigate("/teacher");
+                }else if(response.data.role === 5){
+                    setCookie('id', response.data.id, { path: '/' });
+                    setCookie('email', response.data.email, { path: '/' });
+                    setCookie('username', response.data.username, { path: '/' });
+                    setCookie('role', response.data.role, { path: '/' });
+                    navigate("/parent");
                 }
                 
                 else{

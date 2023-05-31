@@ -4,6 +4,7 @@ import Apiurl from '../Apiurl';
 import Sidebar from './Sidebar';
 import Dashhead from './Dashhead';
 import { Link } from 'react-router-dom';
+import User from '../User';
 
 
 
@@ -15,6 +16,7 @@ const Payment = () => {
     const [payments, setPayments] = useState([]);
 
 const getpay = async(e) =>{
+    console.log(User.getUser());
     try {
         const response = await axios.get(`${Apiurl}/payment`);
         console.log(response.data);
@@ -55,15 +57,13 @@ useEffect(()=>{
                                             <thead>
                                                 <tr>
                                                     <th>CourseID</th>
-                                                    <th>CourseName</th>
-                                                    <th>Payment</th>
+                                                    <th>Payment On Month</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 {payments.map((crs) =>
                                                 <tr>
                                                     <td>{crs.cid}</td>
-                                                    <td>{crs.suid}</td>
                                                     <td>{crs.month}</td>
                                                 </tr>
                                                 )}

@@ -4,15 +4,20 @@ import Apiurl from '../Apiurl';
 import Sidebar from './Sidebar';
 import Dashhead from './Dashhead';
 import { Link } from 'react-router-dom';
-
+import User from '../User';
+import { useCookies } from 'react-cookie';
 
 
 const ViewStudentParent = () => {
     const [students, setStudents] = useState([]);
 
+    const [cookies, setCookie] = useCookies(['user']);
+
     const getstu = async(e) =>{
+        console.log(cookies.id);
+        const id = cookies.email;
         try {
-            const response = await axios.get(`${Apiurl}/getparentstu/1`);
+            const response = await axios.get(`${Apiurl}/getparentstu/${id}`);
             setStudents(response.data);
             
             

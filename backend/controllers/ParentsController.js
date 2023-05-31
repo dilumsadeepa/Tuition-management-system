@@ -36,7 +36,7 @@ export const createParent = async(req, res) =>{
 export const getParentStu = async (req, res) => {
     const id = req.params.id;
     const sql =
-      "SELECT s.* FROM students s INNER JOIN users u ON s.userId = u.id INNER JOIN parents p ON u.id = p.stuid WHERE p.id = '" +
+      "SELECT s.* FROM students s INNER JOIN users u ON s.userId = u.id INNER JOIN parents p ON u.id = p.stuid WHERE p.puserid = '" +
       id +
       "'";
   
