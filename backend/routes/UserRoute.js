@@ -35,6 +35,7 @@ import {
   CourseDataId,
   updateCourse,
   getCoursesByTeacherId,
+  stucourseall,
 } from "../controllers/CourseController.js";
 import {
   getCSs,
@@ -86,6 +87,7 @@ router.get("/getpadata/:id", getPadata);
 router.post("/parent", createParent);
 router.get("/editcourse/:id", CourseDataId);
 router.patch("/updatecourse/:id", updateCourse);
+router.get("/stucourseall", stucourseall);
 
 //student
 
