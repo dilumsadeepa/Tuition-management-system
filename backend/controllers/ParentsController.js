@@ -49,3 +49,19 @@ export const getParentStu = async (req, res) => {
     }
   };
   
+
+  export const getattendeceAtt = async (req, res) => {
+    const id = req.params.id;
+    const sql =
+      "SELECT c.courseid, coursename FROM courses c INNER JOIN student s ON s.userId = c.coursesid INNER JOIN parents p ON s.stuid = p.stuid WHERE p.id = '" +
+      id +
+      "'";
+  
+    try {
+      const response = await db.query(sql, { type: QueryTypes.SELECT });
+  
+      res.status(200).json(response);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };

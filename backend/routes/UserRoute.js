@@ -76,6 +76,8 @@ router.post('/teacher',createTeacher);
 //parent
 
 router.get('/getparentstu/:id', getParentStu);
+router.get('/getpaymentstu/:id', getPaymentStu);
+router.get('/getattendece/:id', getAttendeceAtt);
 
 
 //other

@@ -91,6 +91,7 @@ function App() {
           <Route path="parent" element={<ParentDashboard />} />
           <Route path="parentstudent" element={<ViewStudentParent />} />
           <Route path="paymentp/:id" element={<Payment />} />
+          <Route path="attendeces/:id" element={<Payment />} />
 
           {/* Common */}
 

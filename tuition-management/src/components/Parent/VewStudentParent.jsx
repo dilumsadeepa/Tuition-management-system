@@ -47,17 +47,19 @@ const ViewStudentParent = () => {
                             <div className="row mb-3 mt-3">
                                 <h1>Student Data</h1>
                                 <div className="col-sm-12 mb-5 mt-3">
+                                    <button type="button" class="btn btn-success">Notices</button>
                                     <div className="table-responsive">
                                         <table className="table">
                                             <thead>
                                                 <tr>
                                                     <th>Full Name</th>
-                                                    <th>Name with Inni</th>
+                                                    <th>Name with Inniti</th>
                                                     <th>Address</th>
                                                     <th>DOB</th>
                                                     <th>Gender</th>
                                                     <th>NIC</th>
                                                     <th>Payment</th>
+                                                    <th>Attendence</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -70,6 +72,7 @@ const ViewStudentParent = () => {
                                                     <td>{stu.sgender}</td>
                                                     <td>{stu.snic}</td>
                                                     <td><Link to={`/paymentp/${stu.id}`} className='btn btn-info'>Pament</Link></td>
+                                                    <td><Link to={`/attendence/${stu.id}`} className='btn btn-info'>Attendence</Link></td>
                                                 </tr>
                                                 )}
                                             </tbody>

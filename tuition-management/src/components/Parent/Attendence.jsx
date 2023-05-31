@@ -7,29 +7,30 @@ import { Link } from 'react-router-dom';
 
 
 
-const ViewPayment = () => {
+const ViewAttendence = () => {
 
 }
 
-const Payment = () => {
-    const [payments, setPayments] = useState([]);
+const Attendence = () => {
+    const [attendence, setAttendence] = useState([]);
 
-const getpay = async(e) =>{
-    try {
-        const response = await axios.get(`${Apiurl}/payment`);
-        console.log(response.data);
-        setPayments(response.data);
-        
-        
-    } catch (error) {
-        console.log("error in getting data")
+    const getstu = async(e) =>{
+        try {
+            const response = await axios.get(`${Apiurl}/getattendence/1`);
+            setAttendence(response.data);
+            
+            
+        } catch (error) {
+            console.log("error in getting data")
+        }
+
     }
 
-}
+    useEffect(()=>{
+        getstu();
+    },[])
 
-useEffect(()=>{
-    getpay();
-},[])
+
     return (
         <section>
             {/* <!-- Dashboard --> */}
@@ -48,28 +49,26 @@ useEffect(()=>{
                     <main class="py-6 bg-surface-secondary">
                         <div class="container-fluid">
                             <div className="row mb-3 mt-3">
-                                <h1>Payment</h1>
+                                <h1>Attendence</h1>
                                 <div className="col-sm-12 mb-5 mt-3">
-                                <div className="table-responsive">
+                                    <div className="table-responsive">
                                         <table className="table">
                                             <thead>
                                                 <tr>
-                                                    <th>CourseID</th>
-                                                    <th>CourseName</th>
-                                                    <th>Payment</th>
+                                                    <th>Full Name</th>
+
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {payments.map((crs) =>
+                                                {attendence.map((att) =>
                                                 <tr>
-                                                    <td>{crs.cid}</td>
-                                                    <td>{crs.suid}</td>
-                                                    <td>{crs.month}</td>
+                                                    <td>{att.sfullname}</td>
+                                                    
                                                 </tr>
                                                 )}
                                             </tbody>
                                         </table>
-                                    </div>                                                                                                             
+                                    </div>
                                 </div>
                             </div>
 
@@ -84,4 +83,4 @@ useEffect(()=>{
 }
 
 
-export default Payment;
+export default ViewStudentParent;
