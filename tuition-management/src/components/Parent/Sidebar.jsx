@@ -1,7 +1,24 @@
-import React from 'react';
+import React, {useEffect, useState} from "react";
+import axios from "axios";
+import Apiurl from '../Apiurl';
 
 
 const Sidebar =() =>{
+
+    const [noticesCount, setNoticesCount] = useState(0);
+
+    useEffect(() => {
+
+        const getNoticesCount = async () => {
+            try {
+              const response = await axios.get(`${Apiurl}/notice/count`);
+              setNoticesCount(response.data.count);
+            } catch (error) {
+              console.log(error.message);
+            }
+          };
+      getNoticesCount();
+    }, []);
 
     return(
         <>
@@ -67,6 +84,12 @@ const Sidebar =() =>{
                             <li class="nav-item">
                                 <a class="nav-link" href="#s">
                                     <i class="bi bi-people"></i> Users
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/notice">
+                                    <i class="fa-regular fa-note-sticky"></i> Notices
+                                    <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">{noticesCount}</span>
                                 </a>
                             </li>
                         </ul>

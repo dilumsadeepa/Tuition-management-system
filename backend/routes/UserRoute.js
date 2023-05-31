@@ -35,6 +35,7 @@ import {
   CourseDataId,
   updateCourse,
   getCoursesByTeacherId,
+  stucourseall,
 } from "../controllers/CourseController.js";
 import {
   getCSs,
@@ -49,21 +50,13 @@ import {
   deletespre,
 } from "../controllers/Salarypresent.js";
 import { getsals } from "../controllers/SalaryController.js";
-import {
-  getNotices,
-  deleteNotice,
-  viewNotice,
-  getNoticesCount,
-} from "../controllers/NoticeController.js";
-import {
-  getTimetables,
-  createTimetable,
-  deleteTimetable,
-  viewTimetable,
-} from "../controllers/TimetableController.js";
+import { getNotices, deleteNotice, viewNotice, getNoticesCount } from "../controllers/NoticeController.js";
+import { getTimetables, createTimetable, deleteTimetable, viewTimetable } from "../controllers/TimetableController.js";
+import { getNewTimetables, createNewTimetable, deleteNewTimetable, viewNewTimetable, timecourseId } from "../controllers/NewtimetableController.js";
 import { getCts } from "../controllers/CourseteacherController.js";
-
+ 
 const router = express.Router();
+ 
 
 router.get("/users", getUsers);
 router.get("/users/:id", getUserById);
@@ -94,6 +87,7 @@ router.get("/getpadata/:id", getPadata);
 router.post("/parent", createParent);
 router.get("/editcourse/:id", CourseDataId);
 router.patch("/updatecourse/:id", updateCourse);
+router.get("/stucourseall", stucourseall);
 
 //student
 
@@ -129,5 +123,11 @@ router.get("/notice/byId/:id", viewNotice);
 router.get("/timetable", getTimetables);
 router.delete("/timetable/:id", deleteTimetable);
 router.get("/timetable/byId/:id", viewTimetable);
+
+router.get('/newtimetable', getNewTimetables);
+router.delete('/newtimetable/:id', deleteNewTimetable);
+router.get('/newtimetable/byId/:id', viewNewTimetable);
+router.post('/newtimetable/create', createNewTimetable);
+router.get('/newtimetableid/:id', timecourseId ); 
 
 export default router;
