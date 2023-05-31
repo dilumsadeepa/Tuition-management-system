@@ -86,12 +86,12 @@ const Sidebar =() =>{
                                 <i class="bi bi-cash-stack"></i> Salary
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            {/* <li class="nav-item">
                                 <a class="nav-link" href="#s">
                                     <i class="bi bi-chat"></i> Messages
                                     <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">6</span>
                                 </a>
-                            </li>
+                            </li> */}
                             <li class="nav-item">
                                 <a class="nav-link" href="/notice">
                                     <i class="bi bi-chat"></i> Notices
@@ -104,11 +104,11 @@ const Sidebar =() =>{
                                 </a>
                             </li> */}
                             
-                            <li class="nav-item">
+                            {/* <li class="nav-item">
                                 <a class="nav-link" href="#s">
                                     <i class="bi bi-people"></i> Users
                                 </a>
-                            </li>
+                            </li> */}
                         </ul>
                         {/* <!-- Divider --> */}
                         <hr class="navbar-divider my-5 opacity-20" />
@@ -190,7 +190,7 @@ const Sidebar =() =>{
                         {/* <!-- Push content down --> */}
                         <div class="mt-auto"></div>
                         {/* <!-- User (md) --> */}
-                        <ul class="navbar-nav">
+                        {/* <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="#s">
                                     <i class="bi bi-person-square"></i> Account
@@ -201,7 +201,7 @@ const Sidebar =() =>{
                                     <i class="bi bi-box-arrow-left"></i> Logout
                                 </a>
                             </li>
-                        </ul>
+                        </ul> */}
                     </div>
                 </div>
             </nav>

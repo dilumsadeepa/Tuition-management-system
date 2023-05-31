@@ -19,7 +19,7 @@ import {
     createStudent,
 } from "../controllers/StudentController.js";
 
-import { getPas, getPadata, createParent, getParentStu } from "../controllers/ParentsController.js";
+import { getPas, getPadata, createParent, getParentStu, getattendeceAtt} from "../controllers/ParentsController.js";
 import { getTes,createTeacher } from "../controllers/TeacherController.js";
 import { getCos, createCourse, CourseData, deleteCourse, CourseDataId, updateCourse } from "../controllers/CourseController.js";
 import { getCSs, stucourse, updateCS } from "../controllers/CoursestudentController.js";
@@ -78,6 +78,8 @@ router.post('/teacher',createTeacher);
 //parent
 
 router.get('/getparentstu/:id', getParentStu);
+// router.get('/getpaymentstu/:id', getParentStu);
+router.get('/getattendece/:id', getattendeceAtt);
 
 
 //other
