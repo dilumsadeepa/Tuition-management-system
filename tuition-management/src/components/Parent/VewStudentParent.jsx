@@ -52,7 +52,10 @@ const ViewStudentParent = () => {
                             <div className="row mb-3 mt-3">
                                 <h1>Student Data</h1>
                                 <div className="col-sm-12 mb-5 mt-3">
-                                    <button type="button" class="btn btn-success">Notices</button>
+                                <a class="nav-link" href="/notice">
+                                <button type="button" class="btn btn-success">Notices</button> 
+                                </a>
+                                    
                                     <div className="table-responsive">
                                         <table className="table">
                                             <thead>
@@ -77,7 +80,7 @@ const ViewStudentParent = () => {
                                                     <td>{stu.sgender}</td>
                                                     <td>{stu.snic}</td>
                                                     <td><Link to={`/paymentp/${stu.id}`} className='btn btn-info'>Pament</Link></td>
-                                                    <td><Link to={`/attendence/${stu.id}`} className='btn btn-info'>Attendence</Link></td>
+                                                    <td><Link to={`/pattendece/${stu.id}`} className='btn btn-info'>Attendence</Link></td>
                                                 </tr>
                                                 )}
                                             </tbody>
