@@ -6,16 +6,13 @@ import Sidebar from './AdminSidebar';
 import Dashhead from './Dashhead';
 
 const AddTeacher = () => {
-  const [t_userid, setTeacherId] = useState("");
-  const [t_fullname, setFullName] = useState("");
-  const [t_address, setAddress] = useState("");
-  const [t_gender, setGender] = useState("");
-  const [t_nic, setNic] = useState("");
-  const [t_education, setEducation] = useState("");
-  const [t_dis, setDescription] = useState("");
-  const [succ, setsucc] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [tel, setTel] = useState("");
+  const [password, setPassword] = useState("");
+  const role = 3;
   const [errors, setErrors] = useState({});
-
+  const [succ, setSucc] = useState("");
   const navigate = useNavigate();
 
   // Register user
@@ -25,55 +22,38 @@ const AddTeacher = () => {
     const validationErrors = {};
 
     // register validation
-    if (t_userid.trim() === "") {
-      validationErrors.teacherid = "Teacher ID is required";
+    if (username.trim() === "") {
+      validationErrors.username = "User name is required";
     }
-    if (t_userid.trim() === "") {
-      validationErrors.fullname = "Full Name is required";
+    if (email.trim() === "") {
+      validationErrors.email = "Email is required";
     }
-    if (t_address.trim() === "") {
-      validationErrors.address = "Address is required";
+    if (tel.trim() === "") {
+      validationErrors.tel = "Telephone number is required";
     }
-    if (!t_gender) {
-      validationErrors.gender = "Gender is required";
+    if (password.trim() === "") {
+      validationErrors.password = "Password is required";
     }
-    if (t_nic.trim() === "") {
-      validationErrors.nic = "NIC is required";
-    }
-    if (t_education.trim() === "") {
-      validationErrors.education = "Education is required";
-    }
-    if (t_dis.trim() === "") {
-        validationErrors.description = "Description is required";
-      }
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
       try {
-        await axios.post(`${Apiurl}/teacher/`, {
-          t_userid,
-          t_fullname,
-          t_address,
-          t_gender,
-          t_nic,
-          t_education,
-          t_dis
+        await axios.post(`${Apiurl}/users/`, {
+          username,
+          email,
+          tel,
+          password,
+          role
         });
 
-        navigate("/addteacher");
-        setsucc("Teacher added success!");
-        setErrors(false)
-
-    // Clear form fields
-      setTeacherId("");
-      setFullName("");
-      setAddress("");
-      setGender("");
-      setNic("");
-      setEducation("");
-      setDescription("");
-        
+        navigate(`/teacherdetails?email=${email}`);
+        setSucc("Teacher added successfully!");
+        setErrors({});
+        setUsername("");
+        setEmail("");
+        setTel("");
+        setPassword("");
       } catch (error) {
         console.log(error);
       }
@@ -82,138 +62,79 @@ const AddTeacher = () => {
 
   return (
     <section>
-      {/* <!-- Dashboard --> */}
+      {/* Dashboard */}
       <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
         <Sidebar />
 
-        {/* <!-- Main content --> */}
+        {/* Main content */}
         <div className="h-screen flex-grow-1 overflow-y-lg-auto">
-          {/* <!-- Header --> */}
+          {/* Header */}
           <Dashhead />
 
-          {/* <!-- Main --> */}
+          {/* Main */}
           <main className="py-6 bg-surface-secondary">
             <div className="container">
               <h2>Add Teachers</h2>
-              {succ.length > 0 &&
-                                        <>
-                                            <div class="alert alert-success alert-dismissible fade show">
-                                                
-                                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                                    <strong>Success!</strong> {succ}
-                                            </div>
-                                        </>
-                                    }
+              {succ.length > 0 && (
+                <div className="alert alert-success alert-dismissible fade show">
+                  <button type="button" className="btn-close" data-bs-dismiss="alert"></button>
+                  <strong>Success!</strong> {succ}
+                </div>
+              )}
 
               <div className="row mt-5">
                 <div className="col-sm-8 debox">
                   <form onSubmit={addTeacher}>
                     <div className="mb-3 mt-3">
-                      <label className="form-label">Teacher ID:</label>
+                      <label className="form-label">User Name:</label>
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Enter Teacher ID"
-                        value={t_userid}
-                        onChange={(e) => setTeacherId(e.target.value)}
+                        placeholder="Enter User name"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                       />
-                      {errors.teacherid && <p style={{ color: 'red' }} className="error">{errors.teacherid}</p>}
+                      {errors.username && <p style={{ color: 'red' }} className="error">{errors.username}</p>}
                     </div>
 
                     <div className="mb-3 mt-3">
-                      <label className="form-label">Teacher Full Name:</label>
+                      <label className="form-label">Email:</label>
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Enter Teacher Full Name"
-                        value={t_fullname}
-                        onChange={(e) => setFullName(e.target.value)}
+                        placeholder="Enter Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                       />
-                      {errors.fullname && <p style={{ color: 'red' }} className="error">{errors.fullname}</p>}
+                      {errors.email && <p style={{ color: 'red' }} className="error">{errors.email}</p>}
                     </div>
 
                     <div className="mb-3 mt-3">
-                      <label className="form-label">Address</label>
+                      <label className="form-label">Telephone</label>
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Enter address"
-                        value={t_address}
-                        onChange={(e) => setAddress(e.target.value)}
+                        placeholder="Enter Phone number"
+                        value={tel}
+                        onChange={(e) => setTel(e.target.value)}
                       />
-                      {errors.address && <p style={{ color: 'red' }} className="error">{errors.address}</p>}
+                      {errors.tel && <p style={{ color: 'red' }} className="error">{errors.tel}</p>}
                     </div>
 
                     <div className="mb-3 mt-3">
-                      <label className="form-label">Gender</label><br />
-                      <div className="form-check form-check-inline">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="gender"
-                          id="male"
-                          value="male"
-                          checked={t_gender === "male"}
-                          onChange={(e) => setGender(e.target.value)}
-                        />
-                        <label className="form-check-label" htmlFor="male">Male</label>
-                      </div>
-                      <br />
-                      <div className="form-check form-check-inline">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="gender"
-                          id="female"
-                          value="female"
-                          checked={t_gender === "female"}
-                          onChange={(e) => setGender(e.target.value)}
-                        />
-                        <label className="form-check-label" htmlFor="female">Female</label>
-                      </div>
-                      {errors.gender && <p style={{ color: 'red' }} className="error">{errors.gender}</p>}
-                    </div>
-
-                    <br /><hr />
-                    <h3>Personal Information</h3>
-                    <br />
-
-                    <div className="mb-3 mt-3">
-                      <label className="form-label">NIC:</label>
+                      <label className="form-label">Password</label>
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Enter National Identity Card Number"
-                        value={t_nic}
-                        onChange={(e) => setNic(e.target.value)}
+                        placeholder="Enter Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                       />
-                      {errors.nic && <p style={{ color: 'red' }} className="error">{errors.nic}</p>}
-                    </div>
-
-                    <div className="mb-3 mt-3">
-                      <label className="form-label">Education:</label>
-                      <textarea
-                        className="form-control"
-                        placeholder="Enter education qualifications"
-                        value={t_education}
-                        onChange={(e) => setEducation(e.target.value)}
-                      ></textarea>
-                      {errors.education && <p style={{ color: 'red' }} className="error">{errors.education}</p>}
-                    </div>
-
-                    <div className="mb-3 mt-3">
-                      <label className="form-label">Description:</label>
-                      <textarea
-                        className="form-control"
-                        placeholder="Enter some details"
-                        value={t_dis}
-                        onChange={(e) => setDescription(e.target.value)}
-                      ></textarea>
-                       {errors.description && <p style={{ color: 'red' }} className="error">{errors.description}</p>}
+                      {errors.password && <p style={{ color: 'red' }} className="error">{errors.password}</p>}
                     </div>
 
                     <div className="mb-5 mt-5">
-                      <button type="submit" className="debtn w-100">Submit</button>
+                      <button type="submit" className="debtn w-100">Next</button>
                     </div>
                   </form>
                   {errors.server && <p style={{ color: 'red' }} className="error">{errors.server}</p>}
