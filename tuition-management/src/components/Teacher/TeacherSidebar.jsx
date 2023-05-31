@@ -62,11 +62,11 @@ const TeacherSidebar =() =>{
                         {/* <!-- Navigation --> */}
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="/admin">
+                                <a class="nav-link" href="/teacher">
                                     <i class="bi bi-house"></i> Dashboard
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            {/* <li class="nav-item">
                                 <a class="nav-link" href="/adminstudent">
                                 <i class='bx bx-user'></i> Students
                                 </a>
@@ -75,17 +75,17 @@ const TeacherSidebar =() =>{
                                 <a class="nav-link" href="/adminteacher">
                                 <i class="fa-solid fa-chalkboard-user"></i>Teachers
                                 </a>
-                            </li>
+                            </li> */}
                             <li class="nav-item">
-                                <a class="nav-link" href="/course">
-                                <i class="bi bi-book-half"></i> Courses
+                                <a class="nav-link" href="/teachercourse">
+                                <i class="bi bi-book-half"></i>My Courses
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            {/* <li class="nav-item">
                                 <a class="nav-link" href="/salary">
                                 <i class="bi bi-cash-stack"></i> Salary
                                 </a>
-                            </li>
+                            </li> */}
                           
                             <li class="nav-item">
                                 <a class="nav-link" href="/notice">
