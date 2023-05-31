@@ -49,40 +49,19 @@ import {
   deletespre,
 } from "../controllers/Salarypresent.js";
 import { getsals } from "../controllers/SalaryController.js";
-import { getNotices, deleteNotice, viewNotice, getNoticesCount } from "../controllers/NoticeController.js";
-import { getTimetables, createTimetable, deleteTimetable, viewTimetable } from "../controllers/TimetableController.js";
-import { getNewTimetables, createNewTimetable, deleteNewTimetable, viewNewTimetable, timecourseId } from "../controllers/NewtimetableController.js";
+import {
+  getNotices,
+  deleteNotice,
+  viewNotice,
+  getNoticesCount,
+} from "../controllers/NoticeController.js";
+import {
+  getTimetables,
+  createTimetable,
+  deleteTimetable,
+  viewTimetable,
+} from "../controllers/TimetableController.js";
 import { getCts } from "../controllers/CourseteacherController.js";
- 
-const router = express.Router();
- 
-router.get('/users', getUsers);
-router.get('/users/:id', getUserById);
-router.post('/users', createUser);
-router.patch('/users/:id', updateUser);
-router.delete('/users/:id', deleteUser);
- 
-//admin
-router.get('/astudata', getStuData);
-router.get('/stucourse', stucourse);
-router.post('/crestecourse', createCourse);
-router.get('/course', getCos);
-router.get('/getCts', getCts);
-router.get('/coursedata', CourseData);
-router.get('/coursename/:id', courseName);
-router.delete('/deletecourse/:id', deleteCourse);
-router.patch('/updateCS/:id', updateCS);
-router.get('/salary', getsals);
-router.post('/createSpresent', createPre);
-router.get('/salarypresent', getSPs);
-router.patch('/updatepre/:id', updateSP);
-router.delete('/deletespre/:id', deletespre);
-router.get('/student/:id', getStudentById);
-router.get('/couserbystu/:id', getCourseById);
-router.get('/stcoid/:id', getStudentcourseId);
-router.get('/allstqr', getAllStudentqr);
-router.get('/getpadata/:id', getPadata);
-router.post('/parent', createParent);
 
 const router = express.Router();
 
@@ -150,11 +129,5 @@ router.get("/notice/byId/:id", viewNotice);
 router.get("/timetable", getTimetables);
 router.delete("/timetable/:id", deleteTimetable);
 router.get("/timetable/byId/:id", viewTimetable);
-
-router.get('/newtimetable', getNewTimetables);
-router.delete('/newtimetable/:id', deleteNewTimetable);
-router.get('/newtimetable/byId/:id', viewNewTimetable);
-router.post('/newtimetable/create', createNewTimetable);
-router.get('/newtimetableid/:id', timecourseId ); 
 
 export default router;
