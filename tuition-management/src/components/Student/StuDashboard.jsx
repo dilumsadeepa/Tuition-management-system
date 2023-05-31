@@ -40,13 +40,16 @@ const StudentDashboard = () => {
                         <div class="container-fluid">
                             {/* <!-- Card stats --> */}
                             <div class="row g-6 mb-6">
-                                <div class="col-xl-3 col-sm-6 col-12">
+
+                         
+                            <div class="col-xl-3 col-sm-6 col-12">
+                            <a  href="/classeslist">
                                     <div class="card shadow border-0">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Classes</span>
-                                                    <span class="h3 font-bold mb-0">Rs 750.90</span>
+                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2"><h1>Classes</h1></span>
+                                                    <span class="h3 font-bold mb-0"><h4>Discover available classes for you to explore</h4></span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
@@ -60,14 +63,18 @@ const StudentDashboard = () => {
                                             </div>
                                         </div>
                                     </div>
+                                    </a>
                                 </div>
+
+                                
                                 <div class="col-xl-3 col-sm-6 col-12">
+                                <a  href="/Profile">
                                     <div class="card shadow border-0">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">profile</span>
-                                                    <span class="h3 font-bold mb-0">1500</span>
+                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2"><h1>profile</h1></span>
+                                                    <span class="h3 font-bold mb-0"><h4>your personal details</h4></span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
@@ -80,14 +87,16 @@ const StudentDashboard = () => {
                                             </div>
                                         </div>
                                     </div>
+                                    </a>
                                 </div>
                                 <div class="col-xl-3 col-sm-6 col-12">
+                                <a  href="/attendance">
                                     <div class="card shadow border-0">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Attendance</span>
-                                                    <span class="h3 font-bold mb-0">10</span>
+                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2"><h1>Attendance</h1></span>
+                                                    <span class="h3 font-bold mb-0"></span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
@@ -100,14 +109,15 @@ const StudentDashboard = () => {
                                             </div>
                                         </div>
                                     </div>
+                                    </a>
                                 </div>
                                 <div class="col-xl-3 col-sm-6 col-12">
                                     <div class="card shadow border-0">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Learning Materials</span>
-                                                    <span class="h3 font-bold mb-0">30</span>
+                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2"><h1>Learning Materials</h1></span>
+                                                    <span class="h3 font-bold mb-0"></span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
