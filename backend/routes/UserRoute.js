@@ -56,33 +56,6 @@ import { getCts } from "../controllers/CourseteacherController.js";
  
 const router = express.Router();
  
-router.get('/users', getUsers);
-router.get('/users/:id', getUserById);
-router.post('/users', createUser);
-router.patch('/users/:id', updateUser);
-router.delete('/users/:id', deleteUser);
- 
-//admin
-router.get('/astudata', getStuData);
-router.get('/stucourse', stucourse);
-router.post('/crestecourse', createCourse);
-router.get('/course', getCos);
-router.get('/getCts', getCts);
-router.get('/coursedata', CourseData);
-// router.get('/coursename/:id', courseName);
-router.delete('/deletecourse/:id', deleteCourse);
-router.patch('/updateCS/:id', updateCS);
-router.get('/salary', getsals);
-router.post('/createSpresent', createPre);
-router.get('/salarypresent', getSPs);
-router.patch('/updatepre/:id', updateSP);
-router.delete('/deletespre/:id', deletespre);
-router.get('/student/:id', getStudentById);
-router.get('/couserbystu/:id', getCourseById);
-router.get('/stcoid/:id', getStudentcourseId);
-router.get('/allstqr', getAllStudentqr);
-router.get('/getpadata/:id', getPadata);
-router.post('/parent', createParent);
 
 router.get("/users", getUsers);
 router.get("/users/:id", getUserById);

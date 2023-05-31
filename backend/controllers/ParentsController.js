@@ -53,7 +53,7 @@ export const getParentStu = async (req, res) => {
   export const getattendeceAtt = async (req, res) => {
     const id = req.params.id;
     const sql =
-      "SELECT c.courseid, coursename FROM courses c INNER JOIN student s ON s.userId = c.coursesid INNER JOIN parents p ON s.stuid = p.stuid WHERE p.id = '" +
+    "SELECT a.acourseid, a.aday, a.atime FROM attendance a JOIN student s ON a.studentId = s.stuid JOIN courses c ON a.courseId = c.courseid WHERE s.stuid = 'student_id' AND c.courseid = 'course_id' " +
       id +
       "'";
   

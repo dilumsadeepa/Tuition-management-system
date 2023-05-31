@@ -57,6 +57,8 @@ import Teacher from "./components/Teacher/Teacher";
 import AddTeacherDetails from "./components/Admin/AddTeacherDetails";
 import TeacherCourse from "./components/Teacher/TeacherCourse";
 
+import Attendecep from "./components/Parent/Attendencep";
+
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
 
@@ -112,7 +114,7 @@ function App() {
           <Route path="parent" element={<ParentDashboard />} />
           <Route path="parentstudent" element={<ViewStudentParent />} />
           <Route path="paymentp/:id" element={<Payment />} />
-          <Route path="attendeces/:id" element={<Payment />} />
+          <Route path="pattendece/:id" element={<Attendecep />} />
 
           {/* Common */}
 
