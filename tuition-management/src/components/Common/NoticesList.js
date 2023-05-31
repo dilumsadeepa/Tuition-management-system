@@ -196,29 +196,11 @@ function NoticesList() {
                         <div class="container">
 
                             <div className="row">
-                                <div class="col-xl-4 col-sm-6 col-12">
-                                    <div class="card shadow border-0">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col py-3">
-                                                    {/* <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span> */}
-                                                    <a href="/notice/create" className="btn-grad">Create Notice</a>
-                                                </div>
-                                                <div class="col-auto py-5">
-                                                    <div class="icon icon-shape text-white text-lg rounded-circle" style={{backgroundColor: "#0C4160"}}>
-                                                    <i class="bi bi-book-half"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {/* <div class="mt-2 mb-0 text-sm">
-                                                <span class="badge badge-pill bg-soft-success text-success me-2">
-                                                    <i class="bi bi-arrow-up me-1"></i>13%
-                                                </span>
-                                                <span class="text-nowrap text-xs text-muted">Since last month</span>
-                                            </div> */}
-                                        </div>
-                                    </div>
+                            <div class="d-flex mt-3">
+                                <div class="p-2 flex-grow-1"><h2>Notices</h2></div>
+                                <div class="p-2"><a href="notice/create" className="btn-grad">Create Notice</a></div>
                                 </div>
+
                             </div>
 
 
@@ -246,9 +228,9 @@ function NoticesList() {
                                                     <td>
                                                      
                                                      {/* <button className='btn btn-sm btn-warning' onClick={()=> navigate(`/notice/${notice.id}`)}>View</button> */}
-                                                     <button className='btn btn-sm btn-warning' onClick={() => handleShowModal(notice.id)}>View</button>
-                                                     <button className='btn btn-sm btn-info' onClick={() => {navigate(`/notice/edit/${notice.id}`)}}>Edit</button>
-                                                     <button className='btn btn-sm btn-danger' onClick={()=> handleDeleteNotice(notice.id)}>Delete</button>
+                                                     <button className='btn btn-sm btn-secondary me-1 view-btn' onClick={() => handleShowModal(notice.id)}><i className="fa-solid fa-eye"></i></button>
+                                                     <button className='btn btn-sm btn-secondary me-1 view-btn' onClick={() => {navigate(`/notice/edit/${notice.id}`)}}><i className="fa-solid fa-pen-to-square"></i></button>
+                                                     <button className='btn btn-sm btn-secondary me-1 delete-btn' onClick={()=> handleDeleteNotice(notice.id)}><i className="fa-solid fa-trash"></i></button>
                                                      </td>
                                                 </tr>
                                                 ))}

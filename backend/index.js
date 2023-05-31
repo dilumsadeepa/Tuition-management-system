@@ -3,8 +3,9 @@ import cors from "cors";
 import UserRoute from "./routes/UserRoute.js";
 import NoticeRoute from "./routes/NoticeRoute.js";
 import TimetableRoute from "./routes/TimetableRoute.js";
-import { fileURLToPath } from "url";
-import path from "path";
+import NewtimetableRoute from "./routes/NewtimetableRoute.js";
+import { fileURLToPath } from 'url';
+import path from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -38,7 +39,8 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(cors());
 app.use(express.json());
 app.use(UserRoute);
-// app.use(NoticeRoute);
-// app.use(TimetableRoute);
-
-app.listen(4000, () => console.log("Server up and running..."));
+app.use(NoticeRoute);
+app.use(TimetableRoute);
+app.use(NewtimetableRoute);
+ 
+app.listen(4000, ()=> console.log('Server up and running...'));

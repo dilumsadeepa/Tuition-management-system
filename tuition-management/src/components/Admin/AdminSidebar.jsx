@@ -94,10 +94,21 @@ const Sidebar =() =>{
                             </li> */}
                             <li class="nav-item">
                                 <a class="nav-link" href="/notice">
-                                    <i class="bi bi-chat"></i> Notices
+                                    <i class="fa-regular fa-note-sticky"></i> Notices
                                     <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">{noticesCount}</span>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/newtimetable">
+                                <i class="fa-solid fa-table-cells"></i> Time Table
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/timetable">
+                                <i class="fa-solid fa-table-cells"></i> Time Table V2
+                                </a>
+                            </li>
+
                             {/* <li class="nav-item">
                                 <a class="nav-link" href="#s">
                                     <i class="bi bi-bookmarks"></i> Collections
