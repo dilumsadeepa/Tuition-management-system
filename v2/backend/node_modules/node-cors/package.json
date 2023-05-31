@@ -1,0 +1,22 @@
+{
+  "name": "node-cors",
+  "version": "1.0.0",
+  "description": "a middleware for resolve cross domain",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/silenceboychen/node-cors.git"
+  },
+  "keywords": [
+    "CORS"
+  ],
+  "author": "silenceboy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/silenceboychen/node-cors/issues"
+  },
+  "homepage": "https://github.com/silenceboychen/node-cors#readme"
+}
