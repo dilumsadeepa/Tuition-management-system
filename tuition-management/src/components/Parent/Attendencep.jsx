@@ -24,7 +24,6 @@ const Attendecep = () => {
             console.log(response.data);
             setAttendece(response.data);
             
-            
         } catch (error) {
             console.log("error in getting data")
         }
