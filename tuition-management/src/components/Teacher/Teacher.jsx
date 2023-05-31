@@ -1,11 +1,11 @@
 import React from 'react';
 // import { useCookies } from 'react-cookie';
 
-import Sidebar from './AdminSidebar';
+import TeacherSidebar from './TeacherSidebar';
 import Dashhead from './Dashhead';
 
 
-const Admin = () =>{
+const Teacher = () =>{
 
     // const [cookies] = useCookies(['user']);
 
@@ -15,7 +15,7 @@ const Admin = () =>{
             {/* <!-- Dashboard --> */}
             <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
                 
-                <Sidebar />
+                <TeacherSidebar />
 
 
                 {/* <!-- Main content --> */}
@@ -125,4 +125,4 @@ const Admin = () =>{
     )
 }
 
-export default Admin;
+export default Teacher;

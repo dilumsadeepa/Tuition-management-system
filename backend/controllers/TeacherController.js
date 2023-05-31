@@ -12,7 +12,7 @@ export const getTes = async(req, res) =>{
 export const createTeacher = async(req, res) =>{
     try {
         await Teacher.create(req.body);
-        res.status(201).json({msg: "Teacher Added!"});
+        res.status(200).json({msg: "Teacher Added!"});
     } catch (error) {
         console.log(error.message);
     }
