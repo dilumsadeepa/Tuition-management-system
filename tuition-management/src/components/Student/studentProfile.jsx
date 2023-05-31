@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from 'react';
+
 import axios from 'axios';
 import Apiurl from '../Apiurl';
 
 import Sidebar from './StudentSidebar';
 import Dashhead from './Dashhead';
+import { useCookies } from 'react-cookie';
+
+
 
 ///Apiurl/students/profile/1
 
 const StudentProfile = () => {
-  const [student, setStudent] = useState(null);
+  const [student, setStudent] = useState([]);
+  const [cookies] = useCookies(['user']);
+
 
   useEffect(() => {
     const fetchStudentProfile = async () => {
       try {
-        const response = await axios.get(`${Apiurl}/student/1`); // Replace with your API endpoint to retrieve student profile by ID
+        const response = await axios.get(`${Apiurl}/student/${cookies.id}`); // Replace with your API endpoint to retrieve student profile by ID
         setStudent(response.data);
       } catch (error) {
         console.log('Error fetching student profile:', error);
