@@ -44,6 +44,11 @@ import ParentDashboard from "./components/Parent/Parent";
 import ViewStudentParent from "./components/Parent/VewStudentParent";
 
 import Payment from "./components/Parent/Payment";
+import EnrollPage from "./components/Student/EnrollPage";
+import StudentProfile from "./components/Student/studentProfile";
+import StuDashboard from "./components/Student/StuDashboard";
+
+import Teacher from "./components/Teacher/Teacher";
 
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
@@ -77,13 +82,19 @@ function App() {
           <Route path="editcourse/:id" element={<EditCourse />} />
 
           {/* Teacher part */}
-          <Route path="teacher" element={<ViewTeacher />}></Route>
+          <Route path="teacher" element={<Teacher />}></Route>
 
           {/* student part */}
           {/* <Route path="StudentLogin" element={<Login />} /> */}
           <Route path="studentdata" element={<StudentDetils />} />
           <Route path="classeslist" element={<Classes />} />
           <Route path="Attendance" element={<Attendance />} />
+          <Route path="Enrollpage" element={<EnrollPage />} />
+          <Route path="profile" element={<StudentProfile />} />
+
+          <Route path="StuDashboard" element={<StuDashboard />} />
+
+
 
           {/* <Route path="StudentLogin" element={<Login />} /> */}
 

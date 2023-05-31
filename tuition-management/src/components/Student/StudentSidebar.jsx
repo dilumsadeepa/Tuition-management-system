@@ -62,12 +62,12 @@ const Sidebar =() =>{
                         {/* <!-- Navigation --> */}
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="/admin">
+                                <a class="nav-link" href="/StuDashboard">
                                     <i class="bi bi-house"></i> Dashboard
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/adminstudent">
+                                <a class="nav-link" href="/Profile">
                                 <i class='bx bx-user'></i> Profile
                                 </a>
                             </li>
@@ -77,7 +77,7 @@ const Sidebar =() =>{
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/salary">
+                                <a class="nav-link" href="/attendance">
                                 <i class="bi bi-cash-stack"></i> Attendance
                                 </a>
                             </li>
