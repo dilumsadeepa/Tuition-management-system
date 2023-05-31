@@ -98,6 +98,16 @@ export const getAllStudentqr = async(req, res) =>{
 
 //student
 
+export const createStudent = async(req, res) =>{
+    try {
+        console.log(req.body);
+        await Student.create(req.body);
+        res.status(201).json({msg: "Students Created"});
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 
 
 

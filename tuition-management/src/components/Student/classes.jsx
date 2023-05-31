@@ -1,71 +1,63 @@
-import * as React from 'react';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Button from '@mui/material/Button';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import Apiurl from '../Apiurl';
 
 import Sidebar from './StudentSidebar';
 import Dashhead from './Dashhead';
-
+import axios from 'axios';
 
 export default function DisableElevation() {
-  
+  const [courses, setCourses] = useState([]);
+
+  const getcou = async (e) => {
+    try {
+      const response = await axios.get(`${Apiurl}/coursedata`);
+      setCourses(response.data);
+    } catch (error) {
+      console.log("error in getting data")
+    }
+  }
+
+  useEffect(() => {
+    getcou();
+  }, [])
+
   return (
-<section>
-    {/* <!-- Dashboard --> */}
-    <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+    <section>
+      {/* Dashboard */}
+      <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+        {/* Sidebar */}
+        <Sidebar />
 
-    <Sidebar />
+        {/* Main content */}
+        <div className="h-screen flex-grow-1 overflow-y-lg-auto">
+          {/* Header */}
+          <Dashhead />
 
+          <main>
+            <div className='container'>
+              <div className="row mt-3 mb-3">
+                <h2>Classes</h2>
+              </div>
 
-    {/* <!-- Main content --> */}
-    <div class="h-screen flex-grow-1 overflow-y-lg-auto">
-
-      {/* <!-- Header --> */}
-      <Dashhead />
-
-
-
-    <div className="Clist-background">
-    <ButtonGroup
-      disableElevation
-      variant="contained"
-      aria-label="Disabled elevation buttons"
-    >
-
-       <div><h1>classes</h1></div> 
-
-
-<      div style={{ display: 'flex', flexDirection: 'column' ,justifyContent: 'space-evenly', padding:60 , margin:100}}>
-      <Button> Ordinary Level</Button>
-
-      <Button>Grade 6</Button>
-      <Button>Grade 7</Button>
-      <Button>Grade 8</Button>
-      <Button>Grade 9</Button>
-      <Button>Grade 10</Button>
-      <Button>Grade 11</Button>
-      
+              <div className="row mb-3 mt-3">
+                <div className="col-sm-3">
+                  {courses.map((course) => (
+                    <div className="card" key={course.id}>
+                      <img src={course.coursebanner} className="card-img-top" alt="..." />
+                      <div className="card-body">
+                        <h5 className="card-title">{course.coursename}</h5>
+                        <p className="card-text">{course.courseprice}</p>
+                        <Link to={`/EnrollPage/${course.id}`} className="btn btn-primary">Enroll to class</Link>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
       </div>
-
-      <div style={{ display: 'flex', flexDirection: 'column' ,justifyContent: 'space-evenly',padding:50 , margin:100 }}>
-      <Button> Advancved Level </Button>
-
-      <Button>Combined Maths</Button>
-      <Button>Chemistry</Button>
-      <Button>Physics</Button>
-      <Button>Biology</Button>
-      <Button>ICT</Button>
-      <Button>Science for technology</Button>
-      <Button>Engineering technology</Button>
-      <Button>Biosystem technology</Button>
-      <Button>Accounting</Button>
-
-      </div>
-    </ButtonGroup>
-
-    </div>
-    </div>
-    </div>
     </section>
   );
-
 }

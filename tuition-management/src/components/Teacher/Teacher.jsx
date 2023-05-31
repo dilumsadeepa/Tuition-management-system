@@ -1,39 +1,33 @@
 import React from 'react';
 // import { useCookies } from 'react-cookie';
 
-import Sidebar from './StudentSidebar';
+import TeacherSidebar from './TeacherSidebar';
 import Dashhead from './Dashhead';
 
 
-const student = () =>{
-    
+const Teacher = () =>{
+
     // const [cookies] = useCookies(['user']);
 
     return(
-
-
-        
         <section>
 
             {/* <!-- Dashboard --> */}
             <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
                 
-                <Sidebar />
+                <TeacherSidebar />
 
-                
+
                 {/* <!-- Main content --> */}
                 <div class="h-screen flex-grow-1 overflow-y-lg-auto">
                     
                     {/* <!-- Header --> */}
                     <Dashhead />
-            
-                    
+
                     {/* <!-- Main --> */}
                     <main class="py-6 bg-surface-secondary">
-                    
                         <div class="container-fluid">
                             {/* <!-- Card stats --> */}
-                            
                             <div class="row g-6 mb-6">
                                 <div class="col-xl-3 col-sm-6 col-12">
                                     <div class="card shadow border-0">
@@ -41,7 +35,7 @@ const student = () =>{
                                             <div class="row">
                                                 <div class="col">
                                                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span>
-                                                    <span class="h3 font-bold mb-0">$750.90</span>
+                                                    <span class="h3 font-bold mb-0">Rs 750.90</span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
@@ -51,7 +45,7 @@ const student = () =>{
                                             </div>
                                             <div class="mt-2 mb-0 text-sm">
                                                 
-                                                <span class="text-nowrap text-xs text-muted">Since last month</span>
+                                                {/* <span class="text-nowrap text-xs text-muted">Since last month</span> */}
                                             </div>
                                         </div>
                                     </div>
@@ -119,19 +113,16 @@ const student = () =>{
                             </div>
                             
                         </div>
-                        
                     </main>
-                    
                 </div>
                 
                  
             </div>
 
-            
+
         </section>
         
-    
     )
 }
 
-export default student;
+export default Teacher;

@@ -1,7 +1,25 @@
-import React from 'react';
+import React, {useEffect, useState} from "react";
+import axios from "axios";
+import Apiurl from '../Apiurl';
 
 
-const Sidebar =() =>{
+const TeacherSidebar =() =>{
+
+    const [noticesCount, setNoticesCount] = useState(0);
+
+    useEffect(() => {
+
+        const getNoticesCount = async () => {
+            try {
+              const response = await axios.get(`${Apiurl}/notice/count`);
+              setNoticesCount(response.data.count);
+            } catch (error) {
+              console.log(error.message);
+            }
+          };
+      getNoticesCount();
+    }, []);
+
 
     return(
         <>
@@ -14,7 +32,7 @@ const Sidebar =() =>{
                     </button>
                     {/* <!-- Brand --> */}
                     <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="#s">
-                        <img src="https://preview.webpixels.io/web/img/logos/clever-primary.svg" alt="..." />
+                        <img className='alogo' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTADFVTNnNeEXBDH49LSt_uCc6t0tB4COMVKomQ86MCR6PtjjaL6kA0stgReXN4PQT-CWM&usqp=CAU" alt="..." />
                     </a>
                     {/* <!-- User menu (mobile) --> */}
                     <div class="navbar-user d-lg-none">
@@ -44,31 +62,44 @@ const Sidebar =() =>{
                         {/* <!-- Navigation --> */}
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="#s">
+                                <a class="nav-link" href="/admin">
                                     <i class="bi bi-house"></i> Dashboard
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#s">
-                                    <i class="bi bi-bar-chart"></i> Analitycs
+                                <a class="nav-link" href="/adminstudent">
+                                <i class='bx bx-user'></i> Students
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#s">
-                                    <i class="bi bi-chat"></i> Messages
-                                    <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">6</span>
+                                <a class="nav-link" href="/adminteacher">
+                                <i class="fa-solid fa-chalkboard-user"></i>Teachers
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="/teachercourse">
+                                <i class="bi bi-book-half"></i> Courses
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/salary">
+                                <i class="bi bi-cash-stack"></i> Salary
+                                </a>
+                            </li>
+                          
+                            <li class="nav-item">
+                                <a class="nav-link" href="/notice">
+                                    <i class="bi bi-chat"></i> Notices
+                                    <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">{noticesCount}</span>
+                                </a>
+                            </li>
+                            {/* <li class="nav-item">
                                 <a class="nav-link" href="#s">
                                     <i class="bi bi-bookmarks"></i> Collections
                                 </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#s">
-                                    <i class="bi bi-people"></i> Users
-                                </a>
-                            </li>
+                            </li> */}
+                            
+                        
                         </ul>
                         {/* <!-- Divider --> */}
                         <hr class="navbar-divider my-5 opacity-20" />
@@ -171,4 +202,4 @@ const Sidebar =() =>{
     )
 }
 
-export default Sidebar;
+export default TeacherSidebar;

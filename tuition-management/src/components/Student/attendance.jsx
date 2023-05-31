@@ -1,23 +1,55 @@
-import React, { useState } from 'react';
-import Calendar from 'react-calendar';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-function AttendanceCalendar() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+const AttendanceView = () => {
+  const [attendanceData, setAttendanceData] = useState([]);
 
-  // Function to handle date selection
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-    // Perform any additional actions based on the selected date
-    // Fetch attendance data for the selected date, etc.
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('/api/attendances'); // Replace '/api/attendances' with your actual API endpoint for fetching attendance data
+      setAttendanceData(response.data);
+    } catch (error) {
+      console.error('Error fetching attendance data:', error);
+    }
   };
 
   return (
     <div>
-      <h2>Student Attendance Calendar</h2>
-      <Calendar onChange={handleDateChange} value={selectedDate} />
-      {/* Add additional components or logic to display attendance information */}
+      <h2>Attendance Records</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>User ID</th>
+            <th>Course ID</th>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+          </tr>
+        </thead>
+        <tbody>
+          {attendanceData.map(attendance => (
+            <tr key={attendance.id}>
+              <td>{attendance.id}</td>
+              <td>{attendance.auserid}</td>
+              <td>{attendance.acourseid}</td>
+              <td>{attendance.aday}</td>
+              <td>{attendance.atime}</td>
+              <td>{attendance.astatus}</td>
+              <td>{attendance.createdAt}</td>
+              <td>{attendance.updatedAt}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
-}
+};
 
-export default AttendanceCalendar;
+export default AttendanceView;

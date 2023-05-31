@@ -35,7 +35,7 @@ const Admin = () =>{
                                             <div class="row">
                                                 <div class="col">
                                                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span>
-                                                    <span class="h3 font-bold mb-0">$750.90</span>
+                                                    <span class="h3 font-bold mb-0">Rs 750.90</span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">

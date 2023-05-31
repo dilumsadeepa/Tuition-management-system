@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, {useState, useEffect} from "react";
 import "./studentDetailsForm.css";
+import Apiurl from '../Apiurl';
+import axios from "axios";
+// import { useCookies } from 'react-cookie';
 
 import Sidebar from './StudentSidebar';
 import Dashhead from './Dashhead';
@@ -10,16 +13,54 @@ const StudentDetailsForm = () => {
 
 
 
-  const [id, setId] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  const [Level, setLevel] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Here you can submit the form data to your API or do something else with it
+  // const [cookies, setcookie] = usecookies(['user']);
+  const [id, setId] = useState("");
+  const [fullname, setfullname] = useState("");
+  const [nameini, setnameini] = useState("");
+  const [address, setsAddress] = useState("");
+  const [dob, setdob] = useState("");
+  const [gender, setgender] = useState("");
+  const [nic, setnic] = useState("");
+  const [createtime, setcreatetime] = useState("");
+  const [updatetime, setupdatetime] = useState("");
+  const [userid, setuserid] = useState("");
+
+
+//   useEffect(() =>{
+//     console.log(cookies.userId);
+//     if (cookies.user) {
+//       console.log("user idddddd"+cookies.userid);
+//     }
+// })
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  
+    const formData = {
+      id: id,
+      sfullname: fullname,
+      snamewithini: nameini,
+      saddress: address,
+      sdob: dob,
+      sgender: gender,
+      snic:nic,
+      createdAt:createtime,
+      updatedAt:updatetime,
+      userId:userid,
+    };
+
+    console.log(formData);
+  
+    axios.post(`${Apiurl}/studentdata`, formData)
+      .then(response => {
+        // Handle the response from the backend if needed
+        console.log(response.data);
+      })
+      .catch(error => {
+        // Handle any errors that occur during the request
+        console.error(error);
+      });
   };
 
   return (
@@ -55,30 +96,133 @@ const StudentDetailsForm = () => {
                   className="input-field"
                 />
               </div>
+
+              <div className="input-container">
+                <i class="bi bi-award-fill"></i>
+                <input
+                  type="text"
+                  id="ifullname"
+                  value={fullname}
+                  onChange={(e) => setfullname(e.target.value)}
+                  placeholder="Enter your FULL name"
+                  className="input-field"
+                />
+              </div>
               
               <div className="input-container">
                 <i class="fa-solid fa-user"></i>
                 <input
                   type="text"
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Enter your name"
+                  id="namewithini"
+                  value={nameini}
+                  onChange={(e) => setnameini(e.target.value)}
+                  placeholder="Enter your name with initials"
                   className="input-field"
                 />
               </div>
+
               <div className="input-container">
+                <i class="fa-solid fa-user"></i>
+                <input
+                  type="text"
+                  id="namewithini"
+                  value={address}
+                  onChange={(e) => setsAddress(e.target.value)}
+                  placeholder="Enter your address"
+                  className="input-field"
+                />
+              </div>
+
+
+              <div className="input-container">
+                <i class="fa-solid fa-user"></i>
+                <input
+                  type="text"
+                  id="namewithini"
+                  value={dob}
+                  onChange={(e) => setdob(e.target.value)}
+                  placeholder="Enter your birthday"
+                  className="input-field"
+                />
+              </div>
+
+              <div className="input-container">
+                <i class="fa-solid fa-user"></i>
+                <input
+                  type="text"
+                  id="namewithini"
+                  value={gender}
+                  onChange={(e) => setgender(e.target.value)}
+                  placeholder="Enter your gender"
+                  className="input-field"
+                />
+              </div>
+
+
+              <div className="input-container">
+                <i class="fa-solid fa-user"></i>
+                <input
+                  type="text"
+                  id="namewithini"
+                  value={nic}
+                  onChange={(e) => setnic(e.target.value)}
+                  placeholder="Enter your NIC no"
+                  className="input-field"
+                />
+              </div>
+
+
+              <div className="input-container">
+                <i class="fa-solid fa-user"></i>
+                <input
+                  type="text"
+                  id="namewithini"
+                  value={createtime}
+                  onChange={(e) => setcreatetime(e.target.value)}
+                  placeholder="Enter created time"
+                  className="input-field"
+                />
+              </div>
+
+              <div className="input-container">
+                <i class="fa-solid fa-user"></i>
+                <input
+                  type="text"
+                  id="namewithini"
+                  value={updatetime}
+                  onChange={(e) => setupdatetime(e.target.value)}
+                  placeholder="Enter updated time"
+                  className="input-field"
+                />
+              </div>
+
+
+              <div className="input-container">
+                <i class="fa-solid fa-user"></i>
+                <input
+                  type="text"
+                  id="namewithini"
+                  value={userid}
+                  onChange={(e) => setuserid(e.target.value)}
+                  placeholder="Enter your user id"
+                  className="input-field"
+                />
+              </div>
+
+
+
+              {/* <div className="input-container">
                 <i class="fa-solid fa-envelope"></i>
                 <input
-                  type="email"
+                  type="id"
                   id="email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => setuserid(e.target.value)}
                   placeholder="Enter your email"
                   className="input-field"
                 />
-              </div>
-              <div className="input-container">
+              </div> */}
+              {/* <div className="input-container">
                 <i class="fa-solid fa-phone"></i>
                 <input
                   type="tel"
@@ -109,7 +253,7 @@ const StudentDetailsForm = () => {
                   placeholder="Enter your educational level"
                   className="input-field"
                 />
-              </div>
+              </div> */}
 
               <button type="submit" className="submit-button">
                 Submit

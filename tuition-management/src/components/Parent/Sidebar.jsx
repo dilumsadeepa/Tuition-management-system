@@ -50,7 +50,7 @@ const Sidebar =() =>{
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="parentstudent">
-                                    <i class="bi bi-people"></i> View Student Data
+                                    <i class="bi bi-people"></i> View Student Deatils 
                                 </a>
                             </li>
                             <li class="nav-item">

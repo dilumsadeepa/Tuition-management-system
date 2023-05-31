@@ -3,6 +3,7 @@ import axios from 'axios';
 import Apiurl from '../Apiurl';
 import Sidebar from './AdminSidebar';
 import Dashhead from './Dashhead';
+import { Link } from 'react-router-dom';
 
 
 
@@ -101,7 +102,7 @@ const Course = () =>{
                                                 <td>{course.coursename}</td>
                                                 <td>{course.courseprice}</td>
                                                 <td>{course.teacher.t_fullname}</td>
-                                                <td><button type='button' className='btn btn-primary mr-5'>Edit</button><button className='btn btn-danger' onClick={()=> deletecourse(course.id)}>Delete</button></td>
+                                                <td><Link to={`/editcourse/${course.id}`} className='btn btn-info'>Edit</Link><button className='btn btn-danger' onClick={()=> deletecourse(course.id)}>Delete</button></td>
                                                 </tr>
                                             )}
                                             </tbody>

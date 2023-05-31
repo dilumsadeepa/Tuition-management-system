@@ -36,8 +36,7 @@ const ViewStudent = () =>{
         if (stu['email'] === val || stu['tel'] === val) {
             console.log([stu]);
             setData([stu]);
-        }else{
-            setData([]);
+            
         }
     }
 
