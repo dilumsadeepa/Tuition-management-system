@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./studentDetailsForm.css";
+import Apiurl from '../Apiurl';
+import axios from "axios";
 
 import Sidebar from './StudentSidebar';
 import Dashhead from './Dashhead';
@@ -12,14 +14,34 @@ const StudentDetailsForm = () => {
 
   const [id, setId] = useState("");
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [fullname, setfullname] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [Level, setLevel] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Here you can submit the form data to your API or do something else with it
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  
+    const formData = {
+      id: id,
+      sfullname: name,
+      email: email,
+      phone: phone,
+      address: address,
+      level: Level
+    };
+
+    console.log(formData);
+  
+    axios.post(`${Apiurl}/studentdata`, formData)
+      .then(response => {
+        // Handle the response from the backend if needed
+        console.log(response.data);
+      })
+      .catch(error => {
+        // Handle any errors that occur during the request
+        console.error(error);
+      });
   };
 
   return (

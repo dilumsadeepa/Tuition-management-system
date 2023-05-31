@@ -49,6 +49,7 @@ import StudentProfile from "./components/Student/studentProfile";
 import StuDashboard from "./components/Student/StuDashboard";
 
 import Teacher from "./components/Teacher/Teacher";
+import AddTeacherDetails from "./components/Admin/AddTeacherDetails";
 
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
@@ -83,6 +84,7 @@ function App() {
 
           {/* Teacher part */}
           <Route path="teacher" element={<Teacher />}></Route>
+          <Route path="teacherdetails" element={<AddTeacherDetails />}></Route>
 
           {/* student part */}
           {/* <Route path="StudentLogin" element={<Login />} /> */}
@@ -91,6 +93,7 @@ function App() {
           <Route path="Attendance" element={<Attendance />} />
           <Route path="Enrollpage" element={<EnrollPage />} />
           <Route path="profile" element={<StudentProfile />} />
+
 
           <Route path="StuDashboard" element={<StuDashboard />} />
 
