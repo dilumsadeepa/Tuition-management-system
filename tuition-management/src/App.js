@@ -94,14 +94,11 @@ function App() {
           <Route path="Enrollpage" element={<EnrollPage />} />
           <Route path="profile" element={<StudentProfile />} />
 
-<<<<<<< Updated upstream
 
           <Route path="StuDashboard" element={<StuDashboard />} />
 
 
 
-=======
->>>>>>> Stashed changes
           {/* <Route path="StudentLogin" element={<Login />} /> */}
 
           {/* parents */}
