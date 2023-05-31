@@ -16,10 +16,10 @@ const ViewTeacher = () =>{
 
     const getstu = async(e) =>{
         try {
-            const response = await axios.get(`${Apiurl}/astudata`);
+            const response = await axios.get(`${Apiurl}/teacher`);
             setStudents(response.data);
             setData(response.data);
-            
+            console.log(response)
         } catch (error) {
             console.log("error in getting data")
         }
@@ -123,31 +123,27 @@ const ViewTeacher = () =>{
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>Action</th>
-                                                    <th>Parent</th>
-                                                    <th>UserID</th>
-                                                    <th>Full Name</th>
-                                                    <th>Email</th>
-                                                    <th>Phone Number</th>
+                                                    <th>Teacher ID</th>
+                                                    <th>Teacher Name</th>
                                                     <th>Address</th>
-                                                    <th>DOB</th>
                                                     <th>Gender</th>
+                                                    <th>Email</th>
                                                     <th>NIC</th>
+                                                    <th>Description</th>
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             {data.map((student) => 
                                                 <tr>
-                                                <td><Link to={`/singlestudent/${student.userId}`} className='btn btn-info'>View</Link></td>
-                                                <td><td><Link to={`/parent/${student.userId}`} className='btn btn-info'>Parents</Link></td></td>
-                                                <td>{student.userId}</td>
-                                                <td>{student.sfullname}</td>
-                                                <td>{student.email}</td>
-                                                <td>{student.tel}</td>
-                                                <td>{student.saddress}</td>
-                                                <td>{student.sdob}</td>
-                                                <td>{student.sgender}</td>
-                                                <td>{student.snic}</td>
+                                                <td>{student.t_userid}</td>
+                                                <td>{student.t_fullname}</td>
+                                                <td>{student.t_address}</td>
+                                                <td>{student.t_gender}</td>
+                                                <td>{student.t_nic}</td>
+                                                <td>{student.t_education}</td>
+                                                <td>{student.t_dis}</td>
+                                                
                                                 </tr>
                                             )}
                                             </tbody>
