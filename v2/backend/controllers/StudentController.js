@@ -17,7 +17,7 @@ const getsts = async (req, res) => {
 
 const getStuData = async (req, res) => {
   const sesql =
-    "SELECT users.*, students.* FROM users INNER JOIN students ON users.id=students.userid";
+    "SELECT users.* FROM users WHERE role = '4'";
   try {
     const response = await db.query(sesql, { type: QueryTypes.SELECT });
     res.status(200).json(response);
