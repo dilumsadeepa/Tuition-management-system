@@ -58,8 +58,6 @@ function NewTimeTableList() {
 
 
 
-
-
     useEffect(() => {
       // Fetch your data here, for example:
       const fetchData = async () => {
