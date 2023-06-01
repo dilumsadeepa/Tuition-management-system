@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState} from "react";
+import React, {useRef, useEffect, useState, tableRef} from "react";
 import axios from "axios";
 import Apiurl from '../Apiurl';
 import Sidebar from '../Admin/AdminSidebar';
@@ -10,6 +10,19 @@ import withReactContent from 'sweetalert2-react-content'
 import CloudinaryFileList from './CloudinaryFileList';
 import CloudBackupFilesList from './CloudBackupFilesList';
 import LocalFileList from './LocalFileList';
+
+import $ from 'jquery';
+import "datatables.net-dt/css/jquery.dataTables.css";
+import "datatables.net-dt/js/dataTables.dataTables.js";
+import "datatables.net-dt/css/jquery.dataTables.css";
+import "datatables.net-buttons-dt/css/buttons.dataTables.css";
+import "datatables.net-buttons/js/dataTables.buttons.js";
+import "datatables.net-buttons/js/buttons.html5.js";
+import "datatables.net-buttons/js/buttons.print.js";
+import "datatables.net-buttons/js/buttons.colVis.js";
+import "datatables.net-buttons/js/buttons.flash.js";
+import "pdfmake/build/pdfmake.js";
+import "pdfmake/build/vfs_fonts.js";
 
 
 function NoticesList() {
@@ -26,7 +39,7 @@ function NoticesList() {
     //     })
     // }, [])
 
-
+    const tableRef = useRef(null);
     const [notices, setNotices] = useState([]);
     const [fileCount, setFileCount] = useState(0);
     const [noticeToText, setNoticeToText] = useState('');
@@ -45,37 +58,122 @@ function NoticesList() {
     let navigate = useNavigate();    //useNavigate is a hook to navigate to another page
 
 
-    useEffect(() => {
-        axios.get(`${Apiurl}/notice`)
-          .then(res => {
-            const noticesData = res.data;
-            setNotices(noticesData);
-            // Extract filenames and noticeTo values from the response data
-            const filenames = noticesData.map(notice => notice.files);
-            // Get the number of files for each notice
-            const fileCounts = filenames.map(files => files.split(',').length);
-            // Update the state with the file counts
-            setFileCount(fileCounts);
-            // Set the noticeTo text based on the notice_to value
-            const noticeToTexts = noticesData.map(notice => {
-              let text = '';
-              if (notice.notice_to === '5') {
-                text = 'All';
-              } else if (notice.notice_to === '2') {
-                text = 'Staff';
-              } else if (notice.notice_to === '3') {
-                text = 'Teacher';
-              } else if (notice.notice_to === '4') {
-                text = 'Student';
-              }
-              return text;
-            });
-            setNoticeToText(noticeToTexts);
-          })
-          .catch(err => {
-            console.log(err);
-          })
-      }, []);
+    // useEffect(() => {
+    //     axios.get(`${Apiurl}/notice`)
+    //       .then(res => {
+    //         const noticesData = res.data;
+    //         setNotices(noticesData);
+    //         // Extract filenames and noticeTo values from the response data
+    //         const filenames = noticesData.map(notice => notice.files);
+    //         // Get the number of files for each notice
+    //         const fileCounts = filenames.map(files => files.split(',').length);
+    //         // Update the state with the file counts
+    //         setFileCount(fileCounts);
+    //         // Set the noticeTo text based on the notice_to value
+    //         const noticeToTexts = noticesData.map(notice => {
+    //           let text = '';
+              // if (notice.notice_to === '5') {
+              //   text = 'All';
+              // } else if (notice.notice_to === '2') {
+              //   text = 'Staff';
+              // } else if (notice.notice_to === '3') {
+              //   text = 'Teacher';
+              // } else if (notice.notice_to === '4') {
+              //   text = 'Student';
+              // }
+    //           return text;
+    //         });
+    //         setNoticeToText(noticeToTexts);
+    //       })
+    //       .catch(err => {
+    //         console.log(err);
+    //       })
+    //   }, []);
+
+
+        useEffect(() => {
+        const fetchData = async () => {
+        const response = await fetch(`${Apiurl}/notice`);
+        const data = await response.json();
+
+         // Destroy existing DataTable (if any)
+        if ($.fn.DataTable.isDataTable(tableRef.current)) {
+          $(tableRef.current).DataTable().destroy();
+        }
+    
+        // Initialize DataTable
+        const table = $(tableRef.current).DataTable({
+          data: data,
+          columns: [
+            {
+              title: 'Notice To',
+              data: 'notice_to',
+              render: (notice_to) => {
+                let text = '';
+        
+                if (notice_to === '5') {
+                  text = 'All';
+                } else if (notice_to === '2') {
+                  text = 'Staff';
+                } else if (notice_to === '3') {
+                  text = 'Teacher';
+                } else if (notice_to === '4') {
+                  text = 'Student';
+                }
+        
+                return text;
+              },
+            },
+            { title: 'Notice Title', data: 'notice_title'},
+            { title: 'Attachments', data: 'files', render: (files) => files ? files.split(",").length : 0 },
+            { title: 'Date', data: 'createdAt'},
+            {
+              title: 'Action',
+              data: 'id',
+              render: (id) => (
+                `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>` +
+                `<button class="btn btn-sm btn-secondary me-1 edit-btn" data-id="${id}"><i class="fa-solid fa-pen-to-square"></i></button>` +
+                `<button class="btn btn-sm btn-danger me-1 delete-btn" data-id="${id}"><i class="fa-solid fa-trash"></i></button>`
+              )
+            }
+          ],
+          dom: 'Bfrtip', // Add the required buttons
+          buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5',
+            'print'
+          ],
+        });
+
+
+        // Event listeners for action buttons
+        $(tableRef.current).on('click', '.view-btn', function() {
+          const id = $(this).data('id');
+          handleShowModal(id);
+
+
+        });
+    
+        $(tableRef.current).on('click', '.edit-btn', function() {
+          const id = $(this).data('id');
+          navigate(`/notice/edit/${id}`);
+        });
+    
+        $(tableRef.current).on('click', '.delete-btn', function() {
+          const id = $(this).data('id');
+          handleDeleteNotice(id);
+        });
+      };
+    
+      fetchData();
+
+
+}, []);
+
+
+      
 
 
 
@@ -208,7 +306,7 @@ function NoticesList() {
                                
                                 <div className="col-sm-12">
                                     <div class="table-responsive">
-                                        <table id="#example" className="table table-striped" style={{width:"100%"}}>
+                                        <table ref={tableRef} id="#example" className="table table-striped" style={{width:"100%"}}>
                                             <thead>
                                                 <tr>
                                                     <th>Notice To</th>
