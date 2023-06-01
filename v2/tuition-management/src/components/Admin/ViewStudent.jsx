@@ -139,14 +139,14 @@ const ViewStudent = () =>{
                                                 <tr>
                                                 <td><Link to={`/singlestudent/${student.userId}`} className='btn btn-info'>View</Link></td>
                                                 <td><td><Link to={`/parent/${student.userId}`} className='btn btn-info'>Parents</Link></td></td>
-                                                <td>{student.userId}</td>
-                                                <td>{student.sfullname}</td>
+                                                <td>{student.id}</td>
+                                                <td>{student.username}</td>
                                                 <td>{student.email}</td>
                                                 <td>{student.tel}</td>
-                                                <td>{student.saddress}</td>
-                                                <td>{student.sdob}</td>
-                                                <td>{student.sgender}</td>
-                                                <td>{student.snic}</td>
+                                                <td>{student.address}</td>
+                                                <td>{student.dob}</td>
+                                                <td>{student.gender}</td>
+                                                <td>{student.nic}</td>
                                                 </tr>
                                             )}
                                             </tbody>
