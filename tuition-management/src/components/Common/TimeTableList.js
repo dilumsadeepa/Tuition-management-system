@@ -3,13 +3,14 @@ import axios from "axios";
 import Apiurl from '../Apiurl';
 import Sidebar from '../Admin/AdminSidebar';
 import Dashhead from '../Admin/Dashhead';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import CloudinaryFileList from './CloudinaryFileList';
 import CloudBackupFilesList from './CloudBackupFilesList';
 import LocalFileList from './LocalFileList';
+
 import $ from 'jquery';
 import "datatables.net-dt/css/jquery.dataTables.css";
 import "datatables.net-dt/js/dataTables.dataTables.js";
