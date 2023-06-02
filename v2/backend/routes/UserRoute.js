@@ -5,6 +5,7 @@ const {
   createUser,
   updateUser,
   deleteUser,
+  updateUserProfile,
 } = require("../controllers/UserController.js");
 
 const {
