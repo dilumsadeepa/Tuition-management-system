@@ -84,6 +84,7 @@ const TeacherProfile = () => {
         setTel(response.data.tel || "");
         setFullname(response.data.fullname||"");
         setNic(response.data.nic || "");
+        setPassword(response.data.password ||"");
     } catch (error) {
         console.log("Error in getting data:", error.message);
     }
