@@ -12,6 +12,7 @@ const CreateCourse = () => {
 
     const [courseid, setCid] = useState("");
     const [coursename, setCname] = useState("");
+    const [coursesubject, setCourseSubject] = useState("");
     const [coursebanner, setCbanner] = useState("");
     const [courseprofile , setCprofile] = useState("");
     const [coursedes, setCdes] = useState("");
@@ -45,7 +46,7 @@ const CreateCourse = () => {
 
         setCdes(editorRef.current.getContent())
 
-        if (courseid === "" || coursename === "" || coursebanner === "" || courseprofile === "" || coursedes === "" || courseprice === "" || teacherId === "") {
+        if (courseid === "" || coursename === "" || coursesubject === "" || coursebanner === "" || courseprofile === "" || coursedes === "" || courseprice === "" || teacherId === "") {
             seterr("Fill All the Fileds");
             console.log(courseid +','+coursename+','+ coursebanner +','+courseprofile +','+coursedes +','+courseprice +','+ teacherId);
         }
@@ -61,6 +62,7 @@ const CreateCourse = () => {
                 await axios.post(`${Apiurl}/crestecourse/`,{
                    courseid,
                    coursename,
+                   coursesubject,
                    coursebanner,
                    courseprofile,
                    coursedes,
@@ -158,6 +160,16 @@ const CreateCourse = () => {
                                                 className="form-control" 
                                                 placeholder="Enter the Course Name"
                                                 onChange={(e) => setCname(e.target.value)}
+                                                required
+                                            />
+                                        </div>
+
+                                        <div class="mb-3 mt-3">
+                                            <label className="form-label">Course Subject:</label>
+                                            <input type="text" 
+                                                className="form-control" 
+                                                placeholder="Enter the Course Subject"
+                                                onChange={(e) => setCourseSubject(e.target.value)}
                                                 required
                                             />
                                         </div>
