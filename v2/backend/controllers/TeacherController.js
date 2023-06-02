@@ -2,7 +2,11 @@ const User = require("../models/UserModel.js");
 
 const getTes = async (req, res) => {
   try {
-    const response = await User.findAll();
+    const response = await User.findAll({
+      where: {
+        role: 3,
+      },
+    });
     res.status(200).json(response);
   } catch (error) {
     console.log(error.message);
