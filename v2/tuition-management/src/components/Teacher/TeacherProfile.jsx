@@ -150,6 +150,7 @@ const TeacherProfile = () => {
                         placeholder="Enter Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        disabled
                       />
                       {errors.email && <p style={{ color: 'red' }} className="error">{errors.email}</p>}
                     </div>
