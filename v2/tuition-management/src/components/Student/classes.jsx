@@ -53,10 +53,13 @@ export default function DisableElevation() {
                     <label htmlFor="subjectFilter" className="form-label">Filter by Subject:</label>
                     <select className="form-select" id="subjectFilter" onChange={handleFilter}>
                       <option value="all">All</option>
-                      {/* Add your subject options here */}
-                      <option value="math">Advance Level</option>
-                      <option value="science">Ordinary level</option>
-                      <option value="english">other</option>
+                      
+                      <option value="Advance level">Advance Level</option>
+                      <option value="Ordinary level">Ordinary level</option>
+                      <option value="Grade 6">Grade 6</option>
+                      <option value="Grade 7">Grade 7</option>
+                      <option value="Grade 8">Grade 8</option>
+                      <option value="Grade 9">Grade 9</option>
                     </select>
                   </div>
                 </div>
