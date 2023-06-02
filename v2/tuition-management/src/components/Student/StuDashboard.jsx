@@ -1,7 +1,7 @@
 import React from 'react';
 import Sidebar from './StudentSidebar';
 import Dashhead from './Dashhead';
-
+import "./studentDetailsForm.css";
 
 
 
@@ -21,8 +21,9 @@ const StudentDashboard = () => {
       <div className="my-4"></div>
             
       <main className="py-6 bg-surface-secondary">
-        
+      
         <div className="container-fluid">
+        <div className="dashback">
             
           <div className="row">
             <div className="col-md-6 col-lg-6 mb-4">
@@ -116,7 +117,11 @@ const StudentDashboard = () => {
               </div>
             </div>
           </div>
+
+          
           <img src="https://img.freepik.com/free-vector/collection-people-getting-degree_1262-19755.jpg?w=740&t=st=1685696454~exp=1685697054~hmac=18cc08c221b858c6678409f67153507a36ebfd23ddd208406da82e1ed2923d36"  alt="Loss" />
+        </div>
+
         </div>
         
       </main>
