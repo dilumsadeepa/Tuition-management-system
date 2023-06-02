@@ -109,11 +109,11 @@ const Sidebar =() =>{
                                 </a>
                             </li>
 
-                            {/* <li class="nav-item">
-                                <a class="nav-link" href="#s">
-                                    <i class="bi bi-bookmarks"></i> Collections
+                            <li class="nav-item">
+                                <a class="nav-link" href="/adduser">
+                                    <i class="bi bi-bookmarks"></i> Add User
                                 </a>
-                            </li> */}
+                            </li>
                             
                             {/* <li class="nav-item">
                                 <a class="nav-link" href="#s">
