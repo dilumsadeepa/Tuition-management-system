@@ -16,6 +16,7 @@ import Notice from "./components/Common/Notice";
 import EditNotice from "./components/Common/EditNotice";
 import NoticesList from "./components/Common/NoticesList";
 import EditCourse from "./components/Admin/EditCourse";
+import AddUser from "./components/Admin/AddUser";
 
 // import CreateTimeTable from "./components/Common/CreateTimeTable";
 import TimeTable from "./components/Common/TimeTable";
@@ -23,7 +24,7 @@ import CreateTimeTableNew from "./components/Common/CreateTimeTableNew";
 import EditTimeTable from "./components/Common/EditTimeTable";
 import TimeTableList from "./components/Common/TimeTableList";
 
-import NewTimeTable from "./components/Common/NewTimeTable";
+// import NewTimeTable from "./components/Common/NewTimeTable";
 import CreateNewTimeTable from "./components/Common/CreateNewTimeTable";
 import NewTimeTableList from "./components/Common/NewTimeTableList";
 import CreateTimeTableDashboard from "./components/Common/CreateTimeTableDashboard";
@@ -89,6 +90,7 @@ function App() {
           <Route path="addparent/:id" element={<AddParentData />} />
           <Route path="parent/:id" element={<Parent />} />
           <Route path="editcourse/:id" element={<EditCourse />} />
+          <Route path="adduser" element={<AddUser />} />
 
           {/* Teacher part */}
           <Route path="teacher" element={<Teacher />}></Route>
