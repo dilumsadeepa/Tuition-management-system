@@ -29,7 +29,7 @@ const getStuData = async (req, res) => {
 const getStudentById = async (req, res) => {
   const id = req.params.id;
   const sql =
-    "SELECT users.*, students.* FROM users INNER JOIN students ON users.id=students.userid WHERE users.id = '" +
+    "SELECT users.* FROM users WHERE id = '" +
     id +
     "';";
 

@@ -137,8 +137,8 @@ const ViewStudent = () =>{
                                             <tbody>
                                             {data.map((student) => 
                                                 <tr>
-                                                <td><Link to={`/singlestudent/${student.userId}`} className='btn btn-info'>View</Link></td>
-                                                <td><td><Link to={`/parent/${student.userId}`} className='btn btn-info'>Parents</Link></td></td>
+                                                <td><Link to={`/singlestudent/${student.id}`} className='btn btn-info'>View</Link></td>
+                                                <td><td><Link to={`/parent/${student.id}`} className='btn btn-info'>Parents</Link></td></td>
                                                 <td>{student.id}</td>
                                                 <td>{student.username}</td>
                                                 <td>{student.email}</td>
