@@ -14,6 +14,7 @@
     "express": "^4.18.2",
     "mysql2": "^3.3.3",
     "node-cors": "^1.0.0",
+    "nodemon": "^2.0.22",
     "sequelize": "^6.31.1"
   }
 }
