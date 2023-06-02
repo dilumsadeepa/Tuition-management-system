@@ -71,22 +71,6 @@ const Sidebar =() =>{
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#s">
-                                    <i class="bi bi-chat"></i> Messages
-                                    <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">6</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#s">
-                                    <i class="bi bi-bookmarks"></i> Collections
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#s">
-                                    <i class="bi bi-people"></i> Users
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="/notice">
                                     <i class="fa-regular fa-note-sticky"></i> Notices
                                     <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">{noticesCount}</span>
@@ -176,7 +160,7 @@ const Sidebar =() =>{
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="#s">
-                                    <i class="bi bi-person-square"></i> Account
+                                    <i class="bi bi-person-square"></i> Parent Profile
                                 </a>
                             </li>
                             <li class="nav-item">

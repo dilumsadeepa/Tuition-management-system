@@ -34,8 +34,7 @@ const ParentDashboard = () =>{
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span>
-                                                    <span class="h3 font-bold mb-0">$750.90</span>
+                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Student Details</span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
@@ -45,7 +44,6 @@ const ParentDashboard = () =>{
                                             </div>
                                             <div class="mt-2 mb-0 text-sm">
                                                 
-                                                <span class="text-nowrap text-xs text-muted">Since last month</span>
                                             </div>
                                         </div>
                                     </div>
@@ -55,8 +53,7 @@ const ParentDashboard = () =>{
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">All Students</span>
-                                                    <span class="h3 font-bold mb-0">1500</span>
+                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Notices</span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
@@ -75,8 +72,7 @@ const ParentDashboard = () =>{
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">All Teachers</span>
-                                                    <span class="h3 font-bold mb-0">10</span>
+                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Profile</span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
@@ -95,8 +91,7 @@ const ParentDashboard = () =>{
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">All Classes</span>
-                                                    <span class="h3 font-bold mb-0">30</span>
+                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Payment</span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
