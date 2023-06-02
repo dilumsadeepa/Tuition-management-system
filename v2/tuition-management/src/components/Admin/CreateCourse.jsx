@@ -12,7 +12,6 @@ const CreateCourse = () => {
 
     const [courseid, setCid] = useState("");
     const [coursename, setCname] = useState("");
-    const [coursesubject, setCourseSubject] = useState("");
     const [coursebanner, setCbanner] = useState("");
     const [courseprofile , setCprofile] = useState("");
     const [coursedes, setCdes] = useState("");
@@ -46,7 +45,7 @@ const CreateCourse = () => {
 
         setCdes(editorRef.current.getContent())
 
-        if (courseid === "" || coursename === "" || coursesubject === "" || coursebanner === "" || courseprofile === "" || coursedes === "" || courseprice === "" || teacherId === "") {
+        if (courseid === "" || coursename === "" || coursebanner === "" || courseprofile === "" || coursedes === "" || courseprice === "" || teacherId === "") {
             seterr("Fill All the Fileds");
             console.log(courseid +','+coursename+','+ coursebanner +','+courseprofile +','+coursedes +','+courseprice +','+ teacherId);
         }
@@ -62,7 +61,6 @@ const CreateCourse = () => {
                 await axios.post(`${Apiurl}/crestecourse/`,{
                    courseid,
                    coursename,
-                   coursesubject,
                    coursebanner,
                    courseprofile,
                    coursedes,
@@ -140,11 +138,11 @@ const CreateCourse = () => {
                             <div className="row">
                                 <div className="col-sm-2"></div>
 
-                                <div className="col-sm-8 debox">
+                                {/* <div className="col-sm-8 debox"> */}
 
                                     <form onSubmit={create}>
 
-                                        <div class="mb-3 mt-3">
+                                        <div class="col mb-3 mt-3">
                                             <label className="form-label">Course Code:</label>
                                             <input type="text" 
                                                 className="form-control" 
@@ -154,7 +152,7 @@ const CreateCourse = () => {
                                             />
                                         </div>
 
-                                        <div class="mb-3 mt-3">
+                                        <div class="col mb-3 mt-3">
                                             <label className="form-label">Course Name:</label>
                                             <input type="text" 
                                                 className="form-control" 
@@ -164,17 +162,7 @@ const CreateCourse = () => {
                                             />
                                         </div>
 
-                                        <div class="mb-3 mt-3">
-                                            <label className="form-label">Course Subject:</label>
-                                            <input type="text" 
-                                                className="form-control" 
-                                                placeholder="Enter the Course Subject"
-                                                onChange={(e) => setCourseSubject(e.target.value)}
-                                                required
-                                            />
-                                        </div>
-
-                                        <div class="mb-3 mt-3">
+                                        <div class="col mb-3 mt-3">
                                             <label className="form-label">Course Banner Image:</label>
                                             <input type="text" 
                                                 className="form-control" 
@@ -184,7 +172,7 @@ const CreateCourse = () => {
                                             />
                                         </div>
 
-                                        <div class="mb-3 mt-3">
+                                        <div class="col mb-3 mt-3">
                                             <label className="form-label">Course Profile Image:</label>
                                             <input type="text" 
                                                 className="form-control" 
@@ -194,7 +182,7 @@ const CreateCourse = () => {
                                             />
                                         </div>
 
-                                        <div class="mb-3 mt-3">
+                                        <div class="col mb-3 mt-3">
                                             <label className="form-label">Course Description:</label>
                                             <Editor
                                                 onInit={(evt, editor) => editorRef.current = editor}
@@ -241,7 +229,7 @@ const CreateCourse = () => {
 
                                     </form>
 
-                                </div>
+                                {/* </div> */}
 
                                 <div className="col-sm-2"></div>
                             </div>
