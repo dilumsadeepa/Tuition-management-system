@@ -5,6 +5,8 @@ import Apiurl from '../Apiurl';
 import TeacherSidebar from "./TeacherSidebar";
 import Dashhead from './Dashhead';
 import { useCookies } from 'react-cookie';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 
@@ -22,6 +24,7 @@ const TeacherProfile = () => {
 
   const [cookies] = useCookies(['email']);
   const [profile,setProfile]=useState("");
+  const [showPassword, setShowPassword] = useState(false); // New state variable
 
 
   // Register user
@@ -176,16 +179,26 @@ const TeacherProfile = () => {
                     </div>
 
                     <div className="mb-3 mt-3">
-                      <label className="form-label">Password</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Enter Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                      />
-                      {errors.password && <p style={{ color: 'red' }} className="error">{errors.password}</p>}
-                    </div>
+  <label className="form-label">Password</label>
+  <div className="input-group">
+    <input
+      type={showPassword ? "text" : "password"}
+      className="form-control"
+      placeholder="Enter Password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+    />
+    <button
+      className="btn btn-outline-secondary"
+      type="button"
+      onClick={() => setShowPassword(!showPassword)}
+    >
+      <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} style={{ color: 'black' }}/>
+    </button>
+  </div>
+  {errors.password && <p style={{ color: 'red' }} className="error">{errors.password}</p>}
+</div>
+
 
                     <div className="mb-5 mt-5">
                       <button type="submit" className="debtn w-100">Update</button>
