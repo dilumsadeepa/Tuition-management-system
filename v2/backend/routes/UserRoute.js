@@ -53,9 +53,7 @@ const {
   updateCS,
 } = require("../controllers/CoursestudentController.js");
 
-const {
-  getPays,
-} = require("../controllers/PaymentController.js");
+const { getPays } = require("../controllers/PaymentController.js");
 
 const {
   getSPs,
@@ -64,9 +62,7 @@ const {
   deletespre,
 } = require("../controllers/Salarypresent.js");
 
-const {
-  getsals,
-} = require("../controllers/SalaryController.js");
+const { getsals } = require("../controllers/SalaryController.js");
 
 // const {
 //   getNotices,
@@ -90,15 +86,15 @@ const {
   timecourseId,
 } = require("../controllers/NewtimetableController.js");
 
-
 const router = express.Router();
 
-
+// User
 router.get("/users", getUsers);
 router.get("/users/:id", getUserById);
 router.post("/users", createUser);
 router.patch("/users/:id", updateUser);
 router.delete("/users/:id", deleteUser);
+router.patch("/updateusers/:id", updateUserProfile);
 
 //admin
 router.get("/astudata", getStuData);
@@ -156,10 +152,10 @@ router.get("/salary", getsals);
 // router.delete("/timetable/:id", deleteTimetable);
 // router.get("/timetable/byId/:id", viewTimetable);
 
-router.get('/newtimetable', getNewTimetables);
-router.delete('/newtimetable/:id', deleteNewTimetable);
-router.get('/newtimetable/byId/:id', viewNewTimetable);
-router.post('/newtimetable/create', createNewTimetable);
-router.get('/newtimetableid/:id', timecourseId);
+router.get("/newtimetable", getNewTimetables);
+router.delete("/newtimetable/:id", deleteNewTimetable);
+router.get("/newtimetable/byId/:id", viewNewTimetable);
+router.post("/newtimetable/create", createNewTimetable);
+router.get("/newtimetableid/:id", timecourseId);
 
 module.exports = router;
