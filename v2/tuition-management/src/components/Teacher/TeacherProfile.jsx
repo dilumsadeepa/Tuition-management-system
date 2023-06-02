@@ -24,7 +24,7 @@ const TeacherProfile = () => {
 
   const [cookies] = useCookies(['email']);
   const [profile,setProfile]=useState("");
-  const [showPassword, setShowPassword] = useState(false); // New state variable
+  const [showPassword, setShowPassword] = useState(false);
 
 
   // Register user
