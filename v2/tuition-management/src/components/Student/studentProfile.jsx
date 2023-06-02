@@ -31,33 +31,76 @@ const StudentProfile = () => {
 
   return (
     <section>
-        <div className="h-screen flex-grow-1 overflow-y-lg-auto"> 
-        <Dashhead />  
-        
-        <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
-        <Sidebar />
-    <main>
-    <div>
-      <h1>Student Profile</h1>
-      {student ? (
-        <div>
-          <p>Name: {student.sfullname}</p>
-          <p>name with initials: {student.snamewithini}</p>
-          <p>Address: {student.saddress}</p>
-          <p>Date of birth: {student.sdob}</p>
-            <p>snic: {student.snic}</p>
-          <p>Gender: {student.sgender}</p>
-          {/* Add more student details as needed */}
+  <div className="h-screen flex-grow-1 overflow-y-lg-auto"> 
+    <Dashhead />  
+
+    <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+      <Sidebar />
+      <main className="p-5">
+        <div className="container">
+          <h1>Student Profile</h1>
+          {student ? (
+            <div className="row row-cols-1 row-cols-md-2 g-4">
+              <div className="col">
+                <div className="card">
+                  <div className="card-body">
+                    <h5 className="card-title">Name</h5>
+                    <p className="card-text">{student.sfullname}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col">
+                <div className="card">
+                  <div className="card-body">
+                    <h5 className="card-title">Name with initials</h5>
+                    <p className="card-text">{student.snamewithini}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col">
+                <div className="card">
+                  <div className="card-body">
+                    <h5 className="card-title">Address</h5>
+                    <p className="card-text">{student.saddress}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col">
+                <div className="card">
+                  <div className="card-body">
+                    <h5 className="card-title">Date of Birth</h5>
+                    <p className="card-text">{student.sdob}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col">
+                <div className="card">
+                  <div className="card-body">
+                    <h5 className="card-title">NIC</h5>
+                    <p className="card-text">{student.snic}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col">
+                <div className="card">
+                  <div className="card-body">
+                    <h5 className="card-title">Gender</h5>
+                    <p className="card-text">{student.sgender}</p>
+                  </div>
+                </div>
+              </div>
+              {/* Add more student details as needed */}
+            </div>
+          ) : (
+            <p>Loading student profile...</p>
+          )}
         </div>
-        
-      ) : (
-        <p>Loading student profile...</p>
-      )}
+      </main>
     </div>
-    </main>
-    </div>
-    </div>
-    </section>
+  </div>
+</section>
+
+
   );
 };
 
