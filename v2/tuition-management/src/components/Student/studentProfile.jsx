@@ -7,6 +7,8 @@ import Sidebar from './StudentSidebar';
 import Dashhead from './Dashhead';
 import { useCookies } from 'react-cookie';
 
+import "./studentDetailsForm.css";
+
 
 
 ///Apiurl/students/profile/1
@@ -36,9 +38,12 @@ const StudentProfile = () => {
 
     <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
       <Sidebar />
+
+      <div className="profback">
       <main className="p-5">
         <div className="container">
-          <h1>Student Profile</h1>
+          <center><h1>Student Profile</h1></center><br></br>
+          <h3></h3>
           {student ? (
             <div className="row row-cols-1 row-cols-md-2 g-4">
               <div className="col">
@@ -96,6 +101,7 @@ const StudentProfile = () => {
           )}
         </div>
       </main>
+      </div>
     </div>
   </div>
 </section>
