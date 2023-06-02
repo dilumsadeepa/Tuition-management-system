@@ -25,7 +25,7 @@ const AssignStudents = () => {
         console.log("clicked");
         await axios.patch(`${Apiurl}/updateCS/${id}`,{
             aprovel: ap,
-            studentId: sid,
+            userId: sid,
             courseId:cid
         });
 
@@ -91,12 +91,12 @@ const AssignStudents = () => {
                                                <>
                                                 {student.aprovel === '0' &&
                                                 <tr>
-                                                    <td>{student.student.sfullname}</td>
-                                                    <td>{student.student.snic}</td>
+                                                    <td>{student.user.fullname}</td>
+                                                    <td>{student.user.nic}</td>
                                                     <td>{student.course.courseid}</td>
                                                     <td>{student.course.coursename}</td>
                                                     <td>Unaproved</td>
-                                                    <td><button type='button' onClick={(e) => updateCS(student.id,student.courseId,student.studentId,'1')} className='debtn'>Aprove</button></td>
+                                                    <td><button type='button' onClick={(e) => updateCS(student.id,student.courseId,student.userId,'1')} className='debtn'>Aprove</button></td>
                                                 </tr>
                                                 }
                                                </>  
@@ -127,12 +127,12 @@ const AssignStudents = () => {
                                               <>
                                                {student.aprovel === '1' &&
                                                <tr>
-                                                   <td>{student.student.sfullname}</td>
-                                                   <td>{student.student.snic}</td>
+                                                   <td>{student.user.fullname}</td>
+                                                   <td>{student.user.nic}</td>
                                                    <td>{student.course.courseid}</td>
                                                    <td>{student.course.coursename}</td>
                                                    <td>Aproved</td>
-                                                   <td><button type='button' onClick={(e) => updateCS(student.id,student.courseId,student.studentId,'0')} className='debtn'>Unaprove</button></td>
+                                                   <td><button type='button' onClick={(e) => updateCS(student.id,student.courseId,student.userId,'0')} className='debtn'>Unaprove</button></td>
                                                </tr>
                                                }
                                               </>  

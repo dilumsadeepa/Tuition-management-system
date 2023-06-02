@@ -11,7 +11,7 @@ const Course = () =>{
 
     const [courses, setCourses] = useState([]);
     
-
+ 
     const getcou = async(e) =>{
         try {
             const response = await axios.get(`${Apiurl}/coursedata`);
@@ -101,7 +101,7 @@ const Course = () =>{
                                                 <td>{course.courseid}</td>
                                                 <td>{course.coursename}</td>
                                                 <td>{course.courseprice}</td>
-                                                <td>{course.teacher.t_fullname}</td>
+                                                <td>{course.user.fullname}</td>
                                                 <td><Link to={`/editcourse/${course.id}`} className='btn btn-info'>Edit</Link><button className='btn btn-danger' onClick={()=> deletecourse(course.id)}>Delete</button></td>
                                                 </tr>
                                             )}

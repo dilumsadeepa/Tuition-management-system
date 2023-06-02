@@ -24,15 +24,11 @@ export default function DisableElevation() {
 
   return (
     <section>
-      {/* Dashboard */}
-      <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
-        {/* Sidebar */}
-        <Sidebar />
+    <div className="h-screen flex-grow-1 overflow-y-lg-auto"> 
+    <Dashhead />  
 
-        {/* Main content */}
-        <div className="h-screen flex-grow-1 overflow-y-lg-auto">
-          {/* Header */}
-          <Dashhead />
+    <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+      <Sidebar />
 
           <main>
   <div className='container'>
