@@ -51,16 +51,17 @@ const TeacherProfile = () => {
       setErrors(validationErrors);
     } else {
       try {
-        await axios.post(`${Apiurl}/updateusers/${cookies.email}`, {
+        await axios.patch(`${Apiurl}/updateusers/${cookies.email}`, {
           username,
           fullname,
+          nic,
           email,
           tel,
           password,
           role
         });
 
-        navigate(`/teacherdetails?email=${email}`);
+        window.location.href = "/teacherprofile";
         setSucc("Profile updated successfully!");
         setErrors({});
         setUsername("");
