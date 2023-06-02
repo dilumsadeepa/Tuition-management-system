@@ -24,38 +24,35 @@ export default function DisableElevation() {
 
   return (
     <section>
-      {/* Dashboard */}
-      <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
-        {/* Sidebar */}
-        <Sidebar />
+    <div className="h-screen flex-grow-1 overflow-y-lg-auto"> 
+    <Dashhead />  
 
-        {/* Main content */}
-        <div className="h-screen flex-grow-1 overflow-y-lg-auto">
-          {/* Header */}
-          <Dashhead />
+    <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+      <Sidebar />
 
           <main>
-            <div className='container'>
-              <div className="row mt-3 mb-3">
-                <h2>Classes</h2>
-              </div>
+  <div className='container'>
+    <div className="row mt-3 mb-3">
+      <h2>Classes</h2>
+    </div>
 
-              <div className="row mb-3 mt-3">
-                <div className="col-sm-3">
-                  {courses.map((course) => (
-                    <div className="card" key={course.id}>
-                      <img src={course.coursebanner} className="card-img-top" alt="..." />
-                      <div className="card-body">
-                        <h5 className="card-title">{course.coursename}</h5>
-                        <p className="card-text">{course.courseprice}</p>
-                        <Link to={`/EnrollPage/${course.id}`} className="btn btn-primary">Enroll to class</Link>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+    <div className="row mb-3 mt-3">
+      {courses.map((course) => (
+        <div className="col-sm-3" key={course.id}>
+          <div className="card">
+            <img src={course.coursebanner} className="card-img-top" alt="..." />
+            <div className="card-body">
+              <h5 className="card-title">{course.coursename}</h5>
+              <p className="card-text">{course.courseprice}</p>
+              <Link to={`/EnrollPage/${course.id}`} className="btn btn-primary">Enroll to class</Link>
             </div>
-          </main>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</main>
+
         </div>
       </div>
     </section>

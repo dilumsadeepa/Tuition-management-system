@@ -1,142 +1,133 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Apiurl from '../Apiurl';
-
-import StudentSidebar from './StudentSidebar';
+import React from 'react';
+import Sidebar from './StudentSidebar';
 import Dashhead from './Dashhead';
+import "./studentDetailsForm.css";
+
+
+
 
 const StudentDashboard = () => {
-  const [student, setStudent] = useState(null);
-
-  useEffect(() => {
-    const fetchStudentProfile = async () => {
-      try {
-        const response = await axios.get(`${Apiurl}/students/profile/1`); // Replace with your API endpoint to retrieve student profile by ID
-        setStudent(response.data);
-      } catch (error) {
-        console.log('Error fetching student profile:', error);
-      }
-    };
-
-    fetchStudentProfile();
-  }, []);
-
   return (
     <section>
-     
-        <div>
-        {/* <div className="h-screen flex-grow-1 overflow-y-lg-auto"> 
-        <Dashhead />   */}
+
+
+        <div className="h-screen flex-grow-1 overflow-y-lg-auto"> 
+        <Dashhead />  
         
         <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
-        <StudentSidebar />
+        <Sidebar />
 
 
-            <div className="my-4">
-              
+      <div className="my-4"></div>
+            
+      <main className="py-6 bg-surface-secondary">
+      
+        <div className="container-fluid">
+        <div className="dashback">
+            
+          <div className="row">
+            <div className="col-md-6 col-lg-6 mb-4">
+              <a href="/classeslist">
+                <div className="card shadow border-0 h-100">
+                  <div className="card-body">
+                    <div className="row">
+                      <div className="col">
+                        <h2 className="h5 font-semibold text-muted text-sm d-block mb-2">
+                          Classes
+                        </h2>
+                        <h3 className="h4 font-bold mb-0">
+                          
+                        </h3>
+                      </div>
+                      <div className="col-auto">
+                        <div className="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
+                          <i className="bi bi-credit-card"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
             </div>
 
-            <main class="py-6 bg-surface-secondary">
-                        <div class="container-fluid">
-                            {/* <!-- Card stats --> */}
-                            <div class="row g-6 mb-6">
-
-                         
-                            <div class="col-xl-3 col-sm-6 col-12">
-                            <a  href="/classeslist">
-                                    <div class="card shadow border-0">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2"><h1>Classes</h1></span>
-                                                    <span class="h3 font-bold mb-0"><h4>Discover available classes for you to explore</h4></span>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
-                                                        <i class="bi bi-credit-card"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mt-2 mb-0 text-sm">
-                                                
-                                                {/* <span class="text-nowrap text-xs text-muted">Since last month</span> */}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </a>
-                                </div>
-
-                                
-                                <div class="col-xl-3 col-sm-6 col-12">
-                                <a  href="/Profile">
-                                    <div class="card shadow border-0">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2"><h1>profile</h1></span>
-                                                    <span class="h3 font-bold mb-0"><h4>your personal details</h4></span>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
-                                                        <i class="bi bi-people"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mt-2 mb-0 text-sm">
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </a>
-                                </div>
-                                <div class="col-xl-3 col-sm-6 col-12">
-                                <a  href="/attendance">
-                                    <div class="card shadow border-0">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2"><h1>Attendance</h1></span>
-                                                    <span class="h3 font-bold mb-0"></span>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
-                                                        <i class="bi bi-clock-history"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mt-2 mb-0 text-sm">
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </a>
-                                </div>
-                                <div class="col-xl-3 col-sm-6 col-12">
-                                    <div class="card shadow border-0">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2"><h1>Learning Materials</h1></span>
-                                                    <span class="h3 font-bold mb-0"></span>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
-                                                        <i class="bi bi-minecart-loaded"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mt-2 mb-0 text-sm">
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
+            <div className="col-md-6 col-lg-6 mb-4">
+              <a href="/Profile">
+                <div className="card shadow border-0 h-100">
+                  <div className="card-body">
+                    <div className="row">
+                      <div className="col">
+                        <h2 className="h5 font-semibold text-muted text-sm d-block mb-2">
+                          Profile
+                        </h2>
+                        <h3 className="h4 font-bold mb-0">
+                          
+                        </h3>
+                      </div>
+                      <div className="col-auto">
+                        <div className="icon icon-shape bg-primary text-white text-lg rounded-circle">
+                          <i className="bi bi-people"></i>
                         </div>
-                    </main>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-6 col-lg-6 mb-4">
+              <a href="/attendance">
+                <div className="card shadow border-0 h-100">
+                  <div className="card-body">
+                    <div className="row">
+                      <div className="col">
+                        <h2 className="h5 font-semibold text-muted text-sm d-block mb-2">
+                          Attendance
+                        </h2>
+                        <h3 className="h4 font-bold mb-0"></h3>
+                      </div>
+                      <div className="col-auto">
+                        <div className="icon icon-shape bg-info text-white text-lg rounded-circle">
+                          <i className="bi bi-clock-history"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div className="col-md-6 col-lg-6 mb-4">
+              <div className="card shadow border-0 h-100">
+                <div className="card-body">
+                  <div className="row">
+                    <div className="col">
+                      <h2 className="h5 font-semibold text-muted text-sm d-block mb-2">
+                        Learning Materials
+                      </h2>
+                      <h3 className="h4 font-bold mb-0"></h3>
+                    </div>
+                    <div className="col-auto">
+                      <div className="icon icon-shape bg-warning text-white text-lg rounded-circle">
+                        <i className="bi bi-minecart-loaded"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           
+          <img src="https://img.freepik.com/free-vector/collection-people-getting-degree_1262-19755.jpg?w=740&t=st=1685696454~exp=1685697054~hmac=18cc08c221b858c6678409f67153507a36ebfd23ddd208406da82e1ed2923d36"  alt="Loss" />
         </div>
+
+        </div>
+        
+      </main>
+
+
+      </div>
       </div>
     </section>
   );

@@ -59,4 +59,23 @@
     background-color: #222;
   }
 
+  .dashback{
+    margin: 5px 200px;
+    color: #fff;
+    padding: 10px 2px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #f7f9fa;
+    
+  }
+
+  .profback{
+    margin: 5px 200px;
+    color: #fff;
+    padding: 15px 2px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #f3f4f4;
+  }
+
   
