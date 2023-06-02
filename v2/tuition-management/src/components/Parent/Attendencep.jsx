@@ -53,7 +53,7 @@ const Attendecep = () => {
                     <main class="py-6 bg-surface-secondary">
                         <div class="container-fluid">
                             <div className="row mb-3 mt-3">
-                                <h1>Attendece</h1>
+                                <h1>Student Attendece</h1>
                                 <div className="col-sm-12 mb-5 mt-3">
                                     <div className="table-responsive">
                                         <table className="table">
