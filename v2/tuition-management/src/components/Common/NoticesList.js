@@ -7,9 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import DOMPurify from 'dompurify';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import CloudinaryFileList from './CloudinaryFileList';
-import CloudBackupFilesList from './CloudBackupFilesList';
-import LocalFileList from './LocalFileList';
+
 
 
 function NoticesList() {
@@ -130,30 +128,7 @@ function NoticesList() {
         axios.get(`${Apiurl}/notice/byId/${noticeId}`).then((response) => {
           setNoticeObject(response.data);
           setShowModal(true);
-
-
-           if (response.data.cloudFiles) {
-            const urls = response.data.cloudFiles.split(',').map(url => url.trim());
-            setCloudFiles(urls);
-            console.log("urls :",urls);
-          }else{
-           // Clear the list of cloud files
-           setCloudFiles([]);
-          }
-
-
-          if (response.data.cloudOnly) {
-            const urls = response.data.cloudOnly.split(',').map(url => url.trim());
-            setCloudUrls(urls);
-            console.log("urls :",urls);
-          }else{
-           // Clear the list of cloud files
-           setCloudUrls([]);
-          }
-          
-
-          
-            
+                    
             
 });
       };
@@ -223,7 +198,6 @@ function NoticesList() {
                                                 <tr key={notice.id}>
                                                     <td>{noticeToText[index]}</td>
                                                     <td>{notice.notice_title}</td>
-                                                    <td>{notice.files ? notice.files.split(",").length : 0}</td>
                                                     <td>{notice.createdAt.split("T")[0]}</td>
                                                     <td>
                                                      
@@ -271,36 +245,7 @@ function NoticesList() {
                                                     <p className="my-5">Notice To: {getRecipientText(noticeObject.notice_to)}</p>
                                                     <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(noticeObject.notice_desc) }} className="my-5"></p> 
 
-                                                    <div className="row">
-                                                    <div>
-                                                    <CloudinaryFileList cloudUrls={cloudUrls} />
-                                                    </div>
-                                                    </div>
-
-                                                    <div className="row">
-                                                    <div>
-                                                    <CloudBackupFilesList cloudFiles={cloudFiles} />
-                                                    </div>
-                                                    </div>
-
-                                                    <div className="row">
-                                                    <div>
-                                                        {noticeObject && noticeObject.localFiles && (
-                                                            <>
-                                                                {console.log("noticeObject.files:", noticeObject.localFiles)}
-                                                                {console.log("fileNames:", noticeObject.localFiles.split(","))}
-                                                                <LocalFileList fileNames={noticeObject.localFiles.split(",")} />
-                                                            </>
-                                                        )}
-                                                        {/* <LocalFileList localUrls={localUrls} /> */}
-                                                        {/* <CloudinaryFileList cloudUrls={noticeObject.files.split(",")} /> */}
-                                                        {/* <img src="http://localhost:3000/uploads/notices/e81a46c8-17bf-446b-aa69-17bc303c1cf6_Image 001.png" alt="../../../../backend/uploads/notices/e81a46c8-17bf-446b-aa69-17bc303c1cf6_Image 001"></img> */}
-
-                                                    {/* {noticeObject.localFiles && noticeObject.localFiles.split(",").map((file, index) => (
-                                                    <div key={index}>
-                                                        <a href={`${Apiurl}/uploads/notices/${file}`} download>{file}</a>
-                                                    </div>
-                                                    ))} */}
+                                                   
                                                     </div>
                                                     </div>
 
@@ -323,8 +268,8 @@ function NoticesList() {
                                             </div>
 
 
-                                    </div>
-                                </div>
+                              
+                               
                             </div>
                             
                         </div>

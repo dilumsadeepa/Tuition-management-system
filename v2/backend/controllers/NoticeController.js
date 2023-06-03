@@ -1,8 +1,5 @@
-const cloudinary = require('../clouds/cloudinary.js');
-const { CloudinaryStorage } = require("multer-storage-cloudinary");
+
 const Notice = require('../models/NoticeModel.js');
-const fs = require('fs');
-const path = require('path');
 const { Op } = require('sequelize');
 
 const getNotices = async (req, res) => {
@@ -64,43 +61,6 @@ const deleteNotice = async (req, res) => {
       return res.status(404).json({ msg: 'Notice not found' });
     }
 
-    const files = notice.files;
-    console.log('filesToDelete', files);
-    if (files) {
-      const publicIdsWithExtensions = files.split(',');
-      const publicIds = publicIdsWithExtensions.map(publicId =>
-        path.join('uploads', 'notices', publicId)
-      );
-      const public_ids = publicIdsWithExtensions.map(publicId => `Susipwan_BackupData/Notices/${publicId}`);
-      const BackupPublic_Ids = publicIdsWithExtensions.map(backupPublicId => `Susipwan_BackupData/Notices/Backup/${backupPublicId}`);
-      console.log(Array.isArray(public_ids));
-      console.log('files to delete', public_ids);
-      console.log('Backupfiles to delete', BackupPublic_Ids);
-
-      try {
-        const result = await cloudinary.api.delete_resources(public_ids, {
-          resource_type: 'raw',
-        });
-        const backupResult = await cloudinary.api.delete_resources(BackupPublic_Ids, {
-          resource_type: 'raw',
-        });
-        console.log(result);
-        console.log(backupResult);
-
-        // Delete local files
-        publicIds.forEach(publicId => {
-          fs.unlink(publicId, err => {
-            if (err) {
-              console.error(err);
-              return;
-            }
-            console.log(`Deleted ${publicId}`);
-          });
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    }
 
     await notice.destroy();
     return res.status(200).json({ msg: 'Notice deleted' });

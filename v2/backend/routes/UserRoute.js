@@ -65,12 +65,12 @@ const {
 
 const { getsals } = require("../controllers/SalaryController.js");
 
-// const {
-//   getNotices,
-//   deleteNotice,
-//   viewNotice,
-//   getNoticesCount,
-// } = require("../controllers/NoticeController.js");
+const {
+  getNotices,
+  deleteNotice,
+  viewNotice,
+  getNoticesCount,
+} = require("../controllers/NoticeController.js");
 
 // const {
 //   getTimetables,
@@ -145,10 +145,10 @@ router.get("/coursestudent", getCSs);
 router.get("/payment", getPays);
 router.get("/salarypresent", getSPs);
 router.get("/salary", getsals);
-// router.get("/notice", getNotices);
-// router.get("/notice/count", getNoticesCount);
-// router.delete("/notice/:id", deleteNotice);
-// router.get("/notice/byId/:id", viewNotice);
+router.get("/notice", getNotices);
+router.get("/notice/count", getNoticesCount);
+router.delete("/notice/:id", deleteNotice);
+router.get("/notice/byId/:id", viewNotice);
 
 // router.get("/timetable", getTimetables);
 // router.delete("/timetable/:id", deleteTimetable);
