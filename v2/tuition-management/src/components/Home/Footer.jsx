@@ -14,7 +14,7 @@ function Footer() {
               <li><a href="#">Gallery</a></li>
               <li><a href="#">Student</a></li>
               <li><a href="#">Lectures</a></li>
-              <li><a href="#">Time Table</a></li>
+              <li><a href="altimetable">Time Table</a></li>
             </ul>
           </div>
           <div className="col-sm-3">
