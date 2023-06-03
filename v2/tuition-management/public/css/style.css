@@ -34,9 +34,9 @@ animation-duration: 2s;
 }
 
 
-@media (min-width: 300px) {
+@media (min-width: 300px) and (max-width: 575px) {
   .topquote {
-    width: 210px;
+    width: 180px;
     height: auto;
   }
 }
