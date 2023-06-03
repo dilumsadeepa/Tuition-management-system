@@ -61,6 +61,9 @@ import TeacherCourse from "./components/Teacher/TeacherCourse";
 import Attendecep from "./components/Parent/Attendencep";
 import TeacherProfile from "./components/Teacher/TeacherProfile";
 
+// -----------------Home Page-----------------
+import Home from "./components/Home/Home";
+
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
 
@@ -69,7 +72,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Welcome />} />
+          <Route path="/" element={<Home />} />
           <Route path="auth" element={<Auth />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
