@@ -12,36 +12,16 @@ const Notice = db.define('notices', {
   },
   notice_title: {
     type: DataTypes.STRING,
-    allowNull: true,
+    allowNull: false,
   },
   notice_desc: {
     type: DataTypes.TEXT,
     allowNull: false,
   },
-  files: {
+  file_urls: {
     type: DataTypes.TEXT,
     allowNull: true,
   },
-  localFiles: {
-    type: DataTypes.TEXT,
-    allowNull: true,
-  },
-  publicIdList: {
-    type: DataTypes.TEXT,
-    allowNull: true,
-  },
-  cloudFiles: {
-    type: DataTypes.TEXT,
-    allowNull: true,
-  },
-  backup: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-  },
-  cloudOnly: {
-    type: DataTypes.TEXT,
-    allowNull: true,
-  }
 }, {
   freezeTableName: true
 });

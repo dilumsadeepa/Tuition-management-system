@@ -2,12 +2,14 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const userRoutes = require('./routes/UserRoute.js');
+const noticeRoutes = require('./routes/NoticeRoute.js');
 
 
 app.use(cors());
 app.use(express.json());
 
 app.use(userRoutes);
+app.use(noticeRoutes);
 
 app.listen(4000, ()=> console.log('Server up and running...'));
 

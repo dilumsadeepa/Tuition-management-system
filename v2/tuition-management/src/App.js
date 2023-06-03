@@ -10,7 +10,7 @@ import ViewTeacher from "./components/Admin/ViewTeacher";
 import StudenttoCourse from "./components/Admin/StudenttoCourse";
 import Course from "./components/Admin/Course";
 import CreateCourse from "./components/Admin/CreateCourse";
-// import CreateNotice from "./components/Common/CreateNotice";
+import CreateNotice from "./components/Common/CreateNotice";
 import CreateNoticeNew from "./components/Common/CreateNoticeNew";
 import Notice from "./components/Common/Notice";
 import EditNotice from "./components/Common/EditNotice";
