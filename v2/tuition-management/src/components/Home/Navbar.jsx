@@ -26,7 +26,7 @@ function Navbar() {
                 <a className="nav-link" href="aboutus" style={{ textAlign: 'center' }}>About Us</a>
                 </li>
                 <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
-                <a className="nav-link" href="contact-us.html" style={{ textAlign: 'center' }}>Contact Us</a>
+                <a className="nav-link" href="contactus" style={{ textAlign: 'center' }}>Contact Us</a>
                 </li>
                 <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
                 <a className="nav-link" href="login" style={{ textAlign: 'center', marginBottom: '0px' }}>Login</a>

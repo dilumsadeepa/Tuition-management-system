@@ -65,6 +65,8 @@ import TeacherProfile from "./components/Teacher/TeacherProfile";
 import Home from "./components/Home/Home";
 import Gallery from "./components/Home/Gallery";
 import AboutUs from "./components/Home/AboutUs";
+import ContactUs from "./components/Home/ContactUs";
+import AlTimeTable from "./components/Home/AlTimeTable";
 
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
@@ -126,6 +128,8 @@ function App() {
 
           <Route path="gallery" element={<Gallery />} />
           <Route path="aboutus" element={<AboutUs />} />
+          <Route path="contactus" element={<ContactUs />} />
+          <Route path="altimetable" element={<AlTimeTable />} />
 
           <Route path="newtimetable" element={<NewTimeTableList />} />
           <Route
