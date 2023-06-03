@@ -17,6 +17,7 @@ function AlTimeTable() {
 
                     <div className="container d-flex flex-column align-items-center py-4 py-xl-5">
                     <div className="row gy-4 row-cols-1 row-cols-md-2 w-100" style={{ maxWidth: '800px' }}>
+                        <a href="alstreamwisetimetable">
                         <div className="col order-md-2">
                         <div className="card">
                             <img className="card-img w-100 d-block" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" />
@@ -25,7 +26,10 @@ function AlTimeTable() {
                             <p style={{ fontSize: '20px', fontWeight: 'bold' }}>කලා</p>
                             </div>
                         </div>
-                        </div>
+                        </div>  
+                        </a>
+
+                        <a href="alstreamwisetimetable">
                         <div className="col order-md-2">
                         <div className="card">
                             <img className="card-img w-100 d-block" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" />
@@ -35,6 +39,8 @@ function AlTimeTable() {
                             </div>
                         </div>
                         </div>
+                        </a>
+                        
                         <div className="col order-md-2">
                         <div className="card">
                             <img className="card-img w-100 d-block" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" />
