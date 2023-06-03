@@ -7,7 +7,9 @@ import axios from 'axios';
 
 
 function UpdateTimeTable() {
-    let { id } = useParams();
+  
+
+    const { id } = useParams();
     const [courses, setCourses] = useState([]);
     const [initialData, setInitialData] = useState(null);
   
@@ -39,35 +41,49 @@ function UpdateTimeTable() {
       fetchTimeTableData();
     }, []);
   
-    const navigate = useNavigate();
+    let navigate = useNavigate();
+  
     const initialValues = initialData || {
       cunit: '',
-    //   cname: '',
+      cname: '',
       cdate: '',
       ctime: '',
       hall: '',
     };
   
-    const onSubmit = (data) => {
-      console.log('onsubmit called'+ id);
-      console.log(data);
+    const onSubmit = async (data, { setErrors }) => {
+      try {
+        const response = await axios.get(`${Apiurl}/newtimetable/`);
+        const existingData = response.data;
+        const isDuplicate = checkForDuplicateData(data, existingData);
   
-      axios.put(`${Apiurl}/newtimetable/${id}`, data)
-        .then((response) => {
-          console.log('Data has been updated');
-          navigate('/newtimetable');
-        });
+        if (isDuplicate) {
+          setErrors({ cunit: 'Duplicate data exists. Please provide different values.' });
+          return;
+        }
+  
+        await axios.put(`${Apiurl}/newtimetable/${id}`, data);
+        console.log('Data has been updated');
+        navigate('/newtimetable');
+      } catch (error) {
+        console.error('Error updating time table data:', error);
+      }
     };
   
     const validationSchema = Yup.object().shape({
       cunit: Yup.string().required('You must provide a course code'),
       cdate: Yup.string().required('You must provide a course date'),
       ctime: Yup.string().required('You must provide a course time'),
+      hall: Yup.string().required('You must provide a hall number'),
     });
-
-
-
-
+  
+    // Function to check for duplicate data
+    const checkForDuplicateData = (data, existingData) => {
+      const { cunit, cdate, ctime, hall } = data;
+      return existingData.some(
+        (item) => item.cunit === cunit && item.cdate === cdate && item.ctime === ctime && item.hall === hall && item.id !== id
+      );
+    };
 
   return (
     <div>
@@ -101,6 +117,9 @@ function UpdateTimeTable() {
                 <button type="submit" className="btn btn-primary mt-5">
                   Update
                 </button>
+                <a  className="btn btn-Dander ms-2 mt-5" href='/newtimetable'>
+                  Cancel
+                </a>
               </Form>
             </Formik>
           </div>
