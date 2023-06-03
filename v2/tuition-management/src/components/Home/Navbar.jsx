@@ -14,10 +14,10 @@ function Navbar() {
             </div>
             <ul className="navbar-nav ms-auto">
                 <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
-                <a className="nav-link active" href="index.html" style={{ textAlign: 'center' }}>Home</a>
+                <a className="nav-link active" href="/" style={{ textAlign: 'center' }}>Home</a>
                 </li>
                 <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
-                <a className="nav-link" href="gallery.html" style={{ textAlign: 'center' }}>Gallery</a>
+                <a className="nav-link" href="gallery" style={{ textAlign: 'center' }}>Gallery</a>
                 </li>
                 <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
                 <a className="nav-link" href="blog-post-list.html" style={{ textAlign: 'center' }}>Blog</a>
