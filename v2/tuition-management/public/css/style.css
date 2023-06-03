@@ -1,3 +1,77 @@
+/* --------------------Home page Styling start here------------------------------- */
+html{
+  scroll-behavior: smooth;
+}
+
+#btn-back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  border-radius: 100%;
+}
+
+
+.gotopbtn{
+      position: fixed;
+      width: 50px;
+      height: 50px;
+      background: #3B99E0;
+      bottom: 40px;
+      right: 50px;
+      z-index: 10000000;
+    
+      text-decoration: none;
+      text-align: center;
+      line-height: 50px;
+      color: white;
+      font-size: 22px;
+}
+
+.gotopbtn:hover {
+animation: headShake;
+animation-duration: 2s;
+}
+
+
+@media (min-width: 300px) {
+  .topquote {
+    width: 210px;
+    height: auto;
+  }
+}
+
+@media (min-width: 1400px) {
+  .topquote {
+    width: 311px;
+    margin-left: 25px;
+  }
+}
+
+@media (min-width: 576px) {
+  .topquote {
+    width: 260px;
+  }
+}
+
+@media (min-width: 768px) {
+  .topquote {
+    width: 280px;
+  }
+}
+
+@media (max-width: 580px) {
+  .mobileprofile {
+    padding-top: 20px;
+  }
+}
+
+
+
+
+/* --------------------Home page Styling End here------------------------------- */
+
+
 
 .auth-main{
     background-color: #738FA7;
