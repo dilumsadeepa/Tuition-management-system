@@ -165,6 +165,72 @@ function Home() {
     </section>
 
 
+    <section className="clean-block about-us">
+      <div className="container">
+        <div className="block-heading">
+          <h2 className="text-info">About Us</h2>
+          <p>
+            Susipwin Tuition Class in Anuradhapura is a leading educational institute committed to student success. With expert instructors, personalized programs, and a focus on holistic development, we provide a nurturing environment for academic excellence and personal growth.
+          </p>
+        </div>
+        <div className="row justify-content-center">
+          <div className="col">
+            <section className="position-relative py-5">
+              <div className="d-md-none">
+                <iframe
+                  allowfullscreen=""
+                  frameBorder="0"
+                  src="https://cdn.bootstrapstudio.io/placeholders/map.html"
+                  width="100%"
+                  height="100%"
+                ></iframe>
+              </div>
+              <div className="d-none d-md-block position-absolute top-0 start-0 w-100 h-100">
+                <iframe
+                  allowfullscreen=""
+                  frameBorder="0"
+                  loading="lazy"
+                  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCA8YRyGcNW4spuyZflnzahMHR7vDnXKQY&amp;q=Susipwin+Anuradhapura+Town+Hall+Pl%2C+Anuradhapura&amp;zoom=11"
+                  width="100%"
+                  height="100%"
+                ></iframe>
+              </div>
+              <div className="position-relative mx-2 my-5 m-md-5">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-md-6 col-xl-5 col-xxl-4 offset-md-6 offset-xl-7 offset-xxl-8">
+                      <div>
+                        <form
+                          className="border rounded shadow p-3 p-md-4 p-lg-5"
+                          method="post"
+                          style={{ background: 'var(--bs-body-bg)' }}
+                        >
+                          <h3 className="text-center mb-3">Contact us</h3>
+                          <div className="mb-3">
+                            <input className="form-control" type="text" name="name" placeholder="Name" />
+                          </div>
+                          <div className="mb-3">
+                            <input className="form-control" type="email" name="email" placeholder="Email" />
+                          </div>
+                          <div className="mb-3">
+                            <textarea className="form-control" name="message" placeholder="Message" rows="6"></textarea>
+                          </div>
+                          <div className="mb-3">
+                            <button className="btn btn-primary" type="submit">Send</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
 
         <Footer />
     </div>
