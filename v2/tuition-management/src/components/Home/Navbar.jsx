@@ -20,10 +20,10 @@ function Navbar() {
                 <a className="nav-link" href="gallery" style={{ textAlign: 'center' }}>Gallery</a>
                 </li>
                 <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
-                <a className="nav-link" href="blog-post-list.html" style={{ textAlign: 'center' }}>Blog</a>
+                <a className="nav-link" href="blogpostlist" style={{ textAlign: 'center' }}>Blog</a>
                 </li>
                 <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
-                <a className="nav-link" href="about-us.html" style={{ textAlign: 'center' }}>About Us</a>
+                <a className="nav-link" href="aboutus" style={{ textAlign: 'center' }}>About Us</a>
                 </li>
                 <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
                 <a className="nav-link" href="contact-us.html" style={{ textAlign: 'center' }}>Contact Us</a>

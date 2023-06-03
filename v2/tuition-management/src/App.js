@@ -64,6 +64,7 @@ import TeacherProfile from "./components/Teacher/TeacherProfile";
 // -----------------Home Page-----------------
 import Home from "./components/Home/Home";
 import Gallery from "./components/Home/Gallery";
+import AboutUs from "./components/Home/AboutUs";
 
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
@@ -124,6 +125,7 @@ function App() {
           {/* Common */}
 
           <Route path="gallery" element={<Gallery />} />
+          <Route path="aboutus" element={<AboutUs />} />
 
           <Route path="newtimetable" element={<NewTimeTableList />} />
           <Route
