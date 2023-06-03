@@ -4,7 +4,7 @@ function Footer() {
   return (
     <div>
           <a class="gotopbtn" href="#"> <i class="fas fa-arrow-up"></i> </a>
-         <footer className="page-footer dark fixed-bottom">
+         <footer className="page-footer dark sticky-bottom">
       <div className="container">
         <div className="row">
           <div className="col-sm-3">

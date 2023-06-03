@@ -2,7 +2,7 @@ import React from 'react'
 
 function Navbar() {
   return (
-        <nav className="navbar navbar-light navbar-expand-lg bg-white clean-navbar" id="navbartop" style={{ marginTop: '0px', borderBottom: '3px #069dcc' }}>
+        <nav className="navbar navbar-light sticky-top navbar-expand-lg bg-white clean-navbar" id="navbartop" style={{ marginTop: '0px', borderBottom: '3px #069dcc' }}>
         <div className="container">
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navcol-1">
             <span className="visually-hidden">Toggle navigation</span>
