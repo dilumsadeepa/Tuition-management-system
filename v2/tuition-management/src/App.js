@@ -67,6 +67,7 @@ import Gallery from "./components/Home/Gallery";
 import AboutUs from "./components/Home/AboutUs";
 import ContactUs from "./components/Home/ContactUs";
 import AlTimeTable from "./components/Home/AlTimeTable";
+import ALStreamWiseTimeTable from "./components/Home/ALStreamWiseTimeTable";
 
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
@@ -130,6 +131,7 @@ function App() {
           <Route path="aboutus" element={<AboutUs />} />
           <Route path="contactus" element={<ContactUs />} />
           <Route path="altimetable" element={<AlTimeTable />} />
+          <Route path="alstreamwisetimetable" element={<ALStreamWiseTimeTable />} />
 
           <Route path="newtimetable" element={<NewTimeTableList />} />
           <Route
