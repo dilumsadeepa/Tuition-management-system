@@ -49,6 +49,7 @@ function CreateNewTimeTable() {
         cunit: Yup.string().required('you must provide a course code'),
         cdate: Yup.string().required('you must provide a course date'),
         ctime: Yup.string().required('you must provide a course time'),
+        hall: Yup.string().required('you must provide a course time'),
         // username: Yup.string().min(3).max(15).required('Required'),
     });
 

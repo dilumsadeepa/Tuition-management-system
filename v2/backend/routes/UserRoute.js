@@ -85,6 +85,7 @@ const {
   deleteNewTimetable,
   viewNewTimetable,
   timecourseId,
+  updateTimeTable,
 } = require("../controllers/NewtimetableController.js");
 
 const router = express.Router();
@@ -155,6 +156,7 @@ router.get("/salary", getsals);
 
 router.get("/newtimetable", getNewTimetables);
 router.delete("/newtimetable/:id", deleteNewTimetable);
+router.put('/newtimetable/:id', updateTimeTable);
 router.get("/newtimetable/byId/:id", viewNewTimetable);
 router.post("/newtimetable/create", createNewTimetable);
 router.get("/newtimetableid/:id", timecourseId);
