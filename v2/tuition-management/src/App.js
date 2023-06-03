@@ -26,6 +26,7 @@ import TimeTableList from "./components/Common/TimeTableList";
 
 // import NewTimeTable from "./components/Common/NewTimeTable";
 import CreateNewTimeTable from "./components/Common/CreateNewTimeTable";
+import UpdateTimeTable from "./components/Common/UpdateTimeTable";
 import NewTimeTableList from "./components/Common/NewTimeTableList";
 import CreateTimeTableDashboard from "./components/Common/CreateTimeTableDashboard";
 
@@ -68,6 +69,7 @@ import AboutUs from "./components/Home/AboutUs";
 import ContactUs from "./components/Home/ContactUs";
 import AlTimeTable from "./components/Home/AlTimeTable";
 import ALStreamWiseTimeTable from "./components/Home/ALStreamWiseTimeTable";
+
 
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
@@ -139,6 +141,7 @@ function App() {
             element={<CreateTimeTableDashboard />}
           />
           <Route path="newtimetable/create" element={<CreateNewTimeTable />} />
+          <Route path="newtimetable/edit/:id" element={<UpdateTimeTable />} />
 
           <Route path="notice/edit/:id" element={<EditNotice />} />
           <Route path="test" element={<Test />} />

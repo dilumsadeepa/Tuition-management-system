@@ -6,52 +6,76 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom' ;   // use for navigation handling
 
 function CreateNewTimeTable() {
+  const [courses, setCourses] = useState([]);
 
-    const [courses, setCourses] = useState([]);
-
-    useEffect(()=>{
-        const fetchCourses = async () => {
-          try {
-            const response = await axios.get(`${Apiurl}/coursedata`);
-            setCourses(response.data);
-            console.log("Courses:", response.data);
-          } catch (error) {
-            console.log("Error in getting data:", error);
-          }
-        };
-      
-        fetchCourses();
-    },[])
-
-    let navigate = useNavigate();
-    const initialValues ={
-        cunit: '',
-        cname: '',
-        cdate: '',
-        ctime: '',
-        hall: '', 
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await axios.get(`${Apiurl}/coursedata`);
+        setCourses(response.data);
+        console.log('Courses:', response.data);
+      } catch (error) {
+        console.log('Error in getting data:', error);
+      }
     };
 
+    fetchCourses();
+  }, []);
 
+  let navigate = useNavigate();
+  const initialValues = {
+    cunit: '',
+    cname: '',
+    cdate: '',
+    ctime: '',
+    hall: '',
+  };
 
-    const onSubmit = (data) => {
-        console.log("onsubmit called");
-        console.log(data);
-        axios.post(`${Apiurl}/newtimetable/create`, data)
-            .then((response) => { 
-                console.log("data has been inserted");
-            navigate("/newtimetable");   //return to  root page after creating new post
-        });
-    };
+  const onSubmit = (data, { setSubmitting, setErrors }) => {
+    console.log('onsubmit called');
+    console.log(data);
 
-    //validation rules defined here:
-    const validationSchema = Yup.object().shape({
-        cunit: Yup.string().required('you must provide a course code'),
-        cdate: Yup.string().required('you must provide a course date'),
-        ctime: Yup.string().required('you must provide a course time'),
-        // username: Yup.string().min(3).max(15).required('Required'),
+    // Check for duplicate data
+    axios
+      .get(`${Apiurl}/newtimetable/`)
+      .then((response) => {
+        const existingData = response.data;
+
+        if (checkForDuplicateData(data, existingData)) {
+          setErrors({
+            hall: 'Duplicate data: The same course exists in the same hall at the same time and date',
+          });
+        } else {
+          axios.post(`${Apiurl}/newtimetable/create`, data).then(() => {
+            console.log('data has been inserted');
+            navigate('/newtimetable');
+          });
+        }
+      })
+      .catch((error) => {
+        console.log('Error in checking for duplicate data:', error);
+      });
+
+    setSubmitting(false);
+  };
+
+  const checkForDuplicateData = (newData, existingData) => {
+    return existingData.some((item) => {
+      return (
+        item.hall === newData.hall &&
+        item.cdate === newData.cdate &&
+        item.ctime === newData.ctime
+      );
     });
+  };
 
+  // Validation rules defined here:
+  const validationSchema = Yup.object().shape({
+    cunit: Yup.string().required('You must provide a course code'),
+    cdate: Yup.string().required('You must provide a course date'),
+    ctime: Yup.string().required('You must provide a course time'),
+    hall: Yup.string().required('You must provide a hall number'),
+  });
   return (
     <div>
         <div className="d-flex justify-content-center">

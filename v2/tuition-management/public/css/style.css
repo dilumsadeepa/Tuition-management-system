@@ -3,6 +3,11 @@ html{
   scroll-behavior: smooth;
 }
 
+.spinner-border {
+  width: 100px; 
+  height: 100px;
+}
+
 #btn-back-to-top {
   position: fixed;
   bottom: 20px;

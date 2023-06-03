@@ -59,3 +59,24 @@ exports.timecourseId = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 }
+
+exports.updateTimeTable = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const newData = req.body;
+
+    // Update the time table data in your database
+    const updatedData = await Timetable.update(newData, {
+      where: { id: id },
+    });
+
+    res.json(updatedData);
+  } catch (error) {
+    console.error('Error updating time table data:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+
+
