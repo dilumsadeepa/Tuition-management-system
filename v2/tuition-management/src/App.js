@@ -10,7 +10,7 @@ import ViewTeacher from "./components/Admin/ViewTeacher";
 import StudenttoCourse from "./components/Admin/StudenttoCourse";
 import Course from "./components/Admin/Course";
 import CreateCourse from "./components/Admin/CreateCourse";
-// import CreateNotice from "./components/Common/CreateNotice";
+import CreateNotice from "./components/Common/CreateNotice";
 import CreateNoticeNew from "./components/Common/CreateNoticeNew";
 import Notice from "./components/Common/Notice";
 import EditNotice from "./components/Common/EditNotice";
@@ -26,6 +26,7 @@ import TimeTableList from "./components/Common/TimeTableList";
 
 // import NewTimeTable from "./components/Common/NewTimeTable";
 import CreateNewTimeTable from "./components/Common/CreateNewTimeTable";
+import UpdateTimeTable from "./components/Common/UpdateTimeTable";
 import NewTimeTableList from "./components/Common/NewTimeTableList";
 import CreateTimeTableDashboard from "./components/Common/CreateTimeTableDashboard";
 
@@ -59,6 +60,16 @@ import AddTeacherDetails from "./components/Admin/AddTeacherDetails";
 import TeacherCourse from "./components/Teacher/TeacherCourse";
 
 import Attendecep from "./components/Parent/Attendencep";
+import TeacherProfile from "./components/Teacher/TeacherProfile";
+
+// -----------------Home Page-----------------
+import Home from "./components/Home/Home";
+import Gallery from "./components/Home/Gallery";
+import AboutUs from "./components/Home/AboutUs";
+import ContactUs from "./components/Home/ContactUs";
+import AlTimeTable from "./components/Home/AlTimeTable";
+import ALStreamWiseTimeTable from "./components/Home/ALStreamWiseTimeTable";
+
 
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
@@ -68,7 +79,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Welcome />} />
+          <Route path="/" element={<Home />} />
           <Route path="auth" element={<Auth />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
@@ -96,6 +107,7 @@ function App() {
           <Route path="teacher" element={<Teacher />}></Route>
           <Route path="teacherdetails" element={<AddTeacherDetails />}></Route>
           <Route path="teachercourse" element={<TeacherCourse />}></Route>
+          <Route path="teacherprofile" element={<TeacherProfile />}></Route>
 
           {/* student part */}
           {/* <Route path="StudentLogin" element={<Login />} /> */}
@@ -105,10 +117,7 @@ function App() {
           <Route path="Enrollpage" element={<EnrollPage />} />
           <Route path="profile" element={<StudentProfile />} />
 
-
           <Route path="studashboard" element={<StuDashboard />} />
-
-
 
           {/* <Route path="StudentLogin" element={<Login />} /> */}
 
@@ -120,15 +129,24 @@ function App() {
 
           {/* Common */}
 
-         <Route path="newtimetable" element={<NewTimeTableList/>}/>
-         <Route path="newtimetabledash" element={<CreateTimeTableDashboard/>}/>
-         <Route path="newtimetable/create" element={<CreateNewTimeTable/>}/>
+          <Route path="gallery" element={<Gallery />} />
+          <Route path="aboutus" element={<AboutUs />} />
+          <Route path="contactus" element={<ContactUs />} />
+          <Route path="altimetable" element={<AlTimeTable />} />
+          <Route path="alstreamwisetimetable" element={<ALStreamWiseTimeTable />} />
 
-         <Route path="notice/edit/:id" element={<EditNotice/>}/>
-         <Route path="test" element={<Test/>}/>
-         <Route path="*" element={<PageNotFound/>}/>
+          <Route path="newtimetable" element={<NewTimeTableList />} />
+          <Route
+            path="newtimetabledash"
+            element={<CreateTimeTableDashboard />}
+          />
+          <Route path="newtimetable/create" element={<CreateNewTimeTable />} />
+          <Route path="newtimetable/edit/:id" element={<UpdateTimeTable />} />
 
-   
+          <Route path="notice/edit/:id" element={<EditNotice />} />
+          <Route path="test" element={<Test />} />
+          <Route path="*" element={<PageNotFound />} />
+
           <Route path="notice" element={<NoticesList />} />
           <Route path="notice/create" element={<CreateNoticeNew />} />
           <Route path="notice/:id" element={<Notice />} />
@@ -137,7 +155,6 @@ function App() {
           <Route path="timetable/create" element={<CreateTimeTableNew />} />
           <Route path="timetable/:id" element={<TimeTable />} />
           <Route path="timetable/edit/:id" element={<EditTimeTable />} />
-
         </Routes>
       </BrowserRouter>
     </div>

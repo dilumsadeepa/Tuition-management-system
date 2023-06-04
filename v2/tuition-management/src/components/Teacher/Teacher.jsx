@@ -34,7 +34,7 @@ const Teacher = () =>{
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span>
+                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Income</span>
                                                     <span class="h3 font-bold mb-0">Rs 750.90</span>
                                                 </div>
                                                 <div class="col-auto">
@@ -70,46 +70,7 @@ const Teacher = () =>{
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-sm-6 col-12">
-                                    <div class="card shadow border-0">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">All Teachers</span>
-                                                    <span class="h3 font-bold mb-0">10</span>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
-                                                        <i class="bi bi-clock-history"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mt-2 mb-0 text-sm">
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-sm-6 col-12">
-                                    <div class="card shadow border-0">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">All Classes</span>
-                                                    <span class="h3 font-bold mb-0">30</span>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
-                                                        <i class="bi bi-minecart-loaded"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mt-2 mb-0 text-sm">
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                               
                             </div>
                             
                         </div>

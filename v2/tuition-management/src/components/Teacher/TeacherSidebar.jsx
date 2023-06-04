@@ -183,7 +183,7 @@ const TeacherSidebar =() =>{
                         {/* <!-- User (md) --> */}
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="#s">
+                                <a class="nav-link" href="/teacherprofile">
                                     <i class="bi bi-person-square"></i> Account
                                 </a>
                             </li>

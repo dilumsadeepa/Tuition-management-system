@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { getNewTimetables, createNewTimetable, deleteNewTimetable, viewNewTimetable, timecourseId } from "../controllers/NewtimetableController.js";
+import { getNewTimetables, createNewTimetable, deleteNewTimetable, viewNewTimetable, timecourseId, updateTimeTable } from "../controllers/NewtimetableController.js";
 import NewTimetableModel from '../models/NewtimetableModel.js';
 import cloudinary from '../clouds/cloudinary.js';
 
@@ -31,6 +31,7 @@ router.post("/newtimetable", async (req, res, next) => {
 
 router.get('/newtimetable', getNewTimetables);
 router.delete('/newtimetable/:id', deleteNewTimetable);
+router.put('/newtimetable/:id', updateTimeTable);
 router.get('/newtimetable/byId/:id', viewNewTimetable );
 router.get('/newtimetableid/byId/:id', timecourseId ); 
 
