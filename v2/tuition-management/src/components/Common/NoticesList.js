@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import DOMPurify from 'dompurify';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import CloudinaryFileList from './CloudinaryFileList'
 
 import $ from 'jquery';
 import "datatables.net-dt/css/jquery.dataTables.css";
@@ -27,6 +28,7 @@ function NoticesList() {
 
     const tableRef = useRef(null);
     const [notices, setNotices] = useState([]);
+    const [noticesList, setNoticesList] = useState([]);
     const [fileCount, setFileCount] = useState(0);
     const [noticeToText, setNoticeToText] = useState('');
     const [cloudFiles, setCloudFiles] = useState([]);
@@ -81,8 +83,11 @@ function NoticesList() {
 
     useEffect(() => {
       const fetchData = async () => {
-      const response = await fetch(`${Apiurl}/notice`);
-      const data = await response.json();
+        const response = await axios.get(`${Apiurl}/notice`);
+        const data = response.data;
+        setNoticesList(data);
+      // const response = await fetch(`${Apiurl}/notice`);
+      // const data = await response.json();
 
        // Destroy existing DataTable (if any)
       if ($.fn.DataTable.isDataTable(tableRef.current)) {
@@ -113,7 +118,6 @@ function NoticesList() {
             },
           },
           { title: 'Notice Title', data: 'notice_title'},
-          { title: 'Attachments', data: 'files', render: (files) => files ? files.split(",").length : 0 },
           { title: 'Date', data: 'createdAt'},
           {
             title: 'Action',
@@ -182,7 +186,7 @@ function NoticesList() {
           const deleted = await axios.delete(`${Apiurl}/notice/${id}`);
           console.log(deleted.data);
           // Update the state of the notices array after deleting the notice
-          setNotices(notices.filter(notice => notice.id !== id));
+          setNoticesList(noticesList.filter(notice => notice.id !== id));
         } catch (error) {
           console.log("error on deleting" + error);
         }
@@ -287,7 +291,6 @@ function NoticesList() {
                                                 <tr>
                                                     <th>Notice To</th>
                                                     <th>Notice Title</th>
-                                                    <th>Attachments</th>
                                                     <th>Date</th>
                                                     <th>Action</th> 
                                                 </tr>
@@ -343,8 +346,20 @@ function NoticesList() {
                                                     <h2 className="text-center mb-5" style={{ fontFamily: 'Merriweather', }}>{noticeObject.notice_title}</h2>
                                                     <p className="my-5">Notice To: {getRecipientText(noticeObject.notice_to)}</p>
                                                     <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(noticeObject.notice_desc) }} className="my-5"></p> 
-
+                                     
+                                                    {noticeObject.file_urls && (
+                                                    <div className="row">
+                                                    <div>
+                                                    <div>
+                                                      <ul className="list-group">
+                                                        <li className="list-group-item list-group-item-info"><i class="fa-solid fa-file-video me-2"></i> File <i class="fa-solid fa-arrow-right mx-2"></i> <small>{noticeObject.file_urls}</small>  <a href={noticeObject.file_urls} target="_blank" download><i class="fa-solid fa-arrow-up-right-from-square"></i></a>  </li>
+                                                        </ul>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                    )}
                                                    
+
                                                     </div>
                                                     </div>
 

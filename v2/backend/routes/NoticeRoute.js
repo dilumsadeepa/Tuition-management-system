@@ -64,12 +64,9 @@ router.post("/multiple", async (req, res) => {
 
 router.put("/multiple", async (req, res, next) => {
   console.log("body :",req.body);
-  console.log("file List: ",req.files);
-  console.log("file Names csv: ",req.body.files);
-  const { id, notice_to, notice_title, notice_desc} = req.body;
+  const { id, notice_to, notice_title, notice_desc, file_urls} = req.body;
 
 
-  let hasNewFiles = false;
   // Get the notice from the database
   const notice = await NoticeModel.findByPk(id);
 
@@ -77,6 +74,7 @@ router.put("/multiple", async (req, res, next) => {
   notice.notice_to = notice_to;
   notice.notice_title = notice_title;
   notice.notice_desc = notice_desc;
+  notice.file_urls = file_urls;
 
    // Save the notice to the database
    await notice.save();
