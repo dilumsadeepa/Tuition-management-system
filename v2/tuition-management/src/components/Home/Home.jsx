@@ -1,8 +1,51 @@
-import React from 'react'
+import React, { useState } from 'react';
 import Navbar from './Navbar'
 import Footer from './Footer'
 
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function Home() {
+// Define the validation schema
+const validationSchema = Yup.object().shape({
+  name: Yup.string().required('Name is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  message: Yup.string().required('Message is required'),
+});
+
+const [formSubmitted, setFormSubmitted] = useState(false);
+
+const handleSubmit = (values, { setSubmitting }) => {
+  validationSchema
+    .validate(values)
+    .then(() => {
+      const { name, email, message } = values;
+
+      const mailtoUrl = `mailto:susipwan.edu@gmail.com?subject=Contact Form Submission - from ${encodeURIComponent(
+        name
+      )} &body=${encodeURIComponent(
+        message
+      )}`;
+
+      window.location.href = mailtoUrl;
+      setSubmitting(false);
+      setFormSubmitted(true);
+    })
+    .catch((error) => {
+      console.log('Form data is invalid:', error);
+      setSubmitting(false);
+      toast.error('Please fill in all required fields.', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    });
+};
+
+
+
+
+
   return (
     <div>
         <div className="row" style={{ '--bs-body-bg': 'var(--bs-blue)', background: 'var(--bs-info)', marginRight: 0, marginLeft: 0, color:'#000' }}>
@@ -199,27 +242,41 @@ function Home() {
                 <div className="container">
                   <div className="row">
                     <div className="col-md-6 col-xl-5 col-xxl-4 offset-md-6 offset-xl-7 offset-xxl-8">
-                      <div>
-                        <form
-                          className="border rounded shadow p-3 p-md-4 p-lg-5"
-                          method="post"
-                          style={{ background: 'var(--bs-body-bg)' }}
-                        >
+                     
+                    <div>
+                      <Formik
+                        initialValues={{
+                          name: '',
+                          email: '',
+                          message: ''
+                        }}
+                        validationSchema={validationSchema}
+                        onSubmit={handleSubmit}
+                      >
+                        <Form className='bg-white' style={{ padding:'40px 30px' }}>
                           <h3 className="text-center mb-3">Contact us</h3>
                           <div className="mb-3">
-                            <input className="form-control" type="text" name="name" placeholder="Name" />
+                            <Field className="form-control" type="text" name="name" placeholder="Name" />
+                            <ErrorMessage className="badge rounded-pill text-bg-danger" name="name" component="div" />
                           </div>
                           <div className="mb-3">
-                            <input className="form-control" type="email" name="email" placeholder="Email" />
+                            <Field className="form-control" type="email" name="email" placeholder="Email" />
+                            <ErrorMessage className="badge rounded-pill text-bg-danger" name="email" component="div" />
                           </div>
                           <div className="mb-3">
-                            <textarea className="form-control" name="message" placeholder="Message" rows="6"></textarea>
+                            <Field className="form-control" as="textarea" name="message" placeholder="Message" rows="6" />
+                            <ErrorMessage className="badge rounded-pill text-bg-danger" name="message" component="div" />
                           </div>
                           <div className="mb-3">
                             <button className="btn btn-primary" type="submit">Send</button>
                           </div>
-                        </form>
-                      </div>
+                        </Form>
+                      </Formik>
+                      <ToastContainer />
+                    </div>
+
+
+                     
                     </div>
                   </div>
                 </div>
