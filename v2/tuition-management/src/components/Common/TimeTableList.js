@@ -354,13 +354,11 @@ function TimeTableList() {
                     
                         <div class="container">
 
-                            <div className="row">
-
-
-                            <div class="d-flex mt-3">
-  <div class="p-2 flex-grow-1"><h2>TimeTable Post</h2></div>
-  <div class="p-2"><a href="/timetable/create" className="btn-grad">Create TimeTable</a></div>
-</div>
+                            <div className="row mobileflex">
+                            <div class="d-flex mt-3 mobileflex">
+                            <div class="p-2 flex-grow-1"><h2>TimeTable Post</h2></div>
+                            <div class="p-2"><a href="/timetable/create" className="btn-grad">Create TimeTable</a></div>
+                              </div>
 
 
                                 {/* <div class="col-xl-4 col-sm-6 col-12">
