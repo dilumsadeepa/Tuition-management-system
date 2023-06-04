@@ -72,12 +72,12 @@ const {
   getNoticesCount,
 } = require("../controllers/NoticeController.js");
 
-// const {
-//   getTimetables,
-//   createTimetable,
-//   deleteTimetable,
-//   viewTimetable,
-// } = require("../controllers/TimetableController.js");
+const {
+  getTimetables,
+  createTimetable,
+  deleteTimetable,
+  viewTimetable,
+} = require("../controllers/TimetableController.js");
 
 const {
   getNewTimetables,
@@ -150,9 +150,9 @@ router.get("/notice/count", getNoticesCount);
 router.delete("/notice/:id", deleteNotice);
 router.get("/notice/byId/:id", viewNotice);
 
-// router.get("/timetable", getTimetables);
-// router.delete("/timetable/:id", deleteTimetable);
-// router.get("/timetable/byId/:id", viewTimetable);
+router.get("/timetable", getTimetables);
+router.delete("/timetable/:id", deleteTimetable);
+router.get("/timetable/byId/:id", viewTimetable);
 
 router.get("/newtimetable", getNewTimetables);
 router.delete("/newtimetable/:id", deleteNewTimetable);

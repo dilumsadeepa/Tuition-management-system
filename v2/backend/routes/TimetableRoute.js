@@ -1,12 +1,12 @@
-import express from "express";
+const express = require("express");
 const router = express.Router();
-import { getTimetables, createTimetable, deleteTimetable, viewTimetable } from "../controllers/TimetableController.js";
-import TimetableModel from '../models/TimetablepostModel.js';
-import { CloudinaryStorage } from "multer-storage-cloudinary";
-import multer from "multer"; // use for file handeling
-import path from "path";
-import fs from 'fs';
-import cloudinary from '../clouds/cloudinary.js';
+const { getTimetables, createTimetable, deleteTimetable, viewTimetable } = require("../controllers/TimetableController.js");
+const TimetableModel = require('../models/TimetablepostModel.js');
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const multer = require("multer"); // use for file handeling
+const path = require("path");
+const fs = require('fs');
+const cloudinary = require('../clouds/cloudinary.js');
 
 
 // const cloudinary = require('../clouds/cloudinary');
@@ -451,4 +451,4 @@ router.delete('/timetable/:id', deleteTimetable);
 router.get('/timetable/byId/:id', viewTimetable );
  
 
-export default router; 
+module.exports = router; 
