@@ -92,28 +92,28 @@ function Home() {
         </div>
         <div className="row justify-content-center">
           <div className="col-md-5 feature-box">
-            <i className="icon-user-following icon"></i>
+          <i class="fa-solid fa-person-chalkboard fa-2x" style={{ color:'#3B99E0' }}></i>
             <h4>
               <strong>Expert Instructors:</strong>
             </h4>
             <p>Highly qualified and experienced instructors who specialize in their respective subjects.</p>
           </div>
           <div className="col-md-5 feature-box">
-            <i className="icon-pencil icon"></i>
+            <i class="fa-solid fa-pen-to-square fa-2x" style={{ color:'#3B99E0' }}></i>
             <h4>
               <strong>Track Record of Success</strong>
             </h4>
             <p>Demonstrated history of students achieving remarkable academic results and securing admissions to prestigious institutions.</p>
           </div>
           <div className="col-md-5 feature-box">
-            <i className="icon-refresh icon"></i>
+          <i class="fa-solid fa-arrows-rotate fa-2x" style={{ color:'#3B99E0' }}></i>
             <h4>
               <strong>Interactive Teaching Methods</strong>
             </h4>
             <p>Engaging and interactive teaching methods that promote active participation and enhance learning outcomes.</p>
           </div>
           <div className="col-md-5 feature-box">
-            <i className="icon-notebook icon"></i>
+            <i class="fa-regular fa-clipboard fa-2x" style={{ color:'#3B99E0' }}></i>
             <h4>
               <strong>Exam Excellence</strong>
             </h4>
