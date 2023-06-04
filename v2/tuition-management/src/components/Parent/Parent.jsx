@@ -36,11 +36,11 @@ const ParentDashboard = () =>{
                                                 <div class="col">
                                                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">Student Details</span>
                                                 </div>
-                                                <div class="col-auto">
+                                                {/* <div class="col-auto">
                                                     <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
                                                         <i class="bi bi-credit-card"></i>
                                                     </div>
-                                                </div>
+                                                </div> */}
                                             </div>
                                             <div class="mt-2 mb-0 text-sm">
                                                 
@@ -52,14 +52,15 @@ const ParentDashboard = () =>{
                                     <div class="card shadow border-0">
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Notices</span>
-                                                </div>
-                                                <div class="col-auto">
+                                                <a class="nav-link" href="/notice">
+                                                    {/* <i class="fa-regular fa-note-sticky"></i> Notices */}
+                                                    <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">Notices</span>
+                                                 </a>
+                                                {/* <div class="col-auto">
                                                     <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
                                                         <i class="bi bi-people"></i>
                                                     </div>
-                                                </div>
+                                                </div> */}
                                             </div>
                                             <div class="mt-2 mb-0 text-sm">
                                                 
@@ -74,11 +75,11 @@ const ParentDashboard = () =>{
                                                 <div class="col">
                                                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">Profile</span>
                                                 </div>
-                                                <div class="col-auto">
+                                                {/* <div class="col-auto">
                                                     <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
                                                         <i class="bi bi-clock-history"></i>
                                                     </div>
-                                                </div>
+                                                </div> */}
                                             </div>
                                             <div class="mt-2 mb-0 text-sm">
                                                 
@@ -93,11 +94,11 @@ const ParentDashboard = () =>{
                                                 <div class="col">
                                                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">Payment</span>
                                                 </div>
-                                                <div class="col-auto">
+                                                {/* <div class="col-auto">
                                                     <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
                                                         <i class="bi bi-minecart-loaded"></i>
                                                     </div>
-                                                </div>
+                                                </div> */}
                                             </div>
                                             <div class="mt-2 mb-0 text-sm">
                                                 
