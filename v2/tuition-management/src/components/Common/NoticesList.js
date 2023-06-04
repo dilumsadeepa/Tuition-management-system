@@ -263,7 +263,10 @@ function NoticesList() {
                             <div className="row mobileflex">
                             <div class="d-flex mt-3 mobileflex">
                                 <div class="p-2 flex-grow-1"><h2>Notices</h2></div>
-                                <div class="p-2"><a href="notice/create" className="btn-grad">Create Notice</a></div>
+                                {cookies.role === '1' || cookies.role === '2' || cookies.role === '3' && (
+                                  <div class="p-2"><a href="notice/create" className="btn-grad">Create Notice</a></div>
+                                )}
+                                
                                 </div>
 
                             </div>
