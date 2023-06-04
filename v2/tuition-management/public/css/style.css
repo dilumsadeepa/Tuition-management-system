@@ -475,3 +475,20 @@ body {
 .Clist-background{
   background-image: url("../../../img/background.png");
 }
+
+
+@media only screen and (max-width: 560px) {
+  .btn-grad {
+    font-size: 0.7rem;
+  }
+
+  .mobileflex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* text-align: center; */
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+  }
+}

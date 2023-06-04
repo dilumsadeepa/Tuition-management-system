@@ -273,8 +273,8 @@ function NoticesList() {
                     
                         <div class="container">
 
-                            <div className="row">
-                            <div class="d-flex mt-3">
+                            <div className="row mobileflex">
+                            <div class="d-flex mt-3 mobileflex">
                                 <div class="p-2 flex-grow-1"><h2>Notices</h2></div>
                                 <div class="p-2"><a href="notice/create" className="btn-grad">Create Notice</a></div>
                                 </div>
