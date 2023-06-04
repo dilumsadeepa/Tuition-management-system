@@ -102,11 +102,30 @@ function NoticesList() {
           {
             title: 'Action',
             data: 'id',
-            render: (id) => (
-              `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>` +
-              `<button class="btn btn-sm btn-secondary me-1 edit-btn" data-id="${id}"><i class="fa-solid fa-pen-to-square"></i></button>` +
-              `<button class="btn btn-sm btn-danger me-1 delete-btn" data-id="${id}"><i class="fa-solid fa-trash"></i></button>`
-            )
+           
+            // render: (id) => (
+            //   `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>` +
+            //   `<button class="btn btn-sm btn-secondary me-1 edit-btn" data-id="${id}"><i class="fa-solid fa-pen-to-square"></i></button>` +
+            //   `<button class="btn btn-sm btn-danger me-1 delete-btn" data-id="${id}"><i class="fa-solid fa-trash"></i></button>`
+            // )
+
+            render: (id) => {
+              let buttons = '';
+  
+              // Display different buttons based on user role
+              if (cookies.role === '5' || cookies.role === '4') {
+                buttons += `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>`;
+              }
+  
+              if (cookies.role === '1' || cookies.role === '2' || cookies.role === '3') {
+                buttons += `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>` +
+                `<button class="btn btn-sm btn-secondary me-1 edit-btn" data-id="${id}"><i class="fa-solid fa-pen-to-square"></i></button>` +
+                  `<button class="btn btn-sm btn-danger me-1 delete-btn" data-id="${id}"><i class="fa-solid fa-trash"></i></button>`;
+              }
+  
+              return buttons;
+            },
+
           }
         ],
         dom: 'Bfrtip', // Add the required buttons
