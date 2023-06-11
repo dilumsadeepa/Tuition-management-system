@@ -139,6 +139,20 @@ const CreateUser = () => {
                                             {errors.username && <div className="error">{errors.username}</div>}
                                         </div>
 
+                                        {/* Full Name */}
+                                        <div className="mb-3 mt-3">
+                                            <label className="form-label">Full Name:</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Enter the full name"
+                                                value={fullname}
+                                                onChange={(e) => setFullname(e.target.value)}
+                                            />
+                                            {/* Display validation error for role */}
+                                            {errors.fullname && <div className="error">{errors.fullname}</div>}
+                                        </div>
+
                                         {/* Email */}
                                         <div className="mb-3 mt-3">
                                             <label className="form-label">Email:</label>
@@ -194,29 +208,17 @@ const CreateUser = () => {
                                                 required
                                             >
                                                 <option value="">Select a role</option>
-                                                <option value="admin">Admin</option>
-                                                <option value="user">Staff</option>
-                                                <option value="user">Teacher</option>
-                                                <option value="user">Student</option>
-                                                <option value="user">Parent</option>
+                                                <option value="1">Admin</option>
+                                                <option value="2">Staff</option>
+                                                <option value="3">Teacher</option>
+                                                <option value="4">Student</option>
+                                                <option value="5">Parent</option>
                                             </select>
                                             {/* Display validation error for role */}
                                             {errors.role && <div className="error">{errors.role}</div>}
                                         </div>
 
-                                        {/* Full Name */}
-                                        <div className="mb-3 mt-3">
-                                            <label className="form-label">Full Name:</label>
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                placeholder="Enter the full name"
-                                                value={fullname}
-                                                onChange={(e) => setFullname(e.target.value)}
-                                            />
-                                            {/* Display validation error for role */}
-                                            {errors.fullname && <div className="error">{errors.fullname}</div>}
-                                        </div>
+                                        
 
                                         {/* Address */}
                                         <div className="mb-3 mt-3">

@@ -1,13 +1,22 @@
 import React, {useRef, useEffect, useState, tableRef} from "react";
 import axios from "axios";
 import Apiurl from '../Apiurl';
+
 import Sidebar from '../Admin/AdminSidebar';
-import Dashhead from '../Admin/Dashhead';
+import StudentSidebar from '../Student/StudentSidebar';
+import TeacherSidebar from '../Teacher/TeacherSidebar';
+import ParentSidebar from '../Parent/Sidebar';
+import AdminDashhead from '../Admin/Dashhead';
+import StudentDashhead from "../Student/Dashhead";
+import TeacherDashhead from "../Teacher/Dashhead";
+import ParentDashHead from "../Parent/Dashhead";
+
 import { useNavigate } from 'react-router-dom'
 import DOMPurify from 'dompurify';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import CloudinaryFileList from './CloudinaryFileList'
+import { useCookies } from 'react-cookie';
 
 import $ from 'jquery';
 import "datatables.net-dt/css/jquery.dataTables.css";
@@ -46,40 +55,11 @@ function NoticesList() {
     let navigate = useNavigate();    //useNavigate is a hook to navigate to another page
 
 
-    // useEffect(() => {
-    //     axios.get(`${Apiurl}/notice`)
-    //       .then(res => {
-    //         const noticesData = res.data;
-    //         setNotices(noticesData);
-    //         // Extract filenames and noticeTo values from the response data
-    //         const filenames = noticesData.map(notice => notice.files);
-    //         // Get the number of files for each notice
-    //         const fileCounts = filenames.map(files => files.split(',').length);
-    //         // Update the state with the file counts
-    //         setFileCount(fileCounts);
-    //         // Set the noticeTo text based on the notice_to value
-    //         const noticeToTexts = noticesData.map(notice => {
-    //           let text = '';
-    //           if (notice.notice_to === '5') {
-    //             text = 'All';
-    //           } else if (notice.notice_to === '2') {
-    //             text = 'Staff';
-    //           } else if (notice.notice_to === '3') {
-    //             text = 'Teacher';
-    //           } else if (notice.notice_to === '4') {
-    //             text = 'Student';
-    //           }
-    //           return text;
-    //         });
-    //         setNoticeToText(noticeToTexts);
-    //       })
-    //       .catch(err => {
-    //         console.log(err);
-    //       })
-    //   }, []);
 
+    const [cookies] = useCookies(['role']);
+    console.log(cookies.role);
 
-
+  
 
     useEffect(() => {
       const fetchData = async () => {
@@ -122,11 +102,30 @@ function NoticesList() {
           {
             title: 'Action',
             data: 'id',
-            render: (id) => (
-              `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>` +
-              `<button class="btn btn-sm btn-secondary me-1 edit-btn" data-id="${id}"><i class="fa-solid fa-pen-to-square"></i></button>` +
-              `<button class="btn btn-sm btn-danger me-1 delete-btn" data-id="${id}"><i class="fa-solid fa-trash"></i></button>`
-            )
+           
+            // render: (id) => (
+            //   `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>` +
+            //   `<button class="btn btn-sm btn-secondary me-1 edit-btn" data-id="${id}"><i class="fa-solid fa-pen-to-square"></i></button>` +
+            //   `<button class="btn btn-sm btn-danger me-1 delete-btn" data-id="${id}"><i class="fa-solid fa-trash"></i></button>`
+            // )
+
+            render: (id) => {
+              let buttons = '';
+  
+              // Display different buttons based on user role
+              if (cookies.role === '5' || cookies.role === '4') {
+                buttons += `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>`;
+              }
+  
+              if (cookies.role === '1' || cookies.role === '2' || cookies.role === '3') {
+                buttons += `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>` +
+                `<button class="btn btn-sm btn-secondary me-1 edit-btn" data-id="${id}"><i class="fa-solid fa-pen-to-square"></i></button>` +
+                  `<button class="btn btn-sm btn-danger me-1 delete-btn" data-id="${id}"><i class="fa-solid fa-trash"></i></button>`;
+              }
+  
+              return buttons;
+            },
+
           }
         ],
         dom: 'Bfrtip', // Add the required buttons
@@ -163,19 +162,6 @@ function NoticesList() {
 
 
 }, []);
-
-
-    
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -258,25 +244,29 @@ function NoticesList() {
          <section> 
             {/* <!-- Dashboard --> */}
                 <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
-                        
-                <Sidebar />
 
+                   {cookies.role === '5' ? <ParentSidebar/> : cookies.role === '4' ? <StudentSidebar/> : cookies.role === '3' ? <TeacherSidebar /> : <Sidebar />}     
+                  
 
                 {/* <!-- Main content --> */}
                 <div class="h-screen flex-grow-1 overflow-y-lg-auto">
                     
                     {/* <!-- Header --> */}
-                    <Dashhead />
+                    {cookies.role === '5' ? <ParentDashHead/> : cookies.role === '4' ? <StudentDashhead/> : cookies.role === '3' ? <TeacherDashhead /> : <AdminDashhead />}
+            
 
                     {/* <!-- Main --> */}
                      <main>
                     
                         <div class="container">
 
-                            <div className="row">
-                            <div class="d-flex mt-3">
+                            <div className="row mobileflex">
+                            <div class="d-flex mt-3 mobileflex">
                                 <div class="p-2 flex-grow-1"><h2>Notices</h2></div>
-                                <div class="p-2"><a href="notice/create" className="btn-grad">Create Notice</a></div>
+                                {cookies.role === '1' || cookies.role === '2' || cookies.role === '3' && (
+                                  <div class="p-2"><a href="notice/create" className="btn-grad">Create Notice</a></div>
+                                )}
+                                
                                 </div>
 
                             </div>

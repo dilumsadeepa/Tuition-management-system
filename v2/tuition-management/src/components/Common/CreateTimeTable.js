@@ -357,9 +357,13 @@ function CreateTimeTable() {
                   <div className="d-flex align-items-center">
                   <div className="flex-grow-1 align-items-center pe-2">
                   <label htmlFor="cloudFiles" className="my-2"><i class="fa-solid fa-link fa-lg mx-2"></i> Attachments - cloud storage only</label>
+                  <div className="d-flex align-items-center">
                   <input type="file" className={`form-control ${errors.attachFiles && "is-invalid"}`} multiple onChange={handleCloudFileInputChange} />
+                  <div className="ms-2"><button onClick={upload} className="btn btn-primary">upload</button></div>
                   </div>
-                <div className="pt-10"><button onClick={upload} className="btn btn-primary">upload</button></div>
+                  
+                  </div>
+                
                 </div>
                 {errors.cloudFiles && (
                   <div className="badge rounded-pill text-bg-danger">{errors.cloudFiles}</div>
@@ -385,12 +389,12 @@ function CreateTimeTable() {
 
                
 
-                <div className="formdes">
+                {/* <div className="formdes">
                   <small>
                   File Supported : "zip","rar","7z","xml","xhtml","txt","svg","rtf","pdf","jpeg","png","jpg","ogg","mp3","json","html","gif","mp4","mpeg","mkv","flv","avi","csv","ppt","pptx","xls","xlsx","doc","docx"
                   </small>
                  
-                </div>
+                </div> */}
 
                 <div className="form-files">
                 <small>Max File Size : 10MB</small>

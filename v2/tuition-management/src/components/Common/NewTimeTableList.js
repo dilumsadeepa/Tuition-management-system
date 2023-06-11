@@ -1,8 +1,6 @@
 import React, {useRef, useEffect, useState} from "react";
 import axios from "axios";
 import Apiurl from '../Apiurl';
-import Sidebar from '../Admin/AdminSidebar';
-import Dashhead from '../Admin/Dashhead';
 import { useNavigate } from 'react-router-dom'
 import DOMPurify from 'dompurify';
 import Swal from 'sweetalert2'
@@ -10,6 +8,17 @@ import withReactContent from 'sweetalert2-react-content'
 import CloudinaryFileList from './CloudinaryFileList';
 import CloudBackupFilesList from './CloudBackupFilesList';
 import LocalFileList from './LocalFileList';
+
+import Sidebar from '../Admin/AdminSidebar';
+import StudentSidebar from '../Student/StudentSidebar';
+import TeacherSidebar from '../Teacher/TeacherSidebar';
+import ParentSidebar from '../Parent/Sidebar';
+import AdminDashhead from '../Admin/Dashhead';
+import StudentDashhead from "../Student/Dashhead";
+import TeacherDashhead from "../Teacher/Dashhead";
+import ParentDashHead from "../Parent/Dashhead";
+import { useCookies } from 'react-cookie';
+
 import $ from 'jquery';
 import "datatables.net-dt/css/jquery.dataTables.css";
 import "datatables.net-dt/js/dataTables.dataTables.js";
@@ -42,6 +51,8 @@ function NewTimeTableList() {
     
     let navigate = useNavigate();    //useNavigate is a hook to navigate to another page
 
+    const [cookies] = useCookies(['role']);
+    // console.log(cookies.role);
 
     useEffect(() => {
         axios.get(`${Apiurl}/newtimetable/`)
@@ -82,11 +93,23 @@ function NewTimeTableList() {
             {
               title: 'Action',
               data: 'id',
-              render: (id) => (
-                `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>` +
-                `<button class="btn btn-sm btn-secondary me-1 edit-btn" data-id="${id}"><i class="fa-solid fa-pen-to-square"></i></button>` +
-                `<button class="btn btn-sm btn-danger me-1 delete-btn" data-id="${id}"><i class="fa-solid fa-trash"></i></button>`
-              )
+              render: (id) => {
+                let buttons = '';
+    
+                // Display different buttons based on user role
+                if (cookies.role === '5' || cookies.role === '4') {
+                  buttons += `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>`;
+                }
+    
+                if (cookies.role === '1' || cookies.role === '2' || cookies.role === '3') {
+                  buttons += `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>` +
+                  `<button class="btn btn-sm btn-secondary me-1 edit-btn" data-id="${id}"><i class="fa-solid fa-pen-to-square"></i></button>` +
+                    `<button class="btn btn-sm btn-danger me-1 delete-btn" data-id="${id}"><i class="fa-solid fa-trash"></i></button>`;
+                }
+    
+                return buttons;
+              },
+  
             }
           ],
           dom: 'Bfrtip', // Add the required buttons
@@ -221,14 +244,14 @@ function NewTimeTableList() {
             {/* <!-- Dashboard --> */}
                 <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
                         
-                <Sidebar />
+                {cookies.role === '5' ? <ParentSidebar/> : cookies.role === '4' ? <StudentSidebar/> : cookies.role === '3' ? <TeacherSidebar /> : <Sidebar />}  
 
 
                 {/* <!-- Main content --> */}
                 <div class="h-screen flex-grow-1 overflow-y-lg-auto">
                     
                     {/* <!-- Header --> */}
-                    <Dashhead />
+                    {cookies.role === '5' ? <ParentDashHead/> : cookies.role === '4' ? <StudentDashhead/> : cookies.role === '3' ? <TeacherDashhead /> : <AdminDashhead />} 
 
                     {/* <!-- Main --> */}
                      <main>
@@ -240,7 +263,9 @@ function NewTimeTableList() {
 
                             <div class="d-flex mt-3">
                                 <div class="p-2 flex-grow-1"><h2>TimeTable</h2></div>
-                                <div class="p-2"><a href="/newtimetabledash" className="btn-grad">Create TimeTable</a></div>
+                                {cookies.role === '1' || cookies.role === '2' || cookies.role === '3' && (
+                                  <div class="p-2"><a href="/newtimetabledash" className="btn-grad">Create TimeTable</a></div>
+                                )}
                                 </div>
 
                             </div>

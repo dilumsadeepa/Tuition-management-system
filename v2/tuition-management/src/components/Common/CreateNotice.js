@@ -164,7 +164,7 @@ function CreateNotice() {
 
       <div className="mb-3 mt-3">
                 <label htmlFor="attach" className="my-1"><i className="fa-regular fa-note-sticky fa-lg mx-2"></i> Attachments</label>
-                <input type="text" id="attach" className={`form-control ${errors.noticeAttachments && "is-invalid"}`} name="notice_attachments" placeholder="Enter Title" value={noticeAttachments} onChange={handleNoticeAttachmentsChange} />
+                <input type="text" id="attach" className={`form-control ${errors.noticeAttachments && "is-invalid"}`} name="notice_attachments" placeholder="Attachment URL" value={noticeAttachments} onChange={handleNoticeAttachmentsChange} />
                 {errors.notice_attachments && (
                     <div className="badge rounded-pill text-bg-danger">{errors.notice_attachments}</div>
                   )}
