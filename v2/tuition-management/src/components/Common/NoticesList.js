@@ -30,6 +30,7 @@ import "datatables.net-buttons/js/buttons.colVis.js";
 import "datatables.net-buttons/js/buttons.flash.js";
 import "pdfmake/build/pdfmake.js";
 import "pdfmake/build/vfs_fonts.js";
+import NoPermission from "./NoPermission";
 
 
 function NoticesList() {
@@ -241,21 +242,31 @@ function NoticesList() {
 
   return (
     <div>
-         <section> 
+       {(cookies.role === '5' || cookies.role === '4' || cookies.role === '3' || cookies.role === '2' || cookies.role === '1') ? (
+                      <>
+                      
+                      <section> 
             {/* <!-- Dashboard --> */}
                 <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
 
-                   {cookies.role === '5' ? <ParentSidebar/> : cookies.role === '4' ? <StudentSidebar/> : cookies.role === '3' ? <TeacherSidebar /> : <Sidebar />}     
+                   {cookies.role === '5' ? <ParentSidebar/> : cookies.role === '4' ? <StudentSidebar/> : cookies.role === '3' ? <TeacherSidebar /> : cookies.role === '1' ? <Sidebar /> : <NoPermission />}     
                   
 
                 {/* <!-- Main content --> */}
                 <div class="h-screen flex-grow-1 overflow-y-lg-auto">
                     
                     {/* <!-- Header --> */}
-                    {cookies.role === '5' ? <ParentDashHead/> : cookies.role === '4' ? <StudentDashhead/> : cookies.role === '3' ? <TeacherDashhead /> : <AdminDashhead />}
-            
+                    {(cookies.role === '5' || cookies.role === '4' || cookies.role === '3' || cookies.role === '2' || cookies.role === '1') && (
+                      <>
+                      {cookies.role === '5' ? <ParentDashHead/> : cookies.role === '4' ? <StudentDashhead/> : cookies.role === '3' ? <TeacherDashhead /> : <AdminDashhead />}
+                      </>
+                    
+                    )}
 
                     {/* <!-- Main --> */}
+
+
+                    
                      <main>
                     
                         <div class="container">
@@ -385,6 +396,12 @@ function NoticesList() {
 
 
         </section>
+
+                      </>
+                    
+                    ) : <NoPermission />}
+
+        
     </div>
   )
 }
