@@ -1,6 +1,8 @@
 import React from 'react'
 
 function Footer() {
+const phoneNumber = "0789843284";
+const whatsappUrl = `https://wa.me/${phoneNumber}`;
   return (
     <div>
           <a class="gotopbtn" href="#"> <i class="fas fa-arrow-up"></i> </a>
@@ -29,8 +31,8 @@ function Footer() {
             <h5>Support</h5>
             <ul>
               <li><a href="#">FAQ</a></li>
-              <li><a href="#">Whatsapp</a></li>
-              <li><a href="#">Telegram</a></li>
+              <li><a href="https://wa.me/+94789843284">Whatsapp</a></li>
+              <li><a href="https://t.me/+94789843284">Telegram</a></li>
             </ul>
           </div>
           <div className="col-sm-3">
