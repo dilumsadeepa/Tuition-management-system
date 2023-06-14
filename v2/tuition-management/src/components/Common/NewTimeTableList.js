@@ -31,6 +31,7 @@ import "datatables.net-buttons/js/buttons.colVis.js";
 import "datatables.net-buttons/js/buttons.flash.js";
 import "pdfmake/build/pdfmake.js";
 import "pdfmake/build/vfs_fonts.js";
+import NoPermission from "./NoPermission";
 
 function NewTimeTableList() {
 
@@ -240,6 +241,8 @@ function NewTimeTableList() {
   return (
     <div>
 
+{(cookies.role === '5' || cookies.role === '4' || cookies.role === '3' || cookies.role === '2' || cookies.role === '1') ? (
+                      <>
           <section> 
             {/* <!-- Dashboard --> */}
                 <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
@@ -389,6 +392,10 @@ function NewTimeTableList() {
 
 
         </section>
+                      </>
+                    ) : <NoPermission/>}
+
+          
 
     </div>
   )
