@@ -41,8 +41,9 @@ animation-duration: 2s;
 
 @media (min-width: 300px) and (max-width: 575px) {
   .topquote {
-    width: 180px;
+    width: 240px;
     height: auto;
+    margin-bottom: 12px;
   }
 }
 
