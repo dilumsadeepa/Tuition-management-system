@@ -65,6 +65,7 @@ import TeacherProfile from "./components/Teacher/TeacherProfile";
 // -----------------Home Page-----------------
 import Home from "./components/Home/Home";
 import Gallery from "./components/Home/Gallery";
+import Faq from "./components/Home/Faq";
 import AboutUs from "./components/Home/AboutUs";
 import ContactUs from "./components/Home/ContactUs";
 import AlTimeTable from "./components/Home/AlTimeTable";
@@ -131,6 +132,7 @@ function App() {
 
           <Route path="gallery" element={<Gallery />} />
           <Route path="aboutus" element={<AboutUs />} />
+          <Route path="faq" element={<Faq />} />
           <Route path="contactus" element={<ContactUs />} />
           <Route path="altimetable" element={<AlTimeTable />} />
           <Route path="alstreamwisetimetable" element={<ALStreamWiseTimeTable />} />
