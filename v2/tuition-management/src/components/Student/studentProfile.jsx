@@ -18,6 +18,15 @@ const StudentProfile = () => {
   const [cookies] = useCookies(['user']);
 
 
+  const handleUpdate = () => {
+  // Handle update logic here
+};
+
+const handleDelete = () => {
+  // Handle delete logic here
+};
+
+
   useEffect(() => {
     const fetchStudentProfile = async () => {
       try {
@@ -94,6 +103,18 @@ const StudentProfile = () => {
                   </div>
                 </div>
               </div>
+
+              <div className="d-flex justify-content-center">
+            <button className="btn btn-primary" onClick={handleUpdate}>
+               Update
+            </button>
+            </div>
+            <div className="d-flex justify-content-center">
+            <button className="btn btn-danger" onClick={handleDelete}>
+               Delete
+            </button>
+            </div>
+
               {/* Add more student details as needed */}
             </div>
           ) : (
