@@ -44,16 +44,12 @@ export default function DisableElevation() {
           <main>
             <div className="container">
               <div className="row mt-3 mb-3">
-                <h2>Classes</h2>
-              </div>
-
-              <div className="row mb-3 mt-3">
-                <div className="col-sm-12">
-                  <div className="mb-3">
+                <div className="d-flex align-items-center justify-content-between w-100">
+                  <h2><b>Classes</b></h2>
+                  <div className="filter-btn-wrapper">
                     <label htmlFor="subjectFilter" className="form-label">Filter by Subject:</label>
-                    <select className="form-select" id="subjectFilter" onChange={handleFilter}>
+                    <select className="form-select filter-select" id="subjectFilter" onChange={handleFilter}>
                       <option value="all">All</option>
-                      
                       <option value="Advance level">Advance Level</option>
                       <option value="Ordinary level">Ordinary level</option>
                       <option value="Grade 6">Grade 6</option>
@@ -61,6 +57,8 @@ export default function DisableElevation() {
                       <option value="Grade 8">Grade 8</option>
                       <option value="Grade 9">Grade 9</option>
                     </select>
+                    <br />
+                    <Link to="/my-classes" className="btn btn-primary view-classes-btn">View My Classes</Link>
                   </div>
                 </div>
               </div>

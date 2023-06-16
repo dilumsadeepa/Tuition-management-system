@@ -55,6 +55,12 @@ const Sidebar =() =>{
                             </li>
 
                             <li class="nav-item">
+                                <a class="nav-link" href="/attendance">
+                                <i class="bi bi-cash-stack"></i> My payments
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
                                 <a class="nav-link" href="/notice">
                                     <i class="fa-regular fa-note-sticky"></i> Notices
                                     <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">{noticesCount}</span>
