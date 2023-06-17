@@ -18,8 +18,8 @@ console.log(rolecookies.role);
             <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navcol-1" style={{ marginTop: '4px', marginBottom: '4px' }}>
-            <div className="d-flex justify-content-center align-items-center">
-                <img className="d-flex" src="../img/susipwin logo.jpg" alt='logo' width="110" height="62" style={{ marginTop: '8px', marginBottom: '8px' }} />
+            <div className="d-flex justify-content-start align-items-center">
+                <img className="d-flex navlogo" src="../img/susipwin logo.jpg" alt='logo' width="110" height="62" style={{ marginTop: '8px', marginBottom: '8px' }} />
             </div>
             <ul className="navbar-nav ms-auto">
                 <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
@@ -54,7 +54,7 @@ console.log(rolecookies.role);
                 </>
                 )}
                 
-                <li className="nav-item d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center align-items-xl-center mobileprofile" style={{ paddingLeft: '40px' }}>
+                {/* <li className="nav-item d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center align-items-xl-center mobileprofile" style={{ paddingLeft: '40px' }}>
                 <div className="nav-item dropdown" style={{ marginTop: '0px', paddingTop: '0px' }}>
                     <a className="dropdown-toggle border-1 shadow-sm" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style={{ background: 'url("../img/close-up-oil-paints-brushes-palette.jpg") center / cover no-repeat', width: '44px', height: '44px', padding: '12px', borderRadius: '50%', border: '3.4px outset rgb(16,165,228)', margin: '0px', marginTop: '28px', marginBottom: '7px' }}></a>
                     <div className="dropdown-menu">
@@ -64,7 +64,7 @@ console.log(rolecookies.role);
                     <a className="dropdown-item" href="#">Logout</a>
                     </div>
                 </div>
-                </li>
+                </li> */}
             </ul>
             </div>
         </div>

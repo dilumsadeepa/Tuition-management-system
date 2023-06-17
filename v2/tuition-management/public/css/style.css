@@ -41,16 +41,23 @@ animation-duration: 2s;
 
 @media (min-width: 300px) and (max-width: 575px) {
   .topquote {
-    width: 180px;
+    width: 240px;
     height: auto;
+    margin-bottom: 12px;
   }
 }
 
 @media (min-width: 1400px) {
   .topquote {
     width: 311px;
-    margin-left: 25px;
+    /* position: absolute;
+    left: 78px; */
   }
+
+  /* .navlogo{
+    position: absolute;
+    left: 25px;
+  } */
 }
 
 @media (min-width: 576px) {

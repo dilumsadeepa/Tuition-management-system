@@ -49,10 +49,10 @@ const handleSubmit = (values, { setSubmitting }) => {
   return (
     <div>
         <div className="row" style={{ '--bs-body-bg': 'var(--bs-blue)', background: 'var(--bs-info)', marginRight: 0, marginLeft: 0, color:'#000' }}>
-  <div className="col d-xxl-flex justify-content-xxl-center" style={{ '--bs-body-bg': 'var(--bs-blue)', background: 'var(--bs-info)' }}>
+  <div className="col d-flex justify-content-center" style={{ '--bs-body-bg': 'var(--bs-blue)', background: 'var(--bs-info)' }}>
     <div className="row container" style={{ background: 'var(--bs-info)', '--bs-body-bg': 'var(--bs-blue)' }}>
-      <div className="col-lg-6 col-xl-4 col-xxl-6 d-flex justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center justify-content-xxl-start align-items-xxl-center">
-        <img src="../img/susipwin logo.jpg" alt='logo' width="85" height="53" style={{ marginTop: 8, marginBottom: 8, marginRight: 22 }} />
+      <div className="col-lg-6 col-xl-4 col-xxl-6 d-flex justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center justify-content-xxl-start align-items-xxl-center">
+        {/* <img src="../img/susipwin logo.jpg" alt='logo' width="85" height="53" style={{ marginTop: 8, marginBottom: 8, marginRight: 22 }} /> */}
         <img className="topquote" src="../img/nena gunasusadi.png" alt='logo' width="210" height="25" style={{ marginTop: 15 }} />
       </div>
       <div className="col d-lg-flex d-xxl-flex justify-content-lg-center align-items-lg-center justify-content-xxl-center align-items-xxl-center" style={{ marginTop: 0 }}>
