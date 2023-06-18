@@ -48,6 +48,7 @@ import Classes from "./components/Student/classes";
 import Attendance from "./components/Student/attendance";
 
 
+
 import Payment from "./components/Parent/Payment";
 import EnrollPage from "./components/Student/EnrollPage";
 import StudentProfile from "./components/Student/studentProfile";
