@@ -171,6 +171,7 @@ const ParentProfile = () => {
 
                         <div className="modal-body">
                             <form action="/action_page.php">
+                            <img src=" " class="rounded-circle" alt="Profile Picture"/>
                                 <div className="mb-3 mt-3">
                                     <label className="form-label">Username</label>
                                     <input type="text" className="form-control" id="name" placeholder="Enter Name" name="name" />
@@ -187,10 +188,39 @@ const ParentProfile = () => {
                                     <label className="form-label">Date Of Birth</label>
                                     <input type="date" className="form-control" id="DOB" placeholder="Enter DOB" name="birth" />
                                 </div>
+                                <div className="form-check">
+                                    <input type="radio" className="form-check-input" id="radio1" name="radio" value="male" />Male
+                                    <label className="form-check-label" for="radio1"></label>
+                                </div>
+                                <div className="form-check">
+                                    <input type="radio" className="form-check-input" id="radio2" name="radio" value="female" />Female
+                                    <label className="form-check-label" for="radio2"></label>
+                                </div>
+                                <div className="mb-3 mt-3">
+                                    <label className="form-label">NIC</label>
+                                    <input type="text" className="form-control" id="nic" placeholder="Enter NIC Number" name="nic" />
+                                </div>
+                                <div className="mb-3 mt-3">
+                                    <label className="form-label">Email</label>
+                                    <input type="email" className="form-control" id="mail" placeholder="Enter Email" name="email" />
+                                </div>
+                                <div className="mb-3 mt-3">
+                                    <label className="form-label">TP - Number</label>
+                                    <input type="number" className="form-control" id="number" placeholder="Enter Telephone Number" name="tpN" />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Password:</label>
+                                    <input type="password" className="form-control" id="pwd1" placeholder="Enter New password" name="pswd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters" required/>
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Confirm Password:</label>
+                                    <input type="password" className="form-control" id="pwd2" placeholder="Re-enter password" name="pswd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters" required/>
+                                </div>
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-primary" data-bs-dismiss="modal">Clear</button>
+                                    <button type="reset" className="btn btn-primary" data-bs-dismiss="modal">Clear</button>
                                     <button type="button" className="btn btn-info" data-bs-dismiss="modal">Save</button>
                                 </div>
+
                             </form>
                         </div>
                         <div className="modal-footer">
