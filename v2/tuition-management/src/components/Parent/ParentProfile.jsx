@@ -171,7 +171,6 @@ const ParentProfile = () => {
 
                         <div className="modal-body">
                             <form action="/action_page.php">
-                            <img src=" " class="rounded-circle" alt="Profile Picture"/>
                                 {/* <img src=" " class="rounded-circle" alt="Profile Picture" /> */}
                                 <div className="mb-3 mt-3">
                                     <label className="form-label">Username</label>
