@@ -6,6 +6,7 @@ const {
   updateUser,
   deleteUser,
   updateUserProfile,
+  getparent,
 } = require("../controllers/UserController.js");
 
 const {
@@ -136,6 +137,7 @@ router.get("/getteacherbyId/:t_userid", getTeacherById);
 //parent
 router.get("/getparentstu/:id", getParentStu);
 router.get("/getattendece/:id", getattendeceAtt);
+router.get("/getparentdata/:id", getparent);
 
 //other
 router.get("/stu", getsts);

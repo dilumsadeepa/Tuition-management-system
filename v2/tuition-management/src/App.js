@@ -41,14 +41,13 @@ import GenSalary from "./components/Admin/GenSalary";
 import Login from "./components/User/Login";
 import Register from "./components/User/Register";
 import SingleStudent from "./components/Admin/SingleStudent";
-import AddParentData from "./components/Admin/AddParentsData";
-import Parent from "./components/Admin/Parent";
+
 
 import StudentDetils from "./components/Student/StudentDetils";
 import Classes from "./components/Student/classes";
 import Attendance from "./components/Student/attendance";
-import ParentDashboard from "./components/Parent/Parent";
-import ViewStudentParent from "./components/Parent/VewStudentParent";
+
+
 
 import Payment from "./components/Parent/Payment";
 import EnrollPage from "./components/Student/EnrollPage";
@@ -61,6 +60,15 @@ import TeacherCourse from "./components/Teacher/TeacherCourse";
 
 import Attendecep from "./components/Parent/Attendencep";
 import TeacherProfile from "./components/Teacher/TeacherProfile";
+
+// .............Parents................
+
+import Parent from "./components/Admin/Parent";
+import ViewStudentParent from "./components/Parent/VewStudentParent";
+import ParentDashboard from "./components/Parent/Parent";
+import AddParentData from "./components/Admin/AddParentsData";
+import ParentProfile from "./components/Parent/ParentProfile";
+
 
 // -----------------Home Page-----------------
 import Home from "./components/Home/Home";
@@ -127,6 +135,7 @@ function App() {
           <Route path="parentstudent" element={<ViewStudentParent />} />
           <Route path="paymentp/:id" element={<Payment />} />
           <Route path="pattendece/:id" element={<Attendecep />} />
+          <Route path="parentprofile" element={<ParentProfile />} />
 
           {/* Common */}
 

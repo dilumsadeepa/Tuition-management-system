@@ -8,9 +8,7 @@ import User from '../User';
 
 
 
-const ViewPayment = () => {
 
-}
 
 const Payment = () => {
     const [payments, setPayments] = useState([]);

@@ -7,9 +7,6 @@ import { Link, useParams } from 'react-router-dom';
 import User from '../User';
 
 
-const ViewAttendece = () => {
-
-}
 
 const Attendecep = () => {
 
