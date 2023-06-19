@@ -9,6 +9,7 @@ const ParentProfile = () => {
     const [users, setUserData] = useState([]);
     const [cookies, setCookie] = useCookies(['user']);
 
+
     const getUser = async () => {
         try {
             const response = await axios.get(`${Apiurl}/getparentdata/${cookies.email}`);
@@ -19,6 +20,9 @@ const ParentProfile = () => {
             } else {
                 console.log("Invalid data format: Expected an array.");
             }
+
+
+
         } catch (error) {
             console.log("Error in getting data", error);
         }
@@ -60,7 +64,7 @@ const ParentProfile = () => {
                                                         <h5 className="my-3">{s.username}</h5>
                                                         <p className="text-muted mb-1">{s.email}</p>
                                                         <div className="d-flex justify-content-center mb-2">
-                                                            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Edit Profile</button>
+                                                            <a href="/editparent" className="btn btn-primary">Edit Profile</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -154,81 +158,6 @@ const ParentProfile = () => {
                             </div>
                         </div>
                     </main>
-                </div>
-            </div>
-
-
-            <div className="modal" id="myModal">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-
-
-                        <div className="modal-header">
-                            <h4 className="modal-title">Edit Profile</h4>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-
-
-                        <div className="modal-body">
-                            <form action="/action_page.php">
-                                {/* <img src=" " class="rounded-circle" alt="Profile Picture" /> */}
-                                <div className="mb-3 mt-3">
-                                    <label className="form-label">Username</label>
-                                    <input type="text" className="form-control" id="name" placeholder="Enter Name" name="name" />
-                                </div>
-                                <div className="mb-3 mt-3">
-                                    <label className="form-label">Fullrname</label>
-                                    <input type="text" className="form-control" id="fullname" placeholder="Enter Fullname" name="fullname" />
-                                </div>
-                                <div className="mb-3 mt-3">
-                                    <label className="form-label">Address</label>
-                                    <input type="text" className="form-control" id="naddress" placeholder="Enter Address" name="address" />
-                                </div>
-                                <div className="mb-3 mt-3">
-                                    <label className="form-label">Date Of Birth</label>
-                                    <input type="date" className="form-control" id="DOB" placeholder="Enter DOB" name="birth" />
-                                </div>
-                                <div className="form-check">
-                                    <input type="radio" className="form-check-input" id="radio1" name="radio" value="male" />Male
-                                    <label className="form-check-label" for="radio1"></label>
-                                </div>
-                                <div className="form-check">
-                                    <input type="radio" className="form-check-input" id="radio2" name="radio" value="female" />Female
-                                    <label className="form-check-label" for="radio2"></label>
-                                </div>
-                                <div className="mb-3 mt-3">
-                                    <label className="form-label">NIC</label>
-                                    <input type="text" className="form-control" id="nic" placeholder="Enter NIC Number" name="nic" />
-                                </div>
-                                <div className="mb-3 mt-3">
-                                    <label className="form-label">Email</label>
-                                    <input type="email" className="form-control" id="mail" placeholder="Enter Email" name="email" />
-                                </div>
-                                <div className="mb-3 mt-3">
-                                    <label className="form-label">TP - Number</label>
-                                    <input type="number" className="form-control" id="number" placeholder="Enter Telephone Number" name="tpN" />
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Password:</label>
-                                    <input type="password" className="form-control" id="pwd1" placeholder="Enter New password" name="pswd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters" required />
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Confirm Password:</label>
-                                    <input type="password" className="form-control" id="pwd2" placeholder="Re-enter password" name="pswd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters" required />
-                                </div>
-                                <div className="modal-footer">
-                                    <input type="reset" className="btn btn-primary"  value="Clear" />
-                                    <input type="submit" className="btn btn-info"  value="Save" />
-
-                                </div>
-
-                            </form>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        </div>
-
-                    </div>
                 </div>
             </div>
 
