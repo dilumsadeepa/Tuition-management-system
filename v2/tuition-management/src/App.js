@@ -79,6 +79,7 @@ import AboutUs from "./components/Home/AboutUs";
 import ContactUs from "./components/Home/ContactUs";
 import AlTimeTable from "./components/Home/AlTimeTable";
 import ALStreamWiseTimeTable from "./components/Home/ALStreamWiseTimeTable";
+import PublicNotices from "./components/Home/PublicNotices";
 
 
 // import Footer from "./components/Footer";
@@ -144,6 +145,7 @@ function App() {
           <Route path="gallery" element={<Gallery />} />
           <Route path="aboutus" element={<AboutUs />} />
           <Route path="faq" element={<Faq />} />
+          <Route path="publicnotices" element={<PublicNotices />} />
           <Route path="contactus" element={<ContactUs />} />
           <Route path="altimetable" element={<AlTimeTable />} />
           <Route path="alstreamwisetimetable" element={<ALStreamWiseTimeTable />} />

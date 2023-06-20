@@ -1,10 +1,23 @@
 
 const Notice = require('../models/NoticeModel.js');
 const { Op } = require('sequelize');
+const { QueryTypes } = require("sequelize");
+const db = require("../config/Database.js");
 
 const getNotices = async (req, res) => {
   try {
     const response = await Notice.findAll();
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+const getPublicNotices = async (req, res) => {
+  const sesql =
+    "SELECT notices.* FROM notices WHERE notice_to = '6'";
+  try {
+    const response = await db.query(sesql, { type: QueryTypes.SELECT });
     res.status(200).json(response);
   } catch (error) {
     console.log(error.message);
@@ -82,6 +95,7 @@ const viewNotice = async (req, res) => {
 
 module.exports = {
   getNotices,
+  getPublicNotices,
   getNoticesCount,
   getTodaysNotices,
   createNotice,
