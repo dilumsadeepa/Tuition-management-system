@@ -98,12 +98,13 @@ const StudentDashboard = () => {
             </div>
 
             <div className="col-md-6 col-lg-6 mb-4">
+            <a href="/mypayments">
               <div className="card shadow border-0 h-100">
                 <div className="card-body">
                   <div className="row">
                     <div className="col">
                       <h2 className="h5 font-semibold text-muted text-sm d-block mb-2">
-                        Learning Materials
+                        Payments
                       </h2>
                       <h3 className="h4 font-bold mb-0"></h3>
                     </div>
@@ -115,7 +116,9 @@ const StudentDashboard = () => {
                   </div>
                 </div>
               </div>
+              </a>
             </div>
+            
           </div>
 
           

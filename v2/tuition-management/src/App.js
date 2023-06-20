@@ -45,16 +45,17 @@ import Register from "./components/User/Register";
 import SingleStudent from "./components/Admin/SingleStudent";
 
 
+import Payment from "./components/Parent/Payment";
+//student 
 import StudentDetils from "./components/Student/StudentDetils";
 import Classes from "./components/Student/classes";
 import Attendance from "./components/Student/attendance";
-
-
-
-import Payment from "./components/Parent/Payment";
+import mypayments from "./components/Student/mypayments"
 import EnrollPage from "./components/Student/EnrollPage";
 import StudentProfile from "./components/Student/studentProfile";
 import StuDashboard from "./components/Student/StuDashboard";
+ 
+
 
 import Teacher from "./components/Teacher/Teacher";
 import AddTeacherDetails from "./components/Admin/AddTeacherDetails";
@@ -151,6 +152,7 @@ function App() {
           <Route path="Attendance" element={<Attendance />} />
           <Route path="Enrollpage" element={<EnrollPage />} />
           <Route path="profile" element={<StudentProfile />} />
+          <Route path="mypayments" element={<mypayments />} />
 
           <Route path="studashboard" element={<StuDashboard />} />
 
