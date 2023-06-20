@@ -6,24 +6,20 @@ import Dashhead from './Dashhead';
 import axios from 'axios';
 
 export default function DisableElevation() {
-  const [courses, setCourses] = useState([]);
-  const [filteredCourses, setFilteredCourses] = useState([]);
+  const [payments, setPayments] = useState([]);
 
-  const getcou = async () => {
+  const getPayments = async () => {
     try {
-      const response = await axios.get(`${Apiurl}/coursedata`);
-      setCourses(response.data);
-      setFilteredCourses(response.data);
+      const response = await axios.get(`${Apiurl}/paymentdata`);
+      setPayments(response.data);
     } catch (error) {
-      console.log('Error in getting data:', error);
+      console.log('Error in getting payment data:', error);
     }
   };
 
   useEffect(() => {
-    getcou();
+    getPayments();
   }, []);
-
-  
 
   return (
     <section>
@@ -35,17 +31,16 @@ export default function DisableElevation() {
 
           <main>
             <div className="container">
-              
-
               <div className="row mb-3 mt-3">
-                {filteredCourses.map((course) => (
-                  <div className="col-sm-3" key={course.id}>
+                {payments.map((payment) => (
+                  <div className="col-sm-3" key={payment.id}>
                     <div className="card">
-                      <img src={course.coursebanner} className="card-img-top" alt="..." />
+                      <img src={payment.courseImage} className="card-img-top" alt="Course" />
                       <div className="card-body">
-                        <h5 className="card-title">{course.coursename}</h5>
-                        <p className="card-text">{course.courseprice}</p>
-                        <Link to={`/EnrollPage/${course.id}`} className="btn btn-primary">Enroll</Link>
+                        <h5 className="card-title">Course ID: {payment.cid}</h5>
+                        <p className="card-text">Student ID: {payment.suid}</p>
+                        <p className="card-text">Month: {payment.month}</p>
+                        <Link to={`/PaymentDetails/${payment.id}`} className="btn btn-primary">View Details</Link>
                       </div>
                     </div>
                   </div>
