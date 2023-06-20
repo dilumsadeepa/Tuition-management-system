@@ -15,7 +15,6 @@ import { useNavigate } from 'react-router-dom'
 import DOMPurify from 'dompurify';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import CloudinaryFileList from './CloudinaryFileList'
 import { useCookies } from 'react-cookie';
 
 import $ from 'jquery';
@@ -39,12 +38,7 @@ function NoticesList() {
     const tableRef = useRef(null);
     const [notices, setNotices] = useState([]);
     const [noticesList, setNoticesList] = useState([]);
-    const [fileCount, setFileCount] = useState(0);
     const [noticeToText, setNoticeToText] = useState('');
-    const [cloudFiles, setCloudFiles] = useState([]);
-    const [cloudUrls, setCloudUrls] = useState([]);
-    // const [localFiles, setLocalFiles] = useState([]);
-    // const [localUrls, setLocalUrls] = useState([]);
     
   
     const [showModal, setShowModal] = useState(false);
@@ -288,7 +282,7 @@ useEffect(() => {
                             <div className="row mobileflex">
                             <div class="d-flex mt-3 mobileflex">
                                 <div class="p-2 flex-grow-1"><h2>Notices</h2></div>
-                                {cookies.role === '1' || cookies.role === '2' || cookies.role === '3' && (
+                                {(cookies.role === '1' || cookies.role === '2' || cookies.role === '3') && (
                                   <div class="p-2"><a href="notice/create" className="btn-grad">Create Notice</a></div>
                                 )}
                                 
