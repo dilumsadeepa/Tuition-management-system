@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useCookies } from 'react-cookie';
+
 
 import Welcome from "./components/Welcome";
 import Auth from "./components/User/Auth";
@@ -80,10 +82,31 @@ import AlTimeTable from "./components/Home/AlTimeTable";
 import ALStreamWiseTimeTable from "./components/Home/ALStreamWiseTimeTable";
 
 
+
 // import Footer from "./components/Footer";
 // import Header from "./components/Header";
 
+
 function App() {
+  const [cookies, setCookie] = useCookies(['user']);
+
+  let isadmin = 0;
+  let isteacher = 0;
+  let isstudent = 0;
+  let isparent = 0;
+
+  if(cookies.role == 1){
+    isadmin = 1;
+  }else if(cookies.role == 3){
+    isteacher = 1;
+  }else if(cookies.role == 4){
+    isstudent = 1;
+  }else if(cookies.role == 5){
+    isparent = 1;
+  }
+
+
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -94,6 +117,7 @@ function App() {
           <Route path="register" element={<Register />} />
 
           {/* admin part */}
+          {}
           <Route path="admin" element={<Admin />} />
           <Route path="adminstudent" element={<ViewStudent />} />
           <Route path="studentcourse" element={<StudenttoCourse />} />

@@ -9,40 +9,40 @@ const Salary = () => {
 
     const [salary, setSalary] = useState([]);
 
-    const getsalary = async(e) =>{
+    const getsalary = async (e) => {
         try {
             const response = await axios.get(`${Apiurl}/salary`);
             setSalary(response.data);
             console.log(response.data);
-            
+
         } catch (error) {
             console.log("error in getting data")
         }
     }
 
-   
 
-    useEffect(()=>{
+
+    useEffect(() => {
         getsalary();
-    },[])
+    }, [])
 
-    return(
-        <section> 
+    return (
+        <section>
             {/* <!-- Dashboard --> */}
-                <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
-                        
+            <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+
                 <Sidebar />
 
 
                 {/* <!-- Main content --> */}
                 <div class="h-screen flex-grow-1 overflow-y-lg-auto">
-                    
+
                     {/* <!-- Header --> */}
                     <Dashhead />
 
                     {/* <!-- Main --> */}
                     <main class="py-6 bg-surface-secondary">
-                    
+
                         <div class="container">
 
 
@@ -63,11 +63,11 @@ const Salary = () => {
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
-                                                    <i class="bi bi-bookmark-plus-fill"></i>
+                                                        <i class="bi bi-bookmark-plus-fill"></i>
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -82,21 +82,34 @@ const Salary = () => {
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
-                                                    <i class="bi bi-bookmark-plus-fill"></i>
+                                                        <i class="bi bi-bookmark-plus-fill"></i>
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
 
+                            <div className="row mb-3 mt-3">
+                                <div className="col-sm-10 mx-auto">
+
+                                    <div className="mb-3 mt-3">
+                                        <label className="form-label">Email:</label>
+                                        <input type="email" className="form-control" placeholder="Enter email" name="email" />
+                                    </div>
+
+
+                                </div>
+                            </div>
+
 
                             <div className="row mt-5">
-                               
+
                                 <div className="col-sm-12">
+
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
                                             <thead>
@@ -105,32 +118,32 @@ const Salary = () => {
                                                     <th>NIC</th>
                                                     <th>Salary</th>
                                                     <th>Month</th>
-                                                    
+
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            {salary.map((s) => 
-                                                <tr>
-                                                    <td>{s.teacher.t_fullname}</td>
-                                                    <td>{s.teacher.t_nic}</td>
-                                                    <td>{s.s_salary}</td>
-                                                    <td>{s.month}</td>
-                                                    
-                                                </tr>
-                                            )}
+                                                {salary.map((s) =>
+                                                    <tr>
+                                                        <td>{s.teacher.t_fullname}</td>
+                                                        <td>{s.teacher.t_nic}</td>
+                                                        <td>{s.s_salary}</td>
+                                                        <td>{s.month}</td>
+
+                                                    </tr>
+                                                )}
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
 
-                            
-                            
+
+
                         </div>
                     </main>
                 </div>
-                
-                
+
+
             </div>
 
 
