@@ -70,6 +70,7 @@ import ViewStudentParent from "./components/Parent/VewStudentParent";
 import ParentDashboard from "./components/Parent/Parent";
 import AddParentData from "./components/Admin/AddParentsData";
 import ParentProfile from "./components/Parent/ParentProfile";
+import EditParent from "./components/Parent/EditParent";
 
 
 // -----------------Home Page-----------------
@@ -159,7 +160,8 @@ function App() {
           <Route path="parentstudent" element={<ViewStudentParent />} />
           <Route path="paymentp/:id" element={<Payment />} />
           <Route path="pattendece/:id" element={<Attendecep />} />
-          <Route path="ParentProfile" element={<ParentProfile />} />
+          <Route path="parentprofile" element={<ParentProfile />} />
+          <Route path="editparent" element={<EditParent />} />
 
           {/* Common */}
 

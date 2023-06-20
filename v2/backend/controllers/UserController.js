@@ -23,6 +23,21 @@ exports.getUserById = async (req, res) => {
   }
 };
 
+exports.getparent = async (req, res) => {
+  try {
+    const response = await User.findOne({
+      where: {
+        email: req.params.id,
+      },
+    });
+    res.status(200).json([response]); // Wrap the response in an array
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: "Failed to fetch user" });
+  }
+};
+
+
 // exports.createUser = async (req, res) => {
 //   try {
 //     await User.create(req.body);

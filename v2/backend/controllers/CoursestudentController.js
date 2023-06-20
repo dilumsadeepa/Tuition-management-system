@@ -36,3 +36,16 @@ exports.updateCS = async (req, res) => {
     console.log(error.message);
   }
 }
+
+
+//student
+
+const enrollclass = async (req, res) => {
+  try {
+    await Coursestudent.create(req.body);
+    res.status(201).json({ msg: "Request approval sent!" });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+

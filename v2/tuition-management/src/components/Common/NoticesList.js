@@ -15,7 +15,6 @@ import { useNavigate } from 'react-router-dom'
 import DOMPurify from 'dompurify';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import CloudinaryFileList from './CloudinaryFileList'
 import { useCookies } from 'react-cookie';
 
 import $ from 'jquery';
@@ -39,12 +38,7 @@ function NoticesList() {
     const tableRef = useRef(null);
     const [notices, setNotices] = useState([]);
     const [noticesList, setNoticesList] = useState([]);
-    const [fileCount, setFileCount] = useState(0);
     const [noticeToText, setNoticeToText] = useState('');
-    const [cloudFiles, setCloudFiles] = useState([]);
-    const [cloudUrls, setCloudUrls] = useState([]);
-    // const [localFiles, setLocalFiles] = useState([]);
-    // const [localUrls, setLocalUrls] = useState([]);
     
   
     const [showModal, setShowModal] = useState(false);
@@ -62,107 +56,121 @@ function NoticesList() {
 
   
 
-    useEffect(() => {
-      const fetchData = async () => {
-        const response = await axios.get(`${Apiurl}/notice`);
-        const data = response.data;
-        setNoticesList(data);
-      // const response = await fetch(`${Apiurl}/notice`);
-      // const data = await response.json();
 
-       // Destroy existing DataTable (if any)
-      if ($.fn.DataTable.isDataTable(tableRef.current)) {
-        $(tableRef.current).DataTable().destroy();
+
+
+
+
+useEffect(() => {
+  const fetchData = async () => {
+    const response = await axios.get(`${Apiurl}/notice`);
+    const data = response.data;
+
+    // Filter the data based on cookies.role and notice_to
+    const filteredData = data.filter((item) => {
+      console.log('Student'+item.notice_to);
+      if (cookies.role === '1') {
+        console.log('Adminrole : '+item.notice_to);
+        return true;
+      } else if (cookies.role === '3' && (item.notice_to === '3' || item.notice_to === '4' || item.notice_to === '5' || item.notice_to === '6')) {
+        return true;
+      }else if (cookies.role === item.notice_to || item.notice_to === '6') {
+        return true;
+      } else {
+        return false;
       }
-  
-      // Initialize DataTable
-      const table = $(tableRef.current).DataTable({
-        data: data,
-        columns: [
-          {
-            title: 'Notice To',
-            data: 'notice_to',
-            render: (notice_to) => {
-              let text = '';
-      
-              if (notice_to === '5') {
-                text = 'All';
-              } else if (notice_to === '2') {
-                text = 'Staff';
-              } else if (notice_to === '3') {
-                text = 'Teacher';
-              } else if (notice_to === '4') {
-                text = 'Student';
-              }
-      
-              return text;
-            },
+    });
+
+    setNoticesList(filteredData);
+
+    // Destroy existing DataTable (if any)
+    if ($.fn.DataTable.isDataTable(tableRef.current)) {
+      $(tableRef.current).DataTable().destroy();
+    }
+
+    // Initialize DataTable
+    const table = $(tableRef.current).DataTable({
+      data: filteredData, // Use the filtered data
+      columns: [
+        {
+          title: 'Notice To',
+          data: 'notice_to',
+          render: (notice_to) => {
+            let text = '';
+
+            if (notice_to === '5') {
+              text = 'Parent';
+            } else if (notice_to === '2') {
+              text = 'Staff';
+            } else if (notice_to === '3') {
+              text = 'Teacher';
+            } else if (notice_to === '4') {
+              text = 'Student';
+            } else if (notice_to === '1') {
+              text = 'Admin';
+            } else if (notice_to === '6') {
+              text = 'Public';
+            }
+
+            return text;
           },
-          { title: 'Notice Title', data: 'notice_title'},
-          { title: 'Date', data: 'createdAt'},
-          {
-            title: 'Action',
-            data: 'id',
-           
-            // render: (id) => (
-            //   `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>` +
-            //   `<button class="btn btn-sm btn-secondary me-1 edit-btn" data-id="${id}"><i class="fa-solid fa-pen-to-square"></i></button>` +
-            //   `<button class="btn btn-sm btn-danger me-1 delete-btn" data-id="${id}"><i class="fa-solid fa-trash"></i></button>`
-            // )
+        },
+        { title: 'Notice Title', data: 'notice_title' },
+        { title: 'Date', data: 'createdAt' },
+        {
+          title: 'Action',
+          data: 'id',
+          render: (id) => {
+            let buttons = '';
 
-            render: (id) => {
-              let buttons = '';
-  
-              // Display different buttons based on user role
-              if (cookies.role === '5' || cookies.role === '4') {
-                buttons += `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>`;
-              }
-  
-              if (cookies.role === '1' || cookies.role === '2' || cookies.role === '3') {
-                buttons += `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>` +
-                `<button class="btn btn-sm btn-secondary me-1 edit-btn" data-id="${id}"><i class="fa-solid fa-pen-to-square"></i></button>` +
-                  `<button class="btn btn-sm btn-danger me-1 delete-btn" data-id="${id}"><i class="fa-solid fa-trash"></i></button>`;
-              }
-  
-              return buttons;
-            },
+            // Display different buttons based on user role
+            if (cookies.role === '5' || cookies.role === '4') {
+              buttons += `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>`;
+            }
 
-          }
-        ],
-        dom: 'Bfrtip', // Add the required buttons
-        buttons: [
-          'copyHtml5',
-          'excelHtml5',
-          'csvHtml5',
-          'pdfHtml5',
-          'print'
-        ],
-      });
+            if (cookies.role === '1' || cookies.role === '2' || cookies.role === '3') {
+              buttons += `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>` +
+              `<button class="btn btn-sm btn-secondary me-1 edit-btn" data-id="${id}"><i class="fa-solid fa-pen-to-square"></i></button>` +
+                `<button class="btn btn-sm btn-danger me-1 delete-btn" data-id="${id}"><i class="fa-solid fa-trash"></i></button>`;
+            }
 
+            return buttons;
+          },
+        },
+      ],
+      dom: 'Bfrtip', // Add the required buttons
+      buttons: [
+        'copyHtml5',
+        'excelHtml5',
+        'csvHtml5',
+        'pdfHtml5',
+        'print',
+      ],
+    });
 
-      // Event listeners for action buttons
-      $(tableRef.current).on('click', '.view-btn', function() {
-        const id = $(this).data('id');
-        handleShowModal(id);
+    // Event listeners for action buttons
+    $(tableRef.current).on('click', '.view-btn', function () {
+      const id = $(this).data('id');
+      handleShowModal(id);
+    });
 
+    $(tableRef.current).on('click', '.edit-btn', function () {
+      const id = $(this).data('id');
+      navigate(`/notice/edit/${id}`);
+    });
 
-      });
-  
-      $(tableRef.current).on('click', '.edit-btn', function() {
-        const id = $(this).data('id');
-        navigate(`/notice/edit/${id}`);
-      });
-  
-      $(tableRef.current).on('click', '.delete-btn', function() {
-        const id = $(this).data('id');
-        handleDeleteNotice(id);
-      });
-    };
-  
-    fetchData();
+    $(tableRef.current).on('click', '.delete-btn', function () {
+      const id = $(this).data('id');
+      handleDeleteNotice(id);
+    });
+  };
 
-
+  fetchData();
 }, []);
+
+
+
+
 
 
 
@@ -274,7 +282,7 @@ function NoticesList() {
                             <div className="row mobileflex">
                             <div class="d-flex mt-3 mobileflex">
                                 <div class="p-2 flex-grow-1"><h2>Notices</h2></div>
-                                {cookies.role === '1' || cookies.role === '2' || cookies.role === '3' && (
+                                {(cookies.role === '1' || cookies.role === '2' || cookies.role === '3') && (
                                   <div class="p-2"><a href="notice/create" className="btn-grad">Create Notice</a></div>
                                 )}
                                 

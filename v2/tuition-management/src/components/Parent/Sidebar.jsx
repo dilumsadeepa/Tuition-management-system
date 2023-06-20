@@ -61,7 +61,7 @@ const Sidebar =() =>{
                         {/* <!-- Navigation --> */}
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="parentdashboard">
+                                <a class="nav-link" href="parent">
                                     <i class="bi bi-house"></i> Dashboard
                                 </a>
                             </li>
@@ -159,7 +159,7 @@ const Sidebar =() =>{
                         {/* <!-- User (md) --> */}
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="#s">
+                                <a class="nav-link" href="parentprofile">
                                     <i class="bi bi-person-square"></i> Parent Profile
                                 </a>
                             </li>

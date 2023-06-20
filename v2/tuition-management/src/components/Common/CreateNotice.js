@@ -5,6 +5,7 @@ import Apiurl from '../Apiurl';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Editor } from '@tinymce/tinymce-react';
+import { useCookies } from 'react-cookie';
 
 
 
@@ -15,6 +16,10 @@ function CreateNotice() {
   const [noticeDescription, setNoticeDescription] = useState('');
   const [noticeAttachments, setNoticeAttachments] = useState('');
   const [errors, setErrors] = useState({});
+
+  
+  const [cookies] = useCookies(['role']);
+  console.log(cookies.role);
 
  const handleAudienceChange = (event) => {
     setAudience(event.target.value);
@@ -65,6 +70,7 @@ function CreateNotice() {
     if (validateForm()) {
       const data = {
         notice_to: audience,
+        notice_from: cookies.role,
         notice_title: noticeTitle,
         notice_desc: noticeDescription,
         file_urls: noticeAttachments,
@@ -96,11 +102,12 @@ function CreateNotice() {
                     <label htmlFor="audience" className="my-1"><i className="fa-solid fa-users-gear fa-lg mx-2"></i> Target Audience</label>
                     <select className={`form-control ${errors.audience && "is-invalid"}`} id="audience" name="notice_to"  value={audience} onChange={handleAudienceChange} >
                         <option value="" disabled hidden>Select Audience You Want To Cover</option>
-                        <option value="5">All</option>
-                        <option value="5">Public</option>
-                        <option value="2">Staff</option>
-                        <option value="3">Teacher</option>
+                        <option value="6">Public</option>
+                        <option value="5">Parent</option>
                         <option value="4">Student</option>
+                        <option value="3">Teacher</option>
+                        <option value="2">Staff</option>
+                        <option value="1">Admin</option>
                     </select>
 
                     {errors.audience && (
