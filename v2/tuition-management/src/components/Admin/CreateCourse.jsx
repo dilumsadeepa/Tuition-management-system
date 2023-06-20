@@ -20,6 +20,18 @@ const CreateCourse = () => {
     const [userId, setct] = useState("");
     const [succ, setsucc] = useState("");
     const [errors, setErrors] = useState([]);
+    const [courseStream, setCourseStream] = useState('');
+    console.log(courseStream);
+
+    const streams = ['Science / Maths', 'Commerce', 'Arts', 'Technology', 'Common', 'Upto Ordinary Level'];
+    const subjects = {
+        'Science / Maths': ['Physics', 'Chemistry', 'Biology', 'Combined Mathematics'],
+        'Commerce': ['Accounts', 'Business Studies', 'Economics'],
+        'Arts': ['History', 'Geography', 'Political Science', 'Logic', 'Sinhala', 'Tamil', 'English'],
+        'Technology': ['Engineering Technology', 'Bio System Technology', 'Science For Technology'],
+        'Common': ['Information Communication Technology'],
+        'Upto Ordinary Level': ['Sinhala', 'English', 'Buddhism', 'Maths', 'Science', 'History', 'ICT', 'Tamil'],
+    }
 
 
     const editorRef = useRef(null);
@@ -52,6 +64,9 @@ const CreateCourse = () => {
         }
         if (coursename.trim() === "") {
             errors.push("Course Name is required");
+        }
+        if (courseStream.trim() === "") {
+            errors.push("Course Stream is required");
         }
         if (coursesubject.trim() === "") {
             errors.push("Course Subject is required");
@@ -95,6 +110,7 @@ const CreateCourse = () => {
             await axios.post(`${Apiurl}/crestecourse/`, {
                 courseid,
                 coursename,
+                courseStream,
                 coursesubject,
                 coursebanner,
                 courseprofile,
@@ -194,6 +210,25 @@ const CreateCourse = () => {
                                         </div>
 
                                         <div class="mb-3 mt-3">
+                                            <label className="form-label">Course Stream:</label>
+                                            <select className="form-control" onChange={(e) => setCourseStream(e.target.value)}>
+                                                {streams.map((stream, index) => 
+                                                    <option key={index} value={stream}>{stream}</option>
+                                                    )})   
+                                                
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3 mt-3">
+                                            <label className="form-label">Course Subject:</label>
+                                            {courseStream && <select className="form-control" onChange={(e) => setCourseSubject(e.target.value)}>
+                                                {
+                                                subjects[courseStream].map((subject, index) => <option key={index} value={subject}>{subject}</option>
+                                                )}
+                                            </select>}
+                                        </div>
+
+                                        {/* <div class="mb-3 mt-3">
                                             <label className="form-label">Course Subject:</label>
                                             <input type="text"
                                                 className="form-control"
@@ -201,7 +236,7 @@ const CreateCourse = () => {
                                                 onChange={(e) => setCourseSubject(e.target.value)}
                                                 required
                                             />
-                                        </div>
+                                        </div> */}
 
                                         <div class="mb-3 mt-3">
                                             <label className="form-label">Course Banner Image:</label>

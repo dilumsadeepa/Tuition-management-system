@@ -11,6 +11,10 @@ const Course = db.define('courses', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  courseStream: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   coursesubject: {
     type: DataTypes.STRING,
     allowNull: false,
