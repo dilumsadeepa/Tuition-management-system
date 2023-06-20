@@ -19,7 +19,9 @@ console.log(rolecookies.role);
             </button>
             <div className="collapse navbar-collapse" id="navcol-1" style={{ marginTop: '4px', marginBottom: '4px' }}>
             <div className="d-flex justify-content-start align-items-center">
-                <img className="d-flex navlogo" src="../img/susipwin logo.jpg" alt='logo' width="110" height="62" style={{ marginTop: '8px', marginBottom: '8px' }} />
+            <a className="" href="/" style={{ textAlign: 'center' }}>
+            <img className="d-flex navlogo" src="../img/susipwin logo.jpg" alt='logo' width="110" height="62" style={{ marginTop: '8px', marginBottom: '8px' }} />
+            </a>   
             </div>
             <ul className="navbar-nav ms-auto">
                 <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">

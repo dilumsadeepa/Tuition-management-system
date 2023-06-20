@@ -196,3 +196,114 @@ function Notice() {
 }
 
 export default Notice
+
+
+
+
+
+
+
+
+//----------------------------------------------------------------
+
+//     useEffect(() => {
+//       const fetchData = async () => {
+//         const response = await axios.get(`${Apiurl}/notice`);
+//         const data = response.data;
+//         setNoticesList(data);
+//       // const response = await fetch(`${Apiurl}/notice`);
+//       // const data = await response.json();
+
+//        // Destroy existing DataTable (if any)
+//       if ($.fn.DataTable.isDataTable(tableRef.current)) {
+//         $(tableRef.current).DataTable().destroy();
+//       }
+  
+//       // Initialize DataTable
+//       const table = $(tableRef.current).DataTable({
+//         data: data,
+//         columns: [
+//           {
+//             title: 'Notice To',
+//             data: 'notice_to',
+//             render: (notice_to) => {
+//               let text = '';
+      
+//               if (notice_to === '5') {
+//                 text = 'All';
+//               } else if (notice_to === '2') {
+//                 text = 'Staff';
+//               } else if (notice_to === '3') {
+//                 text = 'Teacher';
+//               } else if (notice_to === '4') {
+//                 text = 'Student';
+//               }
+      
+//               return text;
+//             },
+//           },
+//           { title: 'Notice Title', data: 'notice_title'},
+//           { title: 'Date', data: 'createdAt'},
+//           {
+//             title: 'Action',
+//             data: 'id',
+           
+//             // render: (id) => (
+//             //   `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>` +
+//             //   `<button class="btn btn-sm btn-secondary me-1 edit-btn" data-id="${id}"><i class="fa-solid fa-pen-to-square"></i></button>` +
+//             //   `<button class="btn btn-sm btn-danger me-1 delete-btn" data-id="${id}"><i class="fa-solid fa-trash"></i></button>`
+//             // )
+
+//             render: (id) => {
+//               let buttons = '';
+  
+//               // Display different buttons based on user role
+//               if (cookies.role === '5' || cookies.role === '4') {
+//                 buttons += `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>`;
+//               }
+  
+//               if (cookies.role === '1' || cookies.role === '2' || cookies.role === '3') {
+//                 buttons += `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>` +
+//                 `<button class="btn btn-sm btn-secondary me-1 edit-btn" data-id="${id}"><i class="fa-solid fa-pen-to-square"></i></button>` +
+//                   `<button class="btn btn-sm btn-danger me-1 delete-btn" data-id="${id}"><i class="fa-solid fa-trash"></i></button>`;
+//               }
+  
+//               return buttons;
+//             },
+
+//           }
+//         ],
+//         dom: 'Bfrtip', // Add the required buttons
+//         buttons: [
+//           'copyHtml5',
+//           'excelHtml5',
+//           'csvHtml5',
+//           'pdfHtml5',
+//           'print'
+//         ],
+//       });
+
+
+//       // Event listeners for action buttons
+//       $(tableRef.current).on('click', '.view-btn', function() {
+//         const id = $(this).data('id');
+//         handleShowModal(id);
+
+
+//       });
+  
+//       $(tableRef.current).on('click', '.edit-btn', function() {
+//         const id = $(this).data('id');
+//         navigate(`/notice/edit/${id}`);
+//       });
+  
+//       $(tableRef.current).on('click', '.delete-btn', function() {
+//         const id = $(this).data('id');
+//         handleDeleteNotice(id);
+//       });
+//     };
+  
+//     fetchData();
+
+
+// }, []);
