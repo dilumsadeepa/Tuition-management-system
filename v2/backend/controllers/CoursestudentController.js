@@ -40,12 +40,13 @@ exports.updateCS = async (req, res) => {
 
 //student
 
-const enrollclass = async (req, res) => {
+exports.createCS = async (req, res) => {
   try {
-    await Coursestudent.create(req.body);
-    res.status(201).json({ msg: "Request approval sent!" });
+    const newCS = await Coursestudent.create(req.body);
+    res.status(201).json({ msg: "Request inserted", data: newCS });
   } catch (error) {
     console.log(error.message);
   }
 };
+
 
