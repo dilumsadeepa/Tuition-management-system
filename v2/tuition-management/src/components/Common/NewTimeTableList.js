@@ -55,7 +55,22 @@ function NewTimeTableList() {
     const [cookies] = useCookies(['role']);
     // console.log(cookies.role);
 
+    
+      // useEffect(() => {
+      //   const fetchCourses = async () => {
+      //     try {
+      //       const response = await axios.get(`${Apiurl}/coursedata`);
+      //       setCourses(response.data);
+      //       console.log('Courses:', response.data);
+      //     } catch (error) {
+      //       console.log('Error in getting data:', error);
+      //     }
+      //   };    
+      //   fetchCourses();
+      // }, []);
+
     useEffect(() => {
+
         axios.get(`${Apiurl}/newtimetable/`)
           .then(res => {
             const timeTabelsData = res.data;
@@ -77,6 +92,7 @@ function NewTimeTableList() {
       const fetchData = async () => {
         const response = await fetch(`${Apiurl}/newtimetable`);
         const data = await response.json();
+        console.log(data);
     
         // Destroy existing DataTable (if any)
         if ($.fn.DataTable.isDataTable(tableRef.current)) {
@@ -88,6 +104,8 @@ function NewTimeTableList() {
           data: data,
           columns: [
             { title: 'Course Unit', data: 'cunit' },
+            { title: 'Course Name', data: 'coursename' },
+            { title: 'Teacher', data: 'fullname' },
             { title: 'Date', data: 'cdate' },
             { title: 'Time', data: 'ctime'},
             { title: 'Hall No', data: 'hall'},
@@ -128,7 +146,7 @@ function NewTimeTableList() {
           const id = $(this).data('id');
           handleShowModal(id);
           fetchCourseId(id);
-          fetchCourses(id);
+          // fetchCourses(id);
 
         });
     
@@ -144,11 +162,9 @@ function NewTimeTableList() {
       };
     
       fetchData();
-    }, []);
+    }, [ ]);
     
-    
-
-      
+     
 
 
 
@@ -199,43 +215,64 @@ function NewTimeTableList() {
     }
 
 
-    const handleShowModal = (timetableId) => {
-      // const course = courses.find((c) => c.id === timetableId);
-      // console.log("course",course);
-      // const courseName = course ? course.coursename : '';
-      // console.log(courseName);
-        axios.get(`${Apiurl}/newtimetable/byId/${timetableId}`).then((response) => {
-          setTimeTableObject(response.data);
-          setShowModal(true);
- 
-            
-        });
+    const handleShowModal = async(timetableId) => {
+      // try{
+      //   const response = await axios.get(`${Apiurl}/coursename/${timetableId}`);
+      //   setCourses(response.data.courseIdnew);
+      //   // console.log("Course name:", response.data.courseIdnew);
+      //   // console.log("Coursess name:", courses);
+      //   setShowModal(true);
+      // } catch (error) {
+      //   console.log("error on viewing" + error);
+      // }
+
+
+        try{
+          await axios.get(`${Apiurl}/newtimetable/byId/${timetableId}`).then((res) => {
+            console.log("dataaaaaaa",res.data.selectedtimetable[0]);
+            setTimeTableObject(res.data.selectedtimetable[0]);
+            setShowModal(true);  
+          });
+        }catch(error){
+          console.log("error on viewing" + error);
+        }
+
+        // const response = await fetch(`${Apiurl}/newtimetable/byId/${timetableId}`);
+        // const data = await response.json();
+        // console.log(data);
+        // setTimeTableObject(data);
+        // setShowModal(true); 
+
       };
+
+
 
 
       const fetchCourseId = async(timetableId) => {
         try {
-          const response = await axios.get(`${Apiurl}/newtimetableid/${timetableId})`);
-          setCoursesId(response.data);
-          console.log("fetchCourseId:", response.data);
-          console.log("fetchCourseId: hiiiiii");
+          const response = await axios.get(`${Apiurl}/newtimetableid/${timetableId}`);
+          setCoursesId(response.data.courseIdnew);
+          console.log("fetchCourseId:", response.data.courseIdnew);
+          console.log("fetchCourseIdsss: "+ coursesId);
         } catch (error) {
           console.log("Error in getting data:", error);
         }
       };
 
 
-      const fetchCourses = async(timetableId) => {
-        try {
-          const response = await axios.get(`${Apiurl}/coursename/${timetableId}`);
-          console.log("Course:", response.data);
-          setCourses(response.data);
-          console.log("Coursess:", courses);
-        } catch (error) {
-          console.log("Error in getting data:", error);
-        }}
+      // const fetchCourses = async(timetableId) => {
+      //   try {
+      //     const res = await axios.get(`${Apiurl}/coursename/${timetableId}`);
+      //     setCourses(res.data);
+      //     console.log("Course:", res.data);
+      //     console.log("Coursess:"+ courses);
+      //   } catch (error) {
+      //     console.log("Error in getting data:", error);
+      //   }}
+
 
       // console.log(courseName);
+
 
 
   return (
@@ -266,7 +303,7 @@ function NewTimeTableList() {
 
                             <div class="d-flex mt-3">
                                 <div class="p-2 flex-grow-1"><h2>TimeTable</h2></div>
-                                {cookies.role === '1' || cookies.role === '2' || cookies.role === '3' && (
+                                {(cookies.role === '1' || cookies.role === '2' || cookies.role === '3') && (
                                   <div class="p-2"><a href="/newtimetabledash" className="btn-grad">Create TimeTable</a></div>
                                 )}
                                 </div>
@@ -284,6 +321,8 @@ function NewTimeTableList() {
                                             <thead>
                                                 <tr>
                                                 <th>Course Unit</th>
+                                                <th>Course Name</th>
+                                                <th>Teacher</th>
                                                 <th>Date</th>
                                                 <th>Time</th>
                                                 <th>Hall</th>
@@ -294,6 +333,8 @@ function NewTimeTableList() {
                                                 {timeTables.map((newtimeTable) => (
                                                 <tr key={newtimeTable.id}>
                                                     <td>{newtimeTable.cunit}</td>
+                                                    <td>{newtimeTable.coursename}</td>
+                                                    <td>{newtimeTable.fullname}</td>
                                                     <td>{newtimeTable.ctime}</td>
                                                     <td>{newtimeTable.hall}</td>
                                                     <td>{newtimeTable.createdAt.split("T")[0]}</td>
@@ -327,7 +368,7 @@ function NewTimeTableList() {
                                                 <div className="modal-content">
                                                     <div className="modal-header bg-light bg-gradient">
                                                     <h5 className="modal-title" id="noticeModalLabel">
-                                                    <span className="fw-bold">Time Table for:</span> {courses}
+                                                    <span className="fw-bold">Time Table for:</span> {timeTableObject.coursename}
                                                 
                                                     </h5>
                                                     <button
@@ -339,8 +380,10 @@ function NewTimeTableList() {
                                                     ></button>
                                                     </div>
                                                     <div className="modal-body">
-                                                    <h2 className="text-center mb-5" style={{ fontFamily: 'Merriweather', }}>Course Name: {courses}</h2>
+                                                    <h2 className="text-center mb-5" style={{ fontFamily: 'Merriweather', }}>{timeTableObject.coursename}</h2>
                                                     <p className="my-5">Course code: {timeTableObject.cunit}</p>
+                                                    <p className="my-5">Course name: {timeTableObject.coursename}</p>
+                                                    <p className="my-5">Teacher: {timeTableObject.fullname}</p>
                                                     <p className="my-5">Date: {timeTableObject.cdate}</p>
                                                     <p className="my-5">Time: {timeTableObject.ctime}</p>
                                                     <p className="my-5">Hall: {timeTableObject.hall}</p>

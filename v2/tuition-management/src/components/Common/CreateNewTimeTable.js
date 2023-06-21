@@ -84,7 +84,13 @@ function CreateNewTimeTable() {
              <Form className='formContainer'>  
                 <label className="my-2">Course Id:</label>
                 <ErrorMessage name='cunit' className="badge rounded-pill text-bg-danger my-3" component='span'  />
-                <Field id="inputCreatePost" className={`form-control`} name='cunit' placeholder='Course Unit' autocomplete="off" />
+                {/* <Field id="inputCreatePost" className={`form-control`} name='cunit' placeholder='Course Unit' autocomplete="off" /> */}
+                <Field as="select" id="course" name="cunit" className={`form-control`}>
+                <option value="" disabled selected>Select Course ID</option>
+                {courses.map((course) => (
+                    <option key={course.id} value={course.courseid}>{course.courseid}</option>
+                ))}
+                </Field>
 
                 <label htmlFor="course" className="my-2">Course Name:</label>
                 {console.log(courses)}

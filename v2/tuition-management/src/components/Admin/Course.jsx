@@ -15,6 +15,7 @@ const Course = () =>{
     const getcou = async(e) =>{
         try {
             const response = await axios.get(`${Apiurl}/coursedata`);
+            console.log('coursess data: '+response.data);
             setCourses(response.data);
         } catch (error) {
             console.log("error in getting data")

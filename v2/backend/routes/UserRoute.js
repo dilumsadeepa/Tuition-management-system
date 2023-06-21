@@ -86,6 +86,7 @@ const {
   deleteNewTimetable,
   viewNewTimetable,
   timecourseId,
+  timecourse,
   updateTimeTable,
 } = require("../controllers/NewtimetableController.js");
 
@@ -162,5 +163,6 @@ router.put('/newtimetable/:id', updateTimeTable);
 router.get("/newtimetable/byId/:id", viewNewTimetable);
 router.post("/newtimetable/create", createNewTimetable);
 router.get("/newtimetableid/:id", timecourseId);
+router.get('/coursename/:id', timecourse );
 
 module.exports = router;

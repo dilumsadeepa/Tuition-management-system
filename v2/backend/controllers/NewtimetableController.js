@@ -1,14 +1,44 @@
 const Timetable = require('../models/NewtimetableModel.js');
+const Course = require("../models/CourseModel.js");
+const User = require("../models/UserModel.js");
 const { Op } = require('sequelize');
+const { QueryTypes } = require("sequelize");
+const db = require("../config/Database.js");
  
+// exports.getNewTimetables = async (req, res) => {
+//   try {
+//     const response = await Timetable.findAll();
+//     res.status(200).json(response);
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// }
+
 exports.getNewTimetables = async (req, res) => {
+
+  const sesql =
+    "SELECT t.*, c.coursename, u.fullname FROM timetable t INNER JOIN courses c ON t.cunit = c.courseid INNER JOIN users u ON u.id = c.userId ";
+
   try {
-    const response = await Timetable.findAll();
+    const response = await db.query(sesql, { type: QueryTypes.SELECT });
+    console.log(response);
     res.status(200).json(response);
   } catch (error) {
     console.log(error.message);
   }
-}
+};
+
+// exports.getNewTimetables = async (req, res) => {
+//   try {
+//     const response = await Timetable.findAll({
+//       inclide: [Course],
+//     });
+//     console.log(response);
+//     res.status(200).json(response);
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// };
 
 exports.createNewTimetable = async (req, res) => {
   try {
@@ -35,22 +65,40 @@ exports.deleteNewTimetable = async (req, res) => {
 };
 
 exports.viewNewTimetable = async (req, res) => {
+  const { id } = req.params;
+
+  const sqlquery =
+  "SELECT t.*, c.coursename, u.fullname FROM timetable t INNER JOIN courses c ON t.cunit = c.courseid INNER JOIN users u ON u.id = c.userId WHERE t.id = '" +
+  id +
+  "';";
+
   try {
-    const { id } = req.params;
-    const timetable = await Timetable.findByPk(id);
-    res.status(200).json(timetable);
+      const selectedtimetable = await db.query(sqlquery, { type: QueryTypes.SELECT });
+      
+      if (selectedtimetable) {
+        res.status(200).json({selectedtimetable});
+        console.log(selectedtimetable);
+      } else {
+        res.status(404).json({ message: 'Course ID not found' });
+      }
   } catch (error) {
     console.log(error.message);
   }
 };
 
 exports.timecourseId = async (req, res) => {
+  const timeId = req.params.id;
+  console.log("courseid: " + timeId);
+
+  const sesql =
+  "SELECT timetable.cunit FROM timetable WHERE id = '" +
+    timeId +
+    "';";
+
   try {
-    const timeId = req.params.id;
-    console.log("courseid: " + timeId);
-    const timetable = await Timetable.findOne({ where: { id: timeId } });
+    const timetable = await db.query(sesql, { type: QueryTypes.SELECT });
     if (timetable) {
-      res.status(200).json({ courseId: timetable.cunit });
+      res.status(200).json({ courseIdnew: timetable});
     } else {
       res.status(404).json({ message: 'Course ID not found' });
     }
@@ -59,6 +107,49 @@ exports.timecourseId = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 }
+
+
+exports.timecourse = async (req, res) => {
+  const timeId = req.params.id;
+  console.log("courseid: " + timeId);
+
+  const query =
+    "SELECT courses.* FROM courses INNER JOIN timetable ON courses.courseid = timetable.cunit WHERE timetable.id = :timeId";
+
+  try {
+    const courses = await db.query(query, {
+      replacements: { timeId },
+      type: QueryTypes.SELECT
+    });
+
+    if (courses.length > 0) {
+      const course = courses[0];
+      res.status(200).json({ course });
+    } else {
+      res.status(404).json({ message: 'Course Data not found' });
+    }
+  } catch (error) {
+    console.log('Error in fetching course:', error);
+    res.status(500).json({ message: 'Internal server errors' });
+  }
+};
+
+
+// exports.timecourseName = async (req, res) => {
+//   try {
+//     const timeId = req.params.id;
+//     console.log("Timetableid: " + timeId);
+//     const timetable = await Timetable.findOne({ where: { id: timeId } });
+//     if (timetable) {
+//       res.status(200).json({ courseId: timetable.cunit });
+//     } else {
+//       res.status(404).json({ message: 'Course ID not found' });
+//     }
+//   } catch (error) {
+//     console.log('Error in fetching course:', error);
+//     res.status(500).json({ message: 'Internal server error' });
+//   }
+// }
 
 exports.updateTimeTable = async (req, res) => {
   try {

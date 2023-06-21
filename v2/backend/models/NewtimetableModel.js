@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../config/Database.js');
+const Course = require('./CourseModel.js');
 
 const Newtimetable = db.define('timetable', {
   cunit: {
@@ -25,6 +26,8 @@ const Newtimetable = db.define('timetable', {
 }, {
   freezeTableName: true
 });
+
+// Newtimetable.belongsTo(Course);
 
 module.exports = Newtimetable;
 

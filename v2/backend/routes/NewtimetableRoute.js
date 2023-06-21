@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { getNewTimetables, createNewTimetable, deleteNewTimetable, viewNewTimetable, timecourseId, updateTimeTable } from "../controllers/NewtimetableController.js";
+import { getNewTimetables, createNewTimetable, deleteNewTimetable, viewNewTimetable, timecourseId,timecourse, updateTimeTable } from "../controllers/NewtimetableController.js";
 import NewTimetableModel from '../models/NewtimetableModel.js';
 import cloudinary from '../clouds/cloudinary.js';
 
@@ -34,5 +34,6 @@ router.delete('/newtimetable/:id', deleteNewTimetable);
 router.put('/newtimetable/:id', updateTimeTable);
 router.get('/newtimetable/byId/:id', viewNewTimetable );
 router.get('/newtimetableid/byId/:id', timecourseId ); 
+// router.get('/coursename/:id', timecourse );
 
 export default router; 

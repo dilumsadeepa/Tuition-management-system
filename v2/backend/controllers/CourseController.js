@@ -2,6 +2,7 @@ const Course = require("../models/CourseModel.js");
 const User = require("../models/UserModel.js");
 const Coursestudent = require("../models/CoursestudentModel.js");
 
+
 // admin
 
 exports.getCos = async (req, res) => {
@@ -100,3 +101,5 @@ exports.stucourseall = async (req, res) => {
     console.log(error.message);
   }
 };
+
+
