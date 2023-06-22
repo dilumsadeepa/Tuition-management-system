@@ -112,7 +112,7 @@ const CreateCourse = () => {
             await axios.post(`${Apiurl}/crestecourse/`, {
                 courseid,
                 coursename,
-                courseStream,
+                courseStream: courseStream.replace(/\s/g, '').replace(/\//g, ''),
                 coursesubject,
                 coursebanner,
                 courseprofile,

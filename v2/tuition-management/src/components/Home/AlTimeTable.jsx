@@ -6,22 +6,22 @@ import Footer from './Footer'
 
 function AlTimeTable() {
 
-    const [Streams, setStreams] = useState([]);
+    // const [Streams, setStreams] = useState([]);
 
 
-    const gette = async (e) => {
-        try {
-            const response = await axios.get(`${Apiurl}/teacher`);
-            setStreams(response.data);
-            console.log(response.data);
-        } catch (error) {
-            console.log("error in getting data")
-        }
-    }
+    // const gette = async (e) => {
+    //     try {
+    //         const response = await axios.get(`${Apiurl}/teacher`);
+    //         setStreams(response.data);
+    //         console.log(response.data);
+    //     } catch (error) {
+    //         console.log("error in getting data")
+    //     }
+    // }
 
-    useEffect(() => {
-        gette();
-    }, [])
+    // useEffect(() => {
+    //     gette();
+    // }, [])
 
 
 
@@ -39,7 +39,7 @@ function AlTimeTable() {
 
                     <div className="container d-flex flex-column align-items-center py-4 py-xl-5 text-dark">
                     <div className="row gy-4 row-cols-1 row-cols-md-2 w-100 text-dark" style={{ maxWidth: '800px' }}>
-                        
+
                         <a href="alstreamwisetimetable/arts" className='text-dark'>
                         <div className="col order-md-2">
                         <div className="card">
@@ -107,6 +107,18 @@ function AlTimeTable() {
                             <div className="card-img-overlay text-center d-flex flex-column justify-content-center align-items-center p-4" style={{ background: 'linear-gradient(#3a36f7 0%, #2d16ba 44%, #8b62ff)' }}>
                             <h4 style={{ fontWeight: 'bold', fontSize: '48px' }}>Languages</h4>
                             <p style={{ fontSize: '20px', fontWeight: 'bold' }}>භාෂා</p>
+                            </div>
+                        </div>
+                        </div>
+                        </a>
+
+                        <a href="alstreamwisetimetable/common" className='text-dark'>
+                        <div className="col order-md-2">
+                        <div className="card">
+                            <img className="card-img w-100 d-block" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" />
+                            <div className="card-img-overlay text-center d-flex flex-column justify-content-center align-items-center p-4" style={{ background: 'linear-gradient(#3a36f7 0%, #2d16ba 44%, #8b62ff)' }}>
+                            <h4 style={{ fontWeight: 'bold', fontSize: '48px' }}>Common Subjects</h4>
+                            <p style={{ fontSize: '20px', fontWeight: 'bold' }}>පොදු විෂයන්</p>
                             </div>
                         </div>
                         </div>

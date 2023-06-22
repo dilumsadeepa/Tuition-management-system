@@ -28,6 +28,8 @@ function ALStreamWiseTimeTable() {
     console.log(id);
 
     const tableRef = useRef(null);
+    const subjectTableRef = useRef(null);
+    const subjectTableRefs = useRef([]);
 
     const [streamTimetable, setStreamTimetable] = useState([]);
     const [streamSubjects, setStreamSubjects] = useState([]);
@@ -83,6 +85,7 @@ function ALStreamWiseTimeTable() {
             const response = await axios.get(`${Apiurl}/newtimetable/public/subject/${subject}`);
             console.log(response.data.selectedtimetable);
             setSubjectTimetable(response.data.selectedtimetable);
+            setSubject(subject);
         } catch (error) {
             console.log("error in getting data")
         }
@@ -113,12 +116,12 @@ function ALStreamWiseTimeTable() {
           const table = $(tableRef.current).DataTable({
             data: data,
             columns: [
-              { title: 'Course Unit', data: 'cunit' },
               { title: 'Course Name', data: 'coursename' },
+              { title: 'Subject', data: 'coursesubject' },
               { title: 'Teacher', data: 'fullname' },
+              { title: 'Hall No', data: 'hall'},
               { title: 'Date', data: 'cdate' },
               { title: 'Time', data: 'ctime'},
-              { title: 'Hall No', data: 'hall'},
             ],
             dom: 'Bfrtip', // Add the required buttons
             buttons: [
@@ -135,6 +138,53 @@ function ALStreamWiseTimeTable() {
         fetchData();
       }, [ ]);
 
+
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch(`${Apiurl}/newtimetable/public/subject/${subject}`);
+            const data = await response.json();
+            console.log(data);
+      
+            if (data.selectedtimetable.length < 0) {
+              if ($.fn.DataTable.isDataTable(subjectTableRef.current)) {
+                $(subjectTableRef.current).DataTable().destroy();
+              }
+      
+              const table = $(subjectTableRef.current).DataTable({
+                data: data.selectedtimetable,
+                columns: [
+                  { title: 'Course Name', data: 'coursename' },
+                  { title: 'Subject', data: 'coursesubject' },
+                  { title: 'Teacher', data: 'fullname' },
+                  { title: 'Hall No', data: 'hall' },
+                  { title: 'Date', data: 'cdate' },
+                  { title: 'Time', data: 'ctime' },
+                ],
+                dom: 'Bfrtip',
+                buttons: [
+                  'copyHtml5',
+                  'excelHtml5',
+                  'csvHtml5',
+                  'pdfHtml5',
+                  'print',
+                ],
+              });
+            } else {
+              console.log('No data available in table');
+            }
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+      
+        fetchData();
+      }, [subject, subjectTimetable, subjectTableRef]);
+
+
+
+
+    
 
 
   return (
@@ -196,9 +246,9 @@ function ALStreamWiseTimeTable() {
                         {streamSubjects.map((value, index) => {
                             return (
                                 <li className="nav-item" role="presentation" onClick={() => getSubjectTimetable(value.coursesubject)}>
-                                <a className="nav-link" role="tab" data-bs-toggle="tab" href={`#${value.coursesubject}`}>
+                                    <a className="nav-link" role="tab" data-bs-toggle="tab" href={`#${value.coursesubject.replace(/\s/g, '').replace(/\//g, '-')}`}>
                                     {value.coursesubject}
-                                </a>
+                                    </a>
                                 </li>
                             );
                             })}
@@ -207,6 +257,8 @@ function ALStreamWiseTimeTable() {
                         <li className="nav-item" role="presentation"><a className="nav-link" role="tab" data-bs-toggle="tab" href="#tab-4">Accounting - ගිණුම්කරණය</a></li> */}
                     </ul>
                     <div className="tab-content">
+                        
+     
                         <div className="tab-pane active" role="tabpanel" id="tab-1">
                         <h1 style={{ marginTop: '30px', marginBottom: '25.2px' }}>{stream} All Classes&nbsp;</h1>
                         <div className="table-responsive">
@@ -224,13 +276,13 @@ function ALStreamWiseTimeTable() {
                             <tbody className='table-group-divider'>
                                 {streamTimetable.map((streamtime , index) => {
                                     return(
-                                        <tr key={index}>
-                                        <td>{streamtime.coursename}</td>
-                                        <td>{streamtime.coursesubject}</td>
-                                        <td>{streamtime.fullname}</td>
-                                        <td>{streamtime.hall}</td>
-                                        <td>{streamtime.cdate}</td>
-                                        <td>{streamtime.ctime}</td>
+                                        <tr key={index} style={{ textAlign: 'left' }}>
+                                        <td style={{ textAlign: 'left' }}>{streamtime.coursename}</td>
+                                        <td style={{ textAlign: 'left' }}>{streamtime.coursesubject}</td>
+                                        <td style={{ textAlign: 'left' }}>{streamtime.fullname}</td>
+                                        <td style={{ textAlign: 'left' }}>{streamtime.hall}</td>
+                                        <td style={{ textAlign: 'left' }}>{streamtime.cdate}</td>
+                                        <td style={{ textAlign: 'left' }}>{streamtime.ctime}</td>
                                       </tr>
                                     )
                                 }
@@ -241,16 +293,50 @@ function ALStreamWiseTimeTable() {
                             </table>
                         </div>
                         </div>
-                        <div className="tab-pane" role="tabpanel" id="tab-2">
-                        <p>Content for tab 2.</p>
-                        </div>
-                        <div className="tab-pane" role="tabpanel" id="tab-3">
-                        <p>Content for tab 3.</p>
-                        </div>
-                        <div className="tab-pane" role="tabpanel" id="tab-4">
-                        <p>Tab content.</p>
-                        </div>
+            
+
+                        {streamSubjects.map((value, index) => {
+                            return (
+                                <div className="tab-pane" role="tabpanel" id={`${value.coursesubject.replace(/\s/g, '').replace(/\//g, '-')}`}>
+                                <h1 style={{ marginTop: '30px', marginBottom: '25.2px' }}>{value.coursesubject} All Classes&nbsp;</h1>
+                                <div className="table-responsive">
+                                    <table ref={subjectTableRef} className="table table-primary table-striped table-hover">
+                                    <thead className='text-center'>
+                                        <tr>
+                                        <th className='text-center'>Course Name</th>
+                                        <th className='text-center'>Subject</th>
+                                        <th className='text-center'>Teacher</th>
+                                        <th className='text-center'>Hall No</th>
+                                        <th className='text-center'>Date</th>
+                                        <th className='text-center'>Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className='table-group-divider'>
+                                        {subjectTimetable.map((streamtime , index) => {
+                                            return(
+                                                <tr key={index} style={{ textAlign: 'left' }}>
+                                                <td>{streamtime.coursename}</td>
+                                                <td>{streamtime.coursesubject}</td>
+                                                <td>{streamtime.fullname}</td>
+                                                <td>{streamtime.hall}</td>
+                                                <td>{streamtime.cdate}</td>
+                                                <td>{streamtime.ctime}</td>
+                                              </tr>
+                                            )
+                                        }
+                                        )}
+        
+                                        
+                                    </tbody>
+                                    </table>
+                                    </div>
+                                </div>
+                            );
+                            })}
+                           
+
                     </div>
+        
                     </div>
                 </div>
                 </div>
