@@ -114,7 +114,7 @@ const EditParent = () => {
 
                                     <div className="mb-3 mt-3">
                                         <label className="form-label">Gender</label>
-                                        <select className="form-select">
+                                        <select className="form-select" o>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
                                            
