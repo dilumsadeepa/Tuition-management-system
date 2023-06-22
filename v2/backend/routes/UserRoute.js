@@ -85,6 +85,9 @@ const {
   createNewTimetable,
   deleteNewTimetable,
   viewNewTimetable,
+  viewPublicNewTimetable,
+  viewPublicSubjectNewTimetable,
+  streamsubjects,
   timecourseId,
   timecourse,
   updateTimeTable,
@@ -161,6 +164,9 @@ router.get("/newtimetable", getNewTimetables);
 router.delete("/newtimetable/:id", deleteNewTimetable);
 router.put('/newtimetable/:id', updateTimeTable);
 router.get("/newtimetable/byId/:id", viewNewTimetable);
+router.get("/newtimetable/public/:id", viewPublicNewTimetable);
+router.get("/newtimetable/public/subject/:id", viewPublicSubjectNewTimetable);
+router.get("/newtimetable/streamsubjects/:id", streamsubjects);
 router.post("/newtimetable/create", createNewTimetable);
 router.get("/newtimetableid/:id", timecourseId);
 router.get('/coursename/:id', timecourse );

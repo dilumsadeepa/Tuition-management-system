@@ -17,7 +17,7 @@ const db = require("../config/Database.js");
 exports.getNewTimetables = async (req, res) => {
 
   const sesql =
-    "SELECT t.*, c.coursename, u.fullname FROM timetable t INNER JOIN courses c ON t.cunit = c.courseid INNER JOIN users u ON u.id = c.userId ";
+    "SELECT t.*, c.coursename, u.fullname FROM timetable t INNER JOIN courses c ON t.cunit = c.courseid INNER JOIN users u ON u.id = c.userId Order BY t.createdAt DESC";
 
   try {
     const response = await db.query(sesql, { type: QueryTypes.SELECT });
@@ -85,6 +85,81 @@ exports.viewNewTimetable = async (req, res) => {
     console.log(error.message);
   }
 };
+
+
+
+exports.viewPublicNewTimetable = async (req, res) => {
+  const { id } = req.params;
+  console.log("courseid: " + id);
+
+  const sqlquery =
+  "SELECT t.*, c.coursename, c.courseStream, c.coursesubject, u.fullname FROM timetable t INNER JOIN courses c ON t.cunit = c.courseid INNER JOIN users u ON u.id = c.userId WHERE c.courseStream LIKE '%" +
+  id +
+  "%';";
+
+  try {
+      const selectedtimetable = await db.query(sqlquery, { type: QueryTypes.SELECT });
+      
+      if (selectedtimetable) {
+        res.status(200).json({selectedtimetable});
+        console.log(selectedtimetable);
+      } else {
+        res.status(404).json({ message: 'Course ID not found' });
+      }
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
+exports.viewPublicSubjectNewTimetable = async (req, res) => {
+  const { id } = req.params;
+  console.log("courseid: " + id);
+
+  const sqlquery =
+  "SELECT t.*, c.coursename, c.courseStream, c.coursesubject, u.fullname FROM timetable t INNER JOIN courses c ON t.cunit = c.courseid INNER JOIN users u ON u.id = c.userId WHERE c.coursesubject LIKE '%" +
+  id +
+  "%';";
+
+  try {
+      const selectedtimetable = await db.query(sqlquery, { type: QueryTypes.SELECT });
+      
+      if (selectedtimetable) {
+        res.status(200).json({selectedtimetable});
+        console.log(selectedtimetable);
+      } else {
+        res.status(404).json({ message: 'Course ID not found' });
+      }
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
+exports.streamsubjects = async (req, res) => {
+  const { id } = req.params;
+  console.log("courseid: " + id);
+
+  const sqlquery =
+  "SELECT Distinct c.coursesubject FROM timetable t INNER JOIN courses c ON t.cunit = c.courseid INNER JOIN users u ON u.id = c.userId WHERE c.courseStream LIKE '%" +
+  id +
+  "%';";
+
+  try {
+      const selectedsubjects = await db.query(sqlquery, { type: QueryTypes.SELECT });
+      
+      if (selectedsubjects) {
+        res.status(200).json({selectedsubjects});
+        console.log(selectedsubjects);
+      } else {
+        res.status(404).json({ message: 'Course ID not found' });
+      }
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
 
 exports.timecourseId = async (req, res) => {
   const timeId = req.params.id;

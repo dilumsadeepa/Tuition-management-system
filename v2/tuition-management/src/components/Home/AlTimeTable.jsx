@@ -1,8 +1,30 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
+import Apiurl from '../Apiurl';
 import Navbar from './Navbar'
 import Footer from './Footer'
 
 function AlTimeTable() {
+
+    const [Streams, setStreams] = useState([]);
+
+
+    const gette = async (e) => {
+        try {
+            const response = await axios.get(`${Apiurl}/teacher`);
+            setStreams(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.log("error in getting data")
+        }
+    }
+
+    useEffect(() => {
+        gette();
+    }, [])
+
+
+
   return (
     <div>
         <Navbar />
@@ -17,7 +39,8 @@ function AlTimeTable() {
 
                     <div className="container d-flex flex-column align-items-center py-4 py-xl-5 text-dark">
                     <div className="row gy-4 row-cols-1 row-cols-md-2 w-100 text-dark" style={{ maxWidth: '800px' }}>
-                        <a href="alstreamwisetimetable" className='text-dark'>
+                        
+                        <a href="alstreamwisetimetable/arts" className='text-dark'>
                         <div className="col order-md-2">
                         <div className="card">
                             <img className="card-img w-100 d-block" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" />
@@ -29,7 +52,7 @@ function AlTimeTable() {
                         </div>  
                         </a>
 
-                        <a href="alstreamwisetimetable" className='text-dark'>
+                        <a href="alstreamwisetimetable/commerce" className='text-dark'>
                         <div className="col order-md-2">
                         <div className="card">
                             <img className="card-img w-100 d-block" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" />
@@ -41,6 +64,7 @@ function AlTimeTable() {
                         </div>
                         </a>
                         
+                        <a href="alstreamwisetimetable/sciencemaths" className='text-dark'>
                         <div className="col order-md-2">
                         <div className="card">
                             <img className="card-img w-100 d-block" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" />
@@ -50,6 +74,9 @@ function AlTimeTable() {
                             </div>
                         </div>
                         </div>
+                        </a>
+
+                        <a href="alstreamwisetimetable/technology" className='text-dark'>
                         <div className="col order-md-2">
                         <div className="card">
                             <img className="card-img w-100 d-block" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" />
@@ -59,6 +86,9 @@ function AlTimeTable() {
                             </div>
                         </div>
                         </div>
+                        </a>
+
+                        <a href="alstreamwisetimetable/englishmedium" className='text-dark'>
                         <div className="col order-md-2">
                         <div className="card">
                             <img className="card-img w-100 d-block" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" />
@@ -68,6 +98,9 @@ function AlTimeTable() {
                             </div>
                         </div>
                         </div>
+                        </a>
+
+                        <a href="alstreamwisetimetable/languages" className='text-dark'>
                         <div className="col order-md-2">
                         <div className="card">
                             <img className="card-img w-100 d-block" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" />
@@ -77,6 +110,8 @@ function AlTimeTable() {
                             </div>
                         </div>
                         </div>
+                        </a>
+
                     </div>
                     </div>
                 </section>

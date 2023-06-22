@@ -5,8 +5,10 @@ const { QueryTypes } = require("sequelize");
 const db = require("../config/Database.js");
 
 const getNotices = async (req, res) => {
+  const sql =
+  "SELECT notices.* FROM notices order by id desc";
   try {
-    const response = await Notice.findAll();
+    const response = await db.query(sql, { type: QueryTypes.SELECT });
     res.status(200).json(response);
   } catch (error) {
     console.log(error.message);

@@ -174,7 +174,7 @@ function App() {
           <Route path="publicnotices" element={<PublicNotices />} />
           <Route path="contactus" element={<ContactUs />} />
           <Route path="altimetable" element={<AlTimeTable />} />
-          <Route path="alstreamwisetimetable" element={<ALStreamWiseTimeTable />} />
+          <Route path="alstreamwisetimetable/:id" element={<ALStreamWiseTimeTable />} />
 
           <Route path="newtimetable" element={<NewTimeTableList />} />
           <Route
