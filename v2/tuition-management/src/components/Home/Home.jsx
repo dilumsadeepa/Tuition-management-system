@@ -107,7 +107,7 @@ const handleSubmit = (values, { setSubmitting }) => {
               <button className="btn btn-outline-primary btn-lg" type="button">Read More</button>
             </div>
           </div>
-          <div className="row align-items-center">
+          <div className="row align-items-center py-3">
             <div className="col-md-6">
               <h3>අපි කවුරුන්ද?</h3>
               <div className="getting-started-info">
@@ -116,7 +116,7 @@ const handleSubmit = (values, { setSubmitting }) => {
               <button className="btn btn-outline-primary btn-lg" type="button">Read More</button>
             </div>
             <div className="col-md-6">
-              <img className="img-fluid rounded" src="../img/scenery/15.jpg" alt="" />
+              <img className="img-fluid rounded mobilepicx" src="../img/scenery/15.jpg" alt="" />
             </div>
           </div>
         </div>
@@ -135,31 +135,40 @@ const handleSubmit = (values, { setSubmitting }) => {
         </div>
         <div className="row justify-content-center">
           <div className="col-md-5 feature-box">
-          <i class="fa-solid fa-person-chalkboard fa-2x" style={{ color:'#3B99E0' }}></i>
+            <div className="mobilespecs">
+            <i class="fa-solid fa-person-chalkboard fa-2x" style={{ color:'#3B99E0' }}></i>
             <h4>
               <strong>Expert Instructors:</strong>
             </h4>
+            </div>
+
             <p>Highly qualified and experienced instructors who specialize in their respective subjects.</p>
           </div>
           <div className="col-md-5 feature-box">
+            <div className="mobilespecs">
             <i class="fa-solid fa-pen-to-square fa-2x" style={{ color:'#3B99E0' }}></i>
             <h4>
               <strong>Track Record of Success</strong>
             </h4>
+            </div>
             <p>Demonstrated history of students achieving remarkable academic results and securing admissions to prestigious institutions.</p>
           </div>
           <div className="col-md-5 feature-box">
+          <div className="mobilespecs">
           <i class="fa-solid fa-arrows-rotate fa-2x" style={{ color:'#3B99E0' }}></i>
             <h4>
               <strong>Interactive Teaching Methods</strong>
             </h4>
+          </div>
             <p>Engaging and interactive teaching methods that promote active participation and enhance learning outcomes.</p>
           </div>
           <div className="col-md-5 feature-box">
-            <i class="fa-regular fa-clipboard fa-2x" style={{ color:'#3B99E0' }}></i>
+          <div className="mobilespecs">
+          <i class="fa-regular fa-clipboard fa-2x" style={{ color:'#3B99E0' }}></i>
             <h4>
               <strong>Exam Excellence</strong>
             </h4>
+          </div>
             <p>Focus on exam preparation with proven strategies, practice tests, and resources to achieve outstanding results.</p>
           </div>
         </div>
