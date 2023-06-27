@@ -304,7 +304,11 @@ function NewTimeTableList() {
                             <div class="d-flex mt-3">
                                 <div class="p-2 flex-grow-1"><h2>TimeTable</h2></div>
                                 {(cookies.role === '1' || cookies.role === '2' || cookies.role === '3') && (
+                                  <>
                                   <div class="p-2"><a href="/newtimetabledash" className="btn-grad">Create TimeTable</a></div>
+                                  <div class="p-2"><a href="/timetable" className="btn-grad">TimeTable Posts</a></div>
+                                  </>
+
                                 )}
                                 </div>
 

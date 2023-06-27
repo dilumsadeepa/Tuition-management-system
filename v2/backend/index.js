@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const userRoutes = require('./routes/UserRoute.js');
 const noticeRoutes = require('./routes/NoticeRoute.js');
+const galleryRoutes = require('./routes/GalleryRoute.js');
 const timetableRoutes = require('./routes/TimetableRoute.js');
 
 
@@ -12,7 +13,7 @@ app.use(express.json());
 app.use(userRoutes);
 app.use(noticeRoutes);
 app.use(timetableRoutes);
-
+app.use(galleryRoutes);
 app.listen(4000, ()=> console.log('Server up and running...'));
 
 // import express from "express";
