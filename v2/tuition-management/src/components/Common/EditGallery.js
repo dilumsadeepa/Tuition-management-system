@@ -399,12 +399,12 @@ function EditGallery() {
                 <div className="badge rounded-pill text-bg-danger">{errors.attachFiles}</div>
               )}
 
-              <div className="form-files">
+              {/* <div className="form-files">
               <p>
                 File Supported : "zip","rar","7z","xml","xhtml","txt","svg","rtf","pdf","jpeg","png","jpg","ogg","mp3","json","html",
                 "gif","mp4","mpeg","mkv","flv","avi","csv","ppt","pptx","xls","xlsx","doc","docx"
               </p>
-              </div>
+              </div> */}
 
               <div className="form-files">
               <small>Max File Size : 10MB</small>
