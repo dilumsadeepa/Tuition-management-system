@@ -9,7 +9,7 @@ import * as Yup from 'yup'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -374,12 +374,16 @@ const renderCloudFiles = () => {
         <Swiper
         slidesPerView={1}
         spaceBetween={30}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
         loop={true}
         pagination={{
           clickable: true,
         }}
         navigation={true}
-        modules={[Pagination, Navigation]}
+        modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
 
