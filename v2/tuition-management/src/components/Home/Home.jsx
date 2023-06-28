@@ -54,8 +54,8 @@ useEffect(() => {
         console.log("urls :",urls);
       }else{
        // Clear the list of cloud files
-       setCloudFiles([]);
-       setCloudUrls([]);
+      //  setCloudFiles([]);
+      //  setCloudUrls([]);
       }
 
 
@@ -66,30 +66,30 @@ useEffect(() => {
         console.log("urls :",urls);
       }else{
        // Clear the list of cloud files
-       setCloudUrls([]);
-       setCloudFiles([]);
+      //  setCloudUrls([]);
+      //  setCloudFiles([]);
       }
 
 
-      if ( cloudFilesValues.length > cloudOnlyValues.length) {
+      if ( (cloudFilesValues.length > cloudOnlyValues.length) && (cloudOnlyValues.length > 0)) {
         const urls = response.data.cloudFiles.split(',').map(url => url.trim());
         setCloudFiles(urls);
         console.log("urls :",urls);  
     }else{
       // Clear the list of cloud files
-      setCloudFiles([]);
-      setCloudUrls([]);
+      // setCloudFiles([]);
+      // setCloudUrls([]);
     }
 
-    if ( cloudOnlyValues.length > cloudFilesValues.length) {
+    if ( (cloudOnlyValues.length > cloudFilesValues.length) && (cloudFilesValues.length > 0)) {
       const urls = response.data.cloudOnly.split(',').map(url => url.trim());
       setCloudUrls(urls);
       setCloudFiles(urls);
       console.log("urls :",urls);
     }else{
       // Clear the list of cloud files
-      setCloudUrls([]);
-      setCloudFiles([]);
+      // setCloudUrls([]);
+      // setCloudFiles([]);
     }
     
 
@@ -129,10 +129,6 @@ const handleSubmit = (values, { setSubmitting }) => {
 };
 
 
-
-if (cloudFiles.length === 0) {
-  return (null);
-}
 
 const renderFiles = () => {
  console.log("cloudUrls :",cloudUrls);
@@ -183,6 +179,51 @@ const renderFiles = () => {
     }
   });
 };
+    
+
+const renderCloudFiles = () => {
+  console.log("cloudFiles :",cloudFiles);
+   return cloudFiles.map((url, index) => {
+     // Extract the file name from the URL
+     const fileName = url.substring(url.lastIndexOf('/') + 1);
+     // Extract the file extension from the file name
+     const extension = fileName.split('.').pop();
+     // Render the file with the appropriate element based on the file extension
+     if (extension.toLowerCase() === 'jpg' || extension.toLowerCase() === 'jpeg' || extension.toLowerCase() === 'png' || extension.toLowerCase() === 'gif') {
+       return (
+         <SwiperSlide><img className="w-100 d-block" src={url} alt={fileName} /></SwiperSlide>
+       );
+       } else if (extension.toLowerCase() === 'mp4' || extension.toLowerCase() === 'webm' || extension.toLowerCase() === 'mkv') {
+       return (
+         <SwiperSlide><video className="w-100 d-block" src={url} alt={fileName} autoPlay='true' muted ></video></SwiperSlide>
+       );
+     } else if (extension.toLowerCase() === 'mp3' || extension.toLowerCase() === 'wav') {
+       return (
+         <SwiperSlide>
+           <audio src={url} controls />
+           <span>{extension.toUpperCase()} File</span>
+         </SwiperSlide>
+       );
+     } else if (extension.toLowerCase() === 'pdf') {
+       return (
+ 
+         <SwiperSlide>
+         <ul className="list-group">
+           <li className="list-group-item list-group-item-info"><i class="fa-regular fa-file-pdf me-2"></i> {extension.toUpperCase()} File <i class="fa-solid fa-arrow-right mx-2"></i> <small>{url}</small>  <a href={url}  data-fancybox="images" data-caption={extension.toUpperCase()} download><i class="fa-solid fa-arrow-up-right-from-square"></i></a>  </li>
+           </ul>
+         </SwiperSlide>
+       );
+     } else {
+       return (
+         <SwiperSlide>
+           <ul className="list-group">
+             <li className="list-group-item list-group-item-info"><i class="fa-solid fa-file-video me-2"></i> {extension.toUpperCase()} File <i class="fa-solid fa-arrow-right mx-2"></i> <small>{url}</small>  <a href={url} download><i class="fa-solid fa-arrow-up-right-from-square"></i></a>  </li>
+             </ul>
+         </SwiperSlide>
+       );
+     }
+   });
+ };
 
 
 
@@ -342,7 +383,8 @@ const renderFiles = () => {
         className="mySwiper"
       >
 
-{renderFiles()}
+      {/* {renderFiles()} */}
+      {renderCloudFiles()}
     </Swiper>
 
 
