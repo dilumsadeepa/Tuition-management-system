@@ -17,7 +17,7 @@ function AboutUs() {
             </section>
 
       {/* Start: Parallax Background */}
-            <div className="d-xxl-flex justify-content-xxl-center align-items-xxl-center" data-bss-parallax-bg="true" style={{ height: '500px', background: 'url("../img/scenery/image1.jpg")' }}>
+            <div className="d-flex justify-content-center align-items-center" data-bss-parallax-bg="true" style={{ height: '500px', background: 'url("../img/scenery/image1.jpg")' }}>
                 <iframe allowfullscreen="" frameborder="0" loading="lazy" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB8fmVmHCZSQB8PBWIWBEU1CR4Lq-BaL2w&amp;q=Susipwin+Anuradhapura%2C+Town+Hall+Pl%2C+Anuradhapura&amp;zoom=11" width="80%" height="450"></iframe>
             </div>
       {/* End: Parallax Background */}
