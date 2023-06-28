@@ -33,21 +33,19 @@ import "datatables.net-buttons/js/buttons.flash.js";
 import "pdfmake/build/pdfmake.js";
 import "pdfmake/build/vfs_fonts.js";
 
-function TimeTableList() {
+function GalleryList() {
     const tableRef = useRef(null);
 
-    const [timeTables, setTimeTables] = useState([]);
+    const [galleries, setGalleries] = useState([]);
     const [fileCount, setFileCount] = useState(0);
-    const [noticeToText, setNoticeToText] = useState('');
     const [cloudFiles, setCloudFiles] = useState([]);
     const [cloudUrls, setCloudUrls] = useState([]);
-    // const [localFiles, setLocalFiles] = useState([]);
-    // const [localUrls, setLocalUrls] = useState([]);
+
     
   
     const [showModal, setShowModal] = useState(false);
     // const handleShowModal = () => setShowModal(true);
-    const [timeTableObject, setTimeTableObject] = useState({});
+    const [galleryObject, setGalleryObject] = useState({});
 
     const MySwal = withReactContent(Swal) // Create a new instance of SweetAlert with React content
     
@@ -57,14 +55,13 @@ function TimeTableList() {
     // console.log(cookies.role);
 
 
-
     useEffect(() => {
-        axios.get(`${Apiurl}/timetable`)
+        axios.get(`${Apiurl}/gallery`)
           .then(res => {
-            const timeTabelsData = res.data;
-            setTimeTables(timeTabelsData);
-            // Extract filenames and noticeTo values from the response data
-            const filenames = timeTabelsData.map(notice => notice.files);
+            const galleryData = res.data;
+            setGalleries(galleryData);
+            // Extract filenames  from the response data
+            const filenames = galleryData.map(gallery => gallery.files);
             // Get the number of files for each notice
             if (filenames.length>0){
             const fileCounts = filenames.map(files => files.split(',').length);
@@ -79,71 +76,6 @@ function TimeTableList() {
       }, []);
 
 
-    //   useEffect(() => {
-    //     // Initialize the DataTable
-    //     $(tableRef.current).DataTable();
-    //   }, []);
-
-
-    // useEffect(() => {
-    //   // Fetch your data here, for example:
-    //   const fetchData = async () => {
-    //     const response = await fetch(`${Apiurl}/timetable`);
-    //     const data = await response.json();
-    
-    //     // Destroy existing DataTable (if any)
-    //     if ($.fn.DataTable.isDataTable(tableRef.current)) {
-    //       $(tableRef.current).DataTable().destroy();
-    //     }
-    
-    //     // Initialize DataTable
-    //     const table = $(tableRef.current).DataTable({
-    //       data: data,
-    //       columns: [
-    //         { title: 'TimeTable Title', data: 'time_title' },
-    //         { title: 'Grade', data: 'grade' },
-    //         { title: 'Files', data: 'files', render: (files) => files ? files.split(",").length : 0 },
-    //         { title: 'Date', data: 'createdAt', render: (createdAt) => createdAt.split("T")[0] },
-    //         {
-    //           title: 'Action',
-    //           data: 'id',
-    //           render: (id) => (
-    //             `<button class="btn btn-sm btn-secondary me-1 view-btn"><i class="fa-solid fa-eye"></i></button>` +
-    //             `<button class="btn btn-sm btn-secondary me-1 edit-btn"><i class="fa-solid fa-pen-to-square"></i></button>` +
-    //             `<button class="btn btn-sm btn-danger me-1 delete-btn"><i class="fa-solid fa-trash"></i></button>`
-    //           )
-    //         }
-    //       ],
-    //       dom: 'Bfrtip', // Add the required buttons
-    //       buttons: [
-    //         'copyHtml5',
-    //         'excelHtml5',
-    //         'csvHtml5',
-    //         'pdfHtml5',
-    //         'print'
-    //       ],
-    //     });
-    
-    //     // Event listeners for action buttons
-    //     $(tableRef.current).on('click', '.view-btn', function() {
-    //       const rowData = table.row($(this).closest('tr')).data();
-    //       handleShowModal(rowData.id);
-    //     });
-    
-    //     $(tableRef.current).on('click', '.edit-btn', function() {
-    //       const rowData = table.row($(this).closest('tr')).data();
-    //       navigate(`/timetable/edit/${rowData.id}`);
-    //     });
-    
-    //     $(tableRef.current).on('click', '.delete-btn', function() {
-    //       const rowData = table.row($(this).closest('tr')).data();
-    //       handleDeleteTimeTable(rowData.id);
-    //     });
-    //   };
-    
-    //   fetchData();
-    // }, []);
-
 
 
 
@@ -151,7 +83,7 @@ function TimeTableList() {
     useEffect(() => {
       // Fetch your data here, for example:
       const fetchData = async () => {
-        const response = await fetch(`${Apiurl}/timetable`);
+        const response = await fetch(`${Apiurl}/gallery`);
         const data = await response.json();
     
         // Destroy existing DataTable (if any)
@@ -163,18 +95,13 @@ function TimeTableList() {
         const table = $(tableRef.current).DataTable({
           data: data,
           columns: [
-            { title: 'TimeTable Title', data: 'time_title' },
-            { title: 'Grade', data: 'grade' },
+            { title: 'Location', data: 'location' },
+            { title: 'Category', data: 'category' },
             { title: 'Files', data: 'files', render: (files) => files ? files.split(",").length : 0 },
             { title: 'Date', data: 'createdAt', render: (createdAt) => createdAt.split("T")[0] },
             {
               title: 'Action',
               data: 'id',
-              // render: (id) => (
-              //   `<button class="btn btn-sm btn-secondary me-1 view-btn" data-id="${id}"><i class="fa-solid fa-eye"></i></button>` +
-              //   `<button class="btn btn-sm btn-secondary me-1 edit-btn" data-id="${id}"><i class="fa-solid fa-pen-to-square"></i></button>` +
-              //   `<button class="btn btn-sm btn-danger me-1 delete-btn" data-id="${id}"><i class="fa-solid fa-trash"></i></button>`
-              // )
               render: (id) => {
                 let buttons = '';
     
@@ -211,12 +138,12 @@ function TimeTableList() {
     
         $(tableRef.current).on('click', '.edit-btn', function() {
           const id = $(this).data('id');
-          navigate(`/timetable/edit/${id}`);
+          navigate(`/gallery/edit/${id}`);
         });
     
         $(tableRef.current).on('click', '.delete-btn', function() {
           const id = $(this).data('id');
-          handleDeleteTimeTable(id);
+          handleDeleteGallery(id);
         });
       };
     
@@ -225,75 +152,25 @@ function TimeTableList() {
     
     
 
-
-
-
-
-
-
-    // useEffect(() => {
-    //     // Fetch your data here, for example:
-    //     const fetchData = async () => {
-    //       const response = await fetch('your-data-api-url');
-    //       const data = await response.json();
-      
-    //       // Destroy existing DataTable (if any)
-    //       if ($.fn.DataTable.isDataTable(tableRef.current)) {
-    //         $(tableRef.current).DataTable().destroy();
-    //       }
-      
-    //       // Initialize DataTable
-    //       $(tableRef.current).DataTable({
-    //         data: data,
-    //         columns: [
-    //           { title: 'TimeTable Title', data: 'time_title' },
-    //           { title: 'Grade', data: 'grade' },
-    //           { title: 'Files', data: 'files', render: (files) => files ? files.split(",").length : 0 },
-    //           { title: 'Date', data: 'createdAt', render: (createdAt) => createdAt.split("T")[0] },
-    //           {
-    //             title: 'Action',
-    //             data: 'id',
-    //             render: (id) => (
-    //               <>
-    //                 <button className="btn btn-sm btn-secondary me-1" onClick={() => handleShowModal(id)}><i className="fa-solid fa-eye"></i></button>
-    //                 <button className="btn btn-sm btn-secondary me-1" onClick={() => navigate(`/timetable/edit/${id}`)}><i className="fa-solid fa-pen-to-square"></i></button>
-    //                 <button className="btn btn-sm btn-danger me-1" onClick={() => handleDeleteTimeTable(id)}><i className="fa-solid fa-trash"></i></button>
-    //               </>
-    //             )
-    //           }
-    //         ],
-    //         dom: 'Bfrtip', // Add the required buttons
-    //         buttons: [
-    //           'copyHtml5',
-    //           'excelHtml5',
-    //           'csvHtml5',
-    //           'pdfHtml5',
-    //           'print'
-    //         ],
-    //       });
-    //     };
-      
-    //     fetchData();
-    //   }, []);
       
       
 
 
 
-      const deleteTimeTable = async(id) =>{
-        console.log(`${Apiurl}/timetable/${id}`);
+      const deleteGallery = async(id) =>{
+        console.log(`${Apiurl}/gallery/${id}`);
         try {
-          const deleted = await axios.delete(`${Apiurl}/timetable/${id}`);
+          const deleted = await axios.delete(`${Apiurl}/gallery/${id}`);
           console.log(deleted.data);
-          // Update the state of the notices array after deleting the notice
-          setTimeTables(timeTables.filter(timetable => timetable.id !== id));
+          // Update the state of the galleries array after deleting the gallery
+          setGalleries(galleries.filter(gallery => gallery.id !== id));
         } catch (error) {
           console.log("error on deleting" + error);
         }
       }
 
 
-    const handleDeleteTimeTable = (noticeId) => {
+    const handleDeleteGallery = (galleryId) => {
         MySwal.fire({
           title: 'Are you sure?',
           text: 'You are about to delete this notice.',
@@ -304,7 +181,7 @@ function TimeTableList() {
           confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
           if (result.isConfirmed) {
-            deleteTimeTable(noticeId)
+            deleteGallery(galleryId)
             MySwal.fire(
               'Deleted!',
               'The notice has been deleted.',
@@ -315,10 +192,10 @@ function TimeTableList() {
       }
 
 
-      const viewTimeTable = async(id) =>{  
+      const viewGallery = async(id) =>{  
         try {
-            const timetable = await axios.get(`${Apiurl}/timetable/${id}`);
-            console.log("dataaaaaaa",timetable.data);
+            const gallery = await axios.get(`${Apiurl}/gallery/${id}`);
+            console.log("dataaaaaaa",gallery.data);
 
 
         } catch (error) {
@@ -327,9 +204,9 @@ function TimeTableList() {
     }
 
 
-    const handleShowModal = (timetableId) => {
-        axios.get(`${Apiurl}/timetable/byId/${timetableId}`).then((response) => {
-          setTimeTableObject(response.data);
+    const handleShowModal = (galleryId) => {
+        axios.get(`${Apiurl}/gallery/byId/${galleryId}`).then((response) => {
+          setGalleryObject(response.data);
           setShowModal(true);
 
 
@@ -370,14 +247,14 @@ function TimeTableList() {
             {/* <!-- Dashboard --> */}
                 <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
                         
-                {cookies.role === '5' ? <ParentSidebar/> : cookies.role === '4' ? <StudentSidebar/> : cookies.role === '3' ? <TeacherSidebar /> : <Sidebar />}  
+                <Sidebar /> 
 
 
                 {/* <!-- Main content --> */}
                 <div class="h-screen flex-grow-1 overflow-y-lg-auto">
                     
                     {/* <!-- Header --> */}
-                    {cookies.role === '5' ? <ParentDashHead/> : cookies.role === '4' ? <StudentDashhead/> : cookies.role === '3' ? <TeacherDashhead /> : <AdminDashhead />} 
+                     <AdminDashhead />
 
                     {/* <!-- Main --> */}
                      <main>
@@ -386,32 +263,14 @@ function TimeTableList() {
 
                             <div className="row mobileflex">
                             <div class="d-flex mt-3 mobileflex">
-                            <div class="p-2 flex-grow-1"><h2>TimeTable Post</h2></div>
-                            {(cookies.role === '1' || cookies.role === '2' || cookies.role === '3') && (
-                                  <div class="p-2"><a href="/timetable/create" className="btn-grad">Create TimeTable</a></div>
+                            <div class="p-2 flex-grow-1"><h2>Gallery</h2></div>
+                            {(cookies.role === '1') && (
+                                  <div class="p-2"><a href="/gallery/create" className="btn-grad">Create Gallery</a></div>
                                 )}
                             
                               </div>
 
 
-                                {/* <div class="col-xl-4 col-sm-6 col-12">
-                                    <div class="card shadow border-0">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col py-3">
-                                                   
-                                                    <a href="/timetable/create" className="btn-grad">Create TimeTable</a>
-                                                </div>
-                                                <div class="col-auto py-5">
-                                                    <div class="icon icon-shape text-white text-lg rounded-circle" style={{backgroundColor: "#0C4160"}}>
-                                                    <i class="bi bi-book-half"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                               
-                                        </div>
-                                    </div>
-                                </div> */}
                             </div>
 
 
@@ -419,58 +278,25 @@ function TimeTableList() {
                                
                                 <div className="col-sm-12">
                                     <div class="table-responsive">
-                                        {/* <table ref={tableRef} className="table table-striped" style={{ width: "100%" }}>
-                                            <thead>
-                                                <tr>
-                                                    <th>TimeTable Title</th>
-                                                    <th>Grade</th>
-                                                    <th>Files</th>
-                                                    <th>Date</th>
-                                                    <th>Action</th> 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            {timeTables.map((timeTable) => (
-                                                <tr key={timeTable.id}>
-                                                  <td>{timeTable.time_title}</td>
-                                                  <td>{timeTable.grade}</td>
-                                                  <td>{timeTable.files ? timeTable.files.split(",").length : 0}</td>
-                                                  <td>{timeTable.createdAt.split("T")[0]}</td>
-                                                  <td>
-                                                    <button className='btn btn-sm btn-secondary me-1' onClick={() => handleShowModal(timeTable.id)}>
-                                                      <i className="fa-solid fa-eye"></i>
-                                                    </button>
-                                                    <button className='btn btn-sm btn-secondary me-1' onClick={() => navigate(`/timetable/edit/${timeTable.id}`)}>
-                                                      <i className="fa-solid fa-pen-to-square"></i>
-                                                    </button>
-                                                    <button className='btn btn-sm btn-danger me-1' onClick={() => handleDeleteTimeTable(timeTable.id)}>
-                                                      <i className="fa-solid fa-trash"></i>
-                                                    </button>
-                                                  </td>
-                                                </tr>
-                                              ))}
-       
-                                            </tbody>
-                                            
-                                        </table> */}
+                    
 
                                           <table ref={tableRef} className="table table-striped" style={{ width: "100%" }}>
                                             <thead>
                                               <tr>
-                                                <th>TimeTable Title</th>
-                                                <th>Grade</th>
+                                                <th>Location</th>
+                                                <th>Category</th>
                                                 <th>Files</th>
                                                 <th>Date</th>
                                                 <th>Action</th>
                                               </tr>
                                             </thead>
                                             <tbody>
-                                              {timeTables.map((timeTable) => (
-                                                <tr key={timeTable.id}>
-                                                  <td>{timeTable.time_title}</td>
-                                                  <td>{timeTable.grade}</td>
-                                                  <td>{timeTable.files ? timeTable.files.split(",").length : 0}</td>
-                                                  <td>{timeTable.createdAt.split("T")[0]}</td>
+                                              {galleries.map((gallery) => (
+                                                <tr key={gallery.id}>
+                                                  <td>{gallery.time_title}</td>
+                                                  <td>{gallery.grade}</td>
+                                                  <td>{gallery.files ? gallery.files.split(",").length : 0}</td>
+                                                  <td>{gallery.createdAt.split("T")[0]}</td>
                                                   <td>
                                                     <button className='btn btn-sm btn-secondary me-1 view-btn'>
                                                       <i className="fa-solid fa-eye"></i>
@@ -501,7 +327,7 @@ function TimeTableList() {
                                                 <div className="modal-content">
                                                     <div className="modal-header bg-light bg-gradient">
                                                     <h5 className="modal-title" id="noticeModalLabel">
-                                                    <span className="fw-bold">Time Table :</span> {timeTableObject.time_title}
+                                                    <span className="fw-bold">Gallery Location :</span> {galleryObject.location}
                                                     </h5>
                                                     <button
                                                         type="button"
@@ -512,8 +338,8 @@ function TimeTableList() {
                                                     ></button>
                                                     </div>
                                                     <div className="modal-body">
-                                                    <h2 className="text-center mb-5" style={{ fontFamily: 'Merriweather', }}>{timeTableObject.time_title}</h2>
-                                                    <p className="my-5">Grade: {timeTableObject.grade}</p>
+                                                    <h2 className="text-center mb-5" style={{ fontFamily: 'Merriweather', }}>{galleryObject.location} Gallery</h2>
+                                                    <p className="my-5">Grade: {galleryObject.category}</p>
 
                                                     <div className="row">
                                                     <div>
@@ -529,11 +355,11 @@ function TimeTableList() {
 
                                                     <div className="row">
                                                     <div>
-                                                        {timeTableObject && timeTableObject.localFiles && (
+                                                        {galleryObject && galleryObject.localFiles && (
                                                             <>
-                                                                {console.log("timeTableObject.files:", timeTableObject.localFiles)}
-                                                                {console.log("fileNames:", timeTableObject.localFiles.split(","))}
-                                                                <LocalFileList fileNames={timeTableObject.localFiles.split(",")} />
+                                                                {console.log("galleryObject.files:", galleryObject.localFiles)}
+                                                                {console.log("fileNames:", galleryObject.localFiles.split(","))}
+                                                                <LocalFileList fileNames={galleryObject.localFiles.split(",")} />
                                                             </>
                                                         )}
                                                       
@@ -576,4 +402,4 @@ function TimeTableList() {
   )
 }
 
-export default TimeTableList
+export default GalleryList

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getGalleries, createGallery, deleteGallery, viewGallery } = require("../controllers/GalleryController.js");
+const { getGalleries, createGallery, deleteGallery, viewGallery, getGallery } = require("../controllers/GalleryController.js");
 const GalleryModel = require('../models/GalleryModel.js');
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const multer = require("multer"); // use for file handeling
@@ -432,6 +432,7 @@ router.post("/single",upload.single("files"), async (req, res, next) => {
 
 
 router.get('/gallery', getGalleries);
+router.get('/onegallery/:id', getGallery);
 router.delete('/gallery/:id', deleteGallery);
 router.get('/gallery/byId/:id', viewGallery );
  

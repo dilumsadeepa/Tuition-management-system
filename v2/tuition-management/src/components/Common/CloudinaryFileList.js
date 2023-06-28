@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function CloudinaryFileList({ cloudUrls }) {
+function CloudinaryFileList({ cloudUrls }) {  
 
   if (cloudUrls.length === 0) {
     return (null);

@@ -108,6 +108,11 @@ const Sidebar =() =>{
                                 <i class="fa-solid fa-table-cells"></i> Posts
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/gallery">
+                                <i class="fa-solid fa-table-cells"></i> gallery
+                                </a>
+                            </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="/adduser">

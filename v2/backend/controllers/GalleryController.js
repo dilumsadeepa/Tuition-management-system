@@ -4,6 +4,8 @@ const Gallery = require('../models/GalleryModel.js');
 const fs = require('fs');
 const path = require('path');
 const { Op } = require('sequelize');
+const { QueryTypes } = require("sequelize");
+const db = require("../config/Database.js");
 
 exports.getGalleries = async (req, res) => {
   try {
@@ -13,6 +15,17 @@ exports.getGalleries = async (req, res) => {
     console.log(error.message);
   }
 }
+
+
+exports.getGallery = async (req, res) => {
+  try {
+    const response = await Gallery.findOne({ where: { location: req.params.id } });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 
 exports.createGallery = async (req, res) => {
   try {

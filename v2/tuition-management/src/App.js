@@ -26,6 +26,12 @@ import CreateTimeTableNew from "./components/Common/CreateTimeTableNew";
 import EditTimeTable from "./components/Common/EditTimeTable";
 import TimeTableList from "./components/Common/TimeTableList";
 
+// import CreateGallery from "./components/Common/CreateGallery";
+import DashboardGallery from "./components/Common/Gallery";
+import CreateGalleryNew from "./components/Common/CreateGalleryNew";
+import EditGallery from "./components/Common/EditGallery";
+import GalleryList from "./components/Common/GalleryList";
+
 // import NewTimeTable from "./components/Common/NewTimeTable";
 import CreateNewTimeTable from "./components/Common/CreateNewTimeTable";
 import UpdateTimeTable from "./components/Common/UpdateTimeTable";
@@ -168,7 +174,7 @@ function App() {
 
           {/* Common */}
 
-          <Route path="gallery" element={<Gallery />} />
+          <Route path="homegallery" element={<Gallery />} />
           <Route path="aboutus" element={<AboutUs />} />
           <Route path="faq" element={<Faq />} />
           <Route path="publicnotices" element={<PublicNotices />} />
@@ -196,6 +202,11 @@ function App() {
           <Route path="timetable/create" element={<CreateTimeTableNew />} />
           <Route path="timetable/:id" element={<TimeTable />} />
           <Route path="timetable/edit/:id" element={<EditTimeTable />} />
+
+          <Route path="gallery" element={<GalleryList />} />
+          <Route path="gallery/create" element={<CreateGalleryNew />} />
+          <Route path="gallery/:id" element={<Gallery />} />
+          <Route path="gallery/edit/:id" element={<EditGallery />} />
         </Routes>
       </BrowserRouter>
     </div>

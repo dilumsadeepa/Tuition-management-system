@@ -13,7 +13,7 @@ const whatsappUrl = `https://wa.me/${phoneNumber}`;
             <h5>Get started</h5>
             <ul>
               <li><a href="#">Home</a></li>
-              <li><a href="#">Gallery</a></li>
+              <li><a href="homegallery">Gallery</a></li>
               <li><a href="#">Student</a></li>
               <li><a href="#">Lectures</a></li>
               <li><a href="altimetable">Time Table</a></li>

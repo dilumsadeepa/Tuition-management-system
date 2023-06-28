@@ -3,6 +3,13 @@ html{
   scroll-behavior: smooth;
 }
 
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  max-height: 80vh;
+  object-fit: cover;
+}
+
 .spinner-border {
   width: 100px; 
   height: 100px;

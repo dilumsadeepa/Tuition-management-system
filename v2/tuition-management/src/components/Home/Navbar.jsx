@@ -28,7 +28,7 @@ console.log(rolecookies.role);
                 <a className="nav-link active" href="/" style={{ textAlign: 'center' }}>Home</a>
                 </li>
                 <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
-                <a className="nav-link" href="gallery" style={{ textAlign: 'center' }}>Gallery</a>
+                <a className="nav-link" href="homegallery" style={{ textAlign: 'center' }}>Gallery</a>
                 </li>
                 <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
                 <a className="nav-link" href="blogpostlist" style={{ textAlign: 'center' }}>Blog</a>
