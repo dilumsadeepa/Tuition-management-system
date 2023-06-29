@@ -34,6 +34,8 @@ function ALStreamWiseTimeTable() {
     const [streamTimetable, setStreamTimetable] = useState([]);
     const [streamSubjects, setStreamSubjects] = useState([]);
     const [subjectTimetable, setSubjectTimetable] = useState([]);
+    const [subjectTeachers, setSubjectTeachers] = useState([]);
+    const [streamTeachers, setStreamTeachers] = useState([]);
     const [subject, setSubject] = useState('');
     const [stream, setStream] = useState('');
 
@@ -80,10 +82,25 @@ function ALStreamWiseTimeTable() {
         }
     }
 
+    const getStreamTeachers = async(e) =>{
+      try {
+          const response = await axios.get(`${Apiurl}/newtimetable/public/streamteachers/${id}`);
+          console.log(response.data.selectedteachers);
+          setStreamTeachers(response.data.selectedteachers);
+      } catch (error) {
+          console.log("error in getting data")
+      }
+  }
+
     const getSubjectTimetable = async(subject) =>{
         try {
             const response = await axios.get(`${Apiurl}/newtimetable/public/subject/${subject}`);
             console.log(response.data.selectedtimetable);
+
+            const res = await axios.get(`${Apiurl}/newtimetable/public/subjectteachers/${subject}`);
+            console.log(response.data.selectedteachers);
+            setSubjectTeachers(res.data.selectedteachers);
+
             setSubjectTimetable(response.data.selectedtimetable);
             setSubject(subject);
         } catch (error) {
@@ -91,12 +108,43 @@ function ALStreamWiseTimeTable() {
         }
     }
 
+    const getSubjectTeachers = async(subject) =>{
+      try {
+        console.log("subject name is : ", subject);
+          const response = await axios.get(`${Apiurl}/newtimetable/public/subjectteachers/${subject}`);
+          const data = await response.data;
+          console.log(data);
+          console.log(response.data);
+          setSubject(subject);
+          console.log("subject name is 2nd : ", subject);
+          setSubjectTeachers(response.data.selectedteachers);
+      } catch (error) {
+          console.log("error in getting data")
+          console.log(error);
+      }
+  }
+
     console.log(streamTimetable);
 
     useEffect(()=>{
         getTime();
         getSubjects();
+        getStreamTeachers();
+        // getSubjectTeachers();
     },[id])
+
+    useEffect(()=>{
+
+      // getSubjectTeachers();
+
+    //   try {
+    //     const response =  axios.get(`${Apiurl}/newtimetable/public/subjectteachers/${subject}`);
+    //     console.log(response.data.selectedteachers);
+    //     setSubjectTeachers(response.data.selectedteachers);
+    // } catch (error) {
+    //     console.log("error in getting data")
+    // }
+  },[subject])
 
 
 
@@ -292,6 +340,47 @@ function ALStreamWiseTimeTable() {
                             </tbody>
                             </table>
                         </div>
+
+                        <div className="teachers">
+                            <h1 style={{ marginTop: '30px', marginBottom: '25.2px' }}>{stream} Stream Teachers</h1>
+
+                            <div class="row row-cols-1 row-cols-md-3 g-4">
+                            {streamTeachers.map((teacher, index) => {
+                                return (
+                                    // <div className="card" key={index}>
+                                    //     <div className="card-body">
+                                    //         <h4 className="card-title">{teacher.fullname}</h4>
+                                    //         <p className="card-text">{teacher.description}</p>
+                                    //     </div>
+                                    // </div>
+
+                                    <div className="col">
+                                    <div className="card h-100">
+                                      {teacher.gender === 'Male' && (
+                                        <img src="../img/sir.png" className="card-img-top teacherimg" alt="..."/>
+                                      )
+                                      }
+
+                                      {teacher.gender === 'Female' && (
+                                        <img src="../img/teacher.png" className="card-img-top teacherimg" alt="..."/>
+                                      )
+                                      }
+
+                                      
+                                      <div className="card-body">
+                                        <h5 className="card-title">{teacher.fullname}</h5>
+                                        {/* <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> */}
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                );
+
+                            }
+                            )}
+                            </div>
+                            
+                        </div>
                         </div>
             
 
@@ -330,6 +419,49 @@ function ALStreamWiseTimeTable() {
                                     </tbody>
                                     </table>
                                     </div>
+
+                                    <div className="teachers">
+                                      <h1 style={{ marginTop: '30px', marginBottom: '25.2px' }}>{stream} Stream Teachers</h1>
+
+                                      <div class="row row-cols-1 row-cols-md-3 g-4">
+                                      {subjectTeachers.map((teacher, index) => {
+                                          return (
+                                              // <div className="card" key={index}>
+                                              //     <div className="card-body">
+                                              //         <h4 className="card-title">{teacher.fullname}</h4>
+                                              //         <p className="card-text">{teacher.description}</p>
+                                              //     </div>
+                                              // </div>
+
+                                              <div className="col">
+                                              <div className="card h-100">
+                                                {teacher.gender === 'Male' && (
+                                                  <img src="../img/sir.png" className="card-img-top teacherimg" alt="..."/>
+                                                )
+                                                }
+
+                                                {teacher.gender === 'Female' && (
+                                                  <img src="../img/teacher.png" className="card-img-top teacherimg" alt="..."/>
+                                                )
+                                                }
+
+                                                
+                                                <div className="card-body">
+                                                  <h5 className="card-title">{teacher.fullname}</h5>
+                                                  {/* <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> */}
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                          );
+
+                                      }
+                                      )}
+                            </div>
+                            
+                        </div>
+
+
                                 </div>
                             );
                             })}

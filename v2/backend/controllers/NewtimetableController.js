@@ -126,6 +126,7 @@ exports.viewPublicSubjectNewTimetable = async (req, res) => {
       
       if (selectedtimetable) {
         res.status(200).json({selectedtimetable});
+        console.log("subject timetable:");
         console.log(selectedtimetable);
       } else {
         res.status(404).json({ message: 'Course ID not found' });
@@ -134,6 +135,64 @@ exports.viewPublicSubjectNewTimetable = async (req, res) => {
     console.log(error.message);
   }
 };
+
+
+exports.viewPublicSubjectTeachers = async (req, res) => {
+  const { id } = req.params;
+  console.log("courseid: " + id);
+
+  const sqlquery =
+  "SELECT Distinct u.fullname, u.gender FROM timetable t INNER JOIN courses c ON t.cunit = c.courseid INNER JOIN users u ON u.id = c.userId WHERE c.coursesubject LIKE '%" +
+  id +
+  "%';";
+
+  try {
+      const selectedteachers = await db.query(sqlquery, { type: QueryTypes.SELECT });
+      
+      if (selectedteachers) {
+        res.status(200).json({selectedteachers});
+        console.log("selectedteacherssss");
+        console.log(selectedteachers);
+      } else {
+        res.status(404).json({ message: 'Course ID not found' });
+      }
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
+exports.viewPublicStreamTeachers = async (req, res) => {
+  const { id } = req.params;
+  console.log("courseid: " + id);
+
+      const sqlquery = `
+      SELECT DISTINCT u.fullname, u.gender
+      FROM timetable t
+      INNER JOIN courses c ON t.cunit = c.courseid
+      INNER JOIN users u ON u.id = c.userId
+      WHERE c.courseStream LIKE '%${id}%';
+    `;
+
+  try {
+      const selectedteachers = await db.query(sqlquery, { type: QueryTypes.SELECT });
+      
+      if (selectedteachers) {
+        res.status(200).json({selectedteachers});
+        console.log("selectedteacherssss");
+        console.log(selectedteachers);
+      } else {
+        res.status(404).json({ message: 'Course ID not found' });
+      }
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
+
+
+
 
 
 exports.streamsubjects = async (req, res) => {

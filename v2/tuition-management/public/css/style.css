@@ -10,6 +10,10 @@ html{
   object-fit: cover;
 }
 
+.teacherimg{
+  max-height: 250px;
+}
+
 .spinner-border {
   width: 100px; 
   height: 100px;

@@ -87,6 +87,8 @@ const {
   viewNewTimetable,
   viewPublicNewTimetable,
   viewPublicSubjectNewTimetable,
+  viewPublicSubjectTeachers,
+  viewPublicStreamTeachers,
   streamsubjects,
   timecourseId,
   timecourse,
@@ -166,6 +168,8 @@ router.put('/newtimetable/:id', updateTimeTable);
 router.get("/newtimetable/byId/:id", viewNewTimetable);
 router.get("/newtimetable/public/:id", viewPublicNewTimetable);
 router.get("/newtimetable/public/subject/:id", viewPublicSubjectNewTimetable);
+router.get("/newtimetable/public/subjectteachers/:id", viewPublicSubjectTeachers);
+router.get("/newtimetable/public/streamteachers/:id", viewPublicStreamTeachers);
 router.get("/newtimetable/streamsubjects/:id", streamsubjects);
 router.post("/newtimetable/create", createNewTimetable);
 router.get("/newtimetableid/:id", timecourseId);

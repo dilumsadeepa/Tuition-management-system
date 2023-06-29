@@ -24,7 +24,7 @@ import AddUser from "./components/Admin/AddUser";
 import TimeTable from "./components/Common/TimeTable";
 import CreateTimeTableNew from "./components/Common/CreateTimeTableNew";
 import EditTimeTable from "./components/Common/EditTimeTable";
-import EditTimeTableNew from "./components/Common/EditTimeTablenew";
+import EditTimeTableNew from "./components/Common/EditTimeTableNew";
 import TimeTableList from "./components/Common/TimeTableList";
 
 // import CreateGallery from "./components/Common/CreateGallery";
