@@ -244,46 +244,91 @@ function ALStreamWiseTimeTable() {
                 <div className="block-heading">
 
                     {id === 'technology' && (
-                            <>
-                            <h2 className="text-info">Technology</h2>
-                            <p>තාක්ෂණවේදය</p>
-                            </>
+                      <div class="container">
+                      <div class="text-white headbg border rounded border-0 p-4 p-md-5">
+                      <div class="five">
+                          <h1>Technology
+                            <span>තාක්ෂණවේදය</span>
+                          </h1>
+                          </div>
+                      
+                      </div>
+                      </div>
+                         
                         )}
                         {id === 'sciencemaths' && (
-                            <>
-                            <h2 className="text-info">Science / Maths</h2>
-                            <p>විද්‍යා / ගණිත</p>
-                            </>
+                          <div class="container">
+                          <div class="text-white headbg border rounded border-0 p-4 p-md-5">
+                          <div class="five">
+                            <h1>Science / Maths
+                               <span>විද්‍යා / ගණිත</span>
+                             </h1>
+                              </div>
+                          
+                          </div>
+                          </div>
                         )}
                         {id === 'commerce' && (
-                            <>
-                            <h2 className="text-info">Commerce</h2>
-                            <p>වාණිජ</p>
-                            </>
+                            <div class="container">
+                            <div class="text-white headbg border rounded border-0 p-4 p-md-5">
+                            <div class="five">
+                              <h1>Commerce
+                                 <span>වාණිජ</span>
+                               </h1>
+                                </div>
+                            
+                            </div>
+                            </div>
                         )}
                         {id === 'arts' && (
-                            <>
-                            <h2 className="text-info">Arts</h2>
-                            <p>කලා</p>
-                            </>
+                            <div class="container">
+                            <div class="text-white headbg border rounded border-0 p-4 p-md-5">
+                            <div class="five">
+                              <h1>Arts
+                                 <span>කලා</span>
+                               </h1>
+                                </div>
+                            
+                            </div>
+                            </div>
                         )}
                         {id === 'common' && (
-                            <>
-                            <h2 className="text-info">Common</h2>
-                            <p>පොදු විෂයන්</p>
-                            </>
+                            <div class="container">
+                            <div class="text-white headbg border rounded border-0 p-4 p-md-5">
+                            <div class="five">
+                              <h1>Common
+                                 <span>පොදු විෂයන්</span>
+                               </h1>
+                                </div>
+
+                            </div>
+                            </div>
                         )}
                         {id === 'languages' && (
-                            <>
-                            <h2 className="text-info">Languages</h2>
-                            <p>භාෂා</p>
-                            </>
+                            <div class="container">
+                            <div class="text-white headbg border rounded border-0 p-4 p-md-5">
+                            <div class="five">
+                              <h1>Languages
+                                 <span>භාෂා</span>
+                               </h1>
+                                </div>
+                            
+                            </div>
+                            </div>
+       
                         )}
                         {id === 'englishmedium' && (
-                            <>
-                            <h2 className="text-info">English Medium</h2>
-                            <p>ඉංග්‍රීසි මාධ්‍ය</p>
-                            </>
+                            <div class="container">
+                            <div class="text-white headbg border rounded border-0 p-4 p-md-5">
+                            <div class="five">
+                              <h1>English Medium
+                                 <span>ඉංග්‍රීසි මාධ්‍ය</span>
+                               </h1>
+                                </div>
+                            
+                            </div>
+                            </div>
+                  
                         )}
                
                 
@@ -308,7 +353,10 @@ function ALStreamWiseTimeTable() {
                         
      
                         <div className="tab-pane active" role="tabpanel" id="tab-1">
+                        <div class="eight">
                         <h1 style={{ marginTop: '30px', marginBottom: '25.2px' }}>{stream} All Classes&nbsp;</h1>
+                        </div>
+                      
                         <div className="table-responsive">
                             <table ref={tableRef} className="table table-success table-striped table-hover">
                             <thead className='text-center'>
@@ -342,18 +390,20 @@ function ALStreamWiseTimeTable() {
                         </div>
 
                         <div className="teachers">
-                            <h1 style={{ marginTop: '30px', marginBottom: '25.2px' }}>{stream} Stream Teachers</h1>
+                        <div class="seven">
+                        <h1 style={{ marginTop: '50px', marginBottom: '25.2px' }}>{stream} Stream Teachers</h1>
+                      </div>
+
+                            {streamTeachers.length === 0 && (
+                                <div class="alert alert-danger" role="alert">
+                                No Teachers Found!
+                              </div>
+                            )}
 
                             <div class="row row-cols-1 row-cols-md-3 g-4">
+
                             {streamTeachers.map((teacher, index) => {
                                 return (
-                                    // <div className="card" key={index}>
-                                    //     <div className="card-body">
-                                    //         <h4 className="card-title">{teacher.fullname}</h4>
-                                    //         <p className="card-text">{teacher.description}</p>
-                                    //     </div>
-                                    // </div>
-
                                     <div className="col">
                                     <div className="card h-100">
                                       {teacher.gender === 'Male' && (
@@ -387,7 +437,10 @@ function ALStreamWiseTimeTable() {
                         {streamSubjects.map((value, index) => {
                             return (
                                 <div className="tab-pane" role="tabpanel" id={`${value.coursesubject.replace(/\s/g, '').replace(/\//g, '-')}`}>
-                                <h1 style={{ marginTop: '30px', marginBottom: '25.2px' }}>{value.coursesubject} All Classes&nbsp;</h1>
+                                  <div class="eight">
+                                      <h1 style={{ marginTop: '30px', marginBottom: '25.2px' }}>{value.coursesubject} All Classes&nbsp;</h1>
+                                  </div>
+
                                 <div className="table-responsive">
                                     <table ref={subjectTableRef} className="table table-primary table-striped table-hover">
                                     <thead className='text-center'>
@@ -421,7 +474,16 @@ function ALStreamWiseTimeTable() {
                                     </div>
 
                                     <div className="teachers">
-                                      <h1 style={{ marginTop: '30px', marginBottom: '25.2px' }}>{subject} Teachers</h1>
+                                      <div class="seven">
+                                      <h1 style={{ marginTop: '50px', marginBottom: '25.2px' }}>{subject} Teachers</h1>
+                                      </div>
+
+                                      {subjectTeachers.length === 0 && (
+                                        <div class="alert alert-danger" role="alert">
+                                        No Teachers Found!
+                                      </div>
+                                      )}
+                                      
 
                                       <div class="row row-cols-1 row-cols-md-3 g-4">
                                       {subjectTeachers.map((teacher, index) => {
