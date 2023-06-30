@@ -162,7 +162,9 @@ function Gallery() {
             <section className="clean-block clean-gallery dark">
                 <div className="container">
                 <div className="block-heading">
-                    <h2 className="text-info">Gallery</h2>
+                <div class="one">
+                  <h1>Gallery</h1>
+                </div>
                     <p>
                     <br />
                     Our gallery showcases the vibrant learning environment and engaging activities at Susipwin Tuition Class. Explore the images capturing our students' active participation, collaborative learning, and moments of academic achievement.

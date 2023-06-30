@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Navbar from './Navbar'
 import Footer from './Footer'
 
@@ -9,18 +9,49 @@ import * as Yup from 'yup'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
+// import { Navigation, Pagination, Scrollbar, A11y, Autoplay, Parallax } from 'swiper';
+
+// import { Swiper, SwiperSlide } from 'swiper/react';
+
+// // Import Swiper styles
+// import 'swiper/css';
+// import 'swiper/css/navigation';
+// import 'swiper/css/pagination';
+// import 'swiper/css/scrollbar';
+
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import SwiperCore, { Navigation, Pagination, Autoplay, Parallax } from 'swiper';
+
+SwiperCore.use([Navigation, Pagination, Autoplay, Parallax]);
+
 
 
 function Home() {
+
+  const swiperRef = useRef(null);
+
+  useEffect(() => {
+    if (swiperRef.current) {
+      swiperRef.current.on('slideChange', () => {
+        const currentSlide = swiperRef.current.realIndex;
+        const slides = Array.from(swiperRef.current.slides);
+
+        slides.forEach((slide, index) => {
+          const image = slide.querySelector('img');
+          if (image && index === currentSlide) {
+            image.classList.add('zoomed');
+          } else {
+            image.classList.remove('zoomed');
+          }
+        });
+      });
+    }
+  }, []);
 
   const id = "homeslider";
 // validation schema
@@ -263,19 +294,148 @@ const renderCloudFiles = () => {
         <Navbar />
 
         <main>
-        <section className="clean-block clean-hero" style={{ color: 'rgba(162,194,241,0.85)', background: 'url("../img/scenery/7.jpg"), var(--bs-red)', borderColor: 'var(--bs-gray-600)' }}>
+        {/* <section className="clean-block clean-hero" style={{ color: 'rgba(162,194,241,0.85)', background: 'url("../img/scenery/7.jpg"), var(--bs-red)', borderColor: 'var(--bs-gray-600)' }}>
         <div className="text">
           <h2 style={{ marginBottom: '25px' }}>Susipwin Higher Education Institute&nbsp;</h2>
           <p style={{ margin: '-2px', marginTop: '0px', marginRight: '0px', marginBottom: '15px', marginLeft: '0px' }}> ටියුෂන් කලාවේ පුරෝගාමියා</p>
           <p style={{ marginBottom: '30px' }}> Unlock Your Potential at Susipwin, Anuradhapura's Premier Tuition Class</p>
           <button className="btn btn-outline-light btn-lg" type="button">Learn More</button>
         </div>
-      </section>
+      </section> */}
+
+
+{/* <Swiper 
+        // parallax={true} 
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        loop={true}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true} className="home-slider"> */}
+
+{/* <Swiper
+        slidesPerView={1}
+        spaceBetween={30}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        loop={true}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="home-slider"
+      > */}
+       {/* <Swiper
+      slidesPerView={1}
+      onSlideChange={() => {}}
+      pagination={{ clickable: true }}
+      className="home-slider"
+      ref={swiperRef}
+    > */}
+
+
+        {/* <Swiper
+      slidesPerView={1}
+      navigation
+      pagination
+      autoplay
+      parallax
+      className="home-slider"
+      onSwiper={(swiper) => {
+        swiperRef.current = swiper;
+      }}
+    >
+  <SwiperSlide>
+    <div className="slide-content" style={{ backgroundImage: 'url("../img/scenery/2.jpg")' }}>
+      <div className="slide-overlay"></div>
+      <div className="slide-text">
+        <h2 className="text-white" style={{ marginBottom: '25px' }}>Susipwin Higher Education Institute&nbsp;</h2>
+        <p style={{ margin: '-2px', marginTop: '0px', marginRight: '0px', marginBottom: '15px', marginLeft: '0px' }}>ටියුෂන් කලාවේ පුරෝගාමියා</p>
+        <p style={{ marginBottom: '30px' }}>Unlock Your Potential at Susipwin, Anuradhapura's Premier Tuition Class</p>
+        <button className="btn btn-outline-light btn-lg" type="button">Learn More</button>
+      </div>
+    </div>
+  </SwiperSlide>
+  <SwiperSlide>
+    <div className="slide-content" style={{ backgroundImage: 'url(../img/scenery/7.jpg)' }}>
+      <div className="slide-overlay"></div>
+      <div className="slide-text">
+        <h2>Slider Title 2</h2>
+        <p>Slide Description Paragraph 2</p>
+      </div>
+    </div>
+  </SwiperSlide>
+
+</Swiper> */}
+
+<Swiper
+      slidesPerView={1}
+      navigation
+      pagination
+      autoplay={{
+        delay: 5000,
+        disableOnInteraction: false,
+      }}
+      parallax
+      className="home-slider"
+      onSwiper={(swiper) => {
+        swiperRef.current = swiper;
+      }}
+    >
+      <SwiperSlide>
+        <div className="slide-content">
+          <img src="../img/scenery/9.jpg" alt="Slider Image 1" />
+          <div className="slide-overlay"></div>
+          <div className="slide-text">
+          <h2 style={{ marginBottom: '25px' }}><span className='text-warning'>Susipwin</span> is Leading <br/>Institute in Anuradhapura &nbsp;</h2>
+          <p style={{ margin: '-2px', marginTop: '0px', marginRight: '0px', marginBottom: '15px', marginLeft: '0px' }} className='sinhala'> ටියුෂන් කලාවේ පුරෝගාමියා</p>
+          <p style={{ marginBottom: '30px' }}> Unlock Your Potential at Susipwin, Anuradhapura's Premier Tuition Class</p>
+          <a className="btn btn-outline-light btn-lg" href="#learnmore">Learn More</a>
+          </div>
+        </div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div className="slide-content">
+          <img src="../img/scenery/7.jpg" alt="Slider Image 2" />
+          <div className="slide-overlay"></div>
+          <div className="slide-text">
+          <h2 style={{ marginBottom: '25px' }}>Learn From The <span className='text-warning'>Highly Qualified</span> Instructors</h2>
+          <p style={{ margin: '-2px', marginTop: '0px', marginRight: '0px', marginBottom: '15px', marginLeft: '0px' }}> The institute’s prime objective Is to provide high quality and standard education in an exorbitant level.</p>
+          <a className="btn btn-outline-light btn-lg" href="#learnmore">Learn More</a>
+          </div>
+        </div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div className="slide-content">
+          <img src="../img/scenery/2.jpg" alt="Slider Image 2" />
+          <div className="slide-overlay"></div>
+          <div className="slide-text">
+          <h2 style={{ marginBottom: '25px' }}>Discover the <span className='text-warning'>Best Tutoring</span> Services for Your Success</h2>
+          <p style={{ margin: '-2px', marginTop: '0px', marginRight: '0px', marginBottom: '15px', marginLeft: '0px' }}> The institute’s prime objective Is to provide high quality and standard education in an exorbitant level.</p>
+          <a className="btn btn-outline-light btn-lg" href="#learnmore">Learn More</a>
+          </div>
+        </div>
+      </SwiperSlide>
+      {/* Add more slides as needed */}
+    </Swiper>
+
+
       <section className="clean-block clean-info dark">
-        <div className="container">
+        <div className="container" id='learnmore'>
           <div className="block-heading">
-            <h2 className="text-info">Info</h2>
-            <h3 className="text-info">අපි ගැන තොරතුරු</h3>
+          <div class="two alt-two">
+          <h1>Info
+            <span>අපි ගැන තොරතුරු</span>
+          </h1>
+        </div>
+            {/* <h2 className="text-info">Info</h2>
+            <h3 className="text-info">අපි ගැන තොරතුරු</h3> */}
             <p>Susipwin Tuition Class in Anuradhapura: Grade 6-13 classes, experienced instructors, personalized learning, exam-focused, holistic approach, proven success.</p>
           </div>
           <div className="row align-items-center">
@@ -310,8 +470,13 @@ const renderCloudFiles = () => {
         <section className="clean-block features">
       <div className="container">
         <div className="block-heading">
-          <h2 className="text-info">Our Specialists&nbsp;</h2>
-          <h5 className="text-info">අපගේ විශේෂාංග</h5>
+        <div class="two alt-two">
+          <h1>Our Specialists
+            <span>අපගේ විශේෂාංග</span>
+          </h1>
+        </div>
+          {/* <h2 className="text-info">Our Specialists&nbsp;</h2>
+          <h5 className="text-info">අපගේ විශේෂාංග</h5> */}
           <p>
             We stand out with expert instructors, personalized learning, exam excellence, interactive teaching, holistic development, and a proven track record of success.
           </p>
@@ -363,7 +528,10 @@ const renderCloudFiles = () => {
     <section className="clean-block slider dark">
       <div className="container">
         <div className="block-heading">
-          <h2 className="text-info">Gallery</h2>
+        <div class="one">
+        <h1>Gallery</h1>
+      </div>
+          {/* <h2 className="text-info">Gallery</h2> */}
           <p>
             Our gallery showcases the vibrant learning environment and engaging activities at Susipwin Tuition Class. Explore the images capturing our students' active participation, collaborative learning, and moments of academic achievement.
           </p>
@@ -401,7 +569,9 @@ const renderCloudFiles = () => {
     <section className="clean-block about-us">
       <div className="container">
         <div className="block-heading">
-          <h2 className="text-info">About Us</h2>
+        <div class="one">
+        <h1>About Us</h1>
+      </div>
           <p>
             Susipwin Tuition Class in Anuradhapura is a leading educational institute committed to student success. With expert instructors, personalized programs, and a focus on holistic development, we provide a nurturing environment for academic excellence and personal growth.
           </p>

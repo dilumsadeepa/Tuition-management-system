@@ -50,7 +50,9 @@ function ContactUs() {
             <section className="clean-block clean-form dark">
                 <div className="container">
                 <div className="block-heading">
-                    <h2 className="text-info">Contact Us</h2>
+                <div class="one">
+                  <h1>Contact Us</h1>
+                </div>
                     <p>We would love to hear from you! Contact Susipwin Tuition Class in Anuradhapura for any inquiries or to schedule a visit. Our friendly staff is ready to assist you and provide all the necessary information to help you get started on your educational journey with us.</p>
                 </div>
                 <div>

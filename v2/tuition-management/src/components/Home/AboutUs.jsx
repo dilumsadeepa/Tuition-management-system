@@ -10,7 +10,9 @@ function AboutUs() {
             <section className="clean-block about-us">
                 <div className="container">
                 <div className="block-heading">
-                    <h2 className="text-info">About Us</h2>
+                <div class="one">
+                  <h1>About Us</h1>
+                </div>
                     <p>The Susipwin Tuition Class in Anuradhapura is a trusted educational institution dedicated to empowering students in their academic journey. With a team of experienced instructors, personalized learning programs, and a focus on holistic development, we provide a nurturing environment for students to excel academically and grow personally. Our commitment to excellence and a proven track record of success make us the ideal choice for students seeking top-quality education.</p>
                 </div>
                 </div>

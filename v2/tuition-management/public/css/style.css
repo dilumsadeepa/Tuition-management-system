@@ -1,8 +1,67 @@
 /* --------------------Home page Styling start here------------------------------- */
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Eczar&family=Libre+Baskerville&family=Montserrat:wght@200;400;500;600&family=Noto+Sans+Sinhala&family=Noto+Serif+Sinhala:wght@400;600&family=Proza+Libre&family=Raleway:wght@100;300;400;600&family=Trirong&display=swap');
 html{
   scroll-behavior: smooth;
 }
+
+.sinhala{
+  font-family: 'Noto Serif Sinhala', serif;
+  font-size: 30px;
+}
+
+/* home slider main */
+.slide-content {
+  position: relative;
+}
+
+.slide-content .slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.slide-content .slide-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+  width: 100%;
+  padding: 0px 40px;
+}
+
+.slide-content .slide-text h2 {
+  /* font-size: 32px;
+  font-weight: bold;
+  color: #fff; */
+  font-family: Montserrat ;
+  font-size: 60px;
+  font-weight: 600;
+  color: #fff;
+  background-clip: text;
+  text-transform: uppercase;
+  text-decoration: wavy;
+  -webkit-background-clip: text;
+}
+
+.slide-content .slide-text p {
+  font-size: 16px;
+  color: #fff;
+}
+
+.slide-content img.zoomed {
+  transform: scale(1.3);
+  transition: transform 4.5s;
+}
+
+
+/* end main slider */
 
 .swiper-slide img {
   display: block;
@@ -83,6 +142,59 @@ h1 em {
   font-weight: 600;
 }
 
+/* twelve */
+.twelve h1 {
+  font-size:26px; font-weight:700;  letter-spacing:1px; text-transform:uppercase; width:160px; text-align:center; margin:auto; white-space:nowrap; padding-bottom:13px;
+}
+.twelve h1:before {
+    background-color: #c50000;
+    content: '';
+    display: block;
+    height: 3px;
+    width: 75px;
+    margin-bottom: 5px;
+}
+.twelve h1:after {
+    background-color: #c50000;
+    content: '';
+    display: block;
+  position:absolute; right:0; bottom:0;
+    height: 3px;
+    width: 75px;
+    margin-bottom: 0.25em;
+}
+
+/* === HEADING STYLE #1 === */
+.one h1 {
+  text-align: center;
+  /* text-transform: uppercase; */
+  padding-bottom: 5px;
+}
+.one h1:before {
+  width: 28px;
+  height: 5px;
+  display: block;
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  margin-left: -14px;
+  background-color: #b80000;
+}
+.one h1:after {
+  width: 100px;
+  height: 1px;
+  display: block;
+  content: "";
+  position: relative;
+  margin-top: 25px;
+  left: 50%;
+  margin-left: -50px;
+  background-color: #b80000;
+}
+
+
+/* five */
 
 .five h1 {
   text-align: center;
@@ -189,6 +301,8 @@ h1 em {
     border-bottom: 2px solid #ccc;
     background-color:#f8f8f8;
   }
+
+
   
 
 
@@ -210,6 +324,23 @@ h1 em {
     align-content: center;
     justify-content: center;
     margin-top: 10px;
+  }
+
+  .swiper-slide img {
+    height: 70vh;
+  }
+
+  .slide-content .slide-text h2 {
+    /* font-size: 32px;
+    font-weight: bold;
+    color: #fff; */
+    font-size: 25px;
+    font-weight: 600;
+  }
+  
+  .slide-content .slide-text p {
+    font-size: 13px;
+    color: #fff;
   }
 }
 
