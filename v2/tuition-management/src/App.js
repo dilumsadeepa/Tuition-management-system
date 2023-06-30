@@ -89,6 +89,7 @@ import Faq from "./components/Home/Faq";
 import AboutUs from "./components/Home/AboutUs";
 import ContactUs from "./components/Home/ContactUs";
 import AlTimeTable from "./components/Home/AlTimeTable";
+import Grades from "./components/Home/Grades";
 import ALStreamWiseTimeTable from "./components/Home/ALStreamWiseTimeTable";
 import PublicNotices from "./components/Home/PublicNotices";
 
@@ -182,7 +183,9 @@ function App() {
           <Route path="publicnotices" element={<PublicNotices />} />
           <Route path="contactus" element={<ContactUs />} />
           <Route path="altimetable" element={<AlTimeTable />} />
+          <Route path="streamwisetimetable" element={<Grades />} />
           <Route path="alstreamwisetimetable/:id" element={<ALStreamWiseTimeTable />} />
+          <Route path="streamwisetimetable/:id" element={<ALStreamWiseTimeTable />} />
 
           <Route path="newtimetable" element={<NewTimeTableList />} />
           <Route

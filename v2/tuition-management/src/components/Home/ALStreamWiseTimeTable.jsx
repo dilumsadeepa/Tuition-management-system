@@ -54,6 +54,18 @@ function ALStreamWiseTimeTable() {
           setStream('Languages');
         } else if (id === 'englishmedium') {
           setStream('English Medium');
+        } else if (id === 'grade6') {
+          setStream('Grade 6');
+        } else if (id === 'grade7') {
+          setStream('Grade 7');
+        } else if (id === 'grade8') {
+          setStream('Grade 8');
+        } else if (id === 'grade9') {
+          setStream('Grade 9');
+        } else if (id === 'grade10') {
+          setStream('Grade 10');
+        } else if (id === 'grade11') {
+          setStream('Grade 11');
         }
       }, [id]);
 
@@ -391,7 +403,7 @@ function ALStreamWiseTimeTable() {
 
                         <div className="teachers">
                         <div class="seven">
-                        <h1 style={{ marginTop: '50px', marginBottom: '25.2px' }}>{stream} Stream Teachers</h1>
+                        <h1 style={{ marginTop: '50px', marginBottom: '25.2px' }}>{stream} Teachers</h1>
                       </div>
 
                             {streamTeachers.length === 0 && (

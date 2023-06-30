@@ -42,8 +42,10 @@ function PublicNotices() {
       <section className="clean-block clean-testimonials dark">
         <div className="container">
           <div className="block-heading">
-            <h2 className="text-info">Notices</h2>
-            <p>Special Notices</p>
+          <div class="one">
+            <h1>Public Notices</h1>
+          </div>
+
           </div>
           <div className="row">
             {notices.map((notice) => (

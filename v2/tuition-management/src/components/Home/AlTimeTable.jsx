@@ -32,7 +32,9 @@ function AlTimeTable() {
                 <section className="clean-block about-us" style={{ color:'#000' }}>
                     <div className="container">
                     <div className="block-heading">
-                        <h2 className="text-info">A/L Time Table</h2>
+                    <div class="one">
+                        <h1>A/L Time Table</h1>
+                    </div>
                         <p>Our thoughtfully designed timetable at Susipwin Tuition Class in Anuradhapura provides a structured schedule for students, enabling them to efficiently manage their study time and ensure comprehensive subject coverage.</p>
                     </div>
                     </div>

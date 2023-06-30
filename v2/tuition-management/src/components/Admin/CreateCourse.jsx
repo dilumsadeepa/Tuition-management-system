@@ -23,7 +23,7 @@ const CreateCourse = () => {
     const [courseStream, setCourseStream] = useState('');
     console.log(courseStream);
 
-    const streams = ['Science / Maths', 'Commerce', 'Arts', 'Technology', 'Common', 'Languages', 'English Medium', 'Upto Ordinary Level'];
+    const streams = ['Science / Maths', 'Commerce', 'Arts', 'Technology', 'Common', 'Languages', 'English Medium', 'Grade 6', 'Grade 6', 'Grade 7', 'Grade 8', 'Grade 9', 'Grade 10', 'Grade 11'];
     const subjects = {
         'Science / Maths': ['Physics', 'Chemistry', 'Biology', 'Combined Mathematics'],
         'Commerce': ['Accounts', 'Business Studies', 'Economics'],
@@ -32,7 +32,12 @@ const CreateCourse = () => {
         'Common': ['Information Communication Technology'],
         'Languages': ['Sinhala', 'Tamil', 'English', 'French', 'Japanese', 'Chinese'],
         'English Medium': [ 'Maths', 'Science', 'ICT'],
-        'Upto Ordinary Level': ['Sinhala', 'English', 'Buddhism', 'Maths', 'Science', 'History', 'ICT', 'Tamil'],
+        'Grade 6': ['Sinhala', 'English', 'Buddhism', 'Maths', 'Science', 'History', 'ICT', 'Tamil'],
+        'Grade 7': ['Sinhala', 'English', 'Buddhism', 'Maths', 'Science', 'History', 'ICT', 'Tamil'],
+        'Grade 8': ['Sinhala', 'English', 'Buddhism', 'Maths', 'Science', 'History', 'ICT', 'Tamil'],
+        'Grade 9': ['Sinhala', 'English', 'Buddhism', 'Maths', 'Science', 'History', 'ICT', 'Tamil'],
+        'Grade 10': ['Sinhala', 'English', 'Buddhism', 'Maths', 'Science', 'History', 'ICT', 'Tamil'],
+        'Grade 11': ['Sinhala', 'English', 'Buddhism', 'Maths', 'Science', 'History', 'ICT', 'Tamil'],
     }
 
 

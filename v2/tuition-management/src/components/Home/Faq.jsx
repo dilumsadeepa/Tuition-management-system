@@ -10,7 +10,9 @@ function Faq() {
         <section class="clean-block clean-faq dark">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">FAQ</h2>
+                <div class="one">
+                    <h1>FAQ</h1>
+                </div>
                     <p>In our FAQ section, we address common questions and concerns about Susipwin Tuition Center. Find answers to queries about our class timings, fee structure, enrollment process, and more. We aim to provide clear and concise information to help parents and students make informed decisions about their educational journey with us.</p>
                 </div>
                 <div class="accordion" role="tablist" id="accordion-1">
