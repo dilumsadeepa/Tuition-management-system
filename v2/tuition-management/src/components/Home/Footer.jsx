@@ -13,10 +13,10 @@ const whatsappUrl = `https://wa.me/${phoneNumber}`;
             <h5>Get started</h5>
             <ul>
               <li><a href="#">Home</a></li>
-              <li><a href="homegallery">Gallery</a></li>
+              <li><a href="/homegallery">Gallery</a></li>
               <li><a href="#">Student</a></li>
               <li><a href="#">Lectures</a></li>
-              <li><a href="altimetable">Time Table</a></li>
+              <li><a href="/altimetable">Time Table</a></li>
             </ul>
           </div>
           <div className="col-sm-3">
@@ -24,13 +24,13 @@ const whatsappUrl = `https://wa.me/${phoneNumber}`;
             <ul>
               <li><a href="#">About</a></li>
               <li><a href="#">Contact us</a></li>
-              <li><a href="faq">FAQ</a></li>
+              <li><a href="/faq">FAQ</a></li>
             </ul>
           </div>
           <div className="col-sm-3">
             <h5>Support</h5>
             <ul>
-              <li><a href="faq">FAQ</a></li>
+              <li><a href="/faq">FAQ</a></li>
               <li><a href="https://wa.me/+94789843284">Whatsapp</a></li>
               <li><a href="https://t.me/+94789843284">Telegram</a></li>
             </ul>
@@ -40,7 +40,7 @@ const whatsappUrl = `https://wa.me/${phoneNumber}`;
             <ul>
               <li><a href="#">Dashboard</a></li>
               <li><a href="#">LMS</a></li>
-              <li><a href="publicnotices">Notices</a></li>
+              <li><a href="/publicnotices">Notices</a></li>
               <li><a href="#">Time Table</a></li>
             </ul>
           </div>

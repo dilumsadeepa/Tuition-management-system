@@ -246,43 +246,43 @@ function ALStreamWiseTimeTable() {
                     {id === 'technology' && (
                             <>
                             <h2 className="text-info">Technology</h2>
-                            <p>Technology Description</p>
+                            <p>තාක්ෂණවේදය</p>
                             </>
                         )}
                         {id === 'sciencemaths' && (
                             <>
-                            <h2 className="text-info">Science Maths</h2>
-                            <p>Science Maths Description</p>
+                            <h2 className="text-info">Science / Maths</h2>
+                            <p>විද්‍යා / ගණිත</p>
                             </>
                         )}
                         {id === 'commerce' && (
                             <>
                             <h2 className="text-info">Commerce</h2>
-                            <p>Commerce Description</p>
+                            <p>වාණිජ</p>
                             </>
                         )}
                         {id === 'arts' && (
                             <>
                             <h2 className="text-info">Arts</h2>
-                            <p>Arts Description</p>
+                            <p>කලා</p>
                             </>
                         )}
                         {id === 'common' && (
                             <>
                             <h2 className="text-info">Common</h2>
-                            <p>Common Description</p>
+                            <p>පොදු විෂයන්</p>
                             </>
                         )}
                         {id === 'languages' && (
                             <>
                             <h2 className="text-info">Languages</h2>
-                            <p>Languages Description</p>
+                            <p>භාෂා</p>
                             </>
                         )}
                         {id === 'englishmedium' && (
                             <>
                             <h2 className="text-info">English Medium</h2>
-                            <p>English Medium Description</p>
+                            <p>ඉංග්‍රීසි මාධ්‍ය</p>
                             </>
                         )}
                
@@ -421,7 +421,7 @@ function ALStreamWiseTimeTable() {
                                     </div>
 
                                     <div className="teachers">
-                                      <h1 style={{ marginTop: '30px', marginBottom: '25.2px' }}>{stream} Stream Teachers</h1>
+                                      <h1 style={{ marginTop: '30px', marginBottom: '25.2px' }}>{subject} Teachers</h1>
 
                                       <div class="row row-cols-1 row-cols-md-3 g-4">
                                       {subjectTeachers.map((teacher, index) => {
