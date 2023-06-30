@@ -42,7 +42,7 @@ const whatsappUrl = `https://wa.me/${phoneNumber}`;
               <li><a href="#">Dashboard</a></li>
               <li><a href="#">LMS</a></li>
               <li><a href="/publicnotices">Notices</a></li>
-              <li><a href="#">Time Table</a></li>
+              <li><a href="/streamwisetimetable">Time Table</a></li>
             </ul>
           </div>
         </div>

@@ -23,7 +23,7 @@ const CreateCourse = () => {
     const [courseStream, setCourseStream] = useState('');
     console.log(courseStream);
 
-    const streams = ['Science / Maths', 'Commerce', 'Arts', 'Technology', 'Common', 'Languages', 'English Medium', 'Grade 6', 'Grade 6', 'Grade 7', 'Grade 8', 'Grade 9', 'Grade 10', 'Grade 11'];
+    const streams = ['Science / Maths', 'Commerce', 'Arts', 'Technology', 'Common', 'Languages', 'English Medium', 'Grade 6', 'Grade 7', 'Grade 8', 'Grade 9', 'Grade 10', 'Grade 11'];
     const subjects = {
         'Science / Maths': ['Physics', 'Chemistry', 'Biology', 'Combined Mathematics'],
         'Commerce': ['Accounts', 'Business Studies', 'Economics'],
