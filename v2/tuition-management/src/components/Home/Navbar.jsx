@@ -30,9 +30,9 @@ console.log(rolecookies.role);
                 <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
                 <a className="nav-link" href="/homegallery" style={{ textAlign: 'center' }}>Gallery</a>
                 </li>
-                <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
+                {/* <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
                 <a className="nav-link" href="/blogpostlist" style={{ textAlign: 'center' }}>Blog</a>
-                </li>
+                </li> */}
                 <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
                 <a className="nav-link" href="/aboutus" style={{ textAlign: 'center' }}>About Us</a>
                 </li>
@@ -50,9 +50,9 @@ console.log(rolecookies.role);
                 <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
                 <a className="nav-link" href="/login" style={{ textAlign: 'center', marginBottom: '0px' }}>Login</a>
                 </li>
-                <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
+                {/* <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
                 <a className="nav-link" href="/register" style={{ textAlign: 'center', marginBottom: '0px' }}>Register</a>
-                </li>
+                </li> */}
                 </>
                 )}
                 
