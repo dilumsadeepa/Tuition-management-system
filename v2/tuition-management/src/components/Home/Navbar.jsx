@@ -40,9 +40,16 @@ console.log(rolecookies.role);
                 <a className="nav-link" href="/contactus" style={{ textAlign: 'center' }}>Contact Us</a>
                 </li>
                 {cookies.email && (
-                    <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
-                    <a className="nav-link" href="/logout" style={{ textAlign: 'center', marginBottom: '0px' }}>Log out</a>
-                    </li>
+                    <>
+                        <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
+                        {cookies.role === '5' ? <a className="dropdown-item" href="/parent"> Dashboard</a> : cookies.role === '4' ? <a className="dropdown-item" href="/studashboard"> Dashboard</a> : cookies.role === '3' ? <a className="dropdown-item" href="/teacher"> Dashboard</a> : cookies.role === '2' ? <a className="dropdown-item" href="/staff"> Dashboard</a> : <a className="dropdown-item" href="/admin"> Dashboard</a>}     
+                        </li>
+                        <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
+                        <a className="nav-link" href="/logout" style={{ textAlign: 'center', marginBottom: '0px' }}>Log out</a>
+                        </li>
+
+                    </>
+
                 )}
 
                 {!cookies.email && (
@@ -50,6 +57,7 @@ console.log(rolecookies.role);
                 <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
                 <a className="nav-link" href="/login" style={{ textAlign: 'center', marginBottom: '0px' }}>Login</a>
                 </li>
+
                 {/* <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
                 <a className="nav-link" href="/register" style={{ textAlign: 'center', marginBottom: '0px' }}>Register</a>
                 </li> */}
