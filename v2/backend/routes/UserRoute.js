@@ -22,6 +22,7 @@ const {
   getStudentcourseId,
   getAllStudentqr,
   createStudent,
+  createApproval,
 } = require("../controllers/StudentController.js");
 
 const {
@@ -134,6 +135,8 @@ router.get("/stucourseall", stucourseall);
 router.get("/att", getAtts);
 router.get("/att/:id", getAttById);
 router.post("/studentdata", createStudent);
+router.post("/enrollcourse", createApproval);
+
 
 // Teacher
 router.get("/teacher", getTes);

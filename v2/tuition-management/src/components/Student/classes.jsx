@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Apiurl from '../Apiurl';
 import Sidebar from './StudentSidebar';
 import Dashhead from './Dashhead';
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function DisableElevation() {
+  let {id} = useParams();
+  console.log("id passed: "+ id)
   const [courses, setCourses] = useState([]);
   const [filteredCourses, setFilteredCourses] = useState([]);
+  const [cookies] = useCookies(['id']);
 
   const getcou = async () => {
     try {
@@ -18,6 +24,42 @@ export default function DisableElevation() {
       console.log('Error in getting data:', error);
     }
   };
+
+
+  const send = async (courseid) => {
+    console.log("couse iddddddd: " + courseid);
+    console.log("user iddddddd: " + cookies.id)
+    const data = {
+      aprovel: '1',
+      userId: cookies.id,
+      courseId: courseid,  
+    }
+  
+
+  
+    console.log(data);
+    axios.post(`${Apiurl}/enrollcourse` , data)
+    .then(res => {
+      console.log(res);
+      toast.success("Approval Requested", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
+
+    })
+    .catch(err => console.log(err));
+  };
+
+
+
+
+
 
   useEffect(() => {
     getcou();
@@ -35,6 +77,7 @@ export default function DisableElevation() {
 
   return (
     <section>
+      <ToastContainer autoClose={3000}/>
       <div className="h-screen flex-grow-1 overflow-y-lg-auto">
         <Dashhead />
 
@@ -71,7 +114,8 @@ export default function DisableElevation() {
                       <div className="card-body">
                         <h5 className="card-title">{course.coursename}</h5>
                         <p className="card-text">{course.courseprice}</p>
-                        <Link to={`/EnrollPage/${course.id}`} className="btn btn-primary">Enroll</Link>
+                        <p className="card-text">{course.id}</p>
+                        <a className="btn btn-primary" onClick={() => send(course.id)}>Enroll</a>
                       </div>
                     </div>
                   </div>
