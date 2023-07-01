@@ -118,6 +118,9 @@ function CreateNewTimeTable() {
 
 
                 <button type='submit' className="btn btn-primary mt-5">Save</button>
+                <a  className="btn btn-outline-danger ms-2 mt-5" href='/newtimetable'>
+                  Cancel
+                </a>
             </Form>
         </Formik>
         </div>

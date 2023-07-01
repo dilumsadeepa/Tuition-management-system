@@ -471,7 +471,11 @@ function CreateTimeTable() {
 
         <div className="mb-3">
                 <button onClick={send} className="btn btn-primary">Submit</button>
-            </div>
+                <a  className="btn btn-outline-danger ms-2" href='/timetable'>
+                  Cancel
+                </a>
+          </div>
+
         </div>
       </div> 
     </div>

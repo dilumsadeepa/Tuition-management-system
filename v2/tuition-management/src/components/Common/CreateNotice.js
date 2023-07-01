@@ -182,7 +182,7 @@ function CreateNotice() {
         
 
         <div className="mb-3">
-                <button onClick={send} className="btn btn-primary">Submit</button>
+                <button onClick={send} className="btn-grad-blue">Submit</button>
             </div>
         </div>
       </div> 

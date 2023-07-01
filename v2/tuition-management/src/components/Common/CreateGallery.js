@@ -465,6 +465,9 @@ function CreateGallery() {
 
         <div className="mb-3">
                 <button onClick={send} className="btn btn-primary">Submit</button>
+                <a  className="btn btn-outline-danger ms-2" href='/gallery'>
+                  Cancel
+                </a>
             </div>
         </div>
       </div> 

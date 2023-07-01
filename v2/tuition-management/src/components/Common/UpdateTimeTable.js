@@ -142,10 +142,10 @@ function UpdateTimeTable() {
                 <ErrorMessage name="hall" className="d-block badge rounded-pill text-bg-danger my-3" component="span" />
                 <Field id="inputCreatePost" className={`form-control`} name="hall" placeholder="Hall No" autoComplete="off" />
 
-                <button type="submit" className="btn btn-primary mt-5">
+                <button type="submit" className="btn btn-primary  mt-5">
                   Update
                 </button>
-                <a  className="btn btn-Dander ms-2 mt-5" href='/newtimetable'>
+                <a  className="btn btn-outline-danger ms-2 mt-5" href='/newtimetable'>
                   Cancel
                 </a>
               </Form>
