@@ -1,6 +1,7 @@
 import React, {useRef, useEffect, useState} from "react";
 import axios from "axios";
 import Apiurl from '../Apiurl';
+import ReactAppUrl from '../ReactAppUrl';
 import { useCookies } from 'react-cookie';
 
 
@@ -36,6 +37,36 @@ const Sidebar =() =>{
             <nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-dark bg-dark border-bottom border-bottom-lg-0 border-end-lg" id="navbarVertical">
                 <div class="container-fluid">
                     
+                    {/* <!-- Toggler --> */}
+                    <button class="navbar-toggler ms-n2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    {/* <!-- Brand --> */}
+                    {cookies.role === '5' ? <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/parent"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a> : cookies.role === '4' ? <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/studashboard"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a> : cookies.role === '3' ?  <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/teacher"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a> : cookies.role === '2' ?  <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/staff"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a> :                     <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/admin"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a>}         
+                    {/* <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/parent"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a> */}
+                    {/* <!-- User menu (mobile) --> */}
+                    <div class="navbar-user d-lg-none">
+                        {/* <!-- Dropdown --> */}
+                        <div class="dropdown">
+                            {/* <!-- Toggle --> */}
+                            <a href="#s" id="sidebarAvatar" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="avatar-parent-child">
+                                    <img alt="Placeholder" 
+                                        src="https://images.unsplash.com/photo-1548142813-c348350df52b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" 
+                                        class="avatar avatar- rounded-circle" />
+                                    <span class="avatar-child avatar-badge bg-success"></span>
+                                </div>
+                            </a>
+                            {/* <!-- Menu --> */}
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="sidebarAvatar">
+                                <a href="#s" class="dropdown-item">Profile</a>
+                                <a href="#s" class="dropdown-item">Settings</a>
+                                <a href="#s" class="dropdown-item">Billing</a>
+                                <hr class="dropdown-divider" />
+                                <a href="#s" class="dropdown-item">Logout</a>
+                            </div>
+                        </div>
+                    </div>
                     
                     {/* <!-- Collapse --> */}
                     <div class="collapse navbar-collapse" id="sidebarCollapse">

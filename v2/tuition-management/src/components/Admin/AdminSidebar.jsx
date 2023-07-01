@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Apiurl from '../Apiurl';
+import ReactAppUrl from '../ReactAppUrl';
 import { useCookies } from 'react-cookie';
+
 
 
 const Sidebar =() =>{
@@ -40,9 +42,8 @@ const Sidebar =() =>{
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     {/* <!-- Brand --> */}
-                    <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="#s">
-                        <img className='alogo' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTADFVTNnNeEXBDH49LSt_uCc6t0tB4COMVKomQ86MCR6PtjjaL6kA0stgReXN4PQT-CWM&usqp=CAU" alt="..." />
-                    </a>
+                    {cookies.role === '5' ? <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/parent"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a> : cookies.role === '4' ? <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/studashboard"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a> : cookies.role === '3' ?  <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/teacher"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a> : cookies.role === '2' ?  <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/staff"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a> :                     <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/admin"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a>}         
+                    {/* <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/parent"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a> */}
                     {/* <!-- User menu (mobile) --> */}
                     <div class="navbar-user d-lg-none">
                         {/* <!-- Dropdown --> */}
