@@ -88,7 +88,7 @@ function CreateNewTimeTable() {
                 <Field as="select" id="course" name="cunit" className={`form-control`}>
                 <option value="" disabled selected>Select Course ID</option>
                 {courses.map((course) => (
-                    <option key={course.id} value={course.courseid}>{course.courseid}</option>
+                    <option key={course.id} value={course.id}>{course.courseid}</option>
                 ))}
                 </Field>
 

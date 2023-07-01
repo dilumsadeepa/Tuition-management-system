@@ -31,7 +31,7 @@ function UpdateTimeTable() {
       const fetchTimeTableData = async () => {
         try {
           const response = await axios.get(`${Apiurl}/newtimetable/byId/${id}`);
-          setInitialData(response.data);
+          setInitialData(response.data.selectedtimetable[0]);
           console.log('timetable:', response.data);
         } catch (error) {
           console.log('Error in getting time table data:', error);
@@ -40,6 +40,8 @@ function UpdateTimeTable() {
   
       fetchTimeTableData();
     }, []);
+
+    console.log('initialData:', initialData);
   
     let navigate = useNavigate();
   

@@ -4,7 +4,7 @@ const Course = require('./CourseModel.js');
 
 const Newtimetable = db.define('timetable', {
   cunit: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   cname: {

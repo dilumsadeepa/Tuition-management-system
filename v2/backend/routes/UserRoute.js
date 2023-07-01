@@ -83,6 +83,7 @@ const {
 
 const {
   getNewTimetables,
+  getNewStudentTimetables,
   createNewTimetable,
   deleteNewTimetable,
   viewNewTimetable,
@@ -166,6 +167,7 @@ router.delete("/timetable/:id", deleteTimetable);
 router.get("/timetable/byId/:id", viewTimetable);
 
 router.get("/newtimetable", getNewTimetables);
+router.get("/newstudenttimetable/:id", getNewStudentTimetables);
 router.delete("/newtimetable/:id", deleteNewTimetable);
 router.put('/newtimetable/:id', updateTimeTable);
 router.get("/newtimetable/byId/:id", viewNewTimetable);

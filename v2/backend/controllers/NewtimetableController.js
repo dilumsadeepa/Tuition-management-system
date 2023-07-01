@@ -14,10 +14,32 @@ const db = require("../config/Database.js");
 //   }
 // }
 
+
+
 exports.getNewTimetables = async (req, res) => {
 
   const sesql =
-    "SELECT t.*, c.coursename, u.fullname FROM timetable t INNER JOIN courses c ON t.cunit = c.courseid INNER JOIN users u ON u.id = c.userId Order BY t.createdAt DESC";
+    "SELECT t.*, c.coursename, c.courseid, u.fullname FROM timetable t INNER JOIN courses c ON t.cunit = c.id INNER JOIN users u ON u.id = c.userId Order BY t.createdAt DESC";
+
+  try {
+    const response = await db.query(sesql, { type: QueryTypes.SELECT });
+    console.log(response);
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
+
+exports.getNewStudentTimetables = async (req, res) => {
+  const { id } = req.params;
+  console.log("user iddd: "+id);
+
+  const sesql =
+    "SELECT t.*, c.coursename, c.courseid, u.fullname FROM coursestudents s INNER JOIN timetable t ON t.cunit = s.courseId INNER JOIN courses c ON c.id = t.cunit INNER JOIN users u ON u.id = s.userId WHERE s.userId = '" +
+    id +
+    "' AND s.aprovel='1' ORDER BY t.createdAt DESC;";
 
   try {
     const response = await db.query(sesql, { type: QueryTypes.SELECT });
@@ -68,7 +90,7 @@ exports.viewNewTimetable = async (req, res) => {
   const { id } = req.params;
 
   const sqlquery =
-  "SELECT t.*, c.coursename, u.fullname FROM timetable t INNER JOIN courses c ON t.cunit = c.courseid INNER JOIN users u ON u.id = c.userId WHERE t.id = '" +
+  "SELECT t.*, c.coursename, c.courseid, u.fullname FROM timetable t INNER JOIN courses c ON t.cunit = c.id INNER JOIN users u ON u.id = c.userId WHERE t.id = '" +
   id +
   "';";
 
@@ -93,7 +115,7 @@ exports.viewPublicNewTimetable = async (req, res) => {
   console.log("courseid: " + id);
 
   const sqlquery =
-  "SELECT t.*, c.coursename, c.courseStream, c.coursesubject, u.fullname FROM timetable t INNER JOIN courses c ON t.cunit = c.courseid INNER JOIN users u ON u.id = c.userId WHERE c.courseStream LIKE '%" +
+  "SELECT t.*, c.coursename, c.courseStream, c.coursesubject, u.fullname FROM timetable t INNER JOIN courses c ON t.cunit = c.id INNER JOIN users u ON u.id = c.userId WHERE c.courseStream LIKE '%" +
   id +
   "%';";
 
@@ -117,7 +139,7 @@ exports.viewPublicSubjectNewTimetable = async (req, res) => {
   console.log("courseid: " + id);
 
   const sqlquery =
-  "SELECT t.*, c.coursename, c.courseStream, c.coursesubject, u.fullname FROM timetable t INNER JOIN courses c ON t.cunit = c.courseid INNER JOIN users u ON u.id = c.userId WHERE c.coursesubject LIKE '%" +
+  "SELECT t.*, c.coursename, c.courseStream, c.coursesubject, u.fullname FROM timetable t INNER JOIN courses c ON t.cunit = c.id INNER JOIN users u ON u.id = c.userId WHERE c.coursesubject LIKE '%" +
   id +
   "%';";
 
@@ -142,7 +164,7 @@ exports.viewPublicSubjectTeachers = async (req, res) => {
   console.log("courseid: " + id);
 
   const sqlquery =
-  "SELECT Distinct u.fullname, u.gender FROM timetable t INNER JOIN courses c ON t.cunit = c.courseid INNER JOIN users u ON u.id = c.userId WHERE c.coursesubject LIKE '%" +
+  "SELECT Distinct u.fullname, u.gender FROM timetable t INNER JOIN courses c ON t.cunit = c.id INNER JOIN users u ON u.id = c.userId WHERE c.coursesubject LIKE '%" +
   id +
   "%';";
 
@@ -169,7 +191,7 @@ exports.viewPublicStreamTeachers = async (req, res) => {
       const sqlquery = `
       SELECT DISTINCT u.fullname, u.gender
       FROM timetable t
-      INNER JOIN courses c ON t.cunit = c.courseid
+      INNER JOIN courses c ON t.cunit = c.id
       INNER JOIN users u ON u.id = c.userId
       WHERE c.courseStream LIKE '%${id}%';
     `;
@@ -200,7 +222,7 @@ exports.streamsubjects = async (req, res) => {
   console.log("courseid: " + id);
 
   const sqlquery =
-  "SELECT Distinct c.coursesubject FROM timetable t INNER JOIN courses c ON t.cunit = c.courseid INNER JOIN users u ON u.id = c.userId WHERE c.courseStream LIKE '%" +
+  "SELECT Distinct c.coursesubject FROM timetable t INNER JOIN courses c ON t.cunit = c.id INNER JOIN users u ON u.id = c.userId WHERE c.courseStream LIKE '%" +
   id +
   "%';";
 
@@ -248,7 +270,7 @@ exports.timecourse = async (req, res) => {
   console.log("courseid: " + timeId);
 
   const query =
-    "SELECT courses.* FROM courses INNER JOIN timetable ON courses.courseid = timetable.cunit WHERE timetable.id = :timeId";
+    "SELECT courses.* FROM courses INNER JOIN timetable ON courses.id = timetable.cunit WHERE timetable.id = :timeId";
 
   try {
     const courses = await db.query(query, {

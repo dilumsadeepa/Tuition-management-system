@@ -53,7 +53,8 @@ function NewTimeTableList() {
     let navigate = useNavigate();    //useNavigate is a hook to navigate to another page
 
     const [cookies] = useCookies(['role']);
-    // console.log(cookies.role);
+  
+    // console.log(cookies.id);
 
     
       // useEffect(() => {
@@ -90,7 +91,13 @@ function NewTimeTableList() {
     useEffect(() => {
       // Fetch your data here, for example:
       const fetchData = async () => {
-        const response = await fetch(`${Apiurl}/newtimetable`);
+        let apiUrl = `${Apiurl}/newtimetable`;
+        if (cookies.role === '4') {
+          apiUrl = `${Apiurl}/newstudenttimetable/${cookies.id}`;
+        }
+        const response = await fetch(apiUrl);
+
+        // const response = await fetch(`${Apiurl}/newtimetable`);
         const data = await response.json();
         console.log(data);
     
@@ -103,7 +110,7 @@ function NewTimeTableList() {
         const table = $(tableRef.current).DataTable({
           data: data,
           columns: [
-            { title: 'Course Unit', data: 'cunit' },
+            { title: 'Course Unit', data: 'courseid' },
             { title: 'Course Name', data: 'coursename' },
             { title: 'Teacher', data: 'fullname' },
             { title: 'Date', data: 'cdate' },
@@ -131,6 +138,7 @@ function NewTimeTableList() {
   
             }
           ],
+          // order: [[7, 'desc']],
           dom: 'Bfrtip', // Add the required buttons
           buttons: [
             'copyHtml5',
@@ -336,7 +344,7 @@ function NewTimeTableList() {
                                             <tbody>
                                                 {timeTables.map((newtimeTable) => (
                                                 <tr key={newtimeTable.id}>
-                                                    <td>{newtimeTable.cunit}</td>
+                                                    <td>{newtimeTable.courseid}</td>
                                                     <td>{newtimeTable.coursename}</td>
                                                     <td>{newtimeTable.fullname}</td>
                                                     <td>{newtimeTable.ctime}</td>
@@ -385,7 +393,7 @@ function NewTimeTableList() {
                                                     </div>
                                                     <div className="modal-body">
                                                     <h2 className="text-center mb-5" style={{ fontFamily: 'Merriweather', }}>{timeTableObject.coursename}</h2>
-                                                    <p className="my-5">Course code: {timeTableObject.cunit}</p>
+                                                    <p className="my-5">Course code: {timeTableObject.courseid}</p>
                                                     <p className="my-5">Course name: {timeTableObject.coursename}</p>
                                                     <p className="my-5">Teacher: {timeTableObject.fullname}</p>
                                                     <p className="my-5">Date: {timeTableObject.cdate}</p>

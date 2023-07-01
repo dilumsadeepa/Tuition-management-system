@@ -30,7 +30,7 @@ export default function DisableElevation() {
     console.log("couse iddddddd: " + courseid);
     console.log("user iddddddd: " + cookies.id)
     const data = {
-      aprovel: '1',
+      aprovel: '0',
       userId: cookies.id,
       courseId: courseid,  
     }

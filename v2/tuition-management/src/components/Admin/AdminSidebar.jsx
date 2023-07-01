@@ -106,7 +106,7 @@ const Sidebar =() =>{
                   
                             <li class="nav-item">
                                 <a class="nav-link" href="/gallery">
-                                <i class="fa-solid fa-table-cells"></i> gallery
+                                <i class="fa-solid fa-table-cells"></i> Gallery
                                 </a>
                             </li>
 
