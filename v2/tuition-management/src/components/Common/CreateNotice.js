@@ -183,6 +183,9 @@ function CreateNotice() {
 
         <div className="mb-3">
                 <button onClick={send} className="btn-grad-blue">Submit</button>
+                <a  className="btn btn-outline-danger ms-2" href='/notice'>
+                  Cancel
+                </a>
             </div>
         </div>
       </div> 

@@ -32,6 +32,7 @@ import "datatables.net-buttons/js/buttons.colVis.js";
 import "datatables.net-buttons/js/buttons.flash.js";
 import "pdfmake/build/pdfmake.js";
 import "pdfmake/build/vfs_fonts.js";
+import NoPermission from "./NoPermission";
 
 function GalleryList() {
     const tableRef = useRef(null);
@@ -173,7 +174,7 @@ function GalleryList() {
     const handleDeleteGallery = (galleryId) => {
         MySwal.fire({
           title: 'Are you sure?',
-          text: 'You are about to delete this notice.',
+          text: 'You are about to delete this Gallery.',
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#d33',
@@ -184,7 +185,7 @@ function GalleryList() {
             deleteGallery(galleryId)
             MySwal.fire(
               'Deleted!',
-              'The notice has been deleted.',
+              'The Gallery has been deleted.',
               'success'
             )
           }

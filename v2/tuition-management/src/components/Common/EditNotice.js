@@ -144,11 +144,13 @@ function EditNotice() {
           <div className="mb-3 mt-3">
               <label htmlFor="audience" >Target Audience</label>
               <select className={`form-control ${errors.audience && "is-invalid"}`} id="audience" name="notice_to"  value={audience} onChange={handleAudienceChange} >
-                  <option value="" disabled hidden>Select Audience You Want To Cover</option>
-                  <option value="5">All</option>
-                  <option value="2">Staff</option>
-                  <option value="3">Teacher</option>
-                  <option value="4">Student</option>
+              <option value="" disabled hidden>Select Audience You Want To Cover</option>
+                        <option value="6">Public</option>
+                        <option value="5">Parent</option>
+                        <option value="4">Student</option>
+                        <option value="3">Teacher</option>
+                        <option value="2">Staff</option>
+                        <option value="1">Admin</option>
               </select>
 
               {errors.audience && (
@@ -206,7 +208,7 @@ function EditNotice() {
 
     <div className="mb-3 mt-3">
                 <label htmlFor="attach" className="my-1"><i className="fa-regular fa-note-sticky fa-lg mx-2"></i> Attachments</label>
-                <input type="text" id="attach" className={`form-control ${errors.noticeAttachments && "is-invalid"}`} name="notice_attachments" placeholder="Enter Title" value={noticeAttachments} onChange={handleNoticeAttachmentsChange} />
+                <input type="text" id="attach" className={`form-control ${errors.noticeAttachments && "is-invalid"}`} name="notice_attachments" placeholder="Attachment Link" value={noticeAttachments} onChange={handleNoticeAttachmentsChange} />
                 {errors.notice_attachments && (
                     <div className="badge rounded-pill text-bg-danger">{errors.notice_attachments}</div>
                   )}
@@ -219,6 +221,9 @@ function EditNotice() {
 
       <div className="mb-3">
               <button onClick={send} className="btn btn-primary">Submit</button>
+              <a  className="btn btn-outline-danger ms-2" href='/notice'>
+                  Cancel
+                </a>
           </div>
       </div>
     </div> 

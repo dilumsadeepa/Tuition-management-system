@@ -16,6 +16,7 @@ import CreateNotice from "./components/Common/CreateNotice";
 import CreateNoticeNew from "./components/Common/CreateNoticeNew";
 import Notice from "./components/Common/Notice";
 import EditNotice from "./components/Common/EditNotice";
+import EditNoticeNew from "./components/Common/EditNoticeNew";
 import NoticesList from "./components/Common/NoticesList";
 import EditCourse from "./components/Admin/EditCourse";
 import AddUser from "./components/Admin/AddUser";
@@ -196,7 +197,7 @@ function App() {
           <Route path="newtimetable/create" element={<CreateNewTimeTable />} />
           <Route path="newtimetable/edit/:id" element={<UpdateTimeTableNew />} />
 
-          <Route path="notice/edit/:id" element={<EditNotice />} />
+          <Route path="notice/edit/:id" element={<EditNoticeNew />} />
           <Route path="test" element={<Test />} />
           <Route path="*" element={<PageNotFound />} />
 

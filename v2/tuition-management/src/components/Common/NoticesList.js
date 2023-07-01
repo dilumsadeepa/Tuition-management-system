@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState, tableRef} from "react";
+import React, {useRef, useEffect, useState} from "react";
 import axios from "axios";
 import Apiurl from '../Apiurl';
 
@@ -52,10 +52,19 @@ function NoticesList() {
 
 
     const [cookies] = useCookies(['role']);
-    console.log(cookies.role);
+    // console.log(cookies.role);
 
   
-
+    useEffect(() => {
+      axios.get(`${Apiurl}/notice`)
+        .then(res => {
+          const noticesData = res.data;
+          setNotices(noticesData);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }, []);
 
 
 
@@ -98,7 +107,9 @@ useEffect(() => {
           render: (notice_to) => {
             let text = '';
 
-            if (notice_to === '5') {
+            if (notice_to === '6') {
+              text = 'Public';
+            }else if (notice_to === '5') {
               text = 'Parent';
             } else if (notice_to === '2') {
               text = 'Staff';
@@ -108,15 +119,13 @@ useEffect(() => {
               text = 'Student';
             } else if (notice_to === '1') {
               text = 'Admin';
-            } else if (notice_to === '6') {
-              text = 'Public';
             }
 
             return text;
           },
         },
         { title: 'Notice Title', data: 'notice_title' },
-        { title: 'Date', data: 'createdAt' },
+        { title: 'Date', data: 'createdAt', render: (createdAt) => createdAt.split("T")[0] },
         {
           title: 'Action',
           data: 'id',
@@ -235,6 +244,8 @@ useEffect(() => {
 
       function getRecipientText(recipient) {
         switch(recipient) {
+          case "1":
+            return 'Admin';
           case "2":
             return 'Staff';
           case "3":
@@ -242,7 +253,9 @@ useEffect(() => {
           case "4":
             return 'Student';
           case "5":
-            return 'All';
+            return 'Parent';
+          case "6":
+            return 'Public';
           default:
             return '';
         }
@@ -313,9 +326,9 @@ useEffect(() => {
                                                     <td>
                                                      
                                                      {/* <button className='btn btn-sm btn-warning' onClick={()=> navigate(`/notice/${notice.id}`)}>View</button> */}
-                                                     <button className='btn btn-sm btn-secondary me-1 view-btn' onClick={() => handleShowModal(notice.id)}><i className="fa-solid fa-eye"></i></button>
-                                                     <button className='btn btn-sm btn-secondary me-1 view-btn' onClick={() => {navigate(`/notice/edit/${notice.id}`)}}><i className="fa-solid fa-pen-to-square"></i></button>
-                                                     <button className='btn btn-sm btn-secondary me-1 delete-btn' onClick={()=> handleDeleteNotice(notice.id)}><i className="fa-solid fa-trash"></i></button>
+                                                     <button className='btn btn-sm btn-secondary me-1 view-btn'><i className="fa-solid fa-eye"></i></button>
+                                                     <button className='btn btn-sm btn-secondary me-1 view-btn' ><i className="fa-solid fa-pen-to-square"></i></button>
+                                                     <button className='btn btn-sm btn-secondary me-1 delete-btn' ><i className="fa-solid fa-trash"></i></button>
                                                      </td>
                                                 </tr>
                                                 ))}
@@ -370,12 +383,7 @@ useEffect(() => {
                                                    
 
                                                     </div>
-                                                    </div>
-
-
-
-
-                                                    </div>
+       
                                                     <div className="modal-footer">
                                                     <button
                                                         type="button"
@@ -394,7 +402,8 @@ useEffect(() => {
                               
                                
                             </div>
-                            
+                            </div>
+                            </div>
                         </div>
                     </main>
                 </div>
