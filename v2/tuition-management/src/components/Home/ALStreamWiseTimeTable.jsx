@@ -483,6 +483,11 @@ function ALStreamWiseTimeTable() {
                                         
                                     </tbody>
                                     </table>
+                                    {subjectTimetable.length === 0 && (
+                                      <div class="alert alert-danger" role="alert">
+                                      No Data to Display!
+                                    </div>
+                                      )}
                                     </div>
 
                                     <div className="teachers">

@@ -17,7 +17,7 @@ const whatsappUrl = `https://wa.me/${phoneNumber}`;
               <li><a href="#">Student</a></li>
               <li><a href="#">Lectures</a></li>
               <li><a href="/streamwisetimetable">Time Table</a></li>
-              <li><a href="/altimetable">AL Time Table</a></li>
+              {/* <li><a href="/altimetable">AL Time Table</a></li> */}
             </ul>
           </div>
           <div className="col-sm-3">

@@ -19,6 +19,7 @@ import AdminDashhead from '../Admin/Dashhead';
 import StudentDashhead from "../Student/Dashhead";
 import TeacherDashhead from "../Teacher/Dashhead";
 import ParentDashHead from "../Parent/Dashhead";
+import TimeTablePostList from "./TimeTablePostList";
 import { useCookies } from 'react-cookie';
 
 import $ from 'jquery';
@@ -372,6 +373,9 @@ function NewTimeTableList() {
                                                 ))}
                                             </tbody>
                                             </table>
+
+                                                  {cookies.role === '1' ? '' :  <TimeTablePostList /> }
+                                            
 
 
                                               {/* The modal */}

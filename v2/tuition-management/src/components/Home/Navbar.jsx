@@ -42,7 +42,7 @@ console.log(rolecookies.role);
                 {cookies.email && (
                     <>
                         <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
-                        {cookies.role === '5' ? <a className="dropdown-item" href="/parent"> Dashboard</a> : cookies.role === '4' ? <a className="dropdown-item" href="/studashboard"> Dashboard</a> : cookies.role === '3' ? <a className="dropdown-item" href="/teacher"> Dashboard</a> : cookies.role === '2' ? <a className="dropdown-item" href="/staff"> Dashboard</a> : <a className="dropdown-item" href="/admin"> Dashboard</a>}     
+                        {cookies.role === '5' ? <a className="nav-link" href="/parent" style={{ textAlign: 'center', marginBottom: '0px' }}> Dashboard</a> : cookies.role === '4' ? <a className="dropdown-item" href="/studashboard"> Dashboard</a> : cookies.role === '3' ? <a className="dropdown-item" href="/teacher"> Dashboard</a> : cookies.role === '2' ? <a className="dropdown-item" href="/staff"> Dashboard</a> : <a className="dropdown-item" href="/admin"> Dashboard</a>}     
                         </li>
                         <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
                         <a className="nav-link" href="/logout" style={{ textAlign: 'center', marginBottom: '0px' }}>Log out</a>
