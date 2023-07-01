@@ -99,7 +99,7 @@ function GalleryList() {
             { title: 'Location', data: 'location' },
             { title: 'Category', data: 'category' },
             { title: 'Files', data: 'files', render: (files) => files ? files.split(",").length : 0 },
-            { title: 'Date', data: 'createdAt', render: (createdAt) => createdAt.split("T")[0] },
+            { title: 'Date', data: 'updatedAt', render: (updatedAt) => updatedAt.split("T")[0] },
             {
               title: 'Action',
               data: 'id',
@@ -297,7 +297,7 @@ function GalleryList() {
                                                   <td>{gallery.time_title}</td>
                                                   <td>{gallery.grade}</td>
                                                   <td>{gallery.files ? gallery.files.split(",").length : 0}</td>
-                                                  <td>{gallery.createdAt.split("T")[0]}</td>
+                                                  <td>{gallery.updatedAt.split("T")[0]}</td>
                                                   <td>
                                                     <button className='btn btn-sm btn-secondary me-1 view-btn'>
                                                       <i className="fa-solid fa-eye"></i>

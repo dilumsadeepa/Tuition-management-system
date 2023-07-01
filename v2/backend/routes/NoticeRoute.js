@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getNotices, getPublicNotices, createNotice, deleteNotice, viewNotice, getNoticesCount, getTodaysNotices } = require("../controllers/NoticeController.js");
+const { getNotices, getPublicNotices, createNotice, deleteNotice, viewNotice, getNoticesCount, getRolesNoticesCount, getTodaysNotices } = require("../controllers/NoticeController.js");
 const NoticeModel = require ('../models/NoticeModel.js');
 
 
@@ -87,7 +87,8 @@ router.put("/multiple", async (req, res, next) => {
 
 router.get('/notice', getNotices);
 router.get('/pubnotice', getPublicNotices);
-router.get('/notice/count', getNoticesCount);
+router.get('/notice/count/', getNoticesCount);
+router.get('/notices/count/:id', getRolesNoticesCount);
 router.delete('/notice/:id', deleteNotice);
 router.get('/notice/byId/:id', viewNotice );
 // router.post('/notice', createNotice);

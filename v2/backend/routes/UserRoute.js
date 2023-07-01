@@ -67,12 +67,12 @@ const {
 
 const { getsals } = require("../controllers/SalaryController.js");
 
-const {
-  getNotices,
-  deleteNotice,
-  viewNotice,
-  getNoticesCount,
-} = require("../controllers/NoticeController.js");
+// const {
+//   getNotices,
+//   deleteNotice,
+//   viewNotice,
+//   getNoticesCount,
+// } = require("../controllers/NoticeController.js");
 
 const {
   getTimetables,

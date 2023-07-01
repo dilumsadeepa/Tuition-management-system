@@ -32,9 +32,33 @@ const getNoticesCount = async (req, res) => {
     today.setHours(0, 0, 0, 0); // Set hours to 00:00:00 to get notices from the start of the day
     const count = await Notice.count({
       where: {
-        createdAt: {
+        updatedAt: {
           [Op.gte]: today,
         },
+      },
+    });
+    res.status(200).json({ count });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
+const getRolesNoticesCount = async (req, res) => {
+  const { id } = req.params;
+  console.log("id :", id);
+  try {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Set hours to 00:00:00 to get notices from the start of the day
+    const count = await Notice.count({
+      where: {
+        updatedAt: {
+          [Op.gte]: today,
+        },
+        [Op.or]: [
+          { notice_to: 6 },
+          { notice_to: id },
+        ],
       },
     });
     res.status(200).json({ count });
@@ -99,6 +123,7 @@ module.exports = {
   getNotices,
   getPublicNotices,
   getNoticesCount,
+  getRolesNoticesCount,
   getTodaysNotices,
   createNotice,
   deleteNotice,

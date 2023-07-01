@@ -125,7 +125,7 @@ useEffect(() => {
           },
         },
         { title: 'Notice Title', data: 'notice_title' },
-        { title: 'Date', data: 'createdAt', render: (createdAt) => createdAt.split("T")[0] },
+        { title: 'Date', data: 'updatedAt', render: (updatedAt) => updatedAt.split("T")[0] },
         {
           title: 'Action',
           data: 'id',
@@ -322,7 +322,7 @@ useEffect(() => {
                                                 <tr key={notice.id}>
                                                     <td>{noticeToText[index]}</td>
                                                     <td>{notice.notice_title}</td>
-                                                    <td>{notice.createdAt.split("T")[0]}</td>
+                                                    <td>{notice.updatedAt.split("T")[0]}</td>
                                                     <td>
                                                      
                                                      {/* <button className='btn btn-sm btn-warning' onClick={()=> navigate(`/notice/${notice.id}`)}>View</button> */}

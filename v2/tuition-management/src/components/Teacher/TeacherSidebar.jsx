@@ -1,17 +1,25 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Apiurl from '../Apiurl';
-
+import { useCookies } from 'react-cookie';
 
 const TeacherSidebar =() =>{
 
     const [noticesCount, setNoticesCount] = useState(0);
+    const [cookies] = useCookies(['role']);
+    // console.log('role', cookies.role);
 
     useEffect(() => {
 
         const getNoticesCount = async () => {
             try {
-              const response = await axios.get(`${Apiurl}/notice/count`);
+                let api_url;
+                if(cookies.role === '1'){
+                    api_url = '/notice/count/';
+                }else{
+                    api_url = `/notices/count/${cookies.role}`;
+                }
+              const response = await axios.get(`${Apiurl}${api_url}`);
               setNoticesCount(response.data.count);
             } catch (error) {
               console.log(error.message);

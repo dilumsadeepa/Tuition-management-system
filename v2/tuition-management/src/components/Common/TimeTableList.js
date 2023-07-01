@@ -166,7 +166,7 @@ function TimeTableList() {
             { title: 'TimeTable Title', data: 'time_title' },
             { title: 'Grade', data: 'grade' },
             { title: 'Files', data: 'files', render: (files) => files ? files.split(",").length : 0 },
-            { title: 'Date', data: 'createdAt', render: (createdAt) => createdAt.split("T")[0] },
+            { title: 'Date', data: 'updatedAt', render: (updatedAt) => updatedAt.split("T")[0] },
             {
               title: 'Action',
               data: 'id',
@@ -470,7 +470,7 @@ function TimeTableList() {
                                                   <td>{timeTable.time_title}</td>
                                                   <td>{timeTable.grade}</td>
                                                   <td>{timeTable.files ? timeTable.files.split(",").length : 0}</td>
-                                                  <td>{timeTable.createdAt.split("T")[0]}</td>
+                                                  <td>{timeTable.updatedAt.split("T")[0]}</td>
                                                   <td>
                                                     <button className='btn btn-sm btn-secondary me-1 view-btn'>
                                                       <i className="fa-solid fa-eye"></i>

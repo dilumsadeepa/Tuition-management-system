@@ -357,7 +357,7 @@ function NewTimeTableList() {
                                                     <td>{newtimeTable.fullname}</td>
                                                     <td>{newtimeTable.ctime}</td>
                                                     <td>{newtimeTable.hall}</td>
-                                                    <td>{newtimeTable.createdAt.split("T")[0]}</td>
+                                                    <td>{newtimeTable.updatedAt.split("T")[0]}</td>
                                                     <td>
                                                     <button className='btn btn-sm btn-secondary me-1 view-btn'>
                                                         <i className="fa-solid fa-eye"></i>
