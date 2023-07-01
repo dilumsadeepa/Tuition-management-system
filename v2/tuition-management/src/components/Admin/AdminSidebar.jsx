@@ -67,6 +67,7 @@ const Sidebar =() =>{
                             </div>
                         </div>
                     </div>
+                    
                     {/* <!-- Collapse --> */}
                     <div class="collapse navbar-collapse" id="sidebarCollapse">
                         {/* <!-- Navigation --> */}

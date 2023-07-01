@@ -36,7 +36,6 @@ const Sidebar =() =>{
             {/* <!-- Vertical Navbar --> */}
             <nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-dark bg-dark border-bottom border-bottom-lg-0 border-end-lg" id="navbarVertical">
                 <div class="container-fluid">
-                    
                     {/* <!-- Toggler --> */}
                     <button class="navbar-toggler ms-n2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -193,7 +192,7 @@ const Sidebar =() =>{
                         {/* <!-- Push content down --> */}
                         <div class="mt-auto"></div>
                         {/* <!-- User (md) --> */}
-                        <ul class="navbar-nav">
+                        {/* <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="#s">
                                     <i class="bi bi-person-square"></i> Account
@@ -204,7 +203,7 @@ const Sidebar =() =>{
                                     <i class="bi bi-box-arrow-left"></i> Logout
                                 </a>
                             </li>
-                        </ul>
+                        </ul> */}
                     </div>
                 </div>
             </nav>
