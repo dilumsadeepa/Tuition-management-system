@@ -8,6 +8,8 @@ import withReactContent from 'sweetalert2-react-content'
 import CloudinaryFileList from './CloudinaryFileList';
 import CloudBackupFilesList from './CloudBackupFilesList';
 import LocalFileList from './LocalFileList';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Sidebar from '../Admin/AdminSidebar';
 import StudentSidebar from '../Student/StudentSidebar';
@@ -91,9 +93,13 @@ function NewTimeTableList() {
     useEffect(() => {
       // Fetch your data here, for example:
       const fetchData = async () => {
-        let apiUrl = `${Apiurl}/newtimetable`;
+        let apiUrl;
         if (cookies.role === '4') {
           apiUrl = `${Apiurl}/newstudenttimetable/${cookies.id}`;
+        }else if (cookies.role === '1') {
+          apiUrl = `${Apiurl}/newtimetable`;
+        }else{
+          apiUrl = `${Apiurl}/newtimetable/threemonths`;
         }
         const response = await fetch(apiUrl);
 
@@ -285,6 +291,7 @@ function NewTimeTableList() {
 
   return (
     <div>
+        <ToastContainer autoClose={3000}/>
 
 {(cookies.role === '5' || cookies.role === '4' || cookies.role === '3' || cookies.role === '2' || cookies.role === '1') ? (
                       <>

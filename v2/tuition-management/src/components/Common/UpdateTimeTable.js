@@ -5,6 +5,9 @@ import Apiurl from '../Apiurl';
 import * as Yup from 'yup';
 import axios from 'axios';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function UpdateTimeTable() {
   
@@ -64,9 +67,24 @@ function UpdateTimeTable() {
           return;
         }
   
-        await axios.put(`${Apiurl}/newtimetable/${id}`, data);
-        console.log('Data has been updated');
-        navigate('/newtimetable');
+        await axios.put(`${Apiurl}/newtimetable/${id}`, data).then(() => {
+          console.log('data has been updated');
+          navigate('/newtimetable');
+
+          toast.success("Timetable Updated Successfully!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
+
+        });
+        // console.log('Data has been updated');
+        // navigate('/newtimetable');
       } catch (error) {
         console.error('Error updating time table data:', error);
       }
@@ -89,6 +107,7 @@ function UpdateTimeTable() {
 
   return (
     <div>
+       <ToastContainer autoClose={3000}/>
              {initialData ? (
         <div className="d-flex justify-content-center">
           <div className="col-sm-10 debox px-5">
@@ -96,13 +115,20 @@ function UpdateTimeTable() {
               <Form className="formContainer">
                 <label className="my-2">Course Id:</label>
                 <ErrorMessage name="cunit" className="badge rounded-pill text-bg-danger my-3" component="span" />
-                <Field
+                {/* <Field
                   id="inputCreatePost"
                   className={`form-control`}
                   name="cunit"
                   placeholder="Course Unit"
                   autoComplete="off"
-                />
+                /> */}
+
+                <Field as="select" id="course" name="cunit" className={`form-control`}>
+                <option value="" disabled selected>Select Course ID</option>
+                {courses.map((course) => (
+                    <option key={course.id} value={course.id}>{course.courseid}</option>
+                ))}
+                </Field>
 
                 <label className="my-2">Date:</label>
                 <ErrorMessage name="cdate" className="d-block badge rounded-pill text-bg-danger my-3" component="span" />

@@ -37,6 +37,7 @@ import GalleryList from "./components/Common/GalleryList";
 // import NewTimeTable from "./components/Common/NewTimeTable";
 import CreateNewTimeTable from "./components/Common/CreateNewTimeTable";
 import UpdateTimeTable from "./components/Common/UpdateTimeTable";
+import UpdateTimeTableNew from "./components/Common/UpdateTimeTableNew";
 import NewTimeTableList from "./components/Common/NewTimeTableList";
 import CreateTimeTableDashboard from "./components/Common/CreateTimeTableDashboard";
 
@@ -193,7 +194,7 @@ function App() {
             element={<CreateTimeTableDashboard />}
           />
           <Route path="newtimetable/create" element={<CreateNewTimeTable />} />
-          <Route path="newtimetable/edit/:id" element={<UpdateTimeTable />} />
+          <Route path="newtimetable/edit/:id" element={<UpdateTimeTableNew />} />
 
           <Route path="notice/edit/:id" element={<EditNotice />} />
           <Route path="test" element={<Test />} />

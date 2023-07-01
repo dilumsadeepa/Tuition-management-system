@@ -76,6 +76,11 @@ const Sidebar =() =>{
                                     <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">{noticesCount}</span>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/newtimetable">
+                                <i class="fa-solid fa-table-cells"></i> Time Table
+                                </a>
+                            </li>
                         </ul>
                         {/* <!-- Divider --> */}
                         <hr class="navbar-divider my-5 opacity-20" />
