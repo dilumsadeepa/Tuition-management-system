@@ -303,10 +303,21 @@ h1 em {
   }
 
 
-  
+
+  /* -------------font styling end here----------------- */
+
+
+.flexbox{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+  }
 
 
 @media (min-width: 300px) and (max-width: 575px) {
+
   .topquote {
     width: 240px;
     height: auto;
@@ -316,6 +327,21 @@ h1 em {
   .mobilepicx{
     margin-top: 20px;
   }
+  .flexbox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+  }
+
+  .mobile-flexbox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+  }
 
   .mobilespecs{
     display: flex;
@@ -324,6 +350,11 @@ h1 em {
     align-content: center;
     justify-content: center;
     margin-top: 10px;
+  }
+
+  .btn-grad-blue{
+    padding: 10px 20px;
+    max-width: 120px;
   }
 
   .swiper-slide img {
@@ -341,6 +372,14 @@ h1 em {
   .slide-content .slide-text p {
     font-size: 13px;
     color: #fff;
+  }
+
+  .seven h1{
+    font-size: 17px;
+  }
+
+  .eight h1{
+    font-size: 17px;
   }
 }
 
@@ -847,3 +886,7 @@ body {
     justify-items: center;
   }
 }
+
+/* .fullwidthinput{
+  min-width: 100%;
+} */

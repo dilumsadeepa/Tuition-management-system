@@ -136,10 +136,9 @@ function EditNotice() {
   return (
     <div>
     <ToastContainer autoClose={3000} />
-    <div className="row">
-      <div className="col-sm-2"></div>
+    <div className="d-flex justify-content-center">
 
-      <div className="col-sm-8 debox">
+      <div className="col-sm-10 debox px-5">
       <form action="#">
           <div className="mb-3 mt-3">
               <label htmlFor="audience" >Target Audience</label>
@@ -220,7 +219,7 @@ function EditNotice() {
       
 
       <div className="mb-3">
-              <button onClick={send} className="btn btn-primary">Submit</button>
+              <button onClick={send} className="btn btn-primary">Update</button>
               <a  className="btn btn-outline-danger ms-2" href='/notice'>
                   Cancel
                 </a>

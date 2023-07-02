@@ -333,19 +333,21 @@ function EditGallery() {
   return (
     <div>
          <ToastContainer autoClose={3000} />
-    <div className="row">
-      <div className="col-sm-2"></div>
+    <div className="d-flex justify-content-center">
 
-      <div className="col-sm-8 debox">
+      <div className="col-sm-10 debox px-5">
       <form action="#">
       <div class="row mb-4">
-            <div class="col">
+            <div class="col-12 col-sm-6 fullwidthinput">
               <div className="mb-3 mt-3">
                 <label htmlFor="title" className="my-1"><i className="fa-regular fa-note-sticky fa-lg mx-2"></i> Gallery Location</label>
                 <select className={`form-control ${errors.location && "is-invalid"}`} id="tableTitle" name="grade"  value={location} onChange={handleLocationChange} >
                         <option value="" disabled hidden>Select Location</option>
                         <option value="homeslider">Home Slider</option>
                         <option value="gallery">Gallery</option>
+                        <option value="testspace1">Test Space 1</option>
+                        <option value="testspace2">Test Space 2</option>
+                        <option value="testspace3">Test Space 3</option>
         
                     </select>
                 
@@ -355,7 +357,7 @@ function EditGallery() {
             </div>
               </div>
               
-              <div class="col">
+              <div class="col-12 col-sm-6 fullwidthinput">
                   <div className="mb-3 mt-3">
                     <label htmlFor="tableTitle" className="my-1"><i className="fa-solid fa-users-gear fa-lg mx-2"></i> Category</label>
                     <input type="text" id="title" className={`form-control ${errors.category && "is-invalid"}`} name="tableTitle" placeholder="Enter Title" value={category} onChange={handleCategoryChange} />
@@ -378,9 +380,13 @@ function EditGallery() {
             <div className="d-flex align-items-center">
             <div className="flex-grow-1 align-items-center pe-2">
             <label htmlFor="cloudFiles">Attachments - cloud storage only</label>
+            <div className="d-flex align-items-center">
             <input type="file" className={`form-control ${errors.attachFiles && "is-invalid"}`} multiple onChange={handleCloudFileInputChange} />
+            <div className="ms-2"><button onClick={upload} className="btn btn-primary">upload</button></div>
             </div>
-           <div className="pt-6"><button onClick={upload} className="btn btn-primary">upload</button></div>
+            
+            </div>
+
           </div>
             
               {errors.cloudFiles && (
@@ -484,7 +490,7 @@ function EditGallery() {
     </div>
 
       <div className="mb-3">
-              <button onClick={send} className="btn btn-primary">Submit</button>
+              <button onClick={send} className="btn btn-primary">Update</button>
               <a  className="btn btn-outline-danger ms-2" href='/gallery'>
                   Cancel
                 </a>

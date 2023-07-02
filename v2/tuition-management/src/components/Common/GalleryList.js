@@ -38,6 +38,7 @@ function GalleryList() {
     const tableRef = useRef(null);
 
     const [galleries, setGalleries] = useState([]);
+    const [galleryDelete, setGalleryDelete] = useState([]);
     const [fileCount, setFileCount] = useState(0);
     const [cloudFiles, setCloudFiles] = useState([]);
     const [cloudUrls, setCloudUrls] = useState([]);
@@ -63,12 +64,12 @@ function GalleryList() {
             setGalleries(galleryData);
             // Extract filenames  from the response data
             const filenames = galleryData.map(gallery => gallery.files);
-            // Get the number of files for each notice
+            // Get the number of files for each gallery
             if (filenames.length>0){
             const fileCounts = filenames.map(files => files.split(',').length);
             // Update the state with the file counts
             setFileCount(fileCounts);
-            // Set the noticeTo text based on the notice_to value
+            
             }
           })
           .catch(err => {
@@ -99,6 +100,7 @@ function GalleryList() {
             { title: 'Location', data: 'location' },
             { title: 'Category', data: 'category' },
             { title: 'Files', data: 'files', render: (files) => files ? files.split(",").length : 0 },
+            
             { title: 'Date', data: 'updatedAt', render: (updatedAt) => updatedAt.split("T")[0] },
             {
               title: 'Action',
@@ -149,7 +151,7 @@ function GalleryList() {
       };
     
       fetchData();
-    }, []);
+    }, [galleryDelete]);
     
     
 
@@ -163,8 +165,9 @@ function GalleryList() {
         try {
           const deleted = await axios.delete(`${Apiurl}/gallery/${id}`);
           console.log(deleted.data);
+          setGalleryDelete(id);
           // Update the state of the galleries array after deleting the gallery
-          setGalleries(galleries.filter(gallery => gallery.id !== id));
+          // setGalleries(galleries.filter(gallery => gallery.id !== id));
         } catch (error) {
           console.log("error on deleting" + error);
         }
@@ -244,6 +247,8 @@ function GalleryList() {
 
   return (
     <div>
+      {(cookies.role === '1' || cookies.role === '2' ) ? (
+        <>
           <section> 
             {/* <!-- Dashboard --> */}
                 <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
@@ -296,7 +301,7 @@ function GalleryList() {
                                                 <tr key={gallery.id}>
                                                   <td>{gallery.time_title}</td>
                                                   <td>{gallery.grade}</td>
-                                                  <td>{gallery.files ? gallery.files.split(",").length : 0}</td>
+                                                  <td>{gallery.files ? gallery.files.split(",").length : gallery.cloudFiles ? gallery.cloudFiles.split(",").length : gallery.cloudOnly ? gallery.cloudOnly.split(",").length : '0'}</td>
                                                   <td>{gallery.updatedAt.split("T")[0]}</td>
                                                   <td>
                                                     <button className='btn btn-sm btn-secondary me-1 view-btn'>
@@ -344,13 +349,19 @@ function GalleryList() {
 
                                                     <div className="row">
                                                     <div>
-                                                    <CloudinaryFileList cloudUrls={cloudUrls} />
+                                                
+                                                        <CloudinaryFileList cloudUrls={cloudUrls} />
+                                              
                                                     </div>
                                                     </div>
 
                                                     <div className="row">
                                                     <div>
-                                                    <CloudBackupFilesList cloudFiles={cloudFiles} />
+                                                    {galleryObject && galleryObject.cloudFiles && (
+                                                      <>
+                                                        <CloudBackupFilesList cloudFiles={cloudFiles} />
+                                                      </>
+                                                        )}
                                                     </div>
                                                     </div>
 
@@ -399,6 +410,11 @@ function GalleryList() {
 
 
         </section>
+
+        </>
+                    
+        ) : <NoPermission />}
+
     </div>
   )
 }

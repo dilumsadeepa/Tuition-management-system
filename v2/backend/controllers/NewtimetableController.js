@@ -226,10 +226,18 @@ exports.viewPublicSubjectTeachers = async (req, res) => {
   const { id } = req.params;
   console.log("courseid: " + id);
 
-  const sqlquery =
-  "SELECT Distinct u.fullname, u.gender FROM timetable t INNER JOIN courses c ON t.cunit = c.id INNER JOIN users u ON u.id = c.userId WHERE c.coursesubject LIKE '%" +
-  id +
-  "%';";
+  // const sqlquery =
+  // "SELECT Distinct u.fullname, u.gender FROM timetable t INNER JOIN courses c ON t.cunit = c.id INNER JOIN users u ON u.id = c.userId WHERE c.coursesubject LIKE '%" +
+  // id +
+  // "%';";
+
+  const sqlquery = `
+    SELECT DISTINCT u.fullname, u.gender, u.email, u.tel,  c.coursesubject
+    FROM courses c
+    INNER JOIN timetable t ON c.id = t.cunit
+    INNER JOIN users u ON c.userId = u.id
+    WHERE c.coursesubject LIKE '%${id}%';
+  `;
 
   try {
       const selectedteachers = await db.query(sqlquery, { type: QueryTypes.SELECT });
@@ -251,13 +259,21 @@ exports.viewPublicStreamTeachers = async (req, res) => {
   const { id } = req.params;
   console.log("courseid: " + id);
 
-      const sqlquery = `
-      SELECT DISTINCT u.fullname, u.gender
-      FROM timetable t
-      INNER JOIN courses c ON t.cunit = c.id
-      INNER JOIN users u ON u.id = c.userId
-      WHERE c.courseStream LIKE '%${id}%';
-    `;
+    //   const sqlquery = `
+    //   SELECT DISTINCT u.fullname, u.gender
+    //   FROM timetable t
+    //   INNER JOIN courses c ON t.cunit = c.id
+    //   INNER JOIN users u ON u.id = c.userId
+    //   WHERE c.courseStream LIKE '%${id}%';
+    // `;
+
+    const sqlquery = `
+    SELECT DISTINCT u.fullname, u.gender, u.email, u.tel,  c.coursesubject
+    FROM courses c
+    INNER JOIN timetable t ON c.id = t.cunit
+    INNER JOIN users u ON c.userId = u.id
+    WHERE c.courseStream LIKE '%${id}%';
+  `;
 
   try {
       const selectedteachers = await db.query(sqlquery, { type: QueryTypes.SELECT });

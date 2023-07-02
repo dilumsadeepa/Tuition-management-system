@@ -10,6 +10,9 @@ const timetableRoutes = require('./routes/TimetableRoute.js');
 app.use(cors());
 app.use(express.json());
 
+// Serve static files from the "uploads" folder
+app.use('/uploads', express.static('uploads'));
+
 app.use(userRoutes);
 app.use(noticeRoutes);
 app.use(timetableRoutes);

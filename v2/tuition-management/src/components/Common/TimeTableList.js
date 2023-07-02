@@ -8,7 +8,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import CloudinaryFileList from './CloudinaryFileList';
 import CloudBackupFilesList from './CloudBackupFilesList';
-import LocalFileList from './LocalFileList';
+import LocalFileList from './LocalFileListTimeTable';
 
 import Sidebar from '../Admin/AdminSidebar';
 import StudentSidebar from '../Student/StudentSidebar';
@@ -37,6 +37,7 @@ function TimeTableList() {
     const tableRef = useRef(null);
 
     const [timeTables, setTimeTables] = useState([]);
+    const [timeTableDelete, setTimeTableDelete] = useState('');
     const [fileCount, setFileCount] = useState(0);
     const [noticeToText, setNoticeToText] = useState('');
     const [cloudFiles, setCloudFiles] = useState([]);
@@ -153,6 +154,8 @@ function TimeTableList() {
       const fetchData = async () => {
         const response = await fetch(`${Apiurl}/timetable`);
         const data = await response.json();
+
+        // setTimeTable(data);
     
         // Destroy existing DataTable (if any)
         if ($.fn.DataTable.isDataTable(tableRef.current)) {
@@ -221,7 +224,7 @@ function TimeTableList() {
       };
     
       fetchData();
-    }, []);
+    }, [timeTableDelete]);
     
     
 
@@ -285,8 +288,10 @@ function TimeTableList() {
         try {
           const deleted = await axios.delete(`${Apiurl}/timetable/${id}`);
           console.log(deleted.data);
+          setTimeTableDelete(id);
+      
           // Update the state of the notices array after deleting the notice
-          setTimeTables(timeTables.filter(timetable => timetable.id !== id));
+          // setTimeTables(timeTables.filter(timetable => timetable.id !== id));
         } catch (error) {
           console.log("error on deleting" + error);
         }
@@ -469,7 +474,7 @@ function TimeTableList() {
                                                 <tr key={timeTable.id}>
                                                   <td>{timeTable.time_title}</td>
                                                   <td>{timeTable.grade}</td>
-                                                  <td>{timeTable.files ? timeTable.files.split(",").length : 0}</td>
+                                                  <td>{timeTable.files ? timeTable.files.split(",").length : timeTable.cloudFiles ? timeTable.cloudFiles.split(",").length : timeTable.cloudOnly ? timeTable.cloudOnly.split(",").length : '0'}</td>
                                                   <td>{timeTable.updatedAt.split("T")[0]}</td>
                                                   <td>
                                                     <button className='btn btn-sm btn-secondary me-1 view-btn'>
@@ -523,7 +528,11 @@ function TimeTableList() {
 
                                                     <div className="row">
                                                     <div>
-                                                    <CloudBackupFilesList cloudFiles={cloudFiles} />
+                                                    {timeTableObject && timeTableObject.cloudFiles && (
+                                                            <>
+                                                                <CloudBackupFilesList cloudFiles={cloudFiles} />
+                                                            </>
+                                                        )}
                                                     </div>
                                                     </div>
 

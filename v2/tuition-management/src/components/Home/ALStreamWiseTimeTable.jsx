@@ -431,8 +431,15 @@ function ALStreamWiseTimeTable() {
                                       
                                       <div className="card-body">
                                         <h5 className="card-title">{teacher.fullname}</h5>
-                                        {/* <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> */}
+                                        <h5 className="card-title">{teacher.coursesubject}</h5>
+
+                                        <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><i class="fa-regular fa-envelope"></i> {teacher.email}</li>
+                                        <li class="list-group-item"><i class="fa-solid fa-phone"></i> {teacher.tel}</li>
+                                        </ul>
+                              
                                       </div>
+
                                     </div>
                                   </div>
 
@@ -527,7 +534,11 @@ function ALStreamWiseTimeTable() {
                                                 
                                                 <div className="card-body">
                                                   <h5 className="card-title">{teacher.fullname}</h5>
-                                                  {/* <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> */}
+                                                  <h6 className="card-title">{teacher.coursesubject}</h6>
+                                                  <ul class="list-group list-group-flush">
+                                                  <li class="list-group-item"><i class="fa-regular fa-envelope"></i> {teacher.email}</li>
+                                                  <li class="list-group-item"><i class="fa-solid fa-phone"></i> {teacher.tel}</li>
+                                                  </ul>
                                                 </div>
                                               </div>
                                             </div>

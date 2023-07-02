@@ -97,7 +97,7 @@ function CreateNotice() {
         <div className="col-sm-10 debox px-5">
         <form action="#">
             <div class="row mb-4">
-              <div class="col">
+              <div class="col-12 col-sm-6">
                   <div className="mb-3 mt-3">
                     <label htmlFor="audience" className="my-1"><i className="fa-solid fa-users-gear fa-lg mx-2"></i> Target Audience</label>
                     <select className={`form-control ${errors.audience && "is-invalid"}`} id="audience" name="notice_to"  value={audience} onChange={handleAudienceChange} >
@@ -115,7 +115,7 @@ function CreateNotice() {
                       )}
                 </div>
               </div>
-              <div class="col">
+              <div class="col-12 col-sm-6">
               <div className="mb-3 mt-3">
                 <label htmlFor="title" className="my-1"><i className="fa-regular fa-note-sticky fa-lg mx-2"></i> Notice Title</label>
                 <input type="text" id="title" className={`form-control ${errors.noticeTitle && "is-invalid"}`} name="notice_title" placeholder="Enter Title" value={noticeTitle} onChange={handleNoticeTitleChange} />
@@ -182,10 +182,13 @@ function CreateNotice() {
         
 
         <div className="mb-3">
-                <button onClick={send} className="btn-grad-blue">Submit</button>
+            <div className="">
+            <button onClick={send} className="btn btn-primary">Submit</button>
                 <a  className="btn btn-outline-danger ms-2" href='/notice'>
                   Cancel
                 </a>
+            </div>
+               
             </div>
         </div>
       </div> 

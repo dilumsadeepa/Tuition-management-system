@@ -187,25 +187,28 @@ function CreateTimeTable() {
 
         axios.post(`${Apiurl}/timemultiple` , data)
         .then(res => {
+
+         
           
           setCloudFiles([]);      // Clear the list of cloud files
             
           // Update the list of Cloudinary URLs
-          const urls = res.data.cloudFiles.split(',').map(url => url.trim());
-          setCloudUrls(urls);
+          if(res.data.cloudFiles){
+            const urls = res.data.cloudFiles.split(',').map(url => url.trim());
+            setCloudUrls(urls);
+  
+            // Clear the list of cloud files
+            setCloudFiles([]);
+  
+            console.log("urls :",urls);
+          }
 
-          // Clear the list of cloud files
-          setCloudFiles([]);
-
-          console.log("urls :",urls);
 
 
           console.log(res);
 
           console.log(uniqueFileNames);
 
-
-          
           toast.success("Time Table created successfully", {
             position: "top-right",
             autoClose: 5000,
@@ -216,6 +219,8 @@ function CreateTimeTable() {
             progress: undefined,
             theme: "colored",
             });
+          
+
 
         })
         .catch(err => console.log(err));
@@ -313,7 +318,7 @@ function CreateTimeTable() {
         <div className="col-sm-10 debox px-5">
         <form action="#">
             <div class="row mb-4">
-            <div class="col">
+            {/* <div class="col-12 col-sm-6"> */}
               <div className="mb-3 mt-3">
                 <label htmlFor="title" className="my-1"><i className="fa-regular fa-note-sticky fa-lg mx-2"></i> Time Table Title</label>
                 <input type="text" id="title" className={`form-control ${errors.tableTitle && "is-invalid"}`} name="tableTitle" placeholder="Enter Title" value={tableTitle} onChange={handleTableTitleChange} />
@@ -321,9 +326,9 @@ function CreateTimeTable() {
                     <div className="badge rounded-pill text-bg-danger">{errors.tableTitle}</div>
                   )}
             </div>
-              </div>
+              {/* </div> */}
               
-              <div class="col">
+              {/* <div class="col-12 col-sm-6"> */}
                   <div className="mb-3 mt-3">
                     <label htmlFor="tableTitle" className="my-1"><i className="fa-solid fa-users-gear fa-lg mx-2"></i> Grade</label>
                     <select className={`form-control ${errors.grade && "is-invalid"}`} id="tableTitle" name="grade"  value={grade} onChange={handleGradeChange} >
@@ -344,7 +349,7 @@ function CreateTimeTable() {
                       <div className="badge rounded-pill text-bg-danger">{errors.grade}</div>
                       )}
                 </div>
-              </div>
+              {/* </div> */}
 
             </div>
             
@@ -353,7 +358,7 @@ function CreateTimeTable() {
 
 
           <div className="row mb-3">
-            <div className="col">
+            {/* <div className="col-12 col-sm-6"> */}
                   <div className="d-flex align-items-center">
                   <div className="flex-grow-1 align-items-center pe-2">
                   <label htmlFor="cloudFiles" className="my-2"><i class="fa-solid fa-link fa-lg mx-2"></i> Attachments - cloud storage only</label>
@@ -368,8 +373,8 @@ function CreateTimeTable() {
                 {errors.cloudFiles && (
                   <div className="badge rounded-pill text-bg-danger">{errors.cloudFiles}</div>
                 )}
-            </div>
-              <div className="col">
+            {/* </div> */}
+              {/* <div className="col-12 col-sm-6"> */}
                   <label htmlFor="files" className="my-2"><i class="fa-solid fa-link fa-lg mx-2"></i> Attachments</label>
                     <input type="file" className={`form-control ${errors.attachFiles && "is-invalid"}`} multiple onChange={handleFileInputChange} />
                     <div className="d-flex align-items-center mt-2 ms-1 ps-0">
@@ -382,7 +387,7 @@ function CreateTimeTable() {
                     {errors.attachFiles && (
                       <div className="badge rounded-pill text-bg-danger">{errors.attachFiles}</div>
                     )}
-              </div>
+              {/* </div> */}
             </div>
            
               

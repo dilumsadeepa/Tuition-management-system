@@ -17,7 +17,7 @@ const cloudinaryStorageOption = new CloudinaryStorage({
     params: {
       resource_type: "raw",
       unique_filename: false,
-      folder: "Susipwan_BackupData/timetables/Backup",
+      folder: "Susipwan_BackupData/Timetables/Backup",
       public_id: (req, file) => file.originalname,
       upload_preset: "xveddqrz",
       },
@@ -86,56 +86,57 @@ const upload = multer({
 
 
 
-//insert a notice
-router.post('/timetable', async (req, res) => {
-    try {
-        const timetable = await TimetableModel.create(req.body);
-        console.log("Timetable req.body : ",req.body);
-        // console.log(req);
-        console.log(req.files);
-        const ufiles = req.body.files;
-        const ufilesArray = req.body.fileArray;        ;
-        var attFiles =req.body.orgFiles;
-        var file = attFiles.file;
-        console.log("ufiles :",ufiles);
-        console.log("ufilesArray :",ufilesArray);
-        console.log("rrrrrrrrrrrrr");
-        console.log("attfiles :",attFiles);
-        console.log("rrrrrrrrrrrrr");
-        console.log("varFile :",attFiles[0]);
-        console.log("rrrrrrrrrrrrr");
+//insert a timetable
+// router.post('/timetable', async (req, res) => {
+//     try {
+//         const timetable = await TimetableModel.create(req.body);
+//         console.log("Timetable req.body : ",req.body);
+//         // console.log(req);
+//         console.log(req.files);
+//         const ufiles = req.body.files;
+//         const ufilesArray = req.body.fileArray;        ;
+//         var attFiles =req.body.orgFiles;
+//         var file = attFiles.file;
+//         console.log("ufiles :",ufiles);
+//         console.log("ufilesArray :",ufilesArray);
+//         console.log("rrrrrrrrrrrrr");
+//         console.log("attfiles :",attFiles);
+//         console.log("rrrrrrrrrrrrr");
+//         console.log("varFile :",attFiles[0]);
+//         console.log("rrrrrrrrrrrrr");
 
-        // ufiles.forEach((item, index) => {
-            for(let ufile of ufiles){
-            console.log(ufile);
+//         // ufiles.forEach((item, index) => {
+//             for(let ufile of ufiles){
+//             console.log(ufile);
 
-            ufilesArray.mv('./uploads/timetables/' + ufile, function (err) {
-                if (err) {
-                    res.send(err);
-                }else{
-                    console.log('File Saved.');
-                    res.send('File uploaded!');
-                }
-                console.log('File Saved.');
-            });
+//             ufilesArray.mv('./uploads/timetables/' + ufile, function (err) {
+//                 if (err) {
+//                     res.send(err);
+//                 }else{
+//                     console.log('File Saved.');
+//                     res.send('File uploaded!');
+//                 }
+//                 console.log('File Saved.');
+//             });
 
 
-        };
+//         };
 
-        res.status(201).json(timetable);
-    } catch (error) {
-        res.status(500).json(error);
-    }
-}); 
+//         res.status(201).json(timetable);
+//     } catch (error) {
+//         res.status(500).json(error);
+//     }
+// }); 
 
 
 
 router.post("/timemultiple", upload.array("myFieldName"), async (req, res, next) => {
-    const notice = await TimetableModel.create(req.body);
+    const timetable = await TimetableModel.create(req.body);
     console.log("body :",req.body);
     console.log("file List: ",req.files);
     console.log("file Names csv: ",req.body.files);
 
+  
     const { time_title, grade ,files, backup} = req.body;
 
          // Upload files to Cloudinary
@@ -149,7 +150,7 @@ router.post("/timemultiple", upload.array("myFieldName"), async (req, res, next)
                 const filenameWithoutExt = path.parse(file.filename).name; // Get filename without extension
                 console.log("filenameWithoutExt :",filenameWithoutExt);
                 const result = await cloudinary.uploader.upload(file.path, {
-                    folder: "Susipwan_BackupData/timetables",
+                    folder: "Susipwan_BackupData/Timetables",
                     public_id: filenameWithoutExt,
                     resource_type: "raw",
                     upload_preset: "xveddqrz"
@@ -159,16 +160,15 @@ router.post("/timemultiple", upload.array("myFieldName"), async (req, res, next)
             );
 
 
-            // Update the notice object with the Cloudinary URLs
-            notice.cloudFiles = cloudUrls.join(','); // Join URLs with commas
+            // Update the timetable object with the Cloudinary URLs
+            timetable.cloudFiles = cloudUrls.join(','); // Join URLs with commas
 
-            // Save the notice to the database
-            await notice.save();
+            // Save the timetable to the database
+            await timetable.save();
+
          }
 
-            // res.status(201).json(notice);
-
-    res.status(201).json(notice);
+         res.status(201).json(timetable);
 });
 
 
@@ -187,7 +187,7 @@ router.post("/timemultiple", upload.array("myFieldName"), async (req, res, next)
 
 
 router.post("/timecloud", cloudinaryUploads.array("cloudStorage"), async (req, res, next) => {
-  const notice = await TimetableModel.create(req.body);
+  const timetable = await TimetableModel.create(req.body);
   console.log("file List: ",req.files);
   console.log("file Names csv: ",req.body.files);
  
@@ -204,7 +204,7 @@ router.post("/timecloud", cloudinaryUploads.array("cloudStorage"), async (req, r
 
       const result = await cloudinary.uploader.upload(file.path, {
         resource_type: "raw",
-        folder: "Susipwan_BackupData/Notices",
+        folder: "Susipwan_BackupData/Timetables",
         public_id: file.originalname,
         upload_preset: "xveddqrz",
       });
@@ -212,28 +212,28 @@ router.post("/timecloud", cloudinaryUploads.array("cloudStorage"), async (req, r
     })
   );
 
-  // Update the notice object with the Cloudinary URLs
-  notice.cloudOnly = cloudUrls.join(","); // Join URLs with commas
+  // Update the timetable object with the Cloudinary URLs
+  timetable.cloudOnly = cloudUrls.join(","); // Join URLs with commas
 
-  // Save the notice to the database
-  await notice.save();
+  // Save the timetable to the database
+  await timetable.save();
 
   // res.status(201).json({
-  //   message: "Notice created successfully",
-  //   notice: notice,
+  //   message: "timetable created successfully",
+  //   timetable: timetable,
   // });
 
-  res.status(201).json(notice);
+  res.status(201).json(timetable);
 });
 
 
 
 router.post("/single",upload.single("files"), async (req, res, next) => {
-    const notice = await TimetableModel.create(req.body);
+    const timetable = await TimetableModel.create(req.body);
     console.log(req.body);
     console.log(req.file);
 
-      res.status(201).json(notice);
+      res.status(201).json(timetable);
 });
 
 
@@ -246,26 +246,34 @@ router.put("/timemultiple", upload.array("myFieldName"), async (req, res, next) 
   console.log("body :",req.body);
   console.log("file List: ",req.files);
   console.log("file Names csv: ",req.body.files);
-  const { id, time_title, grade ,files, backup} = req.body;
+  const { id, time_title, grade ,files, localFiles, backup} = req.body;
 
 
   let hasNewFiles = false;
+  let hasNewFile = false;
+  let hasLocalFiles = false;
   if (req.files.length > 0) { 
     hasNewFiles = true;
   }
+  if (files.length > 0) {
+    hasNewFile = true;
+  }
+  if (localFiles.length > 0) {
+    hasLocalFiles = true;
+  }
 
-    // Get the notice from the database
-  const notice = await TimetableModel.findByPk(id);
+    // Get the timetable from the database
+  const timetable = await TimetableModel.findByPk(id);
 
 
-// Delete existing Cloudinary files for the notice if there are no new files
+// Delete existing Cloudinary files for the timetable if there are no new files
 if (hasNewFiles) {
-  const publicIdsWithExtensions = notice.files.split(',');
+  const publicIdsWithExtensions = timetable.files.split(',');
   const publicIds = publicIdsWithExtensions.map(publicId =>
-    path.join('uploads', 'notices', publicId)
+    path.join('uploads', 'timetables', publicId)
   );
-  const public_ids = publicIdsWithExtensions.map(publicId => `Susipwan_BackupData/Notices/${publicId}`);
-  const BackupPublic_Ids = publicIdsWithExtensions.map(backupPublicId => `Susipwan_BackupData/Notices/Backup/${backupPublicId}`);
+  const public_ids = publicIdsWithExtensions.map(publicId => `Susipwan_BackupData/Timetables/${publicId}`);
+  const BackupPublic_Ids = publicIdsWithExtensions.map(backupPublicId => `Susipwan_BackupData/Timetables/Backup/${backupPublicId}`);
 
   try {
     const result = await cloudinary.api.delete_resources(public_ids, {
@@ -294,13 +302,20 @@ if (hasNewFiles) {
 
 
 
-  notice.time_title = time_title;
-  notice.grade = grade;
-  // notice.files = files;
-  if (hasNewFiles) {
-    notice.files = files;
+  timetable.time_title = time_title;
+  timetable.grade = grade;
+  // timetable.files = files;
+  if (hasNewFile) {
+    timetable.files = files;
   }
-  notice.backup = backup;
+  if (hasLocalFiles) {
+    timetable.localFiles = localFiles;
+  }
+  timetable.backup = backup;
+  if(req.body.backup === 'false'){
+    timetable.cloudFiles = null;
+  }
+  timetable.cloudOnly = null;
 
 
        // Upload files to Cloudinary
@@ -314,7 +329,7 @@ if (hasNewFiles) {
               const filenameWithoutExt = path.parse(file.filename).name; // Get filename without extension
               console.log("filenameWithoutExt :",filenameWithoutExt);
               const result = await cloudinary.uploader.upload(file.path, {
-                  folder: "Susipwan_BackupData/Notices",
+                  folder: "Susipwan_BackupData/Timetables",
                   public_id: filenameWithoutExt,
                   resource_type: "raw",
                   upload_preset: "xveddqrz"
@@ -325,19 +340,19 @@ if (hasNewFiles) {
 
 
 
-          // Update the notice object with the Cloudinary URLs
-          notice.cloudFiles = cloudUrls.join(','); // Join URLs with commas
+          // Update the timetable object with the Cloudinary URLs
+          timetable.cloudFiles = cloudUrls.join(','); // Join URLs with commas
 
        
        }
       }
-   // Save the notice to the database
-   await notice.save();
+   // Save the timetable to the database
+   await timetable.save();
 
    
-          // res.status(201).json(notice);
+          // res.status(201).json(timetable);
 
-  res.status(201).json(notice);
+  res.status(201).json(timetable);
 });
 
 
@@ -356,23 +371,26 @@ router.put("/timecloud", cloudinaryUploads.array("cloudStorage"), async (req, re
   if (req.files.length > 0) { 
     hasNewFiles = true;
   }
-
-  // Get the notice from the database
-  const notice = await TimetableModel.findByPk(id);
-
-  // If there are no new files and the notice has existing files, don't update the files field
-  // if (!hasNewFiles && notice.files) {
-  //   files = notice.files;
+  // if (localFiles) {
+  //   hasLocalFiles = true;
   // }
 
-  // Delete existing Cloudinary files for the notice if there are no new files
+  // Get the timetable from the database
+  const timetable = await TimetableModel.findByPk(id);
+
+  // If there are no new files and the timetable has existing files, don't update the files field
+  // if (!hasNewFiles && timetable.files) {
+  //   files = timetable.files;
+  // }
+
+  // Delete existing Cloudinary files for the timetable if there are no new files
   if (hasNewFiles) {
-    const publicIdsWithExtensions = notice.files.split(',');
+    const publicIdsWithExtensions = timetable.files.split(',');
     const publicIds = publicIdsWithExtensions.map(publicId =>
-      path.join('uploads', 'notices', publicId)
+      path.join('uploads', 'timetables', publicId)
     );
-    const public_ids = publicIdsWithExtensions.map(publicId => `Susipwan_BackupData/Notices/${publicId}`);
-    const BackupPublic_Ids = publicIdsWithExtensions.map(backupPublicId => `Susipwan_BackupData/Notices/Backup/${backupPublicId}`);
+    const public_ids = publicIdsWithExtensions.map(publicId => `Susipwan_BackupData/Timetables/${publicId}`);
+    const BackupPublic_Ids = publicIdsWithExtensions.map(backupPublicId => `Susipwan_BackupData/Timetables/Backup/${backupPublicId}`);
 
     try {
       const result = await cloudinary.api.delete_resources(public_ids, {
@@ -397,13 +415,16 @@ router.put("/timecloud", cloudinaryUploads.array("cloudStorage"), async (req, re
     }
   }
 
-  // Update the notice in the database
-  notice.time_title = time_title;
-  notice.grade = grade;
+  // Update the timetable in the database
+  timetable.time_title = time_title;
+  timetable.grade = grade;
   if (hasNewFiles) {
-    notice.files = files;
+    timetable.files = files;
   }
-  notice.backup = backup;
+ 
+  timetable.localFiles = null;
+ 
+  timetable.backup = 0;
 
   // Upload new files to Cloudinary
   if (hasNewFiles) {
@@ -413,7 +434,7 @@ router.put("/timecloud", cloudinaryUploads.array("cloudStorage"), async (req, re
 
         const result = await cloudinary.uploader.upload(file.path, {
           resource_type: "raw",
-          folder: "Susipwan_BackupData/Notices",
+          folder: "Susipwan_BackupData/Timetables",
           public_id: file.originalname,
           upload_preset: "xveddqrz",
         });
@@ -421,24 +442,24 @@ router.put("/timecloud", cloudinaryUploads.array("cloudStorage"), async (req, re
       })
     );
 
-    // Update the notice object with the Cloudinary URLs
-    notice.cloudOnly = cloudUrls.join(","); // Join URLs with commas
+    // Update the timetable object with the Cloudinary URLs
+    timetable.cloudOnly = cloudUrls.join(","); // Join URLs with commas
   }
 
-  // Save the notice to the database
-  await notice.save();
+  // Save the timetable to the database
+  await timetable.save();
 
-  res.status(200).json(notice);
+  res.status(200).json(timetable);
 });
 
 
 
 router.post("/single",upload.single("files"), async (req, res, next) => {
-    const notice = await TimetableModel.create(req.body);
+    const Timetable = await TimetableModel.create(req.body);
     console.log(req.body);
     console.log(req.file);
 
-      res.status(201).json(notice);
+      res.status(201).json(Timetable);
 });
 
 

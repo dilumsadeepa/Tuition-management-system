@@ -85,46 +85,46 @@ const upload = multer({
 
 
 //insert a gallery
-router.post('/gallery', async (req, res) => {
-    try {
-        const gallery = await GalleryModel.create(req.body);
-        console.log("Gallery req.body : ",req.body);
-        // console.log(req);
-        console.log(req.files);
-        const ufiles = req.body.files;
-        const ufilesArray = req.body.fileArray;        ;
-        var attFiles =req.body.orgFiles;
-        var file = attFiles.file;
-        console.log("ufiles :",ufiles);
-        console.log("ufilesArray :",ufilesArray);
-        console.log("rrrrrrrrrrrrr");
-        console.log("attfiles :",attFiles);
-        console.log("rrrrrrrrrrrrr");
-        console.log("varFile :",attFiles[0]);
-        console.log("rrrrrrrrrrrrr");
+// router.post('/gallery', async (req, res) => {
+//     try {
+//         const gallery = await GalleryModel.create(req.body);
+//         console.log("Gallery req.body : ",req.body);
+//         // console.log(req);
+//         console.log(req.files);
+//         const ufiles = req.body.files;
+//         const ufilesArray = req.body.fileArray;        ;
+//         var attFiles =req.body.orgFiles;
+//         var file = attFiles.file;
+//         console.log("ufiles :",ufiles);
+//         console.log("ufilesArray :",ufilesArray);
+//         console.log("rrrrrrrrrrrrr");
+//         console.log("attfiles :",attFiles);
+//         console.log("rrrrrrrrrrrrr");
+//         console.log("varFile :",attFiles[0]);
+//         console.log("rrrrrrrrrrrrr");
 
-        // ufiles.forEach((item, index) => {
-            for(let ufile of ufiles){
-            console.log(ufile);
+//         // ufiles.forEach((item, index) => {
+//             for(let ufile of ufiles){
+//             console.log(ufile);
 
-            ufilesArray.mv('./uploads/Galleries/' + ufile, function (err) {
-                if (err) {
-                    res.send(err);
-                }else{
-                    console.log('File Saved.');
-                    res.send('File uploaded!');
-                }
-                console.log('File Saved.');
-            });
+//             ufilesArray.mv('./uploads/Galleries/' + ufile, function (err) {
+//                 if (err) {
+//                     res.send(err);
+//                 }else{
+//                     console.log('File Saved.');
+//                     res.send('File uploaded!');
+//                 }
+//                 console.log('File Saved.');
+//             });
 
 
-        };
+//         };
 
-        res.status(201).json(gallery);
-    } catch (error) {
-        res.status(500).json(error);
-    }
-}); 
+//         res.status(201).json(gallery);
+//     } catch (error) {
+//         res.status(500).json(error);
+//     }
+// }); 
 
 
 
@@ -183,7 +183,7 @@ router.post("/gallerymultiple", upload.array("myFieldName"), async (req, res, ne
 
 
 router.post("/gallerycloud", cloudinaryUploads.array("cloudStorage"), async (req, res, next) => {
-  const gallery = await GalleyModel.create(req.body);
+  const gallery = await GalleryModel.create(req.body);
   console.log("file List: ",req.files);
   console.log("file Names csv: ",req.body.files);
  
@@ -237,12 +237,25 @@ router.put("/gallerymultiple", upload.array("myFieldName"), async (req, res, nex
   console.log("body :",req.body);
   console.log("file List: ",req.files);
   console.log("file Names csv: ",req.body.files);
-  const { id, location, category ,files, backup} = req.body;
+  const { id, location, category ,files, localFiles, backup} = req.body;
 
+
+  // let hasNewFiles = false;
+  // if (req.files.length > 0) { 
+  //   hasNewFiles = true;
+  // }
 
   let hasNewFiles = false;
+  let hasNewFile = false;
+  let hasLocalFiles = false;
   if (req.files.length > 0) { 
     hasNewFiles = true;
+  }
+  if (files.length > 0) {
+    hasNewFile = true;
+  }
+  if (localFiles.length > 0) {
+    hasLocalFiles = true;
   }
 
     // Get the gallery from the database
@@ -288,10 +301,17 @@ if (hasNewFiles) {
   gallery.location = location;
   gallery.category = category;
  
-  if (hasNewFiles) {
+  // if (hasNewFiles) {
+  //   gallery.files = files;
+  // }
+  if (hasNewFile) {
     gallery.files = files;
   }
+  if (hasLocalFiles) {
+    gallery.localFiles = localFiles;
+  }
   gallery.backup = backup;
+  gallery.cloudOnly = null;
 
 
        // Upload files to Cloudinary
@@ -388,7 +408,8 @@ router.put("/gallerycloud", cloudinaryUploads.array("cloudStorage"), async (req,
   if (hasNewFiles) {
     gallery.files = files;
   }
-  gallery.backup = backup;
+  gallery.localFiles = null;
+  gallery.backup = 0;
 
   // Upload new files to Cloudinary
   if (hasNewFiles) {

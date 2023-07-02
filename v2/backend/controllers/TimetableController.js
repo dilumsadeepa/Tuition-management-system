@@ -25,17 +25,17 @@ exports.createTimetable = async (req, res) => {
 
 exports.deleteTimetable = async (req, res) => {
   try {
-    const notice = await Timetable.findOne({ where: { id: req.params.id } });
-    if (!notice) {
+    const timetable = await Timetable.findOne({ where: { id: req.params.id } });
+    if (!timetable) {
       return res.status(404).json({ msg: 'Timetable not found' });
     }
 
-    const files = notice.files;
+    const files = timetable.files;
     console.log('filesToDelete', files);
     if (files) {
       const publicIdsWithExtensions = files.split(',');
       const publicIds = publicIdsWithExtensions.map(publicId =>
-        path.join('uploads', 'notices', publicId)
+        path.join('uploads', 'timetables', publicId)
       );
       const public_ids = publicIdsWithExtensions.map(publicId => `Susipwan_BackupData/Timetables/${publicId}`);
       const BackupPublic_Ids = publicIdsWithExtensions.map(backupPublicId => `Susipwan_BackupData/Timetables/Backup/${backupPublicId}`);
@@ -68,7 +68,7 @@ exports.deleteTimetable = async (req, res) => {
       }
     }
 
-    await notice.destroy();
+    await timetable.destroy();
     return res.status(200).json({ msg: 'Timetable deleted' });
   } catch (error) {
     console.log(error);

@@ -89,9 +89,10 @@ function LocalFileList({ fileNames }) {
     
     return (
       <div>
-        <h5 className='my-5'>Local Storage</h5>
+        <h5 className='my-5'>Local Server Storage</h5>
         {fileNames.map((fileName, index) => {
-          const fileUrl = `${Apiurl}/uploads/notices/${fileName}`;
+          //         const fileUrl = `${Apiurl}/uploads/notices/${fileName}`;
+          const fileUrl = `${Apiurl}/uploads/Galleries/${fileName}`;
           const extension = fileName.split('.').pop().toLowerCase();
           
           if (['jpg', 'jpeg', 'png', 'gif'].includes(extension.toLowerCase())) {

@@ -44,7 +44,7 @@ function EditTimeTable() {
     
     useEffect(() => {
       setTableTitle(timetableObject.time_title || "");
-      setGrade(timetableObject.notice_title || "");
+      setGrade(timetableObject.grade || "");
     }, [timetableObject]);
 
 
@@ -215,13 +215,16 @@ function EditTimeTable() {
           setCloudFiles([]);      // Clear the list of cloud files
             
           // Update the list of Cloudinary URLs
+          if(res.data.cloudFiles){
           const urls = res.data.cloudFiles.split(',').map(url => url.trim());
           setCloudUrls(urls);
+          console.log("urls :",urls);
+          }
 
           // Clear the list of cloud files
           setCloudFiles([]);
 
-          console.log("urls :",urls);
+
 
 
           console.log(res);
@@ -277,7 +280,7 @@ function EditTimeTable() {
           data.append("time_title", tableTitle);
           data.append("grade", grade);
           data.append("files", cloudUniqueFileNames);  //file names csv
-          data.append("backup", isChecked)
+          data.append("backup", isChecked);
 
 
           // Configure axios request
@@ -333,10 +336,9 @@ function EditTimeTable() {
   return (
     <div>
          <ToastContainer autoClose={3000} />
-    <div className="row">
-      <div className="col-sm-2"></div>
+    <div className="d-flex justify-content-center">
 
-      <div className="col-sm-8 debox">
+      <div className="col-sm-12 debox px-5">
       <form action="#">
       <div className="mb-3 mt-3">
               <label htmlFor="title" >Time Table Title</label>
@@ -348,6 +350,7 @@ function EditTimeTable() {
 
           <div className="mb-3 mt-3">
               <label htmlFor="audience" >Grade</label>
+              
               <select className={`form-control ${errors.grade && "is-invalid"}`} id="audience" name="grade"  value={grade} onChange={handleGradeChange} >
                         <option value="" disabled hidden>Select Grade</option>
                         <option value="6">6</option>
@@ -377,9 +380,13 @@ function EditTimeTable() {
             <div className="d-flex align-items-center">
             <div className="flex-grow-1 align-items-center pe-2">
             <label htmlFor="cloudFiles">Attachments - cloud storage only</label>
+            <div className="d-flex align-items-center">
             <input type="file" className={`form-control ${errors.attachFiles && "is-invalid"}`} multiple onChange={handleCloudFileInputChange} />
+            <div className="ms-2"><button onClick={upload} className="btn btn-primary">upload</button></div>
             </div>
-           <div className="pt-6"><button onClick={upload} className="btn btn-primary">upload</button></div>
+           
+            </div>
+           
           </div>
             
               {errors.cloudFiles && (
@@ -483,7 +490,7 @@ function EditTimeTable() {
     </div>
 
       <div className="mb-3">
-              <button onClick={send} className="btn btn-primary">Submit</button>
+              <button onClick={send} className="btn btn-primary">Update</button>
               <a  className="btn btn-outline-danger ms-2" href='/timetable'>
                   Cancel
                 </a>

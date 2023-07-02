@@ -191,6 +191,7 @@ function CreateGallery() {
           setCloudFiles([]);      // Clear the list of cloud files
             
           // Update the list of Cloudinary URLs
+          if(res.data.cloudFiles){
           const urls = res.data.cloudFiles.split(',').map(url => url.trim());
           setCloudUrls(urls);
 
@@ -198,7 +199,7 @@ function CreateGallery() {
           setCloudFiles([]);
 
           console.log("urls :",urls);
-
+          }
 
           console.log(res);
 
@@ -313,13 +314,16 @@ function CreateGallery() {
         <div className="col-sm-10 debox px-5">
         <form action="#">
             <div class="row mb-4">
-            <div class="col">
+            <div class="col-12 col-sm-6">
               <div className="mb-3 mt-3">
                 <label htmlFor="title" className="my-1"><i className="fa-regular fa-note-sticky fa-lg mx-2"></i> Gallery Location</label>
                 <select className={`form-control ${errors.location && "is-invalid"}`} id="tableTitle" name="grade"  value={location} onChange={handleLocationChange} >
                         <option value="" disabled hidden>Select Location</option>
                         <option value="homeslider">Home Slider</option>
                         <option value="gallery">Gallery</option>
+                        <option value="testspace1">Test Space 1</option>
+                        <option value="testspace2">Test Space 2</option>
+                        <option value="testspace3">Test Space 3</option>
         
                     </select>
                 
@@ -329,7 +333,7 @@ function CreateGallery() {
             </div>
               </div>
               
-              <div class="col">
+              <div class="col-12 col-sm-6">
                   <div className="mb-3 mt-3">
                     <label htmlFor="tableTitle" className="my-1"><i className="fa-solid fa-users-gear fa-lg mx-2"></i> Category</label>
                     <input type="text" id="title" className={`form-control ${errors.category && "is-invalid"}`} name="tableTitle" placeholder="Enter Title" value={category} onChange={handleCategoryChange} />
@@ -347,13 +351,13 @@ function CreateGallery() {
 
 
           <div className="row mb-3">
-            <div className="col">
+            <div className="col-12 col-sm-6">
                   <div className="d-flex align-items-center">
                   <div className="flex-grow-1 align-items-center pe-2">
                   <label htmlFor="cloudFiles" className="my-2"><i class="fa-solid fa-link fa-lg mx-2"></i> Attachments - cloud storage only</label>
                   <div className="d-flex align-items-center">
                   <input type="file" className={`form-control ${errors.attachFiles && "is-invalid"}`} multiple onChange={handleCloudFileInputChange} />
-                  <div className="ms-2"><button onClick={upload} className="btn btn-primary">upload</button></div>
+                  <div className="ms-2"><button onClick={upload} className="btn btn-primary btn-sm">upload</button></div>
                   </div>
                   
                   </div>
@@ -363,7 +367,7 @@ function CreateGallery() {
                   <div className="badge rounded-pill text-bg-danger">{errors.cloudFiles}</div>
                 )}
             </div>
-              <div className="col">
+              <div className="col-12 col-sm-6">
                   <label htmlFor="files" className="my-2"><i class="fa-solid fa-link fa-lg mx-2"></i> Attachments</label>
                     <input type="file" className={`form-control ${errors.attachFiles && "is-invalid"}`} multiple onChange={handleFileInputChange} />
                     <div className="d-flex align-items-center mt-2 ms-1 ps-0">

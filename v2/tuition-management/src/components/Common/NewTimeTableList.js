@@ -317,7 +317,7 @@ function NewTimeTableList() {
                             <div className="row">
 
 
-                            <div class="d-flex mt-3">
+                            <div class="flexbox mt-3">
                                 <div class="p-2 flex-grow-1"><h2>TimeTable</h2></div>
                                 {(cookies.role === '1' || cookies.role === '2' || cookies.role === '3') && (
                                   <>
