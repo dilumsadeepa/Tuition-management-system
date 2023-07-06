@@ -110,12 +110,12 @@ const TeacherProfile = () => {
           <main className="py-6 bg-surface-secondary">
             <div className="container">
               <h2>My Profile</h2>
-              {succ.length > 0 && (
+              {/* {succ.length > 0 && (
                 <div className="alert alert-success alert-dismissible fade show">
                   <button type="button" className="btn-close" data-bs-dismiss="alert"></button>
                   <strong>Success!</strong> {succ}
                 </div>
-              )}
+              )} */}
 
               <div className="row mt-5">
                 <div className="col-sm-8 debox">
