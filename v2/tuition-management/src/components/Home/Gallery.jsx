@@ -134,7 +134,7 @@ function Gallery() {
               //   <iframe src={url} height="400px" width="300"></iframe>
               // </div>
       
-              <div key={index}>
+              <div key={index} style={{ wordWrap: 'break-word' }}>
                 <ul className="list-group">
                 <li className="list-group-item list-group-item-info"><i class="fa-regular fa-file-pdf me-2"></i> {extension.toUpperCase()} File <i class="fa-solid fa-arrow-right mx-2"></i> <small>{url}</small>  <a href={url}  data-fancybox="images" data-caption={extension.toUpperCase()} download><i class="fa-solid fa-arrow-up-right-from-square"></i></a>  </li>
                 </ul>
@@ -173,9 +173,8 @@ function Gallery() {
                     </p>
                 </div>
              
-                <div className="row gx-2 gy-2 row-cols-1 row-cols-md-2 row-cols-xl-3" data-bss-baguettebox="">
-     
-                {renderFiles()}
+                <div className="row gx-2 gy-2 row-cols-1 row-cols-md-2 row-cols-xl-3" style={{ wordWrap: 'break-word' }} data-bss-baguettebox="">
+                  {renderFiles()}
                 </div>
 
 

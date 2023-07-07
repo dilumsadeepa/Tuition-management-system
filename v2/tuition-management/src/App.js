@@ -87,6 +87,7 @@ import EditParent from "./components/Parent/EditParent";
 // -----------------Home Page-----------------
 import Home from "./components/Home/Home";
 import Gallery from "./components/Home/Gallery";
+import TimeTablePosts from "./components/Home/TimeTablePosts";
 import Faq from "./components/Home/Faq";
 import AboutUs from "./components/Home/AboutUs";
 import ContactUs from "./components/Home/ContactUs";
@@ -180,6 +181,7 @@ function App() {
           {/* Common */}
 
           <Route path="homegallery" element={<Gallery />} />
+          <Route path="hometimetableposts" element={<TimeTablePosts />} />
           <Route path="aboutus" element={<AboutUs />} />
           <Route path="faq" element={<Faq />} />
           <Route path="publicnotices" element={<PublicNotices />} />

@@ -14,6 +14,15 @@ exports.getTimetables = async (req, res) => {
   }
 }
 
+exports.getTimetableGallery = async (req, res) => {
+  try {
+    const response = await Timetable.findAll({ where: { location: req.params.id } });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 exports.createTimetable = async (req, res) => {
   try {
     await Timetable.create(req.body);
