@@ -75,7 +75,7 @@ const ViewTeacher = () =>{
                                             <div class="row">
                                                 <div class="col">
                                                     {/* <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span> */}
-                                                    <span class="h4 mb-0"><a href="/assignstudent" className='debtn'>Assing Students</a></span>
+                                                    <span class="h4 mb-0"><a href="/assignstudent" className='debtn'>Assing Teachers</a></span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
@@ -94,7 +94,7 @@ const ViewTeacher = () =>{
                                             <div class="row">
                                                 <div class="col">
                                                     {/* <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span> */}
-                                                    <span class="h4 mb-0"><a href="/addstudent" className='debtn'>Add Students</a></span>
+                                                    <span class="h4 mb-0"><a href="/addstudent" className='debtn'>Add Teachers</a></span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
