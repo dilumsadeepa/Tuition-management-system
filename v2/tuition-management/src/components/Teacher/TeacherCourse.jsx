@@ -87,8 +87,8 @@ const TeacherCourse = () =>{
                                             <thead>
                                                 <tr>
                                                     <th>Course ID</th>
-                                                    <th>Course NAme</th>
-                                                    <th>Course Price</th>
+                                                    <th>Course Name</th>
+                                                    <th>Course Fee</th>
                                                     <th>Teacher</th>
                                                     <th>Action</th>
                                                 </tr>
