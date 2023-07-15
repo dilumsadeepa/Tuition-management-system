@@ -103,6 +103,11 @@ const TeacherSidebar =() =>{
                                 <i class="bi bi-book-half"></i>My Courses
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                <i class="bi bi-people-fill"></i>Students
+                                </a>
+                            </li>
                             {/* <li class="nav-item">
                                 <a class="nav-link" href="/salary">
                                 <i class="bi bi-cash-stack"></i> Salary
