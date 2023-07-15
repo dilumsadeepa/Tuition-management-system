@@ -7,17 +7,27 @@ import Dashhead from './Dashhead';
 
 const Salary = () => {
 
-    const [salary, setSalary] = useState([]);
+    //const [salary, setSalary] = useState([]);
+    const [users, setUser] = useState([]);
+    
 
     const getsalary = async (e) => {
         try {
-            const response = await axios.get(`${Apiurl}/salary`);
-            setSalary(response.data);
+            const response = await axios.get(`${Apiurl}/users`);
+            setUser(response.data);
             console.log(response.data);
 
         } catch (error) {
             console.log("error in getting data")
         }
+    }
+
+    const search = () =>{
+
+    }
+
+    const reset = () =>{
+        
     }
 
 
@@ -96,10 +106,12 @@ const Salary = () => {
                             <div className="row mb-3 mt-3">
                                 <div className="col-sm-10 mx-auto">
 
-                                    <div className="mb-3 mt-3">
-                                        <label className="form-label">Email:</label>
-                                        <input type="email" className="form-control" placeholder="Enter email" name="email" />
-                                    </div>
+                                <div class=" input-group mb-3 mt-3">
+                                    
+                                    <input type="email" class="form-control" id="email" placeholder="Enter email" />
+                                    <button class="btn btn-primary" onClick={(e) => search()} type="button">Go</button>
+                                    <button class="btn btn-danger" onClick={(e) => reset()} type="button">Reset</button>
+                                </div>
 
 
                                 </div>
@@ -114,20 +126,22 @@ const Salary = () => {
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
+                                                    <th>Action</th>
                                                     <th>Full Name</th>
+                                                    <th>Email</th>
+                                                    <th>Phone Number</th>
                                                     <th>NIC</th>
-                                                    <th>Salary</th>
-                                                    <th>Month</th>
 
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {salary.map((s) =>
+                                                {users.map((u) =>
                                                     <tr>
-                                                        <td>{s.teacher.t_fullname}</td>
-                                                        <td>{s.teacher.t_nic}</td>
-                                                        <td>{s.s_salary}</td>
-                                                        <td>{s.month}</td>
+                                                        <td><button type='button' className='btn btn-primary'>Get Salary</button></td>
+                                                        <td>{u.fullname}</td>
+                                                        <td>{u.email}</td>
+                                                        <td>{u.tel}</td>
+                                                        <td>{u.nic}</td>
 
                                                     </tr>
                                                 )}

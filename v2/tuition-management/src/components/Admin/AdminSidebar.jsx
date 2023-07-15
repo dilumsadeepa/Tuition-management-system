@@ -3,33 +3,45 @@ import axios from "axios";
 import Apiurl from '../Apiurl';
 import ReactAppUrl from '../ReactAppUrl';
 import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Sidebar =() =>{
 
     const [noticesCount, setNoticesCount] = useState(0);
-    const [cookies] = useCookies(['role']);
+    const [cookies] = useCookies(['user']);
     // console.log('role', cookies.role);
 
-    useEffect(() => {
+    const navigate = useNavigate();
 
-        const getNoticesCount = async () => {
-            try {
-                let api_url;
-                if(cookies.role === '1'){
-                    api_url = '/notice/count/';
-                }else{
-                    api_url = `/notices/count/${cookies.role}`;
-                }
-              const response = await axios.get(`${Apiurl}${api_url}`);
-              setNoticesCount(response.data.count);
-            } catch (error) {
-              console.log(error.message);
+    const getNoticesCount = async () => {
+        try {
+            let api_url;
+            if(cookies.role === '1'){
+                api_url = '/notice/count/';
+            }else{
+                api_url = `/notices/count/${cookies.role}`;
             }
-          };
-      getNoticesCount();
-    }, []);
+          const response = await axios.get(`${Apiurl}${api_url}`);
+          setNoticesCount(response.data.count);
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
+
+    const protectrole = () =>{
+        if(cookies.role !== '1'){
+            navigate("/login");
+        }else{
+            getNoticesCount();
+        }
+    }
+
+    useEffect(() => {
+        protectrole();
+      
+    });
 
 
     return(

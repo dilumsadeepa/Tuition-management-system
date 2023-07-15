@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Apiurl from '../Apiurl';
 import Sidebar from './AdminSidebar';
@@ -7,7 +7,7 @@ import Dashhead from './Dashhead';
 
 const GenSalary = () => {
 
-    
+    const [user, setUser] = useState("");
 
     return(
         <section> 
@@ -51,6 +51,10 @@ const GenSalary = () => {
                                     </div>
                                </div>
                                 
+                            </div>
+
+                            <div className="row">
+
                             </div>
 
                         </div>

@@ -1,5 +1,8 @@
 const User = require("../models/UserModel.js");
 const nodemailer = require("nodemailer");
+const axios = require('axios');
+const dotenv = require('dotenv');
+dotenv.config();
 
 exports.getUsers = async (req, res) => {
   try {
@@ -53,6 +56,7 @@ exports.createUser = async (req, res) => {
 
     // Send email to the user
     sendEmail(newUser);
+    sendSMS(newUser);
 
     res.status(201).json({ msg: "User Created" });
   } catch (error) {
@@ -64,18 +68,18 @@ exports.createUser = async (req, res) => {
 const sendEmail = (user) => {
   // Create a transporter object with your email service provider details
   const transporter = nodemailer.createTransport({
-    host: "mail.encode99.org.lk",
-    port: 465,
+    host: process.env.HOST,
+    port: process.env.PORT,
     secure: true,
     auth: {
-      user: "admin@encode99.org.lk",
-      pass: "%Encode%99Org",
+      user: process.env.MAIL,
+      pass: process.env.PASSWORD,
     },
   });
 
   // Prepare the email content
   const mailOptions = {
-    from: "admin@encode99.org.lk",
+    from: process.env.MAIL,
     to: user.email,
     subject: "New Account Information in Encode99",
     html: `
@@ -179,6 +183,53 @@ const sendEmail = (user) => {
     }
   });
 };
+
+const sendSMS = async (user) => {
+  try {
+    const userid = process.env.USERID;
+    const apiKey = process.env.APIKEY;
+    const apiEndpoint = process.env.APIEND;
+    const tel = user.tel;
+
+    const payload = {
+      user_id: process.env.USERID,
+      api_key: process.env.APIKEY,
+      sender_id: process.env.SENDERID,
+      to: user.tel,
+      message: `Welcome to Susipwin Tuition Institute! Here are your login details:
+      Username: ${user.email}
+      Temp Password: ${user.password}
+      
+      Please change your password upon login for security.
+      
+      Susipwin Tuition Institute`,
+    };
+
+    axios
+      .get(apiEndpoint, {
+        params: {
+          user_id: userid,
+          api_key: apiKey,
+          sender_id: process.env.SENDERID,
+          to: tel,
+          message: `Welcome to Susipwin Tuition Institute! Here are your login details- Username: ${user.email}, Temp Password: ${user.password} - Please change your password upon login for security. Susipwin Tuition Institute`,
+        },
+      })
+      .then((response) => {
+        // Handle the API response
+        console.log(response.data);
+      })
+      .catch((error) => {
+        // Handle any errors
+        console.error(error);
+      });
+
+    // console.log('SMS sent successfully:', response.data);
+  } catch (error) {
+    console.log('Error sending SMS:', error.message);
+  }
+};
+
 
 exports.updateUser = async (req, res) => {
   try {
