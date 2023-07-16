@@ -89,7 +89,6 @@ const TeacherCourse = () =>{
                                                     <th>Course ID</th>
                                                     <th>Course Name</th>
                                                     <th>Course Fee</th>
-                                                    <th>Teacher</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -99,7 +98,6 @@ const TeacherCourse = () =>{
                                                 <td>{course.courseid}</td>
                                                 <td>{course.coursename}</td>
                                                 <td>{course.courseprice}</td>
-                                                <td>{}</td>
                                                 <td><Link to={`/editcourse/${course.id}`} className='btn btn-info'>Edit</Link><button className='btn btn-danger' onClick={()=> deletecourse(course.id)}>Delete</button></td>
                                                 </tr>
                                             )}
