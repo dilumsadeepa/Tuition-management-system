@@ -13,14 +13,14 @@ const TeacherCourse = () =>{
     const [courses, setCourses] = useState([]);
     const [id,setId]=useState([]);
     const [cookies] = useCookies(['id']);
-    console.log(cookies.id);
+    console.log("user id "+cookies.id);
     
     const getId = async(e) =>{
         try {
             const response = await axios.get(`${Apiurl}/getteacherbyId/${cookies.id}`);
             const teacherId = response.data;
+            console.log("Teacher"+teacherId);
             getcou(teacherId);
-            console.log(teacherId.id)
         } catch (error) {
             console.log("error in getting data")
         }
@@ -28,9 +28,9 @@ const TeacherCourse = () =>{
 
     const getcou = async (teacherId) => {
         try {
-            const response = await axios.get(`${Apiurl}/teachercourse/${teacherId.id}`);
+            const response = await axios.get(`${Apiurl}/teachercourse/${cookies.id}`);
             setCourses(response.data);
-            console.log(response.data);
+            console.log("course "+response.data);
         } catch (error) {
             console.log("Error in getting data:", error.message);
         }
@@ -99,7 +99,7 @@ const TeacherCourse = () =>{
                                                 <td>{course.courseid}</td>
                                                 <td>{course.coursename}</td>
                                                 <td>{course.courseprice}</td>
-                                                <td>{course.teacher.t_fullname}</td>
+                                                <td>{}</td>
                                                 <td><Link to={`/editcourse/${course.id}`} className='btn btn-info'>Edit</Link><button className='btn btn-danger' onClick={()=> deletecourse(course.id)}>Delete</button></td>
                                                 </tr>
                                             )}
