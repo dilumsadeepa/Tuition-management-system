@@ -4,6 +4,7 @@ import Apiurl from '../Apiurl';
 import ReactAppUrl from '../ReactAppUrl';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import Logout from "../User/Logout";
 
 const Sidebar =() =>{
 
@@ -190,9 +191,10 @@ const Sidebar =() =>{
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#s">
+                                <Logout />
+                                {/* <a class="nav-link" href="#s">
                                     <i class="bi bi-box-arrow-left"></i> Logout
-                                </a>
+                                </a> */}
                             </li>
                         </ul>
                     </div>

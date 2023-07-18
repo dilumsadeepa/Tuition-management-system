@@ -27,6 +27,7 @@ const Login = () => {
     // login user
     const loginuser = async(e) =>{
         e.preventDefault();
+        document.getElementById('btnlogin').value = "Processing....";
         console.log("clicked");
         console.log(email+','+password);
         try {
@@ -62,9 +63,11 @@ const Login = () => {
                 
                 else{
                     console.log(response.data.role);
+                    document.getElementById('btnlogin').value = "Login";
                 }
             }else{
                 setErr("Email or Password is does not match");
+                document.getElementById('btnlogin').value = "Login";
             }
         } catch (error) {
             console.log(error);
@@ -139,22 +142,22 @@ const Login = () => {
                                         <div className="mt-4 mb-3">
                                             <input type="button" onClick={(e)=>loginuser(e)} value="Login" id="btnlogin" className="btn btn-primary w-100" />
                                         </div>
-                                        <div className="mt-6">
+                                        {/* <div className="mt-6">
                                             <label className="form-check-label">Do not have an account</label>
                                             <a href="/register" className="text-muted float-end">Register</a>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
-                                {/* <!-- card body --> */}
+                                
                             </div>
-                            {/* <!-- card --> */}
+                            
                         </div>
                     </div>
-                    {/* <!-- row --> */}
+                    
                 </div>
-                {/* <!-- container --> */}
+                
             </div>
-            {/* <!-- end page content --> */}
+            
         </div>
 
     )
