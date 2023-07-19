@@ -4,6 +4,7 @@ import axios from 'axios';
 import Apiurl from '../Apiurl';
 import Sidebar from './AdminSidebar';
 import Dashhead from './Dashhead';
+import Swal from 'sweetalert2';
 
 
 
@@ -125,9 +126,19 @@ const CreateCourse = () => {
                 courseprice,
                 userId,
             });
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Course Created',
+              })
             setsucc("Course created");
             setCid("");
         } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'Something went wrong'+error,
+              });
             console.log(error);
         }
         setsucc("course created");

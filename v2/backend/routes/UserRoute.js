@@ -99,6 +99,8 @@ const {
   updateTimeTable,
 } = require("../controllers/NewtimetableController.js");
 
+const parentStudentController = require('../controllers/ParentStudentController.js');
+
 const router = express.Router();
 
 // User
@@ -152,6 +154,14 @@ router.get("/getAllStudentById/:courseIds",getStudentsByCourseIds)
 router.get("/getparentstu/:id", getParentStu);
 router.get("/getattendece/:id", getattendeceAtt);
 router.get("/getparentdata/:id", getparent);
+
+
+router.post('/parentstudents', parentStudentController.createParentStudent);
+router.get('/parentstudents', parentStudentController.getAllParentStudents);
+router.get('/parentstudents/:id', parentStudentController.getParentStudentById);
+router.get('/findParentByStudentId/:studentId', parentStudentController.findParentByStudentId);
+router.put('/parentstudents/:id', parentStudentController.updateParentStudent);
+router.delete('/parentstudents/:id', parentStudentController.deleteParentStudent);
 
 //other
 router.get("/stu", getsts);

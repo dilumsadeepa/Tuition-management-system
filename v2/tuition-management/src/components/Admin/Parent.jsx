@@ -15,7 +15,7 @@ const Parent = () => {
 
     const getPa = async (e) => {
         try {
-            const response = await axios.get(`${Apiurl}/getpadata/${id}`);
+            const response = await axios.get(`${Apiurl}/findParentByStudentId/${id}`);
             setParent(response.data);
 
 
@@ -71,26 +71,38 @@ const Parent = () => {
                                             <div className="row">
                                                 <div className="col">
                                                     <table className="table">
-                                                        {parent.map((p) =>
+                                                        
                                                             <tbody className="bg-dark" style={{ color: "white" }}>
                                                                 <tr>
                                                                     <th>Name</th>
-                                                                    <td>{p.username}</td>
+                                                                    <td>{parent.username}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Ful Name</th>
-                                                                    <td>{p.pfullname}</td>
+                                                                    <td>{parent.fullname}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Address</th>
+                                                                    <td>{parent.address}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>DOB</th>
+                                                                    <td>{parent.dob}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>NIC</th>
+                                                                    <td>{parent.nic}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Email</th>
-                                                                    <td>{p.email}</td>
+                                                                    <td>{parent.email}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Phone Number</th>
-                                                                    <td>{p.tel}</td>
+                                                                    <td>{parent.tel}</td>
                                                                 </tr>
                                                             </tbody>
-                                                        )}
+                                                      
 
                                                     </table>
 

@@ -5,6 +5,7 @@ import Apiurl from '../Apiurl';
 import Sidebar from './AdminSidebar';
 import Dashhead from './Dashhead';
 import { useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 
@@ -24,7 +25,7 @@ const EditCourse = () => {
     const [err, seterr] = useState("");
     const [edes, setEdes]  = useState("");
     
-    let count = 0;
+  
 
     const editorRef = useRef(null);
 
@@ -46,7 +47,7 @@ const EditCourse = () => {
         try {
             const response = await axios.get(`${Apiurl}/editcourse/${id}`);
             setCourses(response.data);
-            console.log(courses);
+            console.log(response.data);
             courses.forEach((course)=>{
                 document.getElementById('courseid').value=course.courseid;
                 document.getElementById('coursename').value=course.coursename;
@@ -74,18 +75,18 @@ const EditCourse = () => {
 
         if (courseid === "" || coursename === "" || coursebanner === "" || courseprofile === "" || coursedes === "" || courseprice === "" || teacherId === "") {
             seterr("Fill All the Fileds");
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'Fill All the Fileds',
+              });
             console.log(courseid +','+coursename+','+ coursebanner +','+courseprofile +','+coursedes +','+courseprice +','+ teacherId);
         }
         else{
-            // let courseid = cid;
-            // let coursename = cname;
-            // let coursebanner = cbanner;
-            // let courseprofile = cprofile;
-            // let coursedes = cdes;
-            // let courseprice = cprice;
+            
             console.log(courseid +','+coursename+','+ coursebanner +','+courseprofile +','+coursedes +','+courseprice+''+teacherId);
             try {
-                await axios.post(`${Apiurl}/updatecourse/${id}`,{
+                await axios.patch(`${Apiurl}/updatecourse/${id}`,{
                    courseid,
                    coursename,
                    coursebanner,
@@ -94,8 +95,21 @@ const EditCourse = () => {
                    courseprice, 
                    teacherId,
                 });
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Course Updated',
+                  }).then((result) => {
+                    //redirect
+                  });
                 
             } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Something went wrong',
+                  });
                 console.log(error);
             }
             setsucc("course Updated");
@@ -251,7 +265,7 @@ const EditCourse = () => {
                                                 
                                                 <option value="">Select One</option>
                                                 {teachers.map((t) =>
-                                                    <option value={t.id}>{t.t_fullname}</option>
+                                                    <option value={t.id}>{t.fullname}</option>
                                                 )}
                                             </select>
                                         </div>
