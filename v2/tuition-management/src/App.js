@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useCookies } from 'react-cookie';
+// import { useCookies } from 'react-cookie';
 
 
-import Welcome from "./components/Welcome";
+// import Welcome from "./components/Welcome";
 import Auth from "./components/User/Auth";
 // import Student from "./components/Student/Student";
 
@@ -12,10 +12,10 @@ import ViewTeacher from "./components/Admin/ViewTeacher";
 import StudenttoCourse from "./components/Admin/StudenttoCourse";
 import Course from "./components/Admin/Course";
 import CreateCourse from "./components/Admin/CreateCourse";
-import CreateNotice from "./components/Common/CreateNotice";
+// import CreateNotice from "./components/Common/CreateNotice";
 import CreateNoticeNew from "./components/Common/CreateNoticeNew";
 import Notice from "./components/Common/Notice";
-import EditNotice from "./components/Common/EditNotice";
+// import EditNotice from "./components/Common/EditNotice";
 import EditNoticeNew from "./components/Common/EditNoticeNew";
 import NoticesList from "./components/Common/NoticesList";
 import EditCourse from "./components/Admin/EditCourse";
@@ -24,20 +24,20 @@ import AddUser from "./components/Admin/AddUser";
 // import CreateTimeTable from "./components/Common/CreateTimeTable";
 import TimeTable from "./components/Common/TimeTable";
 import CreateTimeTableNew from "./components/Common/CreateTimeTableNew";
-import EditTimeTable from "./components/Common/EditTimeTable";
+// import EditTimeTable from "./components/Common/EditTimeTable";
 import EditTimeTableNew from "./components/Common/EditTimeTablenew";
 import TimeTableList from "./components/Common/TimeTableList";
 
 // import CreateGallery from "./components/Common/CreateGallery";
-import DashboardGallery from "./components/Common/Gallery";
+// import DashboardGallery from "./components/Common/Gallery";
 import CreateGalleryNew from "./components/Common/CreateGalleryNew";
-import EditGallery from "./components/Common/EditGallery";
+// import EditGallery from "./components/Common/EditGallery";
 import EditGalleryNew from "./components/Common/EditGalleryNew";
 import GalleryList from "./components/Common/GalleryList";
 
 // import NewTimeTable from "./components/Common/NewTimeTable";
 import CreateNewTimeTable from "./components/Common/CreateNewTimeTable";
-import UpdateTimeTable from "./components/Common/UpdateTimeTable";
+// import UpdateTimeTable from "./components/Common/UpdateTimeTable";
 import UpdateTimeTableNew from "./components/Common/UpdateTimeTableNew";
 import NewTimeTableList from "./components/Common/NewTimeTableList";
 import CreateTimeTableDashboard from "./components/Common/CreateTimeTableDashboard";
@@ -60,7 +60,7 @@ import Payment from "./components/Parent/Payment";
 import StudentDetils from "./components/Student/StudentDetils";
 import Classes from "./components/Student/classes";
 import Attendance from "./components/Student/attendance";
-import mypayments from "./components/Student/mypayments"
+// import mypayments from "./components/Student/mypayments"
 import EnrollPage from "./components/Student/EnrollPage";
 import StudentProfile from "./components/Student/studentProfile";
 import StuDashboard from "./components/Student/StuDashboard";
@@ -103,23 +103,7 @@ import PublicNotices from "./components/Home/PublicNotices";
 
 
 function App() {
-  const [cookies, setCookie] = useCookies(['user']);
-
-  let isadmin = 0;
-  let isteacher = 0;
-  let isstudent = 0;
-  let isparent = 0;
-
-  if(cookies.role == 1){
-    isadmin = 1;
-  }else if(cookies.role == 3){
-    isteacher = 1;
-  }else if(cookies.role == 4){
-    isstudent = 1;
-  }else if(cookies.role == 5){
-    isparent = 1;
-  }
-
+ 
 
 
   return (

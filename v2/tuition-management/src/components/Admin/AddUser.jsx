@@ -3,6 +3,7 @@ import axios from 'axios';
 import Apiurl from '../Apiurl';
 import Sidebar from './AdminSidebar';
 import Dashhead from './Dashhead';
+import Swal from 'sweetalert2';
 
 const CreateUser = () => {
     const [username, setUsername] = useState('');
@@ -79,6 +80,11 @@ const CreateUser = () => {
                     nic,
                     edlevel,
                 });
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'A new User created',
+                  });
                 // Clear form fields on successful submission
                 setUsername('');
                 setEmail('');
@@ -92,6 +98,11 @@ const CreateUser = () => {
                 setNic('');
                 setEdlevel('');
             } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Something went wrong'+error,
+                  });
                 console.log(error);
             }
         }
