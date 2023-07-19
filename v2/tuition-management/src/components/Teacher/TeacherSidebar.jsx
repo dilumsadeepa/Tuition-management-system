@@ -105,7 +105,7 @@ const TeacherSidebar =() =>{
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#s">
+                                <a class="nav-link" href="/teacherstudent">
                                 <i class="bi bi-people-fill"></i>Students
                                 </a>
                             </li>

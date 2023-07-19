@@ -8,7 +8,7 @@ import { useCookies } from 'react-cookie';
 
 
 
-const TeacherCourse = () =>{
+const TeacherStudent = () =>{
 
     const [courses, setCourses] = useState([]);
     const [id,setId]=useState([]);
@@ -69,7 +69,7 @@ const TeacherCourse = () =>{
                      <main>
                     
                         <div class="container">
-                            <h2 className='mt-3 mb-3'>Course</h2>
+                            <h2 className='mt-3 mb-3'>Students</h2>
                             <div className="row">
                                 <div class="col-xl-4 col-sm-6 col-12">
                                     <div class="card shadow border-0">
@@ -119,4 +119,4 @@ const TeacherCourse = () =>{
     )
 }
 
-export default TeacherCourse;
+export default TeacherStudent;
