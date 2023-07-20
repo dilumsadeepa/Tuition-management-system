@@ -1,6 +1,8 @@
 const Course = require("../models/CourseModel.js");
 const User = require("../models/UserModel.js");
 const Coursestudent = require("../models/CoursestudentModel.js");
+const db = require("../config/Database.js");
+const { QueryTypes } = require("sequelize");
 
 
 // admin
@@ -101,5 +103,25 @@ exports.stucourseall = async (req, res) => {
     console.log(error.message);
   }
 };
+
+
+exports.getStudentsByCourseIds = async (req, res) => {
+  // Convert the comma-separated string to an array
+  const courseIds = req.params.courseIds.split(",").map(Number);
+
+  const sql =
+  "SELECT cs.*, u.fullname AS student_name " +
+  "FROM coursestudents cs " +
+  "JOIN users u ON cs.userId = u.id " +
+  "WHERE cs.courseId IN (" + courseIds.join(",") + ");";
+
+  try {
+    const response = await db.query(sql, { type: QueryTypes.SELECT });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 
 

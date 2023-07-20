@@ -13,6 +13,7 @@ const TeacherStudent = () =>{
     const [courses, setCourses] = useState([]);
     const [id,setId]=useState([]);
     const [cookies] = useCookies(['id']);
+    const [courseId, setCookie] = useCookies(['course']);
     console.log("user id "+cookies.id);
     
     const getId = async(e) =>{
@@ -93,6 +94,9 @@ const TeacherStudent = () =>{
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                {
+                                                     console.log("Course data="+courses.map(course => course.id))
+                                                }
                                             {courses.map((course) => 
                                                 <tr>
                                                 <td>{course.courseid}</td>

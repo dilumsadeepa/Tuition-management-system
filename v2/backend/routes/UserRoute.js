@@ -49,6 +49,7 @@ const {
   updateCourse,
   getCoursesByTeacherId,
   stucourseall,
+  getStudentsByCourseIds
 } = require("../controllers/CourseController.js");
 
 const {
@@ -148,6 +149,8 @@ router.post("/enrollcourse", createApproval);
 router.get("/teacher", getTes);
 router.post("/teacher", createTeacher);
 router.get("/getteacherbyId/:t_userid", getTeacherById);
+router.get("/getAllStudentById/:courseIds",getStudentsByCourseIds)
+
 
 //parent
 router.get("/getparentstu/:id", getParentStu);
