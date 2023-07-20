@@ -7,6 +7,7 @@ const {
   deleteUser,
   updateUserProfile,
   getparent,
+  getProfile,
 } = require("../controllers/UserController.js");
 
 const {
@@ -105,6 +106,7 @@ const router = express.Router();
 // User
 router.get("/users", getUsers);
 router.get("/users/:id", getUserById);
+router.get('/profile/:id', getProfile);
 router.post("/users", createUser);
 router.patch("/users/:id", updateUser);
 router.delete("/users/:id", deleteUser);

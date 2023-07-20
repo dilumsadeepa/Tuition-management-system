@@ -26,6 +26,19 @@ exports.getUserById = async (req, res) => {
   }
 };
 
+exports.getProfile = async (req, res) => {
+  try {
+    const response = await User.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 exports.getparent = async (req, res) => {
   try {
     const response = await User.findOne({

@@ -130,10 +130,10 @@ const SingleStudent = () =>{
                                         <h5 className="my-3">{s.fullname}</h5>
                                         <p className="text-muted mb-1">{s.email}</p>
                                         <p className="text-muted mb-4">{s.address}</p>
-                                        <div className="d-flex justify-content-center mb-2">
+                                        {/* <div className="d-flex justify-content-center mb-2">
                                         <button type="button" className="btn btn-primary">Follow</button>
                                         <button type="button" className="btn btn-outline-primary ms-1">Message</button>
-                                        </div>
+                                        </div> */}
                                     </div>
                                     </div>
                                     <div className="card mb-4 mb-lg-0">

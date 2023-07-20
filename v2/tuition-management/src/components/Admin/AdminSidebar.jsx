@@ -1,14 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Apiurl from '../Apiurl';
 import ReactAppUrl from '../ReactAppUrl';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import Logout from "../User/Logout";
+import { Link } from 'react-router-dom';
 
 
 
-const Sidebar =() =>{
+const Sidebar = () => {
 
     const [noticesCount, setNoticesCount] = useState(0);
     const [cookies] = useCookies(['user']);
@@ -19,33 +20,33 @@ const Sidebar =() =>{
     const getNoticesCount = async () => {
         try {
             let api_url;
-            if(cookies.role === '1'){
+            if (cookies.role === '1') {
                 api_url = '/notice/count/';
-            }else{
+            } else {
                 api_url = `/notices/count/${cookies.role}`;
             }
-          const response = await axios.get(`${Apiurl}${api_url}`);
-          setNoticesCount(response.data.count);
+            const response = await axios.get(`${Apiurl}${api_url}`);
+            setNoticesCount(response.data.count);
         } catch (error) {
-          console.log(error.message);
+            console.log(error.message);
         }
-      };
+    };
 
-    const protectrole = () =>{
-        if(cookies.role !== '1'){
+    const protectrole = () => {
+        if (cookies.role !== '1') {
             navigate("/login");
-        }else{
+        } else {
             getNoticesCount();
         }
     }
 
     useEffect(() => {
         protectrole();
-      
+
     });
 
 
-    return(
+    return (
         <>
             {/* <!-- Vertical Navbar --> */}
             <nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-dark bg-dark border-bottom border-bottom-lg-0 border-end-lg" id="navbarVertical">
@@ -55,7 +56,7 @@ const Sidebar =() =>{
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     {/* <!-- Brand --> */}
-                    {cookies.role === '5' ? <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/parent"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a> : cookies.role === '4' ? <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/studashboard"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a> : cookies.role === '3' ?  <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/teacher"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a> : cookies.role === '2' ?  <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/staff"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a> :                     <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/admin"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a>}         
+                    {cookies.role === '5' ? <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/parent"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a> : cookies.role === '4' ? <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/studashboard"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a> : cookies.role === '3' ? <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/teacher"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a> : cookies.role === '2' ? <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/staff"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a> : <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/admin"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a>}
                     {/* <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="/parent"><img className='alogo' src={`${ReactAppUrl}/img/susipwin logo.jpg`} alt="logo" /></a> */}
                     {/* <!-- User menu (mobile) --> */}
                     <div class="navbar-user d-lg-none">
@@ -64,8 +65,8 @@ const Sidebar =() =>{
                             {/* <!-- Toggle --> */}
                             <a href="#s" id="sidebarAvatar" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="avatar-parent-child">
-                                    <img alt="Placeholder" 
-                                        src="https://images.unsplash.com/photo-1548142813-c348350df52b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" 
+                                    <img alt="Placeholder"
+                                        src="https://images.unsplash.com/photo-1548142813-c348350df52b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
                                         class="avatar avatar- rounded-circle" />
                                     <span class="avatar-child avatar-badge bg-success"></span>
                                 </div>
@@ -80,7 +81,7 @@ const Sidebar =() =>{
                             </div>
                         </div>
                     </div>
-                    
+
                     {/* <!-- Collapse --> */}
                     <div class="collapse navbar-collapse" id="sidebarCollapse">
                         {/* <!-- Navigation --> */}
@@ -92,22 +93,22 @@ const Sidebar =() =>{
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/adminstudent">
-                                <i class='bx bx-user'></i> Students
+                                    <i class='bx bx-user'></i> Students
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/adminteacher">
-                                <i class="fa-solid fa-chalkboard-user"></i>Teachers
+                                    <i class="fa-solid fa-chalkboard-user"></i>Teachers
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/course">
-                                <i class="bi bi-book-half"></i> Courses
+                                    <i class="bi bi-book-half"></i> Courses
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/salary">
-                                <i class="bi bi-cash-stack"></i> Salary
+                                    <i class="bi bi-cash-stack"></i> Salary
                                 </a>
                             </li>
                             {/* <li class="nav-item">
@@ -124,13 +125,13 @@ const Sidebar =() =>{
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/newtimetable">
-                                <i class="fa-solid fa-table-cells"></i> Time Table
+                                    <i class="fa-solid fa-table-cells"></i> Time Table
                                 </a>
                             </li>
-                  
+
                             <li class="nav-item">
                                 <a class="nav-link" href="/gallery">
-                                <i class="fa-solid fa-table-cells"></i> Gallery
+                                    <i class="fa-solid fa-table-cells"></i> Gallery
                                 </a>
                             </li>
 
@@ -139,7 +140,7 @@ const Sidebar =() =>{
                                     <i class="bi bi-bookmarks"></i> Add User
                                 </a>
                             </li>
-                            
+
                             {/* <li class="nav-item">
                                 <a class="nav-link" href="#s">
                                     <i class="bi bi-people"></i> Users
@@ -228,21 +229,18 @@ const Sidebar =() =>{
                         {/* <!-- User (md) --> */}
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="#s">
-                                    <i class="bi bi-person-square"></i> Account
-                                </a>
+                                <Link to={`/profile/${cookies.id}`} className='nav-link'><i class="bi bi-person-square"></i> Account</Link>
+
                             </li>
                             <li class="nav-item">
                                 <Logout />
-                                {/* <a class="nav-link" href="#s">
-                                    <i class="bi bi-box-arrow-left"></i> Logout
-                                </a> */}
+
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
-    
+
 
         </>
     )

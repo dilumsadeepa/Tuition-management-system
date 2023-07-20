@@ -20,6 +20,7 @@ import EditNoticeNew from "./components/Common/EditNoticeNew";
 import NoticesList from "./components/Common/NoticesList";
 import EditCourse from "./components/Admin/EditCourse";
 import AddUser from "./components/Admin/AddUser";
+import Profile from "./components/User/Profile";
 
 // import CreateTimeTable from "./components/Common/CreateTimeTable";
 import TimeTable from "./components/Common/TimeTable";
@@ -115,6 +116,7 @@ function App() {
           <Route path="auth" element={<Auth />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="profile/:id" element={<Profile />} />
 
           {/* admin part */}
           {}
