@@ -4,7 +4,7 @@ import Apiurl from '../Apiurl';
 import Sidebar from '../Admin/AdminSidebar';
 import Dashhead from '../Admin/Dashhead';
 import { useParams } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
 
@@ -22,14 +22,14 @@ const Profile = () => {
         } catch (error) {
             console.log("error in getting data");
         }
-        
+
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getstu();
-        
-   
-    })
+
+
+    });
 
     return (
         <section>
@@ -62,110 +62,110 @@ const Profile = () => {
                             </div> */}
 
 
-                            
 
-                                <div className="row">
 
-                                    <div className="col-lg-4">
-                                        <div className="card mb-4">
-                                            <div className="card-body text-center">
-                                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                                                    className="rounded-circle img-fluid" style={{ width: "150px" }} />
-                                                <h5 className="my-3">{data.fullname}</h5>
-                                                <p className="text-muted mb-1">{data.email}</p>
-                                                <p className="text-muted mb-4">{data.address}</p>
-                                                {/* <div className="d-flex justify-content-center mb-2">
-                                        <button type="button" className="btn btn-primary">Follow</button>
-                                        <button type="button" className="btn btn-outline-primary ms-1">Message</button>
-                                        </div> */}
+                            <div className="row">
+
+                                <div className="col-lg-4">
+                                    <div className="card mb-4">
+                                        <div className="card-body text-center">
+                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                                                className="rounded-circle img-fluid" style={{ width: "150px" }} />
+                                            <h5 className="my-3">{data.username}</h5>
+                                            <p className="text-muted mb-1">{data.email}</p>
+                                            <p className="text-muted mb-4">{data.address}</p>
+                                            <div className="d-flex justify-content-center mb-2">
+                                            <Link to={`/editprofile/${id}`} className='btn btn-info'>Edit Profile</Link>
+                                                {/* <button type="button" className="btn btn-outline-primary ms-1">Message</button> */}
                                             </div>
-                                        </div>
-                                        <div className="card mb-4 mb-lg-0">
-
                                         </div>
                                     </div>
-                                    <div className="col-lg-8">
-                                        <div className="card mb-4">
-                                            <div className="card-body">
-                                                <div className="row">
-                                                    <div className="col-sm-3">
-                                                        <p className="mb-0">Full Name</p>
-                                                    </div>
-                                                    <div className="col-sm-9">
-                                                        <p className="text-muted mb-0">{data.fullname}</p>
-                                                    </div>
-                                                </div>
-                                                <hr />
-                                                <div className="row">
-                                                    <div className="col-sm-3">
-                                                        <p className="mb-0">Email</p>
-                                                    </div>
-                                                    <div className="col-sm-9">
-                                                        <p className="text-muted mb-0">{data.email}</p>
-                                                    </div>
-                                                </div>
-                                                <hr />
-                                                <div className="row">
-                                                    <div className="col-sm-3">
-                                                        <p className="mb-0">Phone</p>
-                                                    </div>
-                                                    <div className="col-sm-9">
-                                                        <p className="text-muted mb-0">{data.tel}</p>
-                                                    </div>
-                                                </div>
-                                                <hr />
-                                                <div className="row">
-                                                    <div className="col-sm-3">
-                                                        <p className="mb-0">NIC</p>
-                                                    </div>
-                                                    <div className="col-sm-9">
-                                                        <p className="text-muted mb-0">{data.nic}</p>
-                                                    </div>
-                                                </div>
-                                                <hr />
-                                                <div className="row">
-                                                    <div className="col-sm-3">
-                                                        <p className="mb-0">Address</p>
-                                                    </div>
-                                                    <div className="col-sm-9">
-                                                        <p className="text-muted mb-0">{data.address}</p>
-                                                    </div>
-                                                </div>
-                                                <hr />
-                                                <div className="row">
-                                                    <div className="col-sm-3">
-                                                        <p className="mb-0">DOB</p>
-                                                    </div>
-                                                    <div className="col-sm-9">
-                                                        <p className="text-muted mb-0">{data.dob}</p>
-                                                    </div>
-                                                </div>
-                                                <hr />
-                                                <div className="row">
-                                                    <div className="col-sm-3">
-                                                        <p className="mb-0">Gender</p>
-                                                    </div>
-                                                    <div className="col-sm-9">
-                                                        <p className="text-muted mb-0">{data.gender}</p>
-                                                    </div>
-                                                </div>
-                                                <hr />
-                                                <div className="row">
-                                                    <div className="col-sm-3">
-                                                        <p className="mb-0">User ID</p>
-                                                    </div>
-                                                    <div className="col-sm-9">
-                                                        <p className="text-muted mb-0">{data.id}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
+                                    <div className="card mb-4 mb-lg-0">
 
                                     </div>
                                 </div>
-                            
+                                <div className="col-lg-8">
+                                    <div className="card mb-4">
+                                        <div className="card-body">
+                                            <div className="row">
+                                                <div className="col-sm-3">
+                                                    <p className="mb-0">Full Name</p>
+                                                </div>
+                                                <div className="col-sm-9">
+                                                    <p className="text-muted mb-0">{data.fullname}</p>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div className="row">
+                                                <div className="col-sm-3">
+                                                    <p className="mb-0">Email</p>
+                                                </div>
+                                                <div className="col-sm-9">
+                                                    <p className="text-muted mb-0">{data.email}</p>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div className="row">
+                                                <div className="col-sm-3">
+                                                    <p className="mb-0">Phone</p>
+                                                </div>
+                                                <div className="col-sm-9">
+                                                    <p className="text-muted mb-0">{data.tel}</p>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div className="row">
+                                                <div className="col-sm-3">
+                                                    <p className="mb-0">NIC</p>
+                                                </div>
+                                                <div className="col-sm-9">
+                                                    <p className="text-muted mb-0">{data.nic}</p>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div className="row">
+                                                <div className="col-sm-3">
+                                                    <p className="mb-0">Address</p>
+                                                </div>
+                                                <div className="col-sm-9">
+                                                    <p className="text-muted mb-0">{data.address}</p>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div className="row">
+                                                <div className="col-sm-3">
+                                                    <p className="mb-0">DOB</p>
+                                                </div>
+                                                <div className="col-sm-9">
+                                                    <p className="text-muted mb-0">{data.dob}</p>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div className="row">
+                                                <div className="col-sm-3">
+                                                    <p className="mb-0">Gender</p>
+                                                </div>
+                                                <div className="col-sm-9">
+                                                    <p className="text-muted mb-0">{data.gender}</p>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div className="row">
+                                                <div className="col-sm-3">
+                                                    <p className="mb-0">User ID</p>
+                                                </div>
+                                                <div className="col-sm-9">
+                                                    <p className="text-muted mb-0">{data.id}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
                         </div>
 
                     </main>

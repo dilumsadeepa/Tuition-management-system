@@ -21,6 +21,7 @@ import NoticesList from "./components/Common/NoticesList";
 import EditCourse from "./components/Admin/EditCourse";
 import AddUser from "./components/Admin/AddUser";
 import Profile from "./components/User/Profile";
+import EditUser from "./components/User/EditUser";
 
 // import CreateTimeTable from "./components/Common/CreateTimeTable";
 import TimeTable from "./components/Common/TimeTable";
@@ -117,6 +118,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="profile/:id" element={<Profile />} />
+          <Route path="editprofile/:id" element={<EditUser />} />
 
           {/* admin part */}
           {}

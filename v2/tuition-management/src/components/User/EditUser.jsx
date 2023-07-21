@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Apiurl from '../Apiurl';
-import Sidebar from './AdminSidebar';
-import Dashhead from './Dashhead';
+import Sidebar from '../Admin/AdminSidebar';
+import Dashhead from '../Admin/Dashhead';
 import Swal from 'sweetalert2';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const CreateUser = () => {
+const EditUser = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [tel, setTel] = useState('');
@@ -18,8 +20,12 @@ const CreateUser = () => {
     const [nic, setNic] = useState('');
     const [edlevel, setEdlevel] = useState('');
     const [errors, setErrors] = useState({});
+
+    const { id } = useParams();
+    
     const [showPassword, setShowPassword] = useState(false);
 
+    const navigate = useNavigate();
 
     const validateForm = () => {
         const newErrors = {};
@@ -68,7 +74,7 @@ const CreateUser = () => {
         e.preventDefault();
         if (validateForm()) {
             try {
-                await axios.post(`${Apiurl}/users`, {
+                await axios.patch(`${Apiurl}/users/${id}`, {
                     username,
                     email,
                     tel,
@@ -84,8 +90,8 @@ const CreateUser = () => {
                 Swal.fire({
                     icon: 'success',
                     title: 'Success!',
-                    text: 'A new User created',
-                  });
+                    text: 'Profile updated successfully',
+                });
                 // Clear form fields on successful submission
                 setUsername('');
                 setEmail('');
@@ -98,16 +104,44 @@ const CreateUser = () => {
                 setGender('');
                 setNic('');
                 setEdlevel('');
+                navigate(`/profile/${id}`);
+
             } catch (error) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error!',
-                    text: 'Something went wrong'+error,
-                  });
+                    text: 'Something went wrong' + error,
+                });
                 console.log(error);
             }
         }
     };
+
+    const getstu = async (e) => {
+
+        try {
+            const response = await axios.get(`${Apiurl}/profile/${id}`);
+            setUsername(response.data.username);
+            setEmail(response.data.email);
+            setTel(response.data.tel);
+            setPassword(response.data.password);
+            setRole(response.data.role);
+            setFullname(response.data.fullname);
+            setAddress(response.data.address);
+            setDob(response.data.dob);
+            setGender(response.data.gender);
+            setNic(response.data.nic);
+            setEdlevel(response.data.edlevel);
+
+        } catch (error) {
+            console.log("error in getting data");
+        }
+
+    }
+
+    useEffect(() => {
+        getstu();
+    }, [])
 
     return (
         <section>
@@ -125,7 +159,7 @@ const CreateUser = () => {
                         <div className="container">
                             <div className="row mt-5 mb-5">
                                 <div className="col-sm-12">
-                                    <h2>Create User</h2>
+                                    <h2>Edit Profile</h2>
                                 </div>
                             </div>
 
@@ -221,7 +255,7 @@ const CreateUser = () => {
                                         </div>
 
                                         {/* Role */}
-                                        <div className="mb-3 mt-3">
+                                        {/* <div className="mb-3 mt-3">
                                             <label className="form-label">Role:</label>
                                             <select
                                                 className="form-control"
@@ -236,11 +270,11 @@ const CreateUser = () => {
                                                 <option value="4">Student</option>
                                                 <option value="5">Parent</option>
                                             </select>
-                                            {/* Display validation error for role */}
+                                            {/* Display validation error for role 
                                             {errors.role && <div className="error">{errors.role}</div>}
-                                        </div>
+                                        </div> */}
 
-                                        
+
 
                                         {/* Address */}
                                         <div className="mb-3 mt-3">
@@ -280,7 +314,7 @@ const CreateUser = () => {
                                                 <option value="">Select a gender</option>
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
-                                                
+
                                             </select>
                                             {/* Display validation error for role */}
                                             {errors.gender && <div className="error">{errors.gender}</div>}
@@ -316,7 +350,7 @@ const CreateUser = () => {
 
 
                                         <button type="submit" className="btn btn-primary">
-                                            Create User
+                                            Edit Profile
                                         </button>
                                     </form>
                                 </div>
@@ -331,4 +365,4 @@ const CreateUser = () => {
     );
 };
 
-export default CreateUser;
+export default EditUser;
