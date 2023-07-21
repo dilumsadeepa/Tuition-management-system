@@ -89,7 +89,7 @@ const TeacherCourse = () =>{
                                                     <th>Course ID</th>
                                                     <th>Course Name</th>
                                                     <th>Course Fee</th>
-                                                    {/* <th>Action</th> */}
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -98,7 +98,7 @@ const TeacherCourse = () =>{
                                                 <td>{course.courseid}</td>
                                                 <td>{course.coursename}</td>
                                                 <td>{course.courseprice}</td>
-                                                {/* <td><Link to={`/editcourse/${course.id}`} className='btn btn-info'>Edit</Link><button className='btn btn-danger' onClick={()=> deletecourse(course.id)}>Delete</button></td> */}
+                                                <td><Link to={`/editcourse/${course.id}`} className='btn btn-info'>Edit</Link><button className='btn btn-danger' onClick={()=> deletecourse(course.id)}>Delete</button></td>
                                                 </tr>
                                             )}
                                             </tbody>
