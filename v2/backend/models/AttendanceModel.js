@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../config/Database.js');
+const User = require('../models/UserModel.js');
 
 const Attendance = db.define('attendances', {
   auserid: {
@@ -21,6 +22,8 @@ const Attendance = db.define('attendances', {
 }, {
   freezeTableName: true
 });
+
+
 
 module.exports = Attendance;
 

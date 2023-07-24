@@ -3,7 +3,6 @@ import axios from 'axios';
 import Apiurl from '../Apiurl';
 import Sidebar from './StudentSidebar';
 import Dashhead from './Dashhead';
-import { Link, useParams } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
 const Attendecep = () => {
@@ -11,17 +10,17 @@ const Attendecep = () => {
     const [cookies, setCookie] = useCookies(['user']);
 
     useEffect(() => {
-        getAttendance();
+        getAttendece();
     }, []);
 
-    const getAttendance = async () => {
+    const getAttendece = async () => {
         try {
-            // Assuming you have a user ID stored in the cookies as "cookies.userId"
-            const userId = cookies.userId;
-
-            const response = await axios.get(`${Apiurl}/getattendece/${userId}`);
-            console.log(response.data);
+            
+            const userId = cookies.id;
+            console.log(userId);
+            const response = await axios.get(`${Apiurl}/att/${userId}`);
             setAttendece(response.data);
+            console.log(response.data);
         } catch (error) {
             console.log("Error in getting data", error);
         }
@@ -54,8 +53,8 @@ const Attendecep = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {attendence.map((att, index) => (
-                                                    <tr key={index}>
+                                                {attendence.map((att) => (
+                                                    <tr>
                                                         <td>{att.acourseid}</td>
                                                         <td>{att.aday}</td>
                                                         <td>{att.atime}</td>
