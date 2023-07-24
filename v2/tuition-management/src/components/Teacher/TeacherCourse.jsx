@@ -98,7 +98,7 @@ const TeacherCourse = () =>{
                                                 <td>{course.courseid}</td>
                                                 <td>{course.coursename}</td>
                                                 <td>{course.courseprice}</td>
-                                                <td><Link to={`/editcourse/${course.id}`} className='btn btn-info'>Edit</Link><button className='btn btn-danger' onClick={()=> deletecourse(course.id)}>Delete</button></td>
+                                                <td><Link to={`/editcourse/${course.id}`} className='btn btn-info'>View Students</Link></td>
                                                 </tr>
                                             )}
                                             </tbody>
