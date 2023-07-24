@@ -110,7 +110,7 @@ exports.getStudentsByCourseIds = async (req, res) => {
   const courseIds = req.params.courseIds.split(",").map(Number);
 
   const sql =
-  "SELECT cs.*, u.fullname AS student_name " +
+  "SELECT cs.*, u.fullname AS student_name,u.address AS student_address, u.email AS student_email, u.tel AS student_tel " +
   "FROM coursestudents cs " +
   "JOIN users u ON cs.userId = u.id " +
   "WHERE cs.courseId IN (" + courseIds.join(",") + ");";

@@ -73,6 +73,7 @@ import Teacher from "./components/Teacher/Teacher";
 import AddTeacherDetails from "./components/Admin/AddTeacherDetails";
 import TeacherCourse from "./components/Teacher/TeacherCourse";
 import TeacherStudent from "./components/Teacher/TeacherStudent";
+import ViewStudents from "./components/Teacher/ViewStudents";
 
 import Attendecep from "./components/Parent/Attendencep";
 import TeacherProfile from "./components/Teacher/TeacherProfile";
@@ -146,6 +147,7 @@ function App() {
           <Route path="teachercourse" element={<TeacherCourse />}></Route>
           <Route path="teacherprofile" element={<TeacherProfile />}></Route>
           <Route path="teacherstudent" element={<TeacherStudent />}></Route>
+          <Route path="showstudents/:id" element={<ViewStudents />}></Route>
 
           {/* student part */}
           {/* <Route path="StudentLogin" element={<Login />} /> */}
