@@ -93,6 +93,16 @@ const Sidebar =() =>{
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="Attendence">
+                                    <i class="bi bi-people"></i> View Student attendance 
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="parentstudent">
+                                <i className="bi bi-minecart-loaded"></i> Payment
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="/notice">
                                     <i class="fa-regular fa-note-sticky"></i> Notices
                                     <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">{noticesCount}</span>
@@ -192,9 +202,6 @@ const Sidebar =() =>{
                             </li>
                             <li class="nav-item">
                                 <Logout />
-                                {/* <a class="nav-link" href="#s">
-                                    <i class="bi bi-box-arrow-left"></i> Logout
-                                </a> */}
                             </li>
                         </ul>
                     </div>

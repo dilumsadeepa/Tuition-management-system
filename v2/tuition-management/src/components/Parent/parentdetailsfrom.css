@@ -1,0 +1,12 @@
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15vh; /* Optional: This centers the container both horizontally and vertically on the page */
+  }
+
+  .custom-image {
+    width: 483px; /* Set your desired width */
+    height: auto; /* This ensures the aspect ratio is maintained */
+  }
+  

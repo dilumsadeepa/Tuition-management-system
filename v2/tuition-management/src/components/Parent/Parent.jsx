@@ -1,124 +1,162 @@
 import React from 'react';
-// import { useCookies } from 'react-cookie';
-
 import Sidebar from './Sidebar';
 import Dashhead from './Dashhead';
+import "./parentdetailsfrom.css";
 
 
-const ParentDashboard = () =>{
+const ParentDashboard = () => {
+  return (
+    <section>
 
-    // const [cookies] = useCookies(['user']);
-
-    return(
-        <section>
-
-            {/* <!-- Dashboard --> */}
-            <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+        <div className="h-screen flex-grow-1 overflow-y-lg-auto"> 
+        <Dashhead />  
                 
-                <Sidebar />
+        <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+        <Sidebar />
 
 
-                {/* <!-- Main content --> */}
-                <div class="h-screen flex-grow-1 overflow-y-lg-auto">
-                    
-                    {/* <!-- Header --> */}
-                    <Dashhead />
-
-                    {/* <!-- Main --> */}
-                    <main class="py-6 bg-surface-secondary">
-                        <div class="container-fluid">
-                            {/* <!-- Card stats --> */}
-                            <div class="row g-6 mb-6">
-                                <div class="col-xl-3 col-sm-6 col-12">
-                                    <div class="card shadow border-0">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Student Details</span>
-                                                </div>
-                                                {/* <div class="col-auto">
-                                                    <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
-                                                        <i class="bi bi-credit-card"></i>
-                                                    </div>
-                                                </div> */}
-                                            </div>
-                                            <div class="mt-2 mb-0 text-sm">
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-sm-6 col-12">
-                                    <div class="card shadow border-0">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <a class="nav-link" href="/notice">
-                                                    {/* <i class="fa-regular fa-note-sticky"></i> Notices */}
-                                                    <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">Notices</span>
-                                                 </a>
-                                                {/* <div class="col-auto">
-                                                    <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
-                                                        <i class="bi bi-people"></i>
-                                                    </div>
-                                                </div> */}
-                                            </div>
-                                            <div class="mt-2 mb-0 text-sm">
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-sm-6 col-12">
-                                    <div class="card shadow border-0">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Profile</span>
-                                                </div>
-                                                {/* <div class="col-auto">
-                                                    <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
-                                                        <i class="bi bi-clock-history"></i>
-                                                    </div>
-                                                </div> */}
-                                            </div>
-                                            <div class="mt-2 mb-0 text-sm">
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-sm-6 col-12">
-                                    <div class="card shadow border-0">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Payment</span>
-                                                </div>
-                                                {/* <div class="col-auto">
-                                                    <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
-                                                        <i class="bi bi-minecart-loaded"></i>
-                                                    </div>
-                                                </div> */}
-                                            </div>
-                                            <div class="mt-2 mb-0 text-sm">
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
+      <div className="my-4"></div>
+            
+      <main className="py-6 bg-surface-secondary">
+      
+        <div className="container-fluid">
+        <div className="dashback">
+            
+          <div className="row">
+            <div className="col-md-6 col-lg-6 mb-4">
+              <a href="/ViewStudentDetails">
+                <div className="card shadow border-0 h-100">
+                  <div className="card-body">
+                    <div className="row">
+                      <div className="col">
+                        <h2 className="h5 font-semibold text-muted text-sm d-block mb-2">
+                          Student
+                        </h2>
+                        <h3 className="h4 font-bold mb-0">
+                          
+                        </h3>
+                      </div>
+                      <div className="col-auto">
+                        <div className="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
+                        <i class="bi bi-people"></i>
                         </div>
-                    </main>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                
-                 
+              </a>
             </div>
 
+            <div className="col-md-6 col-lg-6 mb-4">
+              <a href="/ParentProfile">
+                <div className="card shadow border-0 h-100">
+                  <div className="card-body">
+                    <div className="row">
+                      <div className="col">
+                        <h2 className="h5 font-semibold text-muted text-sm d-block mb-2">
+                          Profile
+                        </h2>
+                        <h3 className="h4 font-bold mb-0">
+                          
+                        </h3>
+                      </div>
+                      <div className="col-auto">
+                        <div className="icon icon-shape bg-primary text-white text-lg rounded-circle">
+                        <i class="bi bi-person-square"></i> 
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-6 col-lg-6 mb-4">
+              <a href="/Attendence">
+                <div className="card shadow border-0 h-100">
+                  <div className="card-body">
+                    <div className="row">
+                      <div className="col">
+                        <h2 className="h5 font-semibold text-muted text-sm d-block mb-2">
+                          Attendance
+                        </h2>
+                        <h3 className="h4 font-bold mb-0"></h3>
+                      </div>
+                      <div className="col-auto">
+                        <div className="icon icon-shape bg-info text-white text-lg rounded-circle">
+                          <i className="bi bi-clock-history"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
 
-        </section>
+            <div className="col-md-6 col-lg-6 mb-4">
+            <a href="/mypayments">
+              <div className="card shadow border-0 h-100">
+                <div className="card-body">
+                  <div className="row">
+                    <div className="col">
+                      <h2 className="h5 font-semibold text-muted text-sm d-block mb-2">
+                        Payments
+                      </h2>
+                      <h3 className="h4 font-bold mb-0"></h3>
+                    </div>
+                    <div className="col-auto">
+                      <div className="icon icon-shape bg-warning text-white text-lg rounded-circle">
+                        <i className="bi bi-minecart-loaded"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </a>
+            </div>
+
+            <div className="row">
+            <div class="centered-container">
+            <div className="col-md-6 col-lg-6 mb-4">
+              <a href="/notice">
+                <div className="card shadow border-0 h-100">
+                  <div className="card-body">
+                    <div className="row">
+                      <div className="col">
+                        <h2 className="h5 font-semibold text-muted text-sm d-block mb-2">
+                          Notice
+                        </h2>
+                        <h3 className="h4 font-bold mb-0"></h3>
+                      </div>
+                      <div className="col-auto">
+                        <div className="icon icon-shape bg-info text-white text-lg rounded-circle">
+                        <i class="fa-regular fa-note-sticky"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            </div>
+            </div>
+            
+          </div>
+
+          <img src="https://m.media-amazon.com/images/G/01/kindle/tahoe/panda/PDUnauthHeader._CB653845284_.png" alt="Loss" class="custom-image" /> 
+
+        </div>
+
+        </div>
         
-    )
-}
+      </main>
+
+
+      </div>
+      </div>
+    </section>
+  );
+};
 
 export default ParentDashboard;

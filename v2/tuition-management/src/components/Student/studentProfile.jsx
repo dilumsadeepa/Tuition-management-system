@@ -1,136 +1,167 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import Apiurl from '../Apiurl';
 import Sidebar from './StudentSidebar';
 import Dashhead from './Dashhead';
 import { useCookies } from 'react-cookie';
-import "./studentDetailsForm.css";
 
 const StudentProfile = () => {
-  const [student, setStudent] = useState([]);
-  const [cookies] = useCookies(['user']);
+    const [students, setStudentData] = useState([]);
+    const [cookies, setCookie] = useCookies(['user']);
 
-  const handleUpdate = () => {
-    // Handle update logic here
-  };
+    const getStudent = async () => {
+        try {
+            const response = await axios.get(`${Apiurl}/getstudentdata/${cookies.email}`);
+            console.log(response.data);
+            // Check if response.data is an array
+            if (Array.isArray(response.data)) {
+                setStudentData(response.data);
+            } else {
+                console.log("Invalid data format: Expected an array.");
+            }
+        } catch (error) {
+            console.log("Error in getting data", error);
+        }
+    }
 
-  const handleDelete = () => {
-    // Handle delete logic here
-  };
+    useEffect(() => {
+        getStudent();
+    }, []);
 
-  useEffect(() => {
-    const fetchStudentProfile = async () => {
-      try {
-        const response = await axios.get(`${Apiurl}/student/${cookies.id}`); // Replace with your API endpoint to retrieve student profile by ID
-        setStudent(response.data);
-      } catch (error) {
-        console.log('Error fetching student profile:', error);
-      }
-    };
+    useEffect(() => {
+        console.log("students", students);
+    }, [students]);
 
-    fetchStudentProfile();
-  }, []);
+    // Filter the students array to show only the profile of the logged-in student
+    const loggedInStudent = students.find(student => student.email === cookies.email);
 
-  return (
-    <section>
-      <div className="h-screen flex-grow-1 overflow-y-lg-auto">
-        <Dashhead />
+    return (
+        <section>
+            {/* <!-- Dashboard --> */}
+            <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+                <Sidebar />
 
-        <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
-          <Sidebar />
+                {/* <!-- Main content --> */}
+                <div className="h-screen flex-grow-1 overflow-y-lg-auto">
+                    {/* <!-- Header --> */}
+                    <Dashhead />
 
-          <div className="profback">
-            <main className="p-5">
-              <div className="container">
-                <center>
-                  <h1>Student Profile</h1>
-                </center>
-                <br></br>
-                <h3></h3>
-                {student ? (
-                  <div className="row row-cols-1 row-cols-md-2 g-4">
+                    {/* <!-- Main --> */}
+                    <main className="py-6 bg-surface-secondary">
+                        <div className="container-fluid">
+                            <div className="row mb-3 mt-3">
+                                <h1>Student Profile</h1>
+                                <div className="col-sm-12 mb-5 mt-3">
+                                    {/* Check if loggedInStudent is available */}
+                                    {loggedInStudent ? (
+                                        <div className="row">
+                                            {/* ... Render student profile data */}
+                                            <div className="col-lg-4">
+                                                <div className="card mb-4">
+                                                    <div className="card-body text-center">
+                                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                                                            className="rounded-circle img-fluid" style={{ width: "150px" }} />
+                                                        <h5 className="my-3">{loggedInStudent.username}</h5>
+                                                        <p className="text-muted mb-1">{loggedInStudent.email}</p>
+                                                        <div className="d-flex justify-content-center mb-2">
+                                                            <a href="/editstudent" className="btn btn-primary">Edit Profile</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="card mb-4 mb-lg-0">
+                                                    {/* ... Some other content specific to student */}
+                                                </div>
+                                            </div>
+                                            <div className="col-lg-8">
+                                                <div className="card mb-4">
+                                                    <div className="card-body">
+                                                        {/* ... Render student profile details */}
+                                                        <div className="row">
+                                                            <div className="col-sm-3">
+                                                                <p className="mb-0">Full Name</p>
+                                                            </div>
+                                                            <div className="col-sm-9">
+                                                                <p className="text-muted mb-0">{loggedInStudent.fullname}</p>
+                                                            </div>
+                                                        </div>
+                                                        <hr />
 
-                    <div className="col">
-                      <div className="card">
-                        <div className="card-body">
-                          <h5 className="card-title">Avatar</h5>
-                          <img src={student.avatar} alt="Avatar" className="avatar-image" />
+                                                        
+                                                        <div className="row">
+                                                            <div className="col-sm-3">
+                                                                <p className="mb-0">Email</p>
+                                                            </div>
+                                                            <div className="col-sm-9">
+                                                                <p className="text-muted mb-0">{loggedInStudent.email}</p>
+                                                            </div>
+                                                        </div>
+                                                        <hr />
+                                                        {/* ... More profile details */}
+                                                        <div className="row">
+                                                            <div className="col-sm-3">
+                                                                <p className="mb-0">Contact number</p>
+                                                            </div>
+                                                            <div className="col-sm-9">
+                                                                <p className="text-muted mb-0">{loggedInStudent.tel}</p>
+                                                            </div>
+                                                        </div>
+                                                        <hr />
+
+                                                        <div className="row">
+                                                            <div className="col-sm-3">
+                                                                <p className="mb-0">Address</p>
+                                                            </div>
+                                                            <div className="col-sm-9">
+                                                                <p className="text-muted mb-0">{loggedInStudent.address}</p>
+                                                            </div>
+                                                        </div>
+                                                        <hr />
+
+                                                        <div className="row">
+                                                            <div className="col-sm-3">
+                                                                <p className="mb-0">Date of birth</p>
+                                                            </div>
+                                                            <div className="col-sm-9">
+                                                                <p className="text-muted mb-0">{loggedInStudent.dob}</p>
+                                                            </div>
+                                                        </div>
+                                                        <hr />
+                                                        
+                                                        <div className="row">
+                                                            <div className="col-sm-3">
+                                                                <p className="mb-0">Gender</p>
+                                                            </div>
+                                                            <div className="col-sm-9">
+                                                                <p className="text-muted mb-0">{loggedInStudent.gender}</p>
+                                                            </div>
+                                                        </div>
+                                                        <hr />
+
+                                                        <div className="row">
+                                                            <div className="col-sm-3">
+                                                                <p className="mb-0">NIC</p>
+                                                            </div>
+                                                            <div className="col-sm-9">
+                                                                <p className="text-muted mb-0">{loggedInStudent.nic}</p>
+                                                            </div>
+                                                        </div>
+                                                        <hr />
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <p>Loading...</p>
+                                    )}
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                    </div>
-                    <div className="col">
-                      <div className="card">
-                        <div className="card-body">
-                          <h5 className="card-title">Name</h5>
-                          <p className="card-text">{student.sfullname}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col">
-                      <div className="card">
-                        <div className="card-body">
-                          <h5 className="card-title">Name with initials</h5>
-                          <p className="card-text">{student.snamewithini}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col">
-                      <div className="card">
-                        <div className="card-body">
-                          <h5 className="card-title">Address</h5>
-                          <p className="card-text">{student.saddress}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col">
-                      <div className="card">
-                        <div className="card-body">
-                          <h5 className="card-title">Date of Birth</h5>
-                          <p className="card-text">{student.sdob}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col">
-                      <div className="card">
-                        <div className="card-body">
-                          <h5 className="card-title">NIC</h5>
-                          <p className="card-text">{student.snic}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col">
-                      <div className="card">
-                        <div className="card-body">
-                          <h5 className="card-title">Gender</h5>
-                          <p className="card-text">{student.sgender}</p>
-                        </div>
-                      </div>
-                    </div>
-                    
-
-                    <div className="d-flex justify-content-center">
-                      <button className="btn btn-primary" onClick={handleUpdate}>
-                        Update
-                      </button>
-                    </div>
-                    <div className="d-flex justify-content-center">
-                      <button className="btn btn-danger" onClick={handleDelete}>
-                        Delete
-                      </button>
-                    </div>
-
-                    {/* Add more student details as needed */}
-                  </div>
-                ) : (
-                  <p>Loading student profile...</p>
-                )}
-              </div>
-            </main>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
+                    </main>
+                </div>
+            </div>
+        </section>
+    )
+}
 
 export default StudentProfile;

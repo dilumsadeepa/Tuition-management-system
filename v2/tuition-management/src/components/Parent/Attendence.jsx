@@ -8,7 +8,7 @@ import User from '../User';
 
 
 
-const Attendecep = () => {
+const Attendece = () => {
 
     const [attendence, setAttendece] = useState([]);
     const { id } = useParams();
@@ -86,4 +86,4 @@ const Attendecep = () => {
 }
 
 
-export default Attendecep;
+export default Attendece;
