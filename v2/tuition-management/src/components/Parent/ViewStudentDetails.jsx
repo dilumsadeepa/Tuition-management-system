@@ -14,12 +14,12 @@ const ViewStudentDetails = () => {
     const [cookies, setCookie] = useCookies(['user']);
 
     const getstu = async(e) =>{
-        console.log(cookies.id);
-        const id = cookies.email;
+        
+        const id = cookies.id;
         try {
-            const response = await axios.get(`${Apiurl}/getparentstu/${id}`);
+            const response = await axios.get(`${Apiurl}/findParentByParentId/${id}`);
             setStudents(response.data);
-            
+            console.log(response.data);
             
         } catch (error) {
             console.log("error in getting data")
@@ -63,23 +63,19 @@ const ViewStudentDetails = () => {
                                                     <th>DOB</th>
                                                     <th>Gender</th>
                                                     <th>NIC</th>
-                                                    <th>Payment</th>
-                                                    <th>Attendence</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {students.map((stu) =>
+                                                {/* {students.map((stu) => */}
                                                 <tr>
-                                                    <td>{stu.sfullname}</td>
-                                                    <td>{stu.snamewithini}</td>
-                                                    <td>{stu.saddress}</td>
-                                                    <td>{stu.dob}</td>
-                                                    <td>{stu.sgender}</td>
-                                                    <td>{stu.snic}</td>
-                                                    <td><Link to={`/paymentp/${stu.id}`} className='btn btn-info'>Pament</Link></td>
-                                                    <td><Link to={`/pattendece/${stu.id}`} className='btn btn-info'>Attendence</Link></td>
+                                                    <td>{students.fullname}</td>
+                                                    <td>{students.username}</td>
+                                                    <td>{students.address}</td>
+                                                    <td>{students.dob}</td>
+                                                    <td>{students.gender}</td>
+                                                    <td>{students.nic}</td>
                                                 </tr>
-                                                )}
+                                                {/* )} */}
                                             </tbody>
                                         </table>
                                     </div>

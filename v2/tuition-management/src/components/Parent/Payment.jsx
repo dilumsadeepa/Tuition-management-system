@@ -30,8 +30,8 @@ const getpay = async(e) =>{
 useEffect(()=>{
     getpay();
 },[])
-    return (
-        <section>
+return (
+     <section>
             {/* <!-- Dashboard --> */}
             <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
 
@@ -54,7 +54,10 @@ useEffect(()=>{
                                         <table className="table">
                                             <thead>
                                                 <tr>
+                                                    <th>ID</th>
                                                     <th>CourseID</th>
+                                                    <th>CourseName</th>
+                                                    <th>CourseSubject</th>
                                                     <th>Payment On Month</th>
                                                 </tr>
                                             </thead>
@@ -62,6 +65,9 @@ useEffect(()=>{
                                                 {payments.map((crs) =>
                                                 <tr>
                                                     <td>{crs.cid}</td>
+                                                    <td>{crs.courseid}</td>
+                                                    <td>{crs.coursename}</td>
+                                                    <td>{crs.coursesubject}</td>
                                                     <td>{crs.month}</td>
                                                 </tr>
                                                 )}

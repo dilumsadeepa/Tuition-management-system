@@ -167,6 +167,7 @@ router.get('/parentstudents/:id', parentStudentController.getParentStudentById);
 router.get('/findParentByStudentId/:studentId', parentStudentController.findParentByStudentId);
 router.put('/parentstudents/:id', parentStudentController.updateParentStudent);
 router.delete('/parentstudents/:id', parentStudentController.deleteParentStudent);
+router.get('/findParentByParentId/:id', parentStudentController.findParentByParentId);
 
 //other
 router.get("/stu", getsts);
