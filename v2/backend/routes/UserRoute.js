@@ -143,6 +143,7 @@ router.get("/att", getAtts);
 router.get("/att/:id", getAttById);
 router.post("/studentdata", createStudent);
 router.post("/enrollcourse", createApproval);
+router.get('/getStudentAtt/:id', getAttById);
 
 router.get("/getstudentdata/:id", getStuData);
 

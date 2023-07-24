@@ -11,9 +11,9 @@ exports.getAtts = async (req, res) => {
 
 exports.getAttById = async (req, res) => {
   try {
-    const response = await Attendance.findOne({
+    const response = await Attendance.findAll({
       where: {
-        id: req.params.id,
+        auserid: req.params.id,
       },
     });
     res.status(200).json(response);
