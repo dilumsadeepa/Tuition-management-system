@@ -1,55 +1,65 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
 import Apiurl from '../Apiurl';
 import Sidebar from './StudentSidebar';
-import Dashhead from './Dashhead';
-import axios from 'axios';
+import Dashhead from "./Dashhead";
 
-export default function DisableElevation() {
+const MyPaymentPage = () => {
   const [payments, setPayments] = useState([]);
 
-  const getPayments = async () => {
-    try {
-      const response = await axios.get(`${Apiurl}/paymentdata`);
-      setPayments(response.data);
-    } catch (error) {
-      console.log('Error in getting payment data:', error);
-    }
-  };
-
   useEffect(() => {
-    getPayments();
+    // Fetch the data from the server using Axios
+    axios.get(`${Apiurl}/mypayments`)
+      .then(response => {
+        setPayments(response.data.payments);
+      })
+      .catch(error => {
+        console.error('Error retrieving payment data:', error);
+      });
   }, []);
 
   return (
-    <section>
-      <div className="h-screen flex-grow-1 overflow-y-lg-auto">
-        <Dashhead />
+    <div>
+      <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+        <Sidebar />
 
-        <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
-          <Sidebar />
+        {/* <!-- Main content --> */}
+        <div className="h-screen flex-grow-1 overflow-y-lg-auto">
+          {/* <!-- Header --> */}
+          <Dashhead />
 
-          <main>
-            <div className="container">
+          {/* <!-- Main --> */}
+          <main className="py-6 bg-surface-secondary">
+            <div className="container-fluid">
               <div className="row mb-3 mt-3">
-                {payments.map((payment) => (
-                  <div className="col-sm-3" key={payment.id}>
-                    <div className="card">
-                      <img src={payment.courseImage} className="card-img-top" alt="Course" />
-                      <div className="card-body">
-                        <h5 className="card-title">Course ID: {payment.cid}</h5>
-                        <p className="card-text">Student ID: {payment.suid}</p>
-                        <p className="card-text">Month: {payment.month}</p>
-                        <Link to={`/PaymentDetails/${payment.id}`} className="btn btn-primary">View Details</Link>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                <div className="col-sm-12 mb-5 mt-3">
+                  <h1>My Payment Page</h1>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Customer ID</th>
+                        <th>Subscription ID</th>
+                        <th>Month</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {payments.map(payment => (
+                        <tr key={payment.cid}>
+                          <td>{payment.cid}</td>
+                          <td>{payment.suid}</td>
+                          <td>{payment.month}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </main>
         </div>
       </div>
-    </section>
+    </div>
   );
-}
+};
+
+export default MyPaymentPage;

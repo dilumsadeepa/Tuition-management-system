@@ -62,12 +62,13 @@ import Payment from "./components/Parent/Payment";
 import StudentDetils from "./components/Student/StudentDetils";
 import Classes from "./components/Student/classes";
 import Attendance from "./components/Student/attendance";
-// import mypayments from "./components/Student/mypayments"
+
+import MyPaymentPage from "./components/Student/mypayments";
 import EnrollPage from "./components/Student/EnrollPage";
 import StudentProfile from "./components/Student/studentProfile";
 import StuDashboard from "./components/Student/StuDashboard";
  
-
+//------------------
 
 import Teacher from "./components/Teacher/Teacher";
 import AddTeacherDetails from "./components/Admin/AddTeacherDetails";
@@ -156,7 +157,7 @@ function App() {
           <Route path="Attendance" element={<Attendance />} />
           <Route path="Enrollpage" element={<EnrollPage />} />
           <Route path="profile" element={<StudentProfile />} />
-          <Route path="mypayments" element={<mypayments />} />
+          <Route path="mypayments" element={<MyPaymentPage />} />
 
           <Route path="studashboard" element={<StuDashboard />} />
 
