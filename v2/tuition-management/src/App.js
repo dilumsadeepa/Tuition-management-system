@@ -74,14 +74,13 @@ import AddTeacherDetails from "./components/Admin/AddTeacherDetails";
 import TeacherCourse from "./components/Teacher/TeacherCourse";
 import TeacherStudent from "./components/Teacher/TeacherStudent";
 import ViewStudents from "./components/Teacher/ViewStudents";
-
 import TeacherProfile from "./components/Teacher/TeacherProfile";
 
 // .............Parents................
 
 import Parent from "./components/Admin/Parent";
 import ViewStudentParent from "./components/Parent/ViewStudentDetails";
-import ParentDashboard from "./components/Parent/Parent";
+import ParentDashboard from "./components/Parent/ParentDashabord";
 import AddParentData from "./components/Admin/AddParentsData";
 import ParentProfile from "./components/Parent/ParentProfile";
 import EditParent from "./components/Parent/EditParent";

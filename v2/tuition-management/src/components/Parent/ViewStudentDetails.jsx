@@ -57,23 +57,27 @@ const ViewStudentDetails = () => {
                                         <table className="table">
                                             <thead>
                                                 <tr>
-                                                    <th>Full Name</th>
+                                                    <th>User Name</th>
                                                     <th>Name with Inniti</th>
                                                     <th>Address</th>
                                                     <th>DOB</th>
                                                     <th>Gender</th>
                                                     <th>NIC</th>
+                                                    <th>Email</th>
+                                                    <th>TP Number</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 {/* {students.map((stu) => */}
                                                 <tr>
-                                                    <td>{students.fullname}</td>
                                                     <td>{students.username}</td>
+                                                    <td>{students.fullname}</td>
                                                     <td>{students.address}</td>
                                                     <td>{students.dob}</td>
                                                     <td>{students.gender}</td>
                                                     <td>{students.nic}</td>
+                                                    <td>{students.email}</td>
+                                                    <td>{students.tel}</td>
                                                 </tr>
                                                 {/* )} */}
                                             </tbody>

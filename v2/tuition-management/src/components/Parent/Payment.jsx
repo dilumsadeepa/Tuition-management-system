@@ -64,8 +64,8 @@ return (
                                             <tbody>
                                                 {payments.map((crs) =>
                                                 <tr>
+                                                    <td>{crs.id}</td>
                                                     <td>{crs.cid}</td>
-                                                    <td>{crs.courseid}</td>
                                                     <td>{crs.coursename}</td>
                                                     <td>{crs.coursesubject}</td>
                                                     <td>{crs.month}</td>
