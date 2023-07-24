@@ -1,70 +1,78 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Apiurl from '../Apiurl';
 import Sidebar from './StudentSidebar';
 import Dashhead from './Dashhead';
+import { useCookies } from 'react-cookie';
 
-const AttendanceView = () => {
-  const [attendanceData, setAttendanceData] = useState([]);
+const Attendecep = () => {
+    const [attendence, setAttendece] = useState([]);
+    const [cookies, setCookie] = useCookies(['user']);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+    useEffect(() => {
+        getAttendece();
+    }, []);
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get('/api/attendances'); // Replace '/api/attendances' with your actual API endpoint for fetching attendance data
-      setAttendanceData(response.data);
-    } catch (error) {
-      console.error('Error fetching attendance data:', error);
+    const getAttendece = async () => {
+        try {
+            
+            const userId = cookies.id;
+            console.log(userId);
+            const response = await axios.get(`${Apiurl}/att/${userId}`);
+            setAttendece(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.log("Error in getting data", error);
+        }
     }
-  };
 
-  return (
-    <section>
-      <div className="h-screen flex-grow-1 overflow-y-lg-auto">
-        <Dashhead />
+    return (
+        <section>
+            {/* <!-- Dashboard --> */}
+            <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+                <Sidebar />
 
-        <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
-          <Sidebar />
-          <main className="p-5">
-            <div className="container">
-              <h2 className="mb-4">Attendance Records</h2>
-              <div className="table-responsive">
-                <table className="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>User ID</th>
-                      <th>Course ID</th>
-                      <th>Day</th>
-                      <th>Time</th>
-                      <th>Status</th>
-                      <th>Created At</th>
-                      <th>Updated At</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {attendanceData.map((attendance) => (
-                      <tr key={attendance.id}>
-                        <td>{attendance.id}</td>
-                        <td>{attendance.auserid}</td>
-                        <td>{attendance.acourseid}</td>
-                        <td>{attendance.aday}</td>
-                        <td>{attendance.atime}</td>
-                        <td>{attendance.astatus}</td>
-                        <td>{attendance.createdAt}</td>
-                        <td>{attendance.updatedAt}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                {/* <!-- Main content --> */}
+                <div className="h-screen flex-grow-1 overflow-y-lg-auto">
+                    {/* <!-- Header --> */}
+                    <Dashhead />
+
+                    {/* <!-- Main --> */}
+                    <main className="py-6 bg-surface-secondary">
+                        <div className="container-fluid">
+                            <div className="row mb-3 mt-3">
+                                <h1>Student Attendance</h1>
+                                <div className="col-sm-12 mb-5 mt-3">
+                                    <div className="table-responsive">
+                                        <table className="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Course ID</th>
+                            
+                                                    <th>Date</th>
+                                                    <th>Time</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {attendence.map((att) => (
+                                                    <tr>
+                                                        <td>{att.acourseid}</td>
+                                                        
+                                                        <td>{att.aday}</td>
+                                                        <td>{att.atime}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
             </div>
-          </main>
-        </div>
-      </div>
-    </section>
-  );
-};
+        </section>
+    )
+}
 
-export default AttendanceView;
+export default Attendecep;

@@ -13,6 +13,8 @@ const {
 const {
   getAtts,
   getAttById,
+  getAttCourseId,
+  getAttByDate
 } = require("../controllers/AttendanceController.js");
 
 const {
@@ -141,8 +143,10 @@ router.get("/stucourseall", stucourseall);
 //student
 router.get("/att", getAtts);
 router.get("/att/:id", getAttById);
+router.get('/attcourse/:id',getAttCourseId);
 router.post("/studentdata", createStudent);
 router.post("/enrollcourse", createApproval);
+router.get('/getStudentAtt/:id', getAttById);
 
 router.get("/getstudentdata/:id", getStuData);
 

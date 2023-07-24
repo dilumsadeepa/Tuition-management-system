@@ -98,6 +98,7 @@ import AlTimeTable from "./components/Home/AlTimeTable";
 import Grades from "./components/Home/Grades";
 import ALStreamWiseTimeTable from "./components/Home/ALStreamWiseTimeTable";
 import PublicNotices from "./components/Home/PublicNotices";
+import ViewAttendance from "./components/Teacher/ViewAttendance";
 
 
 
@@ -147,6 +148,7 @@ function App() {
           <Route path="teacherprofile" element={<TeacherProfile />}></Route>
           <Route path="teacherstudent" element={<TeacherStudent />}></Route>
           <Route path="showstudents/:id" element={<ViewStudents />}></Route>
+          <Route path="viewattendance/:id" element={<ViewAttendance />}></Route>
 
           {/* student part */}
           {/* <Route path="StudentLogin" element={<Login />} /> */}

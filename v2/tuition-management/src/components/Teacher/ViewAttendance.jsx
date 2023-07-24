@@ -5,51 +5,28 @@ import TeacherSidebar from './TeacherSidebar';
 import Dashhead from './Dashhead';
 import { Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import { useParams } from 'react-router-dom';
 
 
 
-const TeacherStudent = () =>{
+const ViewAttendance = () =>{
 
-    const [courses, setCourses] = useState([]);
-    const [id,setId]=useState([]);
-    const [cookies] = useCookies(['id']);
-    const [courseId, setCookie] = useCookies(['course']);
-    console.log("user id "+cookies.id);
-    
-    const getId = async(e) =>{
+    const { id } = useParams();
+    const [students, setStudents] = useState([]);
+   
+    const getstudents = async (e) => {
         try {
-            const response = await axios.get(`${Apiurl}/getteacherbyId/${cookies.id}`);
-            const teacherId = response.data;
-            console.log("Teacher"+teacherId);
-            getcou(teacherId);
-        } catch (error) {
-            console.log("error in getting data")
-        }
-    }
-
-    const getcou = async (teacherId) => {
-        try {
-            const response = await axios.get(`${Apiurl}/teachercourse/${cookies.id}`);
-            setCourses(response.data);
-            console.log("course "+response.data);
+            const response = await axios.get(`${Apiurl}/attcourse/${id}`);
+            setStudents(response.data);
+            console.log("Students "+response.data);
         } catch (error) {
             console.log("Error in getting data:", error.message);
         }
     }
 
-    const deletecourse = async(id) =>{
-        console.log(`${Apiurl}/deletecourse/${id}`);
-        try {
-            const deleted = await axios.delete(`${Apiurl}/deletecourse/${id}`);
-            console.log(deleted.data);
-        } catch (error) {
-            console.log("error on deleting" + error);
-        }
-    }
-
+   
     useEffect(()=>{
-        getcou();
-        getId();
+        getstudents();
     },[])
 
     return(
@@ -87,20 +64,18 @@ const TeacherStudent = () =>{
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>Course ID</th>
-                                                    <th>Course Name</th>
-                                                    <th>Action</th>
+                                                    <th>Date</th>
+                                                    <th>Student Count</th>
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {
-                                                     console.log("Course data="+courses.map(course => course.id))
-                                                }
-                                            {courses.map((course) => 
+                                            {students.map((student) => 
                                                 <tr>
-                                                <td>{course.courseid}</td>
-                                                <td>{course.coursename}</td>
-                                                <td><Link to={`/viewattendance/${course.id}`} className='btn btn-info'>View Attendance</Link></td>
+                                                <td>{student.aday}</td>
+                                                <td>{student.count}</td>
+                                        
+                                                {/* <td><Link to={`/showstudents/${student.id}`} className='btn btn-info'>View Students</Link></td> */}
                                                 </tr>
                                             )}
                                             </tbody>
@@ -121,4 +96,4 @@ const TeacherStudent = () =>{
     )
 }
 
-export default TeacherStudent;
+export default ViewAttendance;
