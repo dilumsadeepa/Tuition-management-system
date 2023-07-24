@@ -8,7 +8,7 @@ import User from '../User';
 import { useCookies } from 'react-cookie';
 
 
-const ViewStudentParent = () => {
+const ViewStudentDetails = () => {
     const [students, setStudents] = useState([]);
 
     const [cookies, setCookie] = useCookies(['user']);
@@ -52,9 +52,6 @@ const ViewStudentParent = () => {
                             <div className="row mb-3 mt-3">
                                 <h1>Student Data</h1>
                                 <div className="col-sm-12 mb-5 mt-3">
-                                <a class="nav-link" href="/notice">
-                                <button type="button" class="btn btn-success">Notices</button> 
-                                </a>
                                     
                                     <div className="table-responsive">
                                         <table className="table">
@@ -100,4 +97,4 @@ const ViewStudentParent = () => {
 }
 
 
-export default ViewStudentParent;
+export default ViewStudentDetails;

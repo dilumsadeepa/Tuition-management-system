@@ -75,17 +75,17 @@ import TeacherCourse from "./components/Teacher/TeacherCourse";
 import TeacherStudent from "./components/Teacher/TeacherStudent";
 import ViewStudents from "./components/Teacher/ViewStudents";
 
-import Attendecep from "./components/Parent/Attendencep";
 import TeacherProfile from "./components/Teacher/TeacherProfile";
 
 // .............Parents................
 
 import Parent from "./components/Admin/Parent";
-import ViewStudentParent from "./components/Parent/VewStudentParent";
+import ViewStudentParent from "./components/Parent/ViewStudentDetails";
 import ParentDashboard from "./components/Parent/Parent";
 import AddParentData from "./components/Admin/AddParentsData";
 import ParentProfile from "./components/Parent/ParentProfile";
 import EditParent from "./components/Parent/EditParent";
+import Attendece from "./components/Parent/Attendence";
 
 
 // -----------------Home Page-----------------
@@ -166,7 +166,7 @@ function App() {
           <Route path="parent" element={<ParentDashboard />} />
           <Route path="parentstudent" element={<ViewStudentParent />} />
           <Route path="paymentp/:id" element={<Payment />} />
-          <Route path="pattendece/:id" element={<Attendecep />} />
+          <Route path="pattendece/:id" element={<Attendece />} />
           <Route path="parentprofile" element={<ParentProfile />} />
           <Route path="editparent" element={<EditParent />} />
           
