@@ -78,11 +78,13 @@ export default function DisableElevation() {
   return (
     <section>
       <ToastContainer autoClose={3000}/>
+
+      <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+          <Sidebar />
       <div className="h-screen flex-grow-1 overflow-y-lg-auto">
         <Dashhead />
 
-        <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
-          <Sidebar />
+        
 
           <main>
             <div className="container">
