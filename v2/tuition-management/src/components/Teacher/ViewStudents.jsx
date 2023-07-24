@@ -5,50 +5,29 @@ import TeacherSidebar from './TeacherSidebar';
 import Dashhead from './Dashhead';
 import { Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import { useParams } from 'react-router-dom';
 
 
 
-const TeacherCourse = () =>{
+const ViewStudents = () =>{
 
-    const [courses, setCourses] = useState([]);
-    const [id,setId]=useState([]);
-    const [cookies] = useCookies(['id']);
-    console.log("user id "+cookies.id);
-    
-    const getId = async(e) =>{
+    const { id } = useParams();
+    const [students, setStudents] = useState([]);
+   
+    const getstudents = async (e) => {
         try {
-            const response = await axios.get(`${Apiurl}/getteacherbyId/${cookies.id}`);
-            const teacherId = response.data;
-            console.log("Teacher"+teacherId);
-            getcou(teacherId);
-        } catch (error) {
-            console.log("error in getting data")
-        }
-    }
-
-    const getcou = async (teacherId) => {
-        try {
-            const response = await axios.get(`${Apiurl}/teachercourse/${cookies.id}`);
-            setCourses(response.data);
-            console.log("course "+response.data);
+            const response = await axios.get(`${Apiurl}/getAllStudentById/${id}`);
+            setStudents(response.data);
+            console.log("Students "+response.data);
         } catch (error) {
             console.log("Error in getting data:", error.message);
         }
     }
 
-    const deletecourse = async(id) =>{
-        console.log(`${Apiurl}/deletecourse/${id}`);
-        try {
-            const deleted = await axios.delete(`${Apiurl}/deletecourse/${id}`);
-            console.log(deleted.data);
-        } catch (error) {
-            console.log("error on deleting" + error);
-        }
-    }
+   
 
     useEffect(()=>{
-        getcou();
-        getId();
+        getstudents();
     },[])
 
     return(
@@ -69,7 +48,7 @@ const TeacherCourse = () =>{
                      <main>
                     
                         <div class="container">
-                            <h2 className='mt-3 mb-3'>Course</h2>
+                            <h2 className='mt-3 mb-3'>Students</h2>
                             <div className="row">
                                 <div class="col-xl-4 col-sm-6 col-12">
                                     <div class="card shadow border-0">
@@ -86,19 +65,20 @@ const TeacherCourse = () =>{
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>Course ID</th>
-                                                    <th>Course Name</th>
-                                                    <th>Course Fee</th>
-                                                    <th>Action</th>
+                                                    <th>Student Name</th>
+                                                    <th>Student Address</th>
+                                                    <th>Student Email</th>
+                                                    <th>Student Phone</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            {courses.map((course) => 
+                                            {students.map((student) => 
                                                 <tr>
-                                                <td>{course.courseid}</td>
-                                                <td>{course.coursename}</td>
-                                                <td>{course.courseprice}</td>
-                                                <td><Link to={`/showstudents/${course.id}`} className='btn btn-info'>View Students</Link></td>
+                                                <td>{student.student_name}</td>
+                                                <td>{student.student_address}</td>
+                                                <td>{student.student_email}</td>
+                                                <td>{student.student_tel}</td>
+                                                {/* <td><Link to={`/showstudents/${student.id}`} className='btn btn-info'>View Students</Link></td> */}
                                                 </tr>
                                             )}
                                             </tbody>
@@ -119,4 +99,4 @@ const TeacherCourse = () =>{
     )
 }
 
-export default TeacherCourse;
+export default ViewStudents;
