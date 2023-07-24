@@ -21,3 +21,19 @@ exports.getAttById = async (req, res) => {
     console.log(error.message);
   }
 };
+
+exports.getAttCourseId = async (req, res) => {
+  try {
+    const { date, id } = req.params;
+    const response = await Attendance.count({
+      where: {
+        acourseid: id,
+        aday: date,
+      },
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
