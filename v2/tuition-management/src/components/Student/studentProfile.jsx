@@ -32,6 +32,9 @@ const StudentProfile = () => {
         console.log("students", students);
     }, [students]);
 
+    // Filter the students array to show only the profile of the logged-in student
+    const loggedInStudent = students.find(student => student.email === cookies.email);
+
     return (
         <section>
             {/* <!-- Dashboard --> */}
@@ -49,47 +52,46 @@ const StudentProfile = () => {
                             <div className="row mb-3 mt-3">
                                 <h1>Student Profile</h1>
                                 <div className="col-sm-12 mb-5 mt-3">
-                                    {students.length === 0 ? (
-                                        <p>Loading...</p>
-                                    ) : (
-                                        students.map((s, index) => (
-                                            <div className="row" key={index}>
-                                                {/* ... Render student profile data */}
-                                                <div className="col-lg-4">
-                                                    <div className="card mb-4">
-                                                        <div className="card-body text-center">
-                                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                                                                className="rounded-circle img-fluid" style={{ width: "150px" }} />
-                                                            <h5 className="my-3">{s.username}</h5>
-                                                            <p className="text-muted mb-1">{s.email}</p>
-                                                            <div className="d-flex justify-content-center mb-2">
-                                                                <a href="/editstudent" className="btn btn-primary">Edit Profile</a>
-                                                            </div>
+                                    {/* Check if loggedInStudent is available */}
+                                    {loggedInStudent ? (
+                                        <div className="row">
+                                            {/* ... Render student profile data */}
+                                            <div className="col-lg-4">
+                                                <div className="card mb-4">
+                                                    <div className="card-body text-center">
+                                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                                                            className="rounded-circle img-fluid" style={{ width: "150px" }} />
+                                                        <h5 className="my-3">{loggedInStudent.username}</h5>
+                                                        <p className="text-muted mb-1">{loggedInStudent.email}</p>
+                                                        <div className="d-flex justify-content-center mb-2">
+                                                            <a href="/editstudent" className="btn btn-primary">Edit Profile</a>
                                                         </div>
-                                                    </div>
-                                                    <div className="card mb-4 mb-lg-0">
-                                                        {/* ... Some other content specific to student */}
                                                     </div>
                                                 </div>
-                                                <div className="col-lg-8">
-                                                    <div className="card mb-4">
-                                                        <div className="card-body">
-                                                            {/* ... Render student profile details */}
-                                                            <div className="row">
-                                                                <div className="col-sm-3">
-                                                                    <p className="mb-0">Full Name</p>
-                                                                </div>
-                                                                <div className="col-sm-9">
-                                                                    <p className="text-muted mb-0">{s.fullname}</p>
-                                                                </div>
+                                                <div className="card mb-4 mb-lg-0">
+                                                    {/* ... Some other content specific to student */}
+                                                </div>
+                                            </div>
+                                            <div className="col-lg-8">
+                                                <div className="card mb-4">
+                                                    <div className="card-body">
+                                                        {/* ... Render student profile details */}
+                                                        <div className="row">
+                                                            <div className="col-sm-3">
+                                                                <p className="mb-0">Full Name</p>
                                                             </div>
-                                                            <hr />
-                                                            {/* ... More profile details */}
+                                                            <div className="col-sm-9">
+                                                                <p className="text-muted mb-0">{loggedInStudent.fullname}</p>
+                                                            </div>
                                                         </div>
+                                                        <hr />
+                                                        {/* ... More profile details */}
                                                     </div>
                                                 </div>
                                             </div>
-                                        ))
+                                        </div>
+                                    ) : (
+                                        <p>Loading...</p>
                                     )}
                                 </div>
                             </div>
