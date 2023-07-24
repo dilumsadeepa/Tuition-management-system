@@ -3,20 +3,24 @@ import axios from 'axios';
 import Apiurl from '../Apiurl';
 import Sidebar from './StudentSidebar';
 import Dashhead from "./Dashhead";
+import { useCookies } from 'react-cookie';
 
 const MyPaymentPage = () => {
   const [payments, setPayments] = useState([]);
+  const [cookies, setCookie] = useCookies(['user']); // Make sure to import useCookies hook if not already done
 
   useEffect(() => {
     // Fetch the data from the server using Axios
     axios.get(`${Apiurl}/mypayments`)
       .then(response => {
-        setPayments(response.data.payments);
+        // Filter the payments to show only payments of the logged-in student
+        const filteredPayments = response.data.payments.filter(payment => payment.email === cookies.email);
+        setPayments(filteredPayments);
       })
       .catch(error => {
         console.error('Error retrieving payment data:', error);
       });
-  }, []);
+  }, [cookies.email]); // Add cookies.email as a dependency
 
   return (
     <div>
