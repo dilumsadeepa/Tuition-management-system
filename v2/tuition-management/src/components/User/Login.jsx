@@ -1,22 +1,23 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import Apiurl from '../Apiurl';
 import User from "../User";
+import Swal from 'sweetalert2';
 
 
 const Login = () => {
 
-    const[email, setEmail] = useState("");
-    const[password, setPassword] = useState("");
-    const[err, setErr] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [err, setErr] = useState("");
 
     const navigate = useNavigate();
 
     const [cookies, setCookie] = useCookies(['user']);
 
-    useEffect(() =>{
+    useEffect(() => {
         if (cookies.user) {
             if (cookies.email !== "") {
                 navigate("/admin");
@@ -25,11 +26,11 @@ const Login = () => {
     })
 
     // login user
-    const loginuser = async(e) =>{
+    const loginuser = async (e) => {
         e.preventDefault();
         document.getElementById('btnlogin').value = "Processing....";
         console.log("clicked");
-        console.log(email+','+password);
+        console.log(email + ',' + password);
         try {
             const response = await axios.get(`${Apiurl}/users/${email}`);
             if (response.data.password === password) {
@@ -40,32 +41,37 @@ const Login = () => {
                     setCookie('username', response.data.username, { path: '/' });
                     setCookie('role', response.data.role, { path: '/' });
                     navigate("/admin");
-                }else if(response.data.role===3){
+                } else if (response.data.role === 3) {
                     setCookie('id', response.data.id, { path: '/' });
                     setCookie('email', response.data.email, { path: '/' });
                     setCookie('username', response.data.username, { path: '/' });
                     setCookie('role', response.data.role, { path: '/' });
                     navigate("/teacher");
-                }else if(response.data.role === 4){
+                } else if (response.data.role === 4) {
                     setCookie('id', response.data.id, { path: '/' });
                     setCookie('email', response.data.email, { path: '/' });
                     setCookie('username', response.data.username, { path: '/' });
                     setCookie('role', response.data.role, { path: '/' });
                     navigate("/studashboard");
                 }
-                else if(response.data.role === 5){
+                else if (response.data.role === 5) {
                     setCookie('id', response.data.id, { path: '/' });
                     setCookie('email', response.data.email, { path: '/' });
                     setCookie('username', response.data.username, { path: '/' });
                     setCookie('role', response.data.role, { path: '/' });
                     navigate("/parent");
                 }
-                
-                else{
+
+                else {
                     console.log(response.data.role);
                     document.getElementById('btnlogin').value = "Login";
                 }
-            }else{
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login Failed',
+                    text: 'Email or Password does not match',
+                });
                 setErr("Email or Password is does not match");
                 document.getElementById('btnlogin').value = "Login";
             }
@@ -74,7 +80,7 @@ const Login = () => {
         }
     }
 
-    return(
+    return (
         <div className="auth-page-wrapper pt-5">
             {/* <!-- page bg --> */}
             <div className="auth-one-bg-position auth-one-bg" id="auth-particles">
@@ -83,12 +89,7 @@ const Login = () => {
                         <source src="https://vod-progressive.akamaized.net/exp=1680439894~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F4926%2F17%2F449630779%2F1975867773.mp4~hmac=122ac6c33f97ee109fcdf00669109117dfc7f8bf88ab0a03e1c4a15b7f889f1e/vimeo-prod-skyfire-std-us/01/4926/17/449630779/1975867773.mp4" type="video/mp4" />
                     </video>
                 </div> */}
-                {err.length > 0 && 
-                    <div className="alert alert-danger alert-dismissible">
-                        <button type="button" className="btn-close" data-bs-dismiss="alert"></button>
-                        <strong>Error</strong> {err}
-                    </div>
-                }
+
 
                 <div className="bg-overlay"></div>
                 <div className="shape">
@@ -96,7 +97,7 @@ const Login = () => {
                         <path d="M 0,36 C 144,53.6 432,123.2 720,124 C 1008,124.8 1296,56.8 1440,40L1440 140L0 140z"></path>
                     </svg>
                 </div>
-                <canvas className="particles-js-canvas-el" width="1349" height="380" style={{width:'100%', height:'100%'}}></canvas>
+                <canvas className="particles-js-canvas-el" width="1349" height="380" style={{ width: '100%', height: '100%' }}></canvas>
             </div>
 
             {/* <!-- page content --> */}
@@ -112,35 +113,41 @@ const Login = () => {
                                         </div>
                                         <h3 className="text-dark mt-3">Login to Your Account</h3>
                                     </div>
+                                    {err.length > 0 &&
+                                        <div className="alert alert-danger alert-dismissible">
+                                            <button type="button" className="btn-close" data-bs-dismiss="alert"></button>
+                                            <strong>Error</strong> {err}
+                                        </div>
+                                    }
 
                                     <div className="p-2 mt-3">
                                         <div className="mb-3">
                                             <label className="form-label">Email</label>
-                                            <input 
-                                                type="email" 
-                                                onChange={(e) => setEmail(e.target.value)} 
-                                                className="form-control" 
+                                            <input
+                                                type="email"
+                                                onChange={(e) => setEmail(e.target.value)}
+                                                className="form-control"
                                                 placeholder="Enter username" />
                                         </div>
 
                                         <div className="mb-3">
                                             <label className="form-label">Password</label>
                                             <div className="position-relative auth-pass-inputgroup mb-3">
-                                                <input 
-                                                    type="password" 
-                                                    onChange={(e) => setPassword(e.target.value)} 
-                                                    className="form-control pe-5 password-input" 
+                                                <input
+                                                    type="password"
+                                                    onChange={(e) => setPassword(e.target.value)}
+                                                    className="form-control pe-5 password-input"
                                                     placeholder="Enter password" />
 
                                                 <button className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i className="ri-eye-fill align-middle"></i></button>
                                             </div>
                                         </div>
 
-                                       
-                                       
+
+
 
                                         <div className="mt-4 mb-3">
-                                            <input type="button" onClick={(e)=>loginuser(e)} value="Login" id="btnlogin" className="btn btn-primary w-100" />
+                                            <input type="button" onClick={(e) => loginuser(e)} value="Login" id="btnlogin" className="btn btn-primary w-100" />
                                         </div>
                                         {/* <div className="mt-6">
                                             <label className="form-check-label">Do not have an account</label>
@@ -148,16 +155,16 @@ const Login = () => {
                                         </div> */}
                                     </div>
                                 </div>
-                                
+
                             </div>
-                            
+
                         </div>
                     </div>
-                    
+
                 </div>
-                
+
             </div>
-            
+
         </div>
 
     )
