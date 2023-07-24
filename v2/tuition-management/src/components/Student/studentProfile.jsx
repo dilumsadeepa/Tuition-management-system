@@ -97,6 +97,56 @@ const StudentProfile = () => {
                                                         </div>
                                                         <hr />
                                                         {/* ... More profile details */}
+                                                        <div className="row">
+                                                            <div className="col-sm-3">
+                                                                <p className="mb-0">Contact number</p>
+                                                            </div>
+                                                            <div className="col-sm-9">
+                                                                <p className="text-muted mb-0">{loggedInStudent.tel}</p>
+                                                            </div>
+                                                        </div>
+                                                        <hr />
+
+                                                        <div className="row">
+                                                            <div className="col-sm-3">
+                                                                <p className="mb-0">Address</p>
+                                                            </div>
+                                                            <div className="col-sm-9">
+                                                                <p className="text-muted mb-0">{loggedInStudent.address}</p>
+                                                            </div>
+                                                        </div>
+                                                        <hr />
+
+                                                        <div className="row">
+                                                            <div className="col-sm-3">
+                                                                <p className="mb-0">Date of birth</p>
+                                                            </div>
+                                                            <div className="col-sm-9">
+                                                                <p className="text-muted mb-0">{loggedInStudent.dob}</p>
+                                                            </div>
+                                                        </div>
+                                                        <hr />
+                                                        
+                                                        <div className="row">
+                                                            <div className="col-sm-3">
+                                                                <p className="mb-0">Gender</p>
+                                                            </div>
+                                                            <div className="col-sm-9">
+                                                                <p className="text-muted mb-0">{loggedInStudent.gender}</p>
+                                                            </div>
+                                                        </div>
+                                                        <hr />
+
+                                                        <div className="row">
+                                                            <div className="col-sm-3">
+                                                                <p className="mb-0">NIC</p>
+                                                            </div>
+                                                            <div className="col-sm-9">
+                                                                <p className="text-muted mb-0">{loggedInStudent.nic}</p>
+                                                            </div>
+                                                        </div>
+                                                        <hr />
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
