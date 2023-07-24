@@ -169,6 +169,7 @@ function App() {
           <Route path="pattendece/:id" element={<Attendecep />} />
           <Route path="parentprofile" element={<ParentProfile />} />
           <Route path="editparent" element={<EditParent />} />
+          
 
           {/* Common */}
 
