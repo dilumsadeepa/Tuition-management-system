@@ -1,4 +1,6 @@
 const Attendance = require("../models/AttendanceModel.js");
+const { QueryTypes } = require('sequelize');
+const db = require('../config/Database.js');
 
 exports.getAtts = async (req, res) => {
   try {
@@ -22,18 +24,19 @@ exports.getAttById = async (req, res) => {
   }
 };
 
+
 exports.getAttCourseId = async (req, res) => {
+  const id = req.params.id;
+  const sql =
+    "SELECT aday, COUNT(*) AS count FROM attendances WHERE acourseid = '"+id+"' GROUP BY aday";
   try {
-    const { date, id } = req.params;
-    const response = await Attendance.count({
-      where: {
-        acourseid: id,
-        aday: date,
-      },
-    });
+    const response = await db.query(sql, { type: QueryTypes.SELECT });
+
     res.status(200).json(response);
   } catch (error) {
     console.log(error.message);
   }
 };
+
+
 
