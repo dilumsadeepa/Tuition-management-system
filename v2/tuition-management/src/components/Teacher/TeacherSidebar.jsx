@@ -106,7 +106,7 @@ const TeacherSidebar =() =>{
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/teacherstudent">
-                                <i class="bi bi-people-fill"></i>Students
+                                <i class="bi bi-people-fill"></i>Students attendance
                                 </a>
                             </li>
                             {/* <li class="nav-item">
