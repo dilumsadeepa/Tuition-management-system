@@ -48,6 +48,7 @@ const Attendecep = () => {
                                             <thead>
                                                 <tr>
                                                     <th>Course ID</th>
+                            
                                                     <th>Date</th>
                                                     <th>Time</th>
                                                 </tr>
@@ -56,6 +57,7 @@ const Attendecep = () => {
                                                 {attendence.map((att) => (
                                                     <tr>
                                                         <td>{att.acourseid}</td>
+                                                        
                                                         <td>{att.aday}</td>
                                                         <td>{att.atime}</td>
                                                     </tr>
