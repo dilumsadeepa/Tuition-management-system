@@ -16,7 +16,7 @@ const Attendecep = () => {
 
     const getAttendance = async () => {
         try {
-            // Assuming you have a user ID stored in the cookies as "cookies.userId"""
+            // Assuming you have a user ID stored in the cookies as "cookies.userId"
             const userId = cookies.userId;
 
             const response = await axios.get(`${Apiurl}/getattendece/${userId}`);
