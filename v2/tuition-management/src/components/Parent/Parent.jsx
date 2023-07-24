@@ -1,6 +1,8 @@
 import React from 'react';
 import Sidebar from './Sidebar';
 import Dashhead from './Dashhead';
+import "./parentdetailsfrom.css";
+
 
 const ParentDashboard = () => {
   return (
@@ -115,6 +117,7 @@ const ParentDashboard = () => {
             </div>
 
             <div className="row">
+            <div class="centered-container">
             <div className="col-md-6 col-lg-6 mb-4">
               <a href="/notice">
                 <div className="card shadow border-0 h-100">
@@ -137,8 +140,11 @@ const ParentDashboard = () => {
               </a>
             </div>
             </div>
+            </div>
             
           </div>
+
+          <img src="https://m.media-amazon.com/images/G/01/kindle/tahoe/panda/PDUnauthHeader._CB653845284_.png" alt="Loss" class="custom-image" /> 
 
         </div>
 
