@@ -64,7 +64,7 @@ const {
   updateCS,
 } = require("../controllers/CoursestudentController.js");
 
-const { getPays, getPaysByUserId } = require("../controllers/PaymentController.js");
+const { getPays, getPaysByUserId, getuserid } = require("../controllers/PaymentController.js");
 
 const {
   getSPs,
@@ -167,6 +167,7 @@ router.get('/coursebysubject/:id', CourseDatasub);
 router.get("/getstudentdata/:id", getStuData);
 router.get("/getpaymentbyuserid/:id", getPaysByUserId);
 
+router.get("/getpaymentbyuid/:id", getuserid);
 
 
 
