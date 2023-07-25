@@ -113,7 +113,7 @@ const handleFilter = async (event) => {
                       
                     </select>
                     <br />
-                    <Link to="/my-classes" className="btn btn-primary view-classes-btn">View My Classes</Link>
+                    <Link to="/my-classes" className="btn btn-primary view-classes-btn">My Enrolled Classes</Link>
                   </div>
                 </div>
               </div>
