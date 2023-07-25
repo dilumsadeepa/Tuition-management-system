@@ -137,5 +137,19 @@ exports.getStudentsByCourseIds = async (req, res) => {
   }
 };
 
+exports.getunascourses = async (req, res) => {
+  // Convert the comma-separated string to an array
+  const id = req.params.id;
+
+  const sql = "SELECT courses.*, coursestudents.* FROM coursestudents JOIN courses ON coursestudents.courseId != courses.id AND coursestudents.userId = '"+id+"' GROUP BY courses.id";
+
+  try {
+    const response = await db.query(sql, { type: QueryTypes.SELECT });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 
 

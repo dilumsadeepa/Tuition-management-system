@@ -57,6 +57,7 @@ const {
   stucourseall,
   getStudentsByCourseIds,
   CourseDatasub,
+  getunascourses,
 } = require("../controllers/CourseController.js");
 
 const {
@@ -65,7 +66,7 @@ const {
   updateCS,
 } = require("../controllers/CoursestudentController.js");
 
-const { getPays } = require("../controllers/PaymentController.js");
+const { getPays, getPaysByUserId, getuserid } = require("../controllers/PaymentController.js");
 
 const {
   getSPs,
@@ -166,7 +167,10 @@ router.post("/enrollcourse", createApproval);
 router.get('/getStudentAtt/:id', getAttById);
 router.get('/coursebysubject/:id', CourseDatasub);
 router.get("/getstudentdata/:id", getStuData);
+router.get("/getpaymentbyuserid/:id", getPaysByUserId);
 
+router.get("/getpaymentbyuid/:id", getuserid);
+router.get('/getunascourses/:id', getunascourses)
 
 
 

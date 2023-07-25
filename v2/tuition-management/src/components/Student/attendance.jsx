@@ -15,7 +15,6 @@ const Attendecep = () => {
 
     const getAttendece = async () => {
         try {
-            
             const userId = cookies.id;
             console.log(userId);
             const response = await axios.get(`${Apiurl}/att/${userId}`);
@@ -44,20 +43,18 @@ const Attendecep = () => {
                                 <h1>Student Attendance</h1>
                                 <div className="col-sm-12 mb-5 mt-3">
                                     <div className="table-responsive">
-                                        <table className="table">
+                                        <table className="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
                                                     <th>Course ID</th>
-                            
                                                     <th>Date</th>
                                                     <th>Time</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {attendence.map((att) => (
-                                                    <tr>
+                                                {attendence.map((att, index) => (
+                                                    <tr key={index}>
                                                         <td>{att.acourseid}</td>
-                                                        
                                                         <td>{att.aday}</td>
                                                         <td>{att.atime}</td>
                                                     </tr>

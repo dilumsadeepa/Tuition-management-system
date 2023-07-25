@@ -9,18 +9,18 @@ const MyPaymentPage = () => {
   const [payments, setPayments] = useState([]);
   const [cookies, setCookie] = useCookies(['user']); // Make sure to import useCookies hook if not already done
 
+  const getpay = async () => {
+    try {
+      const response = await axios.get(`${Apiurl}/getpaymentbyuid/${cookies.id}`);
+      setPayments(response.data);
+    } catch (error) {
+      console.log('Error in getting data:', error);
+    }
+  }
+
   useEffect(() => {
-    // Fetch the data from the server using Axios
-    axios.get(`${Apiurl}/payments`)
-      .then(response => {
-        // Filter the payments to show only payments of the logged-in student
-        const filteredPayments = response.data.payments.filter(payment => payment.email === cookies.email);
-        setPayments(filteredPayments);
-      })
-      .catch(error => {
-        console.error('Error retrieving payment data:', error);
-      });
-  }, [cookies.email]); // Add cookies.email as a dependency
+    getpay();
+  }, []);
 
   return (
     <div>
@@ -38,24 +38,24 @@ const MyPaymentPage = () => {
               <div className="row mb-3 mt-3">
                 <div className="col-sm-12 mb-5 mt-3">
                   <h1>My Payment Page</h1>
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Customer ID</th>
-                        <th>Subscription ID</th>
-                        <th>Month</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {payments.map(payment => (
-                        <tr key={payment.cid}>
-                          <td>{payment.cid}</td>
-                          <td>{payment.suid}</td>
-                          <td>{payment.month}</td>
+                  <div className="table-responsive">
+                    <table className="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>Course Name</th>
+                          <th>Month</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {payments.map(payment => (
+                          <tr key={payment.cid}>
+                            <td>{payment.coursename}</td>
+                            <td>{payment.month}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
