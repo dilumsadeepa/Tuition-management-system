@@ -3,87 +3,76 @@ import axios from 'axios';
 import Apiurl from '../Apiurl';
 import Sidebar from './Sidebar';
 import Dashhead from './Dashhead';
-import { Link, useParams } from 'react-router-dom';
-import User from '../User';
-
-
+import { useCookies } from 'react-cookie';
 
 const Attendece = () => {
-
     const [attendence, setAttendece] = useState([]);
-    const { id } = useParams();
+    const [cookies, setCookie] = useCookies(['user']);
 
-    const getatt = async(e) =>{
-        console.log(User.getUser());
+    useEffect(() => {
+        getAttendece();
+    }, []);
 
+    const getAttendece = async () => {
         try {
-            const response = await axios.get(`${Apiurl}/getattendece/${id}`);
-            console.log(response.data);
-            setAttendece(response.data);
             
+            const userId = cookies.id;
+            console.log(userId);
+            const response = await axios.get(`${Apiurl}/att/${userId}`);
+            setAttendece(response.data);
+            console.log(response.data);
         } catch (error) {
-            console.log("error in getting data")
+            console.log("Error in getting data", error);
         }
-
     }
-
-    useEffect(()=>{
-        getatt();
-    },[])
-
 
     return (
         <section>
             {/* <!-- Dashboard --> */}
-            <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
-
+            <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
                 <Sidebar />
 
-
                 {/* <!-- Main content --> */}
-                <div class="h-screen flex-grow-1 overflow-y-lg-auto">
-
+                <div className="h-screen flex-grow-1 overflow-y-lg-auto">
                     {/* <!-- Header --> */}
                     <Dashhead />
 
                     {/* <!-- Main --> */}
-                    <main class="py-6 bg-surface-secondary">
-                        <div class="container-fluid">
+                    <main className="py-6 bg-surface-secondary">
+                        <div className="container-fluid">
                             <div className="row mb-3 mt-3">
-                                <h1>Student Attendece</h1>
+                                <h1>Student Attendance</h1>
                                 <div className="col-sm-12 mb-5 mt-3">
                                     <div className="table-responsive">
                                         <table className="table">
                                             <thead>
                                                 <tr>
-                                                    <th>Courseid</th>
+                                                    <th>Course ID</th>
+                            
                                                     <th>Date</th>
                                                     <th>Time</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {attendence.map((att) =>
-                                                <tr>
-                                                    <td>{att.acourseid}</td>
-                                                    <td>{att.aday}</td>
-                                                    <td>{att.atime}</td>
-                                                </tr>
-                                                )}
+                                                {attendence.map((att) => (
+                                                    <tr>
+                                                        <td>{att.acourseid}</td>
+                                                        
+                                                        <td>{att.aday}</td>
+                                                        <td>{att.atime}</td>
+                                                    </tr>
+                                                ))}
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </main>
                 </div>
-
-
             </div>
         </section>
     )
 }
-
 
 export default Attendece;

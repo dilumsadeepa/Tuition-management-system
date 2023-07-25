@@ -35,7 +35,6 @@ const {
   createParent,
   getParentStu,
   getattendeceAtt,
-  getUsersdata,
 } = require("../controllers/ParentsController.js");
 
 const {
@@ -194,6 +193,7 @@ router.get('/findParentByStudentId/:studentId', parentStudentController.findPare
 router.put('/parentstudents/:id', parentStudentController.updateParentStudent);
 router.delete('/parentstudents/:id', parentStudentController.deleteParentStudent);
 router.get('/findParentByParentId/:id', parentStudentController.findParentByParentId);
+router.get('/getstudentbyp/:id', parentStudentController.getStudentsByP);
 
 //other
 router.get("/stu", getsts);
