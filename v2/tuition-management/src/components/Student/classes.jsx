@@ -123,7 +123,7 @@ export default function DisableElevation() {
                         {!enrolledCourses.includes(course.id) ? (
                           <a className="btn btn-primary" onClick={() => send(course.id)}>Enroll</a>
                         ) : (
-                          <button className="btn btn-primary" disabled>Enrolled</button>
+                          <button className="btn btn-primary" disabled>Approval Requested</button>
                         )}
                       </div>
                     </div>
