@@ -5,50 +5,42 @@ import TeacherSidebar from './TeacherSidebar';
 import Dashhead from './Dashhead';
 import { Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import { useParams } from 'react-router-dom';
 
 
 
-const TeacherCourse = () =>{
+const CoursesIncome = () =>{
 
-    const [courses, setCourses] = useState([]);
-    const [id,setId]=useState([]);
-    const [cookies] = useCookies(['id']);
-    console.log("user id "+cookies.id);
-    
-    const getId = async(e) =>{
+    const { id,course } = useParams();
+    const [income, setIncome] = useState([]);
+    const [coursename,SetCourse]=useState([]);
+   
+    const getIncome = async (e) => {
         try {
-            const response = await axios.get(`${Apiurl}/getteacherbyId/${cookies.id}`);
-            const teacherId = response.data;
-            console.log("Teacher"+teacherId);
-            getcou(teacherId);
-        } catch (error) {
-            console.log("error in getting data")
-        }
-    }
-
-    const getcou = async (teacherId) => {
-        try {
-            const response = await axios.get(`${Apiurl}/teachercourse/${cookies.id}`);
-            setCourses(response.data);
-            console.log("course "+response.data);
+            const response = await axios.get(`${Apiurl}/getcourseincome/${id}`);
+            setIncome(response.data);
+            SetCourse(income.map(i => i.coursename));
+            console.log("Students "+response.data);
         } catch (error) {
             console.log("Error in getting data:", error.message);
         }
     }
 
-    const deletecourse = async(id) =>{
-        console.log(`${Apiurl}/deletecourse/${id}`);
-        try {
-            const deleted = await axios.delete(`${Apiurl}/deletecourse/${id}`);
-            console.log(deleted.data);
-        } catch (error) {
-            console.log("error on deleting" + error);
-        }
-    }
-
+    const getMonthName = (monthNumber) => {
+        const months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+    
+        // Ensure the monthNumber is within a valid range (1 to 12)
+        const validMonthNumber = Math.max(1, Math.min(12, monthNumber));
+    
+        // Return the corresponding month name from the 'months' array
+        return months[validMonthNumber - 1];
+    };
+   
     useEffect(()=>{
-        getcou();
-        getId();
+        getIncome();
     },[])
 
     return(
@@ -69,7 +61,7 @@ const TeacherCourse = () =>{
                      <main>
                     
                         <div class="container">
-                            <h2 className='mt-3 mb-3'>Course</h2>
+                            <h2 className='mt-3 mb-3'>{course}</h2>
                             <div className="row">
                                 <div class="col-xl-4 col-sm-6 col-12">
                                     <div class="card shadow border-0">
@@ -86,19 +78,17 @@ const TeacherCourse = () =>{
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>Course ID</th>
-                                                    <th>Course Name</th>
-                                                    <th>Course Fee</th>
-                                                    <th>Action</th>
+                                                    <th>Month</th>
+                                                    <th>Income</th>
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            {courses.map((course) => 
+                                            {income.map((i) => 
                                                 <tr>
-                                                <td>{course.courseid}</td>
-                                                <td>{course.coursename}</td>
-                                                <td>Rs {course.courseprice.toFixed(2)}</td>
-                                                <td><Link to={`/showstudents/${course.id}`} className='btn btn-info'>View Students</Link></td>
+                                                <td>{getMonthName(i.month)}</td>
+                                                <td>Rs {i.total_payment.toFixed(2)}</td>
+                                                {/* <td><Link to={`/showstudents/${student.id}`} className='btn btn-info'>View Students</Link></td> */}
                                                 </tr>
                                             )}
                                             </tbody>
@@ -119,4 +109,4 @@ const TeacherCourse = () =>{
     )
 }
 
-export default TeacherCourse;
+export default CoursesIncome;

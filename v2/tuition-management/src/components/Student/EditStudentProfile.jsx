@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Apiurl from '../Apiurl';
-import Sidebar from './Sidebar';
+import Sidebar from './StudentSidebar';
 import Dashhead from './Dashhead';
 import Swal from 'sweetalert2';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
-const EditParent = () => {
+const EditStudentProfile = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [tel, setTel] = useState('');
@@ -21,8 +21,9 @@ const EditParent = () => {
     const [nic, setNic] = useState('');
     const [edlevel, setEdlevel] = useState('');
     const [errors, setErrors] = useState({});
-
     const [cookies, setCookie] = useCookies(['user']);
+
+    const { id } = useParams();
     
     const [showPassword, setShowPassword] = useState(false);
 
@@ -105,7 +106,7 @@ const EditParent = () => {
                 setGender('');
                 setNic('');
                 setEdlevel('');
-                navigate(`/ParentProfile`);
+                navigate(`/profile`);
 
             } catch (error) {
                 Swal.fire({
@@ -353,7 +354,6 @@ const EditParent = () => {
                                         <button type="submit" className="btn btn-primary">
                                             Edit Profile
                                         </button>
-                                        <a href="ParentProfile" class="previous">&laquo; Back </a>
                                     </form>
                                 </div>
 
@@ -367,4 +367,4 @@ const EditParent = () => {
     );
 };
 
-export default EditParent;
+export default EditStudentProfile;

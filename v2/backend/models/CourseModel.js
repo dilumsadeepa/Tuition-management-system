@@ -32,7 +32,7 @@ const Course = db.define('courses', {
     allowNull: false,
   },
   courseprice: {
-    type: DataTypes.STRING,
+    type: DataTypes.DECIMAL(10, 2),
     allowNull: false,
   },
 }, {

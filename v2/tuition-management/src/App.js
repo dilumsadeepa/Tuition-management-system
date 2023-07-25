@@ -63,26 +63,27 @@ import Payment from "./components/Parent/Payment";
 import StudentDetils from "./components/Student/StudentDetils";
 import Classes from "./components/Student/classes";
 import Attendance from "./components/Student/attendance";
-// import mypayments from "./components/Student/mypayments"
+
+import MyPaymentPage from "./components/Student/mypayments";
 import EnrollPage from "./components/Student/EnrollPage";
 import StudentProfile from "./components/Student/studentProfile";
 import StuDashboard from "./components/Student/StuDashboard";
+import EditStudentProfile from "./components/Student/EditStudentProfile";
  
-
+//------------------
 
 import Teacher from "./components/Teacher/Teacher";
 import AddTeacherDetails from "./components/Admin/AddTeacherDetails";
 import TeacherCourse from "./components/Teacher/TeacherCourse";
 import TeacherStudent from "./components/Teacher/TeacherStudent";
 import ViewStudents from "./components/Teacher/ViewStudents";
-
 import TeacherProfile from "./components/Teacher/TeacherProfile";
 
 // .............Parents................
 
 import Parent from "./components/Admin/Parent";
 import ViewStudentParent from "./components/Parent/ViewStudentDetails";
-import ParentDashboard from "./components/Parent/Parent";
+import ParentDashboard from "./components/Parent/ParentDashabord";
 import AddParentData from "./components/Admin/AddParentsData";
 import ParentProfile from "./components/Parent/ParentProfile";
 import EditParent from "./components/Parent/EditParent";
@@ -100,6 +101,9 @@ import AlTimeTable from "./components/Home/AlTimeTable";
 import Grades from "./components/Home/Grades";
 import ALStreamWiseTimeTable from "./components/Home/ALStreamWiseTimeTable";
 import PublicNotices from "./components/Home/PublicNotices";
+import ViewAttendance from "./components/Teacher/ViewAttendance";
+import ViewIncome from "./components/Teacher/ViewIncome";
+import CoursesIncome from "./components/Teacher/CoursesIncome";
 
 
 
@@ -150,6 +154,9 @@ function App() {
           <Route path="teacherprofile" element={<TeacherProfile />}></Route>
           <Route path="teacherstudent" element={<TeacherStudent />}></Route>
           <Route path="showstudents/:id" element={<ViewStudents />}></Route>
+          <Route path="viewattendance/:id" element={<ViewAttendance />}></Route>
+          <Route path="viewincome" element={<ViewIncome />}></Route>
+          <Route path="courseincome/:id/:course" element={<CoursesIncome />}></Route>
 
           {/* student part */}
           {/* <Route path="StudentLogin" element={<Login />} /> */}
@@ -158,10 +165,10 @@ function App() {
           <Route path="Attendance" element={<Attendance />} />
           <Route path="Enrollpage" element={<EnrollPage />} />
           <Route path="profile" element={<StudentProfile />} />
-          <Route path="mypayments" element={<mypayments />} />
+          <Route path="mypayments" element={<MyPaymentPage />} />
 
           <Route path="studashboard" element={<StuDashboard />} />
-
+          <Route path="EditStudentProfile" element={<EditStudentProfile />} />
           {/* <Route path="StudentLogin" element={<Login />} /> */}
 
           {/* parents */}

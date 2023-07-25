@@ -1,4 +1,6 @@
 const User = require("../models/UserModel.js");
+const { QueryTypes } = require('sequelize');
+const db = require('../config/Database.js');
 
 const getTes = async (req, res) => {
   try {
@@ -42,8 +44,24 @@ const getTeacherById = async (req, res) => {
   }
 };
 
+
+const getCourseIncome = async (req, res) => {
+  const id = req.params.id;
+  const sql =
+    "SELECT c.coursename,p.month, COUNT(*) AS course_count, c.courseprice * COUNT(*) AS total_payment FROM payments p JOIN courses c ON p.cid = c.id WHERE p.cid = '"+id+"' GROUP BY p.month";
+  try {
+    const response = await db.query(sql, { type: QueryTypes.SELECT });
+
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
 module.exports = {
   getTes,
   createTeacher,
   getTeacherById,
+  getCourseIncome
 };

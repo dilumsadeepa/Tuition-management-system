@@ -93,12 +93,12 @@ const Sidebar =() =>{
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="Attendence">
+                                <a class="nav-link" href="/pattendece/${students.id}">
                                     <i class="bi bi-people"></i> View Student attendance 
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="parentstudent">
+                                <a class="nav-link" href="/paymentp/${students.id}">
                                 <i className="bi bi-minecart-loaded"></i> Payment
                                 </a>
                             </li>
@@ -196,7 +196,7 @@ const Sidebar =() =>{
                         {/* <!-- User (md) --> */}
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="parentprofile">
+                                <a class="nav-link" href="/ParentProfile">
                                     <i class="bi bi-person-square"></i> Parent Profile
                                 </a>
                             </li>
