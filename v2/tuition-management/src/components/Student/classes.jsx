@@ -115,17 +115,20 @@ export default function DisableElevation() {
                 {filteredCourses.map((course) => (
                   <div className="col-sm-3" key={course.id}>
                     <div className="card">
-                      <img src={course.coursebanner} className="card-img-top" alt="..." />
-                      <div className="card-body">
-                        <h5 className="card-title">{course.coursename}</h5>
-                        <p className="card-text">Rs.{course.courseprice}</p>
-                        {/* Hide the Enroll button if the course is already enrolled */}
-                        {!enrolledCourses.includes(course.id) ? (
-                          <a className="btn btn-primary" onClick={() => send(course.id)}>Enroll</a>
-                        ) : (
-                          <button className="btn btn-primary" disabled>Approval Requested</button>
-                        )}
-                      </div>
+                    <div className="card">
+  <img src={course.coursebanner} className="card-img-top" alt="..." style={{ height: '200px' }} />
+  <div className="card-body">
+    <h5 className="card-title">{course.coursename}</h5>
+    <p className="card-text">Rs.{course.courseprice}</p>
+    {/* Hide the Enroll button if the course is already enrolled */}
+    {!enrolledCourses.includes(course.id) ? (
+      <a className="btn btn-primary" onClick={() => send(course.id)}>Enroll</a>
+    ) : (
+      <button className="btn btn-primary" disabled>Approval Requested</button>
+    )}
+  </div>
+</div>
+
                     </div>
                   </div>
                 ))}
