@@ -66,7 +66,12 @@ const {
   updateCS,
 } = require("../controllers/CoursestudentController.js");
 
-const { getPays, getPaysByUserId, getuserid } = require("../controllers/PaymentController.js");
+const parentPaymentController = require ('../controllers/PaymentController.js');
+const { 
+  getPays, 
+  getPaysByUserId, 
+  getuserid 
+} = require("../controllers/PaymentController.js");
 
 const {
   getSPs,
@@ -200,6 +205,7 @@ router.delete('/parentstudents/:id', parentStudentController.deleteParentStudent
 router.get('/findParentByParentId/:id', parentStudentController.findParentByParentId);
 router.get('/getstudentbyp/:id', parentStudentController.getStudentsByP);
 router.get('/getpstudentatt/:id', parentStudentController.getStudentsAtteBystdid);
+router.get('/getparentpayment/:id', parentPaymentController.getPaysByUserId);
 
 //other
 router.get("/stu", getsts);
