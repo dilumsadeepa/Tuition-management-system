@@ -1,8 +1,11 @@
-import React from 'react';
-// import { useCookies } from 'react-cookie';
+import React, { useState, useEffect } from 'react';
 
+// import { useCookies } from 'react-cookie';
+import axios from 'axios';
+import Apiurl from '../Apiurl';
 import TeacherSidebar from './TeacherSidebar';
 import Dashhead from './Dashhead';
+import { useCookies } from 'react-cookie';
 import CanvasJSReact from '@canvasjs/react-charts';
 
 var CanvasJS = CanvasJSReact.CanvasJS;
@@ -28,6 +31,22 @@ const options = {
 const Teacher = () =>{
 
     // const [cookies] = useCookies(['user']);
+    const [cookies] = useCookies(['courseids']);
+    const [total,setTotal]=useState([]);
+
+    const getTotalIncome = async(e) =>{
+        try {
+            const response = await axios.get(`${Apiurl}/gettotalincome/${cookies.courseids}`);
+            console.log("Income"+response.data);
+            setTotal(response.data)
+        } catch (error) {
+            console.log("error in getting data")
+        }
+    }
+
+    useEffect(()=>{
+        getTotalIncome();
+    },[])
 
     return(
         <section>
@@ -54,8 +73,8 @@ const Teacher = () =>{
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
-                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Income</span>
-                                                    <span class="h3 font-bold mb-0">Rs 750.90</span>
+                                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total Income</span>
+                                                    <span class="h3 font-bold mb-0">Rs {total.map((t)=>t.total_payment.toFixed(2))}</span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
