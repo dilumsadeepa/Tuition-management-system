@@ -83,22 +83,22 @@ const Sidebar =() =>{
                         {/* <!-- Navigation --> */}
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="parent">
+                                <a class="nav-link" href="/parent">
                                     <i class="bi bi-house"></i> Dashboard
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="parentstudent">
+                                <a class="nav-link" href="/parentstudent">
                                     <i class="bi bi-people"></i> View Student Deatils 
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/pattendece/${students.id}">
+                                <a class="nav-link" href="/pattendece">
                                     <i class="bi bi-people"></i> View Student attendance 
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/paymentp/${students.id}">
+                                <a class="nav-link" href="/paymentp">
                                 <i className="bi bi-minecart-loaded"></i> Payment
                                 </a>
                             </li>

@@ -25,6 +25,23 @@ const Attendecep = () => {
         }
     }
 
+    const getStudentsAttendance = async () => {
+        try {
+            
+            const userId = cookies.id;
+            console.log(userId);
+            const response = await axios.get(`${Apiurl}/getpstudentatt/${userId}`);
+            setAttendece(response.data)
+            console.log(response.data);
+        } catch (error) {
+            console.log("Error in getting data", error);
+        }
+    }
+
+    useEffect(() => {
+        getStudentsAttendance();
+    }, []);
+
     return (
         <section>
             {/* <!-- Dashboard --> */}
@@ -46,7 +63,7 @@ const Attendecep = () => {
                                         <table className="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>Course ID</th>
+                                                    <th>Course name</th>
                                                     <th>Date</th>
                                                     <th>Time</th>
                                                 </tr>
@@ -54,7 +71,7 @@ const Attendecep = () => {
                                             <tbody>
                                                 {attendence.map((att, index) => (
                                                     <tr key={index}>
-                                                        <td>{att.acourseid}</td>
+                                                        <td>{att.coursename}</td>
                                                         <td>{att.aday}</td>
                                                         <td>{att.atime}</td>
                                                     </tr>
