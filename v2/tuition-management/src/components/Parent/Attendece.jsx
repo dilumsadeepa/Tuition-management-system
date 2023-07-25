@@ -6,25 +6,44 @@ import Dashhead from './Dashhead';
 import { useCookies } from 'react-cookie';
 
 const Attendece = () => {
-    const [attendence, setAttendece] = useState([]);
+    const [student, setStudent] = useState([]);
+    const [studentAtt, setStudentAtt] = useState([]);
+    const [stdid, setStdid] = useState(0);
     const [cookies, setCookie] = useCookies(['user']);
 
     useEffect(() => {
-        getAttendece();
+        getStudents();
     }, []);
 
-    const getAttendece = async () => {
+    const getStudents = async () => {
         try {
             
             const userId = cookies.id;
             console.log(userId);
-            const response = await axios.get(`${Apiurl}/att/${userId}`);
-            setAttendece(response.data);
+            const response = await axios.get(`${Apiurl}/getstudentbyp/${userId}`);
+            setStudent(response.data);
             console.log(response.data);
         } catch (error) {
             console.log("Error in getting data", error);
         }
     }
+
+    const getStudentsAttendance = async () => {
+        try {
+            
+            const userId = cookies.id;
+            console.log(stdid);
+            const response = await axios.get(`${Apiurl}/getpstudentatt/${stdid}`);
+            setStudentAtt(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.log("Error in getting data", error);
+        }
+    }
+
+    useEffect(() => {
+        getStudentsAttendance();
+    }, [stdid]);
 
     return (
         <section>
@@ -42,22 +61,43 @@ const Attendece = () => {
                         <div className="container-fluid">
                             <div className="row mb-3 mt-3">
                                 <h1>Student Attendance</h1>
+
+                                {/* <label htmlFor="student">Select Student</label> */}
+                                {console.log(student)}
+
+                  
+                                <select name="selectedstudent" id="student" className='mt-5' onChange={(e) => setStdid(e.target.value)}>
+                                    <option selected disabled>Select Your Student</option>
+                                    {student.map((stu) =>(
+                                        <option value={stu.id}>{stu.username}</option>
+                                    ))
+                                    }
+                                </select>
+                   
+
+                                
                                 <div className="col-sm-12 mb-5 mt-3">
+                                <div className="col-sm-12 mb-5 mt-3"></div>
+                                <div className="col-sm-12 mb-5 mt-3"></div>
+                                    <div className="col-sm-12 mb-5 mt-3"></div>
                                     <div className="table-responsive">
                                         <table className="table">
                                             <thead>
                                                 <tr>
-                                                    <th>Course ID</th>
-                            
+                                                    <th>ID</th>
+                                                    <th>Course Name</th>
+                                                    <th>Course Subject</th>
                                                     <th>Date</th>
                                                     <th>Time</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {attendence.map((att) => (
+                                                {studentAtt.map((att) => (
                                                     <tr>
-                                                        <td>{att.acourseid}</td>
-                                                        
+                                                        <th>{att.id}</th>
+                                                        <td>{att.coursename}</td>
+                                                        <td>{att.coursesubject}</td>
+                              
                                                         <td>{att.aday}</td>
                                                         <td>{att.atime}</td>
                                                     </tr>

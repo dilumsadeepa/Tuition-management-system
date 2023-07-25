@@ -87,24 +87,7 @@ const ViewStudent = () =>{
                                     </div>
                                 </div>
                             
-                                <div class="col-xl-4 col-sm-6 col-12">
-                                    <div class="card shadow border-0">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    {/* <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span> */}
-                                                    <span class="h4 mb-0"><a href="/addstudent" className='debtn'>Add Students</a></span>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
-                                                    <i class="bi bi-people"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
 
 
