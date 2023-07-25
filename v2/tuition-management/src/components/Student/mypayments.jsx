@@ -9,18 +9,20 @@ const MyPaymentPage = () => {
   const [payments, setPayments] = useState([]);
   const [cookies, setCookie] = useCookies(['user']); // Make sure to import useCookies hook if not already done
 
+  const getpay = async () => {
+    try {
+      const response = await axios.get(`${Apiurl}/getpaymentbyuserid/${cookies.id}`);
+      setPayments(response.data);
+    } catch (error) {
+      console.log('Error in getting data:', error);
+    }
+  }
+
+
   useEffect(() => {
-    // Fetch the data from the server using Axios
-    axios.get(`${Apiurl}/payments`)
-      .then(response => {
-        // Filter the payments to show only payments of the logged-in student
-        const filteredPayments = response.data.payments.filter(payment => payment.email === cookies.email);
-        setPayments(filteredPayments);
-      })
-      .catch(error => {
-        console.error('Error retrieving payment data:', error);
-      });
-  }, [cookies.email]); // Add cookies.email as a dependency
+    getpay();
+
+  }, []);
 
   return (
     <div>
