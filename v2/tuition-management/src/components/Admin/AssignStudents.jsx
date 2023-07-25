@@ -72,7 +72,7 @@ const AssignStudents = () => {
                             </div> */}
 
                             <div className="row mt-5">
-                               <h2>Unaproved</h2>
+                               <h2>unapproved</h2>
                                 <div className="col-sm-12">
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
@@ -95,8 +95,8 @@ const AssignStudents = () => {
                                                     <td>{student.user.nic}</td>
                                                     <td>{student.course.courseid}</td>
                                                     <td>{student.course.coursename}</td>
-                                                    <td>Unaproved</td>
-                                                    <td><button type='button' onClick={(e) => updateCS(student.id,student.courseId,student.userId,'1')} className='debtn'>Aprove</button></td>
+                                                    <td>unapproved</td>
+                                                    <td><button type='button' onClick={(e) => updateCS(student.id,student.courseId,student.userId,'1')} className='debtn'>Approve</button></td>
                                                 </tr>
                                                 }
                                                </>  
@@ -108,7 +108,7 @@ const AssignStudents = () => {
                             </div>
 
                             <div className="row mt-5">
-                               <h2>Aproved</h2>
+                               <h2>Approved</h2>
                                <div className="col-sm-12">
                                    <div class="table-responsive">
                                        <table class="table table-bordered">
@@ -131,8 +131,8 @@ const AssignStudents = () => {
                                                    <td>{student.user.nic}</td>
                                                    <td>{student.course.courseid}</td>
                                                    <td>{student.course.coursename}</td>
-                                                   <td>Aproved</td>
-                                                   <td><button type='button' onClick={(e) => updateCS(student.id,student.courseId,student.userId,'0')} className='debtn'>Unaprove</button></td>
+                                                   <td>Approved</td>
+                                                   <td><button type='button' onClick={(e) => updateCS(student.id,student.courseId,student.userId,'0')} className='debtn'>Unapproved</button></td>
                                                </tr>
                                                }
                                               </>  

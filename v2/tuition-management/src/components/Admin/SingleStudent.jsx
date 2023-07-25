@@ -49,7 +49,7 @@ const SingleStudent = () =>{
             
             
         } catch (error) {
-            console.log("error in getting data")
+            console.log("error in getting data");
         }
        
     }
@@ -85,7 +85,7 @@ const SingleStudent = () =>{
         getstu();
         
    
-    })
+    },[])
 
     return(
         <section> 

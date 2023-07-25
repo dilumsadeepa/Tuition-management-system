@@ -1,6 +1,8 @@
+import { useState, useEffect } from 'react';
 import React from 'react';
 // import { useCookies } from 'react-cookie';
-
+import axios from 'axios';
+import Apiurl from '../Apiurl';
 import Sidebar from './AdminSidebar';
 import Dashhead from './Dashhead';
 
@@ -8,6 +10,37 @@ import Dashhead from './Dashhead';
 const Admin = () =>{
 
     // const [cookies] = useCookies(['user']);
+    const [income, setIncome] = useState({});
+    // const [students, setStudents] = useState("");
+    // const [teachers, setTeachers] = useState("");
+    const [admindata, setAdminData] = useState({});
+
+    const getad = async(e) =>{
+        try {
+            const response = await axios.get(`${Apiurl}/admin-dashboard-data`);
+            console.log('Admin data: '+response.data.stcount);
+            setAdminData(response.data);
+        } catch (error) {
+            console.log("error in getting data")
+        }
+    }
+
+    const getincome = async(e) =>{
+        try {
+            const currentDate = new Date();
+            const currentMonth = currentDate.getMonth();
+            const response = await axios.get(`${Apiurl}/calculate-income/${currentMonth+1}`);
+            console.log('income data: '+response.data);
+            setIncome(response.data);
+        } catch (error) {
+            console.log("error in getting data")
+        }
+    }
+
+    useEffect(()=>{
+        getad();
+        getincome();
+    },[])
 
     return(
         <section>
@@ -35,7 +68,7 @@ const Admin = () =>{
                                             <div class="row">
                                                 <div class="col">
                                                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span>
-                                                    <span class="h3 font-bold mb-0">Rs 750.90</span>
+                                                    <span class="h3 font-bold mb-0">Rs {income.income}</span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
@@ -56,7 +89,7 @@ const Admin = () =>{
                                             <div class="row">
                                                 <div class="col">
                                                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">All Students</span>
-                                                    <span class="h3 font-bold mb-0">1500</span>
+                                                    <span class="h3 font-bold mb-0">{admindata.stcount}</span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
@@ -76,7 +109,7 @@ const Admin = () =>{
                                             <div class="row">
                                                 <div class="col">
                                                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">All Teachers</span>
-                                                    <span class="h3 font-bold mb-0">10</span>
+                                                    <span class="h3 font-bold mb-0">{admindata.tecount}</span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
@@ -96,7 +129,7 @@ const Admin = () =>{
                                             <div class="row">
                                                 <div class="col">
                                                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">All Classes</span>
-                                                    <span class="h3 font-bold mb-0">30</span>
+                                                    <span class="h3 font-bold mb-0">{admindata.cocount}</span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">

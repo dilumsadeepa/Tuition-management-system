@@ -107,8 +107,13 @@ const Sidebar = () => {
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/salary">
+                                <a class="nav-link" href="/salarypresentage">
                                     <i class="bi bi-cash-stack"></i> Salary
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/income">
+                                    <i class="bi bi-cash-stack"></i> Income
                                 </a>
                             </li>
                             {/* <li class="nav-item">

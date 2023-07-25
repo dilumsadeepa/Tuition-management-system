@@ -22,8 +22,7 @@ const SalaryPresent = () => {
         } catch (error) {
             console.log("error in getting data")
         }
-    }
-
+    };
    const setSPre = async() =>{
 
     console.log(`${userrole},${presentage}`);
@@ -45,7 +44,7 @@ const SalaryPresent = () => {
             setsucc("Presentage cerated");
         }
 
-   }
+   };
 
    const edit = (id,urole,pre) =>{
         console.log(urole+','+pre);
@@ -56,7 +55,7 @@ const SalaryPresent = () => {
         setsaid(id);
         document.getElementById('crbtn').style.display = "none";
         document.getElementById('upbtn').style.display = "block";
-   }
+   };
 
    const updatePRE = async (e) => {
         e.preventDefault();
@@ -79,7 +78,7 @@ const SalaryPresent = () => {
         document.getElementById('crbtn').style.display = "block";
         document.getElementById('upbtn').style.display = "none";
     
-    }
+    };
 
     const deletepr = async(id) =>{
         console.log(`${Apiurl}/deletespre/${id}`);
@@ -89,12 +88,26 @@ const SalaryPresent = () => {
         } catch (error) {
             console.log("error on deleting" + error);
         }
-    }
+    };
+
+    const getUserRoleLabel = (userRole) => {
+        switch (userRole) {
+          case '1':
+            return 'Administartion';
+          case '2':
+            return 'Staff';
+          case '3':
+            return 'Teacher';
+          default:
+            return 'Unknown Role';
+        }
+      };
+      
 
    useEffect(() => {
         // document.getElementById('upbtn').style.display = "none";
         getsal();
-   })
+   });
 
     return(
         <section> 
@@ -156,7 +169,7 @@ const SalaryPresent = () => {
                                             <label className="form-label">User Role:</label>
                                             <select className="form-select" onChange={(e) => setUrole(e.target.value)}>
                                                 <option id='urolev' value={""}><span id='uroled'>--- Select one ---</span></option>
-                                                <option value={"1"}>Admnistration</option>
+                                                <option value={"1"}>Administration</option>
                                                 <option value={"2"}>Staff</option>
                                                 <option value={"3"}>Teacher</option>
                                                 
@@ -168,8 +181,10 @@ const SalaryPresent = () => {
                                             <input type="text" className="form-control" id='pre' onChange={(e) => setPre(e.target.value)} placeholder="Enter presentage" />
                                         </div>
 
-                                        <button type='button' id='upbtn' className='btn btn-primary upbtn' onClick={updatePRE}>Update</button>
-                                        <button type='button' id='crbtn' onClick={setSPre} className='debtn crbtn'>Create</button>
+                                        
+                                        <button type='button' style={{width:'100%'}} id='crbtn' onClick={setSPre} className='debtn crbtn'>Create</button>
+                                        <br />
+                                        <button type='button' style={{width:'100%'}} id='upbtn' className='btn btn-primary upbtn' onClick={updatePRE}>Update</button>
 
                                     </form>
 
@@ -192,7 +207,7 @@ const SalaryPresent = () => {
                                             {salary.map((s) =>
                                                 <tbody>
                                                     <tr>
-                                                        <td>{s.userrole}</td>
+                                                        <td>{getUserRoleLabel(s.userrole)}</td>
                                                         <td>{s.presentage} %</td>
                                                         <td><button type='button' onClick={(e) => edit(s.id,s.userrole,s.presentage)} className='btn btn-info mr-3'>Edit</button> <button type='button' onClick={(e) => deletepr(s.id)} className='btn btn-danger'>Delete</button></td>
                                                     </tr>

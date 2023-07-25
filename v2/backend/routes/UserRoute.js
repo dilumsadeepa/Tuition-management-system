@@ -107,6 +107,10 @@ const {
 } = require("../controllers/NewtimetableController.js");
 
 const parentStudentController = require('../controllers/ParentStudentController.js');
+const {
+  getAdminDashboardData,
+  calculateIncomeForRole1
+} = require('../controllers/AdminController');
 
 const router = express.Router();
 
@@ -143,6 +147,14 @@ router.post("/parent", createParent);
 router.get("/editcourse/:id", CourseDataId);
 router.patch("/updatecourse/:id", updateCourse);
 router.get("/stucourseall", stucourseall);
+
+router.get('/admin-dashboard-data', getAdminDashboardData);
+
+
+router.get('/calculate-income/:id', calculateIncomeForRole1);
+
+
+
 
 //student
 router.get("/att", getAtts);

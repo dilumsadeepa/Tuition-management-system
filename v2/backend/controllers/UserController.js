@@ -3,6 +3,8 @@ const nodemailer = require("nodemailer");
 const axios = require('axios');
 const dotenv = require('dotenv');
 dotenv.config();
+const bcrypt = require('bcryptjs');
+
 
 const sendEmail = require('../mail/email.js');
 const sendSMS = require('../mail/sms.js');
@@ -68,7 +70,17 @@ exports.getparent = async (req, res) => {
 
 exports.createUser = async (req, res) => {
   try {
-    const newUser = await User.create(req.body);
+    const suser = req.body;
+    const password = req.body.password;
+    const newUser = req.body;
+    
+    
+    // Hash the password before storing it
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newUser.password, salt);
+    newUser.password = hashedPassword; 
+
+    const user = await User.create(newUser);
 
     // Send email to the user
     let ms = `
@@ -116,7 +128,7 @@ exports.createUser = async (req, res) => {
                                           <td style="padding:0 35px;">
                                               <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:'Rubik',sans-serif;">New Account Information
                                               </h1>
-                                              <p>Dear ${newUser.username},</p><br>
+                                              <p>Dear ${suser.username},</p><br>
                                               <p style="font-size:15px; color:#455056; margin:8px 0 0; line-height:24px;">
                                                   Your account has been created on the Susipwin Admin. Below are your system generated credentials, <br><strong>Please change
                                                       the password immediately after login</strong>.</p>
@@ -125,9 +137,9 @@ exports.createUser = async (req, res) => {
                                               <p
                                                   style="color:#455056; font-size:18px;line-height:20px; margin:0; font-weight: 500;">
                                                   <strong
-                                                      style="display: block;font-size: 13px; margin: 0 0 4px; color:rgba(0,0,0,.64); font-weight:normal;">Email</strong>${newUser.email}
+                                                      style="display: block;font-size: 13px; margin: 0 0 4px; color:rgba(0,0,0,.64); font-weight:normal;">Email</strong>${suser.email}
                                                   <strong
-                                                      style="display: block; font-size: 13px; margin: 24px 0 4px 0; font-weight:normal; color:rgba(0,0,0,.64);">Password</strong>${newUser.password}
+                                                      style="display: block; font-size: 13px; margin: 24px 0 4px 0; font-weight:normal; color:rgba(0,0,0,.64);">Password</strong>${password}
                                               </p>
 
                                               <a href="susipwin.encode99.org.lk/login"
@@ -146,7 +158,7 @@ exports.createUser = async (req, res) => {
                           </tr>
                           <tr>
                               <td style="text-align:center;">
-                                  <p style="font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;">&copy; <strong>hhtps://encode99.org.lk</strong> </p>
+                                  <p style="font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;">&copy; <strong>htps://encode99.org.lk</strong> </p>
                               </td>
                           </tr>
                           <tr>
@@ -161,8 +173,8 @@ exports.createUser = async (req, res) => {
 
       </html>
     `
-    sendEmail(newUser,"New Account Information in Encode99",ms);
-    sendSMS(newUser, `Welcome to Susipwin Tuition Institute! Here are your login details- Username: ${newUser.email}, Temp Password: ${newUser.password} - Please change your password upon login for security. Susipwin Tuition Institute`);
+    sendEmail(suser,"New Account Information in Susipwin",ms);
+    sendSMS(suser, `Welcome to Susipwin Tuition Institute! Here are your login details- Username: ${suser.email}, Temp Password: ${suser.password} - Please change your password upon login for security. Susipwin Tuition Institute`);
 
     res.status(201).json({ msg: "User Created" });
   } catch (error) {
@@ -177,11 +189,26 @@ exports.createUser = async (req, res) => {
 exports.updateUser = async (req, res) => {
   try {
     const newUser = req.body;
-    await User.update(req.body, {
+    const password = req.body.password;
+    
+    const updatedUser = req.body;
+
+    // If the password field is present in the request body, hash the new password
+    if (updatedUser.password) {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(updatedUser.password, salt);
+      updatedUser.password = hashedPassword;
+    }
+
+    await User.update(updatedUser, {
       where: {
         id: req.params.id,
       },
     });
+
+    console.log('====================================');
+    console.log(password);
+    console.log('====================================');
     let ms = `
     <!doctype html>
       <html lang="en-US">
@@ -237,7 +264,7 @@ exports.updateUser = async (req, res) => {
                                                   <strong
                                                       style="display: block;font-size: 13px; margin: 0 0 4px; color:rgba(0,0,0,.64); font-weight:normal;">Email</strong>${newUser.email}
                                                   <strong
-                                                      style="display: block; font-size: 13px; margin: 24px 0 4px 0; font-weight:normal; color:rgba(0,0,0,.64);">Password</strong>${newUser.password}
+                                                      style="display: block; font-size: 13px; margin: 24px 0 4px 0; font-weight:normal; color:rgba(0,0,0,.64);">Password</strong>${password}
                                               </p>
 
                                               <a href="susipwin.encode99.org.lk/login"
@@ -272,7 +299,7 @@ exports.updateUser = async (req, res) => {
       </html>
     `
     sendEmail(newUser,"Account Updated",ms);
-    sendSMS(newUser, `You update the your profile! Here are your login details- Username: ${newUser.email}, Password: ${newUser.password}`);
+    sendSMS(newUser, `You update the your profile! Here are your login details- Username: ${newUser.email}, Password: ${password}`);
     res.status(200).json({ msg: "User Updated" });
   } catch (error) {
     console.log(error.message);
