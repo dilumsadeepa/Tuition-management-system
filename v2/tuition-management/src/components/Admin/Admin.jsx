@@ -30,8 +30,10 @@ const Admin = () =>{
             const currentDate = new Date();
             const currentMonth = currentDate.getMonth();
             const response = await axios.get(`${Apiurl}/calculate-income/${currentMonth+1}`);
-            console.log('income data: '+response.data);
-            setIncome(response.data);
+            console.log('income data: '+response.data.income.toFixed(2));
+            const formattedIncome = parseFloat(response.data.income).toFixed(2);
+            // setTotal(formattedIncome);
+            setIncome(response.data.income.toFixed(2));
         } catch (error) {
             console.log("error in getting data")
         }
@@ -68,7 +70,7 @@ const Admin = () =>{
                                             <div class="row">
                                                 <div class="col">
                                                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span>
-                                                    <span class="h3 font-bold mb-0">Rs {income.income}</span>
+                                                    <span class="h3 font-bold mb-0">Rs {income}</span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
