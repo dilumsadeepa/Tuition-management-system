@@ -124,3 +124,32 @@ exports.deleteParentStudent = async (req, res) => {
     return res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+exports.findParentByParentId = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    // Find the parent-student relationship by student ID
+    const parentStudent = await ParentStudent.findOne({
+      where: { parentId: id },
+      include: [
+        {
+          model: User,
+          as: 'student', // This assumes you have defined 'parent' as the alias in the ParentStudent model
+        },
+      ],
+    });
+
+    if (!parentStudent) {
+      return res.status(404).json({ error: 'Parent not found for the given student ID.' });
+    }
+
+    // Extract the parent data from the relationship
+    const parentData = parentStudent.parent;
+
+    return res.status(200).json(parentData);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: 'Internal server error.' });
+  }
+};

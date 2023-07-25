@@ -10,12 +10,12 @@ const StudentDashboard = () => {
   return (
     <section>
 
+          <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+          <Sidebar />
+        <div className="h-screen flex-grow-1 overflow-y-lg-auto">
+        <Dashhead />
 
-        <div className="h-screen flex-grow-1 overflow-y-lg-auto"> 
-        <Dashhead />  
         
-        <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
-        <Sidebar />
 
 
       <div className="my-4"></div>

@@ -64,8 +64,9 @@ const StudentProfile = () => {
                                                         <h5 className="my-3">{loggedInStudent.username}</h5>
                                                         <p className="text-muted mb-1">{loggedInStudent.email}</p>
                                                         <div className="d-flex justify-content-center mb-2">
-                                                            <a href="/editstudent" className="btn btn-primary">Edit Profile</a>
+                                                            <a href="/EditStudentProfile" className="btn btn-primary">Edit Profile</a>
                                                         </div>
+                                                        
                                                     </div>
                                                 </div>
                                                 <div className="card mb-4 mb-lg-0">

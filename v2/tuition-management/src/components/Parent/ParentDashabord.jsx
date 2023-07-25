@@ -24,7 +24,7 @@ const ParentDashboard = () => {
             
           <div className="row">
             <div className="col-md-6 col-lg-6 mb-4">
-              <a href="/ViewStudentDetails">
+              <a href="/findParentByParentId">
                 <div className="card shadow border-0 h-100">
                   <div className="card-body">
                     <div className="row">
@@ -73,7 +73,7 @@ const ParentDashboard = () => {
           </div>
           <div className="row">
             <div className="col-md-6 col-lg-6 mb-4">
-              <a href="/Attendence">
+              <a href="/pattendece/${students.id}">
                 <div className="card shadow border-0 h-100">
                   <div className="card-body">
                     <div className="row">
@@ -95,7 +95,7 @@ const ParentDashboard = () => {
             </div>
 
             <div className="col-md-6 col-lg-6 mb-4">
-            <a href="/mypayments">
+            <a href="/paymentp/${students.id}">
               <div className="card shadow border-0 h-100">
                 <div className="card-body">
                   <div className="row">

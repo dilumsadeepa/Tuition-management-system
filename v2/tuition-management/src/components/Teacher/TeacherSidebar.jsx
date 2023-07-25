@@ -106,14 +106,14 @@ const TeacherSidebar =() =>{
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/teacherstudent">
-                                <i class="bi bi-people-fill"></i>Students
+                                <i class="bi bi-people-fill"></i>Students attendance
                                 </a>
                             </li>
-                            {/* <li class="nav-item">
-                                <a class="nav-link" href="/salary">
-                                <i class="bi bi-cash-stack"></i> Salary
+                            <li class="nav-item">
+                                <a class="nav-link" href="/viewincome">
+                                <i class="bi bi-cash-stack"></i> Courses Income
                                 </a>
-                            </li> */}
+                            </li>
                           
                           <li class="nav-item">
                                 <a class="nav-link" href="/notice">

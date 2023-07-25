@@ -65,24 +65,39 @@ export default function DisableElevation() {
     getcou();
   }, []);
 
-  const handleFilter = (event) => {
-    const { value } = event.target;
+//-------------  
+const handleFilter = async (event) => {
+  const value = event.target.value;
+  console.log(value);
+  try {
     if (value === 'all') {
-      setFilteredCourses(courses);
+      // If the "All" option is selected, fetch all courses
+      const response = await axios.get(`${Apiurl}/coursedata`);
+      setFilteredCourses(response.data);
+      setCourses(response.data);
     } else {
-      const filtered = courses.filter((course) => course.subject === value);
-      setFilteredCourses(filtered);
+      // If a specific subject is selected, fetch courses filtered by subject
+      const response = await axios.get(`${Apiurl}/coursedata?courseStream=${value}`);
+      setFilteredCourses(response.data);
+      setCourses(response.data);
+      console.log(response.data);
     }
-  };
+  } catch (error) {
+    console.log('Error in getting filtered data:', error);
+  }
+};
+//-----------------
 
   return (
     <section>
       <ToastContainer autoClose={3000}/>
+
+      <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+          <Sidebar />
       <div className="h-screen flex-grow-1 overflow-y-lg-auto">
         <Dashhead />
 
-        <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
-          <Sidebar />
+        
 
           <main>
             <div className="container">
@@ -93,12 +108,9 @@ export default function DisableElevation() {
                     <label htmlFor="subjectFilter" className="form-label">Filter by Subject:</label>
                     <select className="form-select filter-select" id="subjectFilter" onChange={handleFilter}>
                       <option value="all">All</option>
-                      <option value="Advance level">Advance Level</option>
+                      <option value="Technology">Technology</option>
                       <option value="Ordinary level">Ordinary level</option>
-                      <option value="Grade 6">Grade 6</option>
-                      <option value="Grade 7">Grade 7</option>
-                      <option value="Grade 8">Grade 8</option>
-                      <option value="Grade 9">Grade 9</option>
+                      
                     </select>
                     <br />
                     <Link to="/my-classes" className="btn btn-primary view-classes-btn">View My Classes</Link>
@@ -113,8 +125,8 @@ export default function DisableElevation() {
                       <img src={course.coursebanner} className="card-img-top" alt="..." />
                       <div className="card-body">
                         <h5 className="card-title">{course.coursename}</h5>
-                        <p className="card-text">{course.courseprice}</p>
-                        <p className="card-text">{course.id}</p>
+                        <p className="card-text">Rs.{course.courseprice}</p>
+                        {/* <p className="card-text">{course.coursesubject}</p> */}
                         <a className="btn btn-primary" onClick={() => send(course.id)}>Enroll</a>
                       </div>
                     </div>

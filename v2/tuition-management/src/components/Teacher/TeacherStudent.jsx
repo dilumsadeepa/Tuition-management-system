@@ -70,7 +70,7 @@ const TeacherStudent = () =>{
                      <main>
                     
                         <div class="container">
-                            <h2 className='mt-3 mb-3'>Students</h2>
+                            <h2 className='mt-3 mb-3'>Students attendance</h2>
                             <div className="row">
                                 <div class="col-xl-4 col-sm-6 col-12">
                                     <div class="card shadow border-0">
@@ -89,8 +89,7 @@ const TeacherStudent = () =>{
                                                 <tr>
                                                     <th>Course ID</th>
                                                     <th>Course Name</th>
-                                                    <th>Course Fee</th>
-                                                    {/* <th>Action</th> */}
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -101,8 +100,7 @@ const TeacherStudent = () =>{
                                                 <tr>
                                                 <td>{course.courseid}</td>
                                                 <td>{course.coursename}</td>
-                                                <td>{course.courseprice}</td>
-                                                {/* <td><Link to={`/editcourse/${course.id}`} className='btn btn-info'>Edit</Link><button className='btn btn-danger' onClick={()=> deletecourse(course.id)}>Delete</button></td> */}
+                                                <td><Link to={`/viewattendance/${course.id}`} className='btn btn-info'>View Attendance</Link></td>
                                                 </tr>
                                             )}
                                             </tbody>

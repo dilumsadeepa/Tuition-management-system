@@ -8,11 +8,12 @@ import { useCookies } from 'react-cookie';
 
 
 
-const TeacherCourse = () =>{
+const ViewIncome = () =>{
 
     const [courses, setCourses] = useState([]);
     const [id,setId]=useState([]);
     const [cookies] = useCookies(['id']);
+    const [courseId, setCookie] = useCookies(['course']);
     console.log("user id "+cookies.id);
     
     const getId = async(e) =>{
@@ -69,7 +70,7 @@ const TeacherCourse = () =>{
                      <main>
                     
                         <div class="container">
-                            <h2 className='mt-3 mb-3'>Course</h2>
+                            <h2 className='mt-3 mb-3'>Courses Income</h2>
                             <div className="row">
                                 <div class="col-xl-4 col-sm-6 col-12">
                                     <div class="card shadow border-0">
@@ -88,17 +89,18 @@ const TeacherCourse = () =>{
                                                 <tr>
                                                     <th>Course ID</th>
                                                     <th>Course Name</th>
-                                                    <th>Course Fee</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                {
+                                                     console.log("Course data="+courses.map(course => course.id))
+                                                }
                                             {courses.map((course) => 
                                                 <tr>
                                                 <td>{course.courseid}</td>
                                                 <td>{course.coursename}</td>
-                                                <td>Rs {course.courseprice.toFixed(2)}</td>
-                                                <td><Link to={`/showstudents/${course.id}`} className='btn btn-info'>View Students</Link></td>
+                                                <td><Link to={`/courseincome/${course.id}/${course.coursename}`} className='btn btn-info'>View income</Link></td>
                                                 </tr>
                                             )}
                                             </tbody>
@@ -119,4 +121,4 @@ const TeacherCourse = () =>{
     )
 }
 
-export default TeacherCourse;
+export default ViewIncome;
