@@ -39,11 +39,11 @@ exports.getAttCourseId = async (req, res) => {
 };
 
 
-exports.getuserid = async (req, res) => {
-  // Convert the comma-separated string to an array
+exports.getStudentsAtteBystdid = async (req, res) => {
   const id = req.params.id;
 
-  const sql = "SELECT courses.*, payments.* FROM payments JOIN courses ON payments.cid = courses.id WHERE payments.suid ="+id;
+  const sql =
+  "SELECT attendances.*,courses.coursename,courses.coursesubject from attendances JOIN courses ON attendances.acourseid = courses.id WHERE attendances.auserid = "+id;
 
   try {
     const response = await db.query(sql, { type: QueryTypes.SELECT });
