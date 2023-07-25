@@ -9,11 +9,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function DisableElevation() {
-  let {id} = useParams();
-  console.log("id passed: "+ id)
+  let { id } = useParams();
+  console.log("id passed: " + id)
   const [courses, setCourses] = useState([]);
   const [filteredCourses, setFilteredCourses] = useState([]);
   const [cookies] = useCookies(['id']);
+  const [enrolledCourses, setEnrolledCourses] = useState([]);
 
   const getcou = async () => {
     try {
@@ -25,79 +26,72 @@ export default function DisableElevation() {
     }
   };
 
-
   const send = async (courseid) => {
-    console.log("couse iddddddd: " + courseid);
-    console.log("user iddddddd: " + cookies.id)
+    console.log("course id: " + courseid);
+    console.log("user id: " + cookies.id);
+
     const data = {
       aprovel: '0',
       userId: cookies.id,
-      courseId: courseid,  
+      courseId: courseid,
     }
-  
 
-  
     console.log(data);
-    axios.post(`${Apiurl}/enrollcourse` , data)
-    .then(res => {
-      console.log(res);
-      toast.success("Approval Requested", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
+
+    axios.post(`${Apiurl}/enrollcourse`, data)
+      .then(res => {
+        console.log(res);
+        toast.success("Approval Requested", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
         });
-
-    })
-    .catch(err => console.log(err));
+        // Add the enrolled course to the local state
+        setEnrolledCourses(prevCourses => [...prevCourses, courseid]);
+      })
+      .catch(err => console.log(err));
   };
-
-
-
-
-
 
   useEffect(() => {
     getcou();
   }, []);
 
-//-------------  
-const handleFilter = async (event) => {
-  const value = event.target.value;
-  console.log(value);
-  try {
-    if (value === 'all') {
-      // If the "All" option is selected, fetch all courses
-      const response = await axios.get(`${Apiurl}/coursedata`);
-      setFilteredCourses(response.data);
-      setCourses(response.data);
-    } else {
-      // If a specific subject is selected, fetch courses filtered by subject
-      const response = await axios.get(`${Apiurl}/coursebysubject/${value}`);
-      setFilteredCourses(response.data);
-      setCourses(response.data);
-      console.log(response.data);
+  //-------------
+  const handleFilter = async (event) => {
+    const value = event.target.value;
+    console.log(value);
+    try {
+      if (value === 'all') {
+        // If the "All" option is selected, fetch all courses
+        const response = await axios.get(`${Apiurl}/coursedata`);
+        setFilteredCourses(response.data);
+        setCourses(response.data);
+      } else {
+        // If a specific subject is selected, fetch courses filtered by subject
+        const response = await axios.get(`${Apiurl}/coursebysubject/${value}`);
+        setFilteredCourses(response.data);
+        setCourses(response.data);
+        console.log(response.data);
+      }
+    } catch (error) {
+      console.log('Error in getting filtered data:', error);
     }
-  } catch (error) {
-    console.log('Error in getting filtered data:', error);
-  }
-};
-//-----------------
+  };
+  //-----------------
 
   return (
     <section>
-      <ToastContainer autoClose={3000}/>
+      <ToastContainer autoClose={3000} />
 
       <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
-          <Sidebar />
-      <div className="h-screen flex-grow-1 overflow-y-lg-auto">
-        <Dashhead />
-
-        
+        <Sidebar />
+        <div className="h-screen flex-grow-1 overflow-y-lg-auto">
+          <Dashhead />
 
           <main>
             <div className="container">
@@ -110,7 +104,6 @@ const handleFilter = async (event) => {
                       <option value="all">All</option>
                       <option value="Technology">Technology</option>
                       <option value="Ordinary level">Ordinary level</option>
-                      
                     </select>
                     <br />
                     <Link to="/my-classes" className="btn btn-primary view-classes-btn">My Enrolled Classes</Link>
@@ -126,8 +119,12 @@ const handleFilter = async (event) => {
                       <div className="card-body">
                         <h5 className="card-title">{course.coursename}</h5>
                         <p className="card-text">Rs.{course.courseprice}</p>
-                        {/* <p className="card-text">{course.coursesubject}</p> */}
-                        <a className="btn btn-primary" onClick={() => send(course.id)}>Enroll</a>
+                        {/* Hide the Enroll button if the course is already enrolled */}
+                        {!enrolledCourses.includes(course.id) ? (
+                          <a className="btn btn-primary" onClick={() => send(course.id)}>Enroll</a>
+                        ) : (
+                          <button className="btn btn-primary" disabled>Enrolled</button>
+                        )}
                       </div>
                     </div>
                   </div>
