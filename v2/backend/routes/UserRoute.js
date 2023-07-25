@@ -152,6 +152,8 @@ router.get("/getstudentdata/:id", getStuData);
 
 
 
+
+
 // Teacher
 router.get("/teacher", getTes);
 router.post("/teacher", createTeacher);
