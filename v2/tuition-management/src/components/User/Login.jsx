@@ -78,6 +78,12 @@ const Login = () => {
                 document.getElementById('btnlogin').value = "Login";
             }
         } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Login Failed',
+                text: 'Email or Password does not match',
+            });
+            setErr("Email or Password is does not match");
             console.log(error);
         }
     }
