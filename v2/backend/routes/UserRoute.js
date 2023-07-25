@@ -146,7 +146,6 @@ router.post("/enrollcourse", createApproval);
 
 router.get("/getstudentdata/:id", getStuData);
 
-router.get("/mypayments", getStuData);
 
 
 

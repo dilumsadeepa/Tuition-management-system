@@ -11,7 +11,7 @@ const MyPaymentPage = () => {
 
   useEffect(() => {
     // Fetch the data from the server using Axios
-    axios.get(`${Apiurl}/mypayments`)
+    axios.get(`${Apiurl}/payments`)
       .then(response => {
         // Filter the payments to show only payments of the logged-in student
         const filteredPayments = response.data.payments.filter(payment => payment.email === cookies.email);
