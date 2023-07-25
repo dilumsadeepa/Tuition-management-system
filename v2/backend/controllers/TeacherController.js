@@ -59,9 +59,34 @@ const getCourseIncome = async (req, res) => {
 };
 
 
+const getTotalIncome = async (req, res) => {
+  const courseIds = req.params.courseIds.split(',').map(Number);
+
+  const sql = `
+    SELECT c.id, c.coursename, SUM(c.courseprice) AS total_payment
+    FROM payments p
+    JOIN courses c ON p.cid = c.id
+    WHERE p.cid IN (:courseIds);
+  `;
+  try {
+    const response = await db.query(sql, {
+      type: QueryTypes.SELECT,
+      replacements: { courseIds },
+    });
+
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+
+
 module.exports = {
   getTes,
   createTeacher,
   getTeacherById,
-  getCourseIncome
+  getCourseIncome,
+  getTotalIncome
 };

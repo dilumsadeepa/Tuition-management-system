@@ -43,6 +43,7 @@ const {
   createTeacher,
   getTeacherById,
   getCourseIncome,
+  getTotalIncome,
 } = require("../controllers/TeacherController.js");
 
 const {
@@ -176,6 +177,7 @@ router.post("/teacher", createTeacher);
 router.get("/getteacherbyId/:t_userid", getTeacherById);
 router.get("/getAllStudentById/:courseIds",getStudentsByCourseIds)
 router.get("/getcourseincome/:id",getCourseIncome);
+router.get("/gettotalincome/:courseIds",getTotalIncome);
 
 
 //parent

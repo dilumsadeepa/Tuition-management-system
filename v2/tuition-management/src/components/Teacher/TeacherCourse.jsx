@@ -12,9 +12,13 @@ const TeacherCourse = () =>{
 
     const [courses, setCourses] = useState([]);
     const [id,setId]=useState([]);
-    const [cookies] = useCookies(['id']);
+    const [cookies,setCookie] = useCookies(['id']);
     console.log("user id "+cookies.id);
+    const courseIds = courses.map((course) => course.id).join(',');
+    setCookie('courseids', courseIds, 1);
     
+    console.log("Course ids",courseIds);
+
     const getId = async(e) =>{
         try {
             const response = await axios.get(`${Apiurl}/getteacherbyId/${cookies.id}`);
