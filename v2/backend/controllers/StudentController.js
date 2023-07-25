@@ -108,14 +108,25 @@ const createStudent = async (req, res) => {
 
 const createApproval = async (req, res) => {
   try {
-    console.log("enrrrrrrrrrrrrrrrrrrrrroll")
-    console.log(req.body);
+    const { courseId, userId } = req.body;
+
+    const existingAssignment = await Coursestudent.findOne({
+      where: { courseId, userId },
+    });
+
+    if (existingAssignment) {
+      
+      return res.status(400).json({ error: "You are already assigned to this course" });
+    }
+    
     await Coursestudent.create(req.body);
     res.status(201).json({ msg: "Enrolled Successfully" });
   } catch (error) {
     console.log(error.message);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
 
 
 
