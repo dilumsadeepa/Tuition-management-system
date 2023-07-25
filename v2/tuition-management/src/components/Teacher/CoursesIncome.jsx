@@ -26,6 +26,18 @@ const CoursesIncome = () =>{
         }
     }
 
+    const getMonthName = (monthNumber) => {
+        const months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+    
+        // Ensure the monthNumber is within a valid range (1 to 12)
+        const validMonthNumber = Math.max(1, Math.min(12, monthNumber));
+    
+        // Return the corresponding month name from the 'months' array
+        return months[validMonthNumber - 1];
+    };
    
     useEffect(()=>{
         getIncome();
@@ -74,8 +86,8 @@ const CoursesIncome = () =>{
                                             <tbody>
                                             {income.map((i) => 
                                                 <tr>
-                                                <td>{i.month}</td>
-                                                <td>{i.total_payment}</td>
+                                                <td>{getMonthName(i.month)}</td>
+                                                <td>Rs {i.total_payment.toFixed(2)}</td>
                                                 {/* <td><Link to={`/showstudents/${student.id}`} className='btn btn-info'>View Students</Link></td> */}
                                                 </tr>
                                             )}
