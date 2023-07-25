@@ -108,8 +108,6 @@ const createStudent = async (req, res) => {
 
 const createApproval = async (req, res) => {
   try {
-    console.log("enrrrrrrrrrrrrrrrrrrrrroll")
-    console.log(req.body);
     await Coursestudent.create(req.body);
     res.status(201).json({ msg: "Enrolled Successfully" });
   } catch (error) {

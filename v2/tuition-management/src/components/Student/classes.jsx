@@ -13,12 +13,12 @@ export default function DisableElevation() {
   console.log("id passed: " + id)
   const [courses, setCourses] = useState([]);
   const [filteredCourses, setFilteredCourses] = useState([]);
-  const [cookies] = useCookies(['id']);
+  const [cookies] = useCookies(['user']);
   const [enrolledCourses, setEnrolledCourses] = useState([]);
 
   const getcou = async () => {
     try {
-      const response = await axios.get(`${Apiurl}/coursedata`);
+      const response = await axios.get(`${Apiurl}/course`);
       setCourses(response.data);
       setFilteredCourses(response.data);
     } catch (error) {
@@ -103,7 +103,18 @@ export default function DisableElevation() {
                     <select className="form-select filter-select" id="subjectFilter" onChange={handleFilter}>
                       <option value="all">All</option>
                       <option value="Technology">Technology</option>
-                      <option value="Ordinary level">Ordinary level</option>
+                      <option value="Combined maths">Combined maths</option>
+                      <option value="Biologyl">Biology</option>
+                      <option value="Arts">Arts</option>
+                      <option value="Commerce">Commerce</option>
+                      <option value="Common">Common</option>
+                      <option value="Grade11">Grade11</option>
+                      <option value="Grade10">Grade10</option>
+                      <option value="Grade9">Grade9</option>
+                      <option value="Grade8">Grade8</option>
+                      <option value="Grade7">Grade7</option>
+                      <option value="Grade6">Grade6</option>
+
                     </select>
                     <br />
                     <Link to="/my-classes" className="btn btn-primary view-classes-btn">My Enrolled Classes</Link>
@@ -116,18 +127,18 @@ export default function DisableElevation() {
                   <div className="col-sm-3" key={course.id}>
                     <div className="card">
                     <div className="card">
-  <img src={course.coursebanner} className="card-img-top" alt="..." style={{ height: '200px' }} />
-  <div className="card-body">
-    <h5 className="card-title">{course.coursename}</h5>
-    <p className="card-text">Rs.{course.courseprice}</p>
-    {/* Hide the Enroll button if the course is already enrolled */}
-    {!enrolledCourses.includes(course.id) ? (
-      <a className="btn btn-primary" onClick={() => send(course.id)}>Enroll</a>
-    ) : (
-      <button className="btn btn-primary" disabled>Approval Requested</button>
-    )}
-  </div>
-</div>
+                          <img src={course.coursebanner} className="card-img-top" alt="..." style={{ height: '200px' }} />
+                          <div className="card-body">
+                            <h5 className="card-title">{course.coursename}</h5>
+                            <p className="card-text">Rs.{course.courseprice}</p>
+                            {/* Hide the Enroll button if the course is already enrolled */}
+                            {!enrolledCourses.includes(course.id) ? (
+                              <a className="btn btn-primary" onClick={() => send(course.id)}>Enroll</a>
+                            ) : (
+                              <button className="btn btn-primary" disabled>Approval Requested</button>
+                            )}
+                          </div>
+                        </div>
 
                     </div>
                   </div>

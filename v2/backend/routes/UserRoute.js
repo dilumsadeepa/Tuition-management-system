@@ -56,6 +56,7 @@ const {
   stucourseall,
   getStudentsByCourseIds,
   CourseDatasub,
+  getunascourses,
 } = require("../controllers/CourseController.js");
 
 const {
@@ -168,6 +169,7 @@ router.get("/getstudentdata/:id", getStuData);
 router.get("/getpaymentbyuserid/:id", getPaysByUserId);
 
 router.get("/getpaymentbyuid/:id", getuserid);
+router.get('/getunascourses/:id', getunascourses)
 
 
 
