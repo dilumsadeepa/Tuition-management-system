@@ -24,7 +24,7 @@ const ParentDashboard = () => {
             
           <div className="row">
             <div className="col-md-6 col-lg-6 mb-4">
-              <a href="/findParentByParentId">
+              <a href="/parentstudent">
                 <div className="card shadow border-0 h-100">
                   <div className="card-body">
                     <div className="row">

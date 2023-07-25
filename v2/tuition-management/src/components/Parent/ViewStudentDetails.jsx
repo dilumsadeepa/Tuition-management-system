@@ -17,7 +17,7 @@ const ViewStudentDetails = () => {
         
         const id = cookies.id;
         try {
-            const response = await axios.get(`${Apiurl}/findParentByParentId/${id}`);
+            const response = await axios.get(`${Apiurl}/getstudentbyp/${id}`);
             setStudents(response.data);
             console.log(response.data);
             
@@ -68,18 +68,18 @@ const ViewStudentDetails = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {/* {students.map((stu) => */}
+                                                {students.map((student) => 
                                                 <tr>
-                                                    <td>{students.username}</td>
-                                                    <td>{students.fullname}</td>
-                                                    <td>{students.address}</td>
-                                                    <td>{students.dob}</td>
-                                                    <td>{students.gender}</td>
-                                                    <td>{students.nic}</td>
-                                                    <td>{students.email}</td>
-                                                    <td>{students.tel}</td>
+                                                    <td>{student.username}</td>
+                                                    <td>{student.fullname}</td>
+                                                    <td>{student.address}</td>
+                                                    <td>{student.dob}</td>
+                                                    <td>{student.gender}</td>
+                                                    <td>{student.nic}</td>
+                                                    <td>{student.email}</td>
+                                                    <td>{student.tel}</td>
                                                 </tr>
-                                                {/* )} */}
+                                                )}
                                             </tbody>
                                         </table>
                                     </div>

@@ -35,7 +35,6 @@ const {
   createParent,
   getParentStu,
   getattendeceAtt,
-  getUsersdata,
 } = require("../controllers/ParentsController.js");
 
 const {
@@ -43,6 +42,7 @@ const {
   createTeacher,
   getTeacherById,
   getCourseIncome,
+  getTotalIncome,
 } = require("../controllers/TeacherController.js");
 
 const {
@@ -178,6 +178,7 @@ router.post("/teacher", createTeacher);
 router.get("/getteacherbyId/:t_userid", getTeacherById);
 router.get("/getAllStudentById/:courseIds",getStudentsByCourseIds)
 router.get("/getcourseincome/:id",getCourseIncome);
+router.get("/gettotalincome/:courseIds",getTotalIncome);
 
 
 //parent
@@ -194,6 +195,7 @@ router.get('/findParentByStudentId/:studentId', parentStudentController.findPare
 router.put('/parentstudents/:id', parentStudentController.updateParentStudent);
 router.delete('/parentstudents/:id', parentStudentController.deleteParentStudent);
 router.get('/findParentByParentId/:id', parentStudentController.findParentByParentId);
+router.get('/getstudentbyp/:id', parentStudentController.getStudentsByP);
 
 //other
 router.get("/stu", getsts);

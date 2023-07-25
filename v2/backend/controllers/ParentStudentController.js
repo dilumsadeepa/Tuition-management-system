@@ -1,5 +1,7 @@
 const ParentStudent = require('../models/ParentStudentModel.js');
 const User = require('../models/UserModel.js');
+const db = require("../config/Database.js");
+const { QueryTypes } = require("sequelize");
 
 // Create a new parent-student relationship
 exports.createParentStudent = async (req, res) => {
@@ -140,16 +142,30 @@ exports.findParentByParentId = async (req, res) => {
       ],
     });
 
-    if (!parentStudent) {
+    if (parentStudent.length == 0) {
       return res.status(404).json({ error: 'Parent not found for the given student ID.' });
     }
 
     // Extract the parent data from the relationship
-    const parentData = parentStudent.parent;
+    const parentData = parentStudent.student;
 
     return res.status(200).json(parentData);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: 'Internal server error.' });
+  }
+};
+
+exports.getStudentsByP = async (req, res) => {
+  const id = req.params.id;
+
+  const sql =
+  "SELECT users.* from users JOIN parentstudents ON users.id = parentstudents.studentId WHERE parentstudents.parentId = "+id;
+
+  try {
+    const response = await db.query(sql, { type: QueryTypes.SELECT });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
   }
 };
