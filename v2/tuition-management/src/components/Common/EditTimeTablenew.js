@@ -11,7 +11,7 @@ import StudentDashhead from "../Student/Dashhead";
 import TeacherDashhead from "../Teacher/Dashhead";
 import ParentDashHead from "../Parent/Dashhead";
 import { useCookies } from 'react-cookie';
-
+  
 function EditTimeTableNew() {
 
 
