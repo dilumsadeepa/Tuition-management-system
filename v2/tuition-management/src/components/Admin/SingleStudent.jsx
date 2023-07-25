@@ -82,9 +82,7 @@ const SingleStudent = () =>{
     useEffect(()=>{
         getco();
         getcoid();
-        getstu();
-        
-   
+        getstu();   
     },[])
 
     return(
@@ -140,7 +138,7 @@ const SingleStudent = () =>{
                                     <div className="card-body p-0">
                                         <QRCode value={qrtext} />
                                         <br />
-                                        <button onClick={()=>downloadImage()} className='debtn'>Download my student ID</button>
+                                        <button onClick={()=>downloadImage()} className='debtn'>Download student ID</button>
                                     </div>
                                     </div>
                                 </div>
