@@ -8,6 +8,7 @@ const {
   updateUserProfile,
   getparent,
   getProfile,
+  
 } = require("../controllers/UserController.js");
 
 const {
@@ -34,6 +35,7 @@ const {
   createParent,
   getParentStu,
   getattendeceAtt,
+  getUsersdata,
 } = require("../controllers/ParentsController.js");
 
 const {
@@ -167,6 +169,7 @@ router.get("/getcourseincome/:id",getCourseIncome);
 router.get("/getparentstu/:id", getParentStu);
 router.get("/getattendece/:id", getattendeceAtt);
 router.get("/getparentdata/:id", getparent);
+
 
 
 router.post('/parentstudents', parentStudentController.createParentStudent);
