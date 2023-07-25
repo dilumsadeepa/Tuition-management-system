@@ -3,8 +3,28 @@ import React from 'react';
 
 import TeacherSidebar from './TeacherSidebar';
 import Dashhead from './Dashhead';
+import CanvasJSReact from '@canvasjs/react-charts';
 
-
+var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+const options = {
+    title: {
+        text: "Basic Column Chart"
+    },
+    data: [
+    {
+        // Change type to "doughnut", "line", "splineArea", etc.
+        type: "column",
+        dataPoints: [
+            { label: "Apple",  y: 10  },
+            { label: "Orange", y: 15  },
+            { label: "Banana", y: 25  },
+            { label: "Mango",  y: 30  },
+            { label: "Grape",  y: 28  }
+        ]
+    }
+    ]
+}
 const Teacher = () =>{
 
     // const [cookies] = useCookies(['user']);
@@ -65,14 +85,19 @@ const Teacher = () =>{
                                                 </div>
                                             </div>
                                             <div class="mt-2 mb-0 text-sm">
-                                                
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                
                             </div>
-                            
+                            {/* Bar chart */}
+                            <div>
+			<CanvasJSChart options = {options}
+				/* onRef={ref => this.chart = ref} */
+			/>
+			{/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
+		</div>
                         </div>
                     </main>
                 </div>
