@@ -77,7 +77,7 @@ const handleFilter = async (event) => {
       setCourses(response.data);
     } else {
       // If a specific subject is selected, fetch courses filtered by subject
-      const response = await axios.get(`${Apiurl}/coursedata?courseStream=${value}`);
+      const response = await axios.get(`${Apiurl}/coursebysubject/${value}`);
       setFilteredCourses(response.data);
       setCourses(response.data);
       console.log(response.data);

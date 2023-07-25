@@ -62,6 +62,20 @@ exports.CourseDataId = async (req, res) => {
   }
 };
 
+exports.CourseDatasub = async (req, res) => {
+  const courseId = req.params.id;
+
+  try {
+    const response = await Course.findAll({
+      where: { courseStream: courseId },
+      include: [User],
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 exports.updateCourse = async (req, res) => {
   try {
     await Course.update(req.body, {
