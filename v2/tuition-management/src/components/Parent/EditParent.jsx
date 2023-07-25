@@ -143,7 +143,8 @@ const EditParent = () => {
                                     </div>
                                     <div className="modal-footer">
                                         <input type="reset" className="btn btn-primary" value="Clear" />
-                                        <button type="button" className="btn btn-info" onClick={updatePa(s.id)}>Save</button>
+                                        <button type="button" className="btn btn-primary" onClick={updatePa(s.id)}>Save</button>
+                                        <button><a href="/ParentProfile" class="previous">&laquo; Back</a></button>
 
                                     </div>
 
