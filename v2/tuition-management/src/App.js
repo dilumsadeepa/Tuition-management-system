@@ -55,6 +55,7 @@ import GenSalary from "./components/Admin/GenSalary";
 import Login from "./components/User/Login";
 import Register from "./components/User/Register";
 import SingleStudent from "./components/Admin/SingleStudent";
+import Income from "./components/Admin/Income";
 
 
 import Payment from "./components/Parent/Payment";
@@ -140,6 +141,7 @@ function App() {
           <Route path="parent/:id" element={<Parent />} />
           <Route path="editcourse/:id" element={<EditCourse />} />
           <Route path="adduser" element={<AddUser />} />
+          <Route path="income" element={<Income />} />
 
           {/* Teacher part */}
           <Route path="teacher" element={<Teacher />}></Route>

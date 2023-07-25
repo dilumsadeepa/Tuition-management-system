@@ -5,6 +5,8 @@ import { useCookies } from 'react-cookie';
 import Apiurl from '../Apiurl';
 import User from "../User";
 import Swal from 'sweetalert2';
+import bcrypt from 'bcryptjs';
+
 
 
 const Login = () => {
@@ -33,7 +35,7 @@ const Login = () => {
         console.log(email + ',' + password);
         try {
             const response = await axios.get(`${Apiurl}/users/${email}`);
-            if (response.data.password === password) {
+            if (await bcrypt.compare(password, response.data.password)) {
                 User.setUser(response.data);
                 if (response.data.role === 1) {
                     setCookie('id', response.data.id, { path: '/' });

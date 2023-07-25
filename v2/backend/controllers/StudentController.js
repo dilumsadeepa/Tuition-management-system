@@ -46,7 +46,7 @@ const getCourseById = async (req, res) => {
   const id = req.params.id;
 
   const sesql =
-    "SELECT c.* FROM courses c INNER JOIN coursestudents cs ON cs.courseId = c.id INNER JOIN students s ON s.id = cs.studentId INNER JOIN users u ON u.id = s.userId WHERE u.id = '" +
+    "SELECT c.* FROM courses c INNER JOIN coursestudents cs ON cs.courseId = c.id INNER JOIN users u ON u.id = cs.userId WHERE u.id = '" +
     id +
     "';";
 
@@ -63,7 +63,7 @@ const getStudentcourseId = async (req, res) => {
   const id = req.params.id;
 
   const sesql =
-    "SELECT c.id FROM courses c INNER JOIN coursestudents cs ON cs.courseId = c.id INNER JOIN students s ON s.id = cs.studentId INNER JOIN users u ON u.id = s.userId WHERE u.id = '" +
+    "SELECT c.id FROM courses c INNER JOIN coursestudents cs ON cs.courseId = c.id INNER JOIN users u ON u.id = cs.userId WHERE u.id = '" +
     id +
     "';";
 
