@@ -31,22 +31,35 @@ const options = {
 const Teacher = () =>{
 
     // const [cookies] = useCookies(['user']);
-    const [cookies] = useCookies(['courseids']);
+    const [courses, setCourses] = useState([]);
+    const [cookies,setCookie] = useCookies(['courseids']);
     const [total,setTotal]=useState([]);
-
-    const getTotalIncome = async(e) =>{
+    
+    const getTotalIncome = async(courseIds) =>{
         try {
-            const response = await axios.get(`${Apiurl}/gettotalincome/${cookies.courseids}`);
-            console.log("Income"+response.data);
+            const response = await axios.get(`${Apiurl}/gettotalincome/${courseIds}`);
+            // console.log("Income"+response.data);
             setTotal(response.data)
         } catch (error) {
             console.log("error in getting data")
         }
     }
+    
+    const getcou = async (e) => {
+        try {
+            const response = await axios.get(`${Apiurl}/teachercourse/${cookies.id}`);
+            setCourses(response.data);
+        } catch (error) {
+            console.log("Error in getting data:", error.message);
+        }
+    }
 
     useEffect(()=>{
-        getTotalIncome();
-    },[])
+        getcou();
+        const courseIds = courses.map((course) => course.id).join(',');
+        setCookie('courseids', courseIds);
+        getTotalIncome(courseIds);
+    },[courses, setCookie])
 
     return(
         <section>

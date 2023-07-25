@@ -15,7 +15,7 @@ const TeacherCourse = () =>{
     const [cookies,setCookie] = useCookies(['id']);
     console.log("user id "+cookies.id);
     const courseIds = courses.map((course) => course.id).join(',');
-    setCookie('courseids', courseIds, 1);
+    // setCookie('courseids', courseIds);
     
     console.log("Course ids",courseIds);
 
