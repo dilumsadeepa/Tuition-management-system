@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2';
 
 export default function DisableElevation() {
   let { id } = useParams();
@@ -34,27 +35,38 @@ export default function DisableElevation() {
       aprovel: '0',
       userId: cookies.id,
       courseId: courseid,
-    }
+    };
 
     console.log(data);
 
     axios.post(`${Apiurl}/enrollcourse`, data)
       .then(res => {
         console.log(res);
-        toast.success("Approval Requested", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
+
+        // Show a success SweetAlert
+        Swal.fire({
+          icon: 'success',
+          title: 'Approval Requested',
+          text: 'Your request has been sent for approval.',
+          timer: 3000,
+          timerProgressBar: true,
+          showConfirmButton: false,
         });
+
         // Add the enrolled course to the local state
         setEnrolledCourses(prevCourses => [...prevCourses, courseid]);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+
+        // Show an error SweetAlert
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: err.response.data.error,
+          showConfirmButton: true,
+        });
+      });
   };
 
   useEffect(() => {
@@ -126,19 +138,19 @@ export default function DisableElevation() {
                 {filteredCourses.map((course) => (
                   <div className="col-sm-3" key={course.id}>
                     <div className="card">
-                    <div className="card">
-                          <img src={course.coursebanner} className="card-img-top" alt="..." style={{ height: '200px' }} />
-                          <div className="card-body">
-                            <h5 className="card-title">{course.coursename}</h5>
-                            <p className="card-text">Rs.{course.courseprice}</p>
-                            {/* Hide the Enroll button if the course is already enrolled */}
-                            {!enrolledCourses.includes(course.id) ? (
-                              <a className="btn btn-primary" onClick={() => send(course.id)}>Enroll</a>
-                            ) : (
-                              <button className="btn btn-primary" disabled>Approval Requested</button>
-                            )}
-                          </div>
+                      <div className="card">
+                        <img src={course.coursebanner} className="card-img-top" alt="..." style={{ height: '200px' }} />
+                        <div className="card-body">
+                          <h5 className="card-title">{course.coursename}</h5>
+                          <p className="card-text">Rs.{course.courseprice}</p>
+                          {/* Hide the Enroll button if the course is already enrolled */}
+                          {!enrolledCourses.includes(course.id) ? (
+                            <button type='button' className="btn btn-primary" onClick={() => send(course.id)}>Enroll</button>
+                          ) : (
+                            <button className="btn btn-primary" disabled>Approval Requested</button>
+                          )}
                         </div>
+                      </div>
 
                     </div>
                   </div>
