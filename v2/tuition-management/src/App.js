@@ -99,6 +99,8 @@ import Grades from "./components/Home/Grades";
 import ALStreamWiseTimeTable from "./components/Home/ALStreamWiseTimeTable";
 import PublicNotices from "./components/Home/PublicNotices";
 import ViewAttendance from "./components/Teacher/ViewAttendance";
+import ViewIncome from "./components/Teacher/ViewIncome";
+import CoursesIncome from "./components/Teacher/CoursesIncome";
 
 
 
@@ -149,6 +151,8 @@ function App() {
           <Route path="teacherstudent" element={<TeacherStudent />}></Route>
           <Route path="showstudents/:id" element={<ViewStudents />}></Route>
           <Route path="viewattendance/:id" element={<ViewAttendance />}></Route>
+          <Route path="viewincome" element={<ViewIncome />}></Route>
+          <Route path="courseincome/:id/:course" element={<CoursesIncome />}></Route>
 
           {/* student part */}
           {/* <Route path="StudentLogin" element={<Login />} /> */}
