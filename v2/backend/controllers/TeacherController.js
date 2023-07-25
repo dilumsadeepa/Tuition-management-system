@@ -48,7 +48,7 @@ const getTeacherById = async (req, res) => {
 const getCourseIncome = async (req, res) => {
   const id = req.params.id;
   const sql =
-    "SELECT p.month, COUNT(*) AS course_count, c.courseprice * COUNT(*) AS total_payment FROM payments p JOIN courses c ON p.cid = c.id WHERE p.cid = '"+id+"' GROUP BY p.month";
+    "SELECT c.coursename,p.month, COUNT(*) AS course_count, c.courseprice * COUNT(*) AS total_payment FROM payments p JOIN courses c ON p.cid = c.id WHERE p.cid = '"+id+"' GROUP BY p.month";
   try {
     const response = await db.query(sql, { type: QueryTypes.SELECT });
 
