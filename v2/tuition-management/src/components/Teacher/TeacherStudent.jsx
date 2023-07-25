@@ -70,7 +70,7 @@ const TeacherStudent = () =>{
                      <main>
                     
                         <div class="container">
-                            <h2 className='mt-3 mb-3'>Students</h2>
+                            <h2 className='mt-3 mb-3'>Students attendance</h2>
                             <div className="row">
                                 <div class="col-xl-4 col-sm-6 col-12">
                                     <div class="card shadow border-0">
