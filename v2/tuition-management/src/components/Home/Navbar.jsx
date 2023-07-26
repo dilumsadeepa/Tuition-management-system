@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import Logout from "../User/LogoutHome";
 
 
 
@@ -10,6 +11,19 @@ const [cookies] = useCookies(['cookies.email']);
 const [rolecookies] = useCookies(['cookies.role']);
 console.log(cookies.email);
 console.log(rolecookies.role);
+
+const [logoutlink, setLogoutlink] = useState(null); // Set initial value to null
+
+useEffect(() => {
+  if (cookies.email) {
+    setLogoutlink(<Logout />);
+    // navigate('/');
+  } else {
+    setLogoutlink(null);
+  }
+}, [cookies.email]);
+
+
   return (
         <nav className="navbar navbar-light sticky-top navbar-expand-lg bg-white clean-navbar" id="navbartop" style={{ marginTop: '0px', borderBottom: '3px #069dcc' }}>
         <div className="container">
@@ -42,15 +56,13 @@ console.log(rolecookies.role);
                 {cookies.email && (
                     <>
                         <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
-                        {cookies.role === '5' ? <a className="nav-link" href="/parent" style={{ textAlign: 'center', marginBottom: '0px' }}> Dashboard</a> : cookies.role === '4' ? <a className="dropdown-item" href="/studashboard"> Dashboard</a> : cookies.role === '3' ? <a className="dropdown-item" href="/teacher"> Dashboard</a> : cookies.role === '2' ? <a className="dropdown-item" href="/staff"> Dashboard</a> : <a className="dropdown-item" href="/admin"> Dashboard</a>}     
+                        {cookies.role === '5' ? <a className="nav-link" href="/parent" style={{ textAlign: 'center', marginBottom: '0px' }}>Dashboard</a> : cookies.role === '4' ? <a className="dropdown-item" href="/studashboard">Dashboard</a> : cookies.role === '3' ? <a className="dropdown-item" href="/teacher">Dashboard</a> : cookies.role === '2' ? <a className="dropdown-item" href="/staff">Dashboard</a> : <a className="dropdown-item" href="/admin">Dashboard</a>}     
                         </li>
                         <li className="nav-item d-xl-flex justify-content-xl-center align-items-xl-center">
-                        <a className="nav-link" href="/logout" style={{ textAlign: 'center', marginBottom: '0px' }}>Log out</a>
+                        {logoutlink}
                         </li>
-
                     </>
-
-                )}
+                    )}
 
                 {!cookies.email && (
                 <>

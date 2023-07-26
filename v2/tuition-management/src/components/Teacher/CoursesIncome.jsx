@@ -87,7 +87,7 @@ const CoursesIncome = () =>{
                                             {income.map((i) => 
                                                 <tr>
                                                 <td>{getMonthName(i.month)}</td>
-                                                <td>Rs {i.total_payment.toFixed(2)}</td>
+                                                <td>Rs {i.total_payment}</td>
                                                 {/* <td><Link to={`/showstudents/${student.id}`} className='btn btn-info'>View Students</Link></td> */}
                                                 </tr>
                                             )}
