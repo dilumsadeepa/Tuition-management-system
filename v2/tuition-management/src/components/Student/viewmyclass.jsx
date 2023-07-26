@@ -53,6 +53,8 @@ const ViewMyClass = () => {
             <Sidebar />
             <div className="h-screen flex-grow-1 overflow-y-lg-auto">
                 <Dashhead />
+                <h1>Your classes</h1>
+                <br></br>
                 <div className="container">
                     {coursesRows.map((row, rowIndex) => (
                         <div className="row mt-3" key={rowIndex}>
@@ -71,29 +73,39 @@ const ViewMyClass = () => {
 
 
                                             {course.aprovel == 1 && (
-                                                <i
-                                                    className="fas fa-check-circle"
-                                                    style={{
-                                                        fontSize: '2rem',
-                                                        border: '2px solid #4caf50',
-                                                        borderRadius: '50%',
-                                                        padding: '0.2rem'
-                                                    }}
-                                                ></i>
+                                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                                    <i
+                                                        className="fas fa-check-circle"
+                                                        style={{
+                                                            fontSize: '2rem',
+                                                            border: '2px solid #4caf50',
+                                                            borderRadius: '50%',
+                                                            padding: '0.2rem',
+                                                            marginRight: '0.5rem' // Add some spacing between the icon and the text
+                                                        }}
+                                                    ></i>
+                                                    <span style={{ fontSize: '1rem' }}>Approved</span>
+                                                </div>
+
 
                                             )}
 
                                             {course.aprovel == 0 && (
                                                 //<p>Pending</p>
-                                                <i
-                                                    className="fas fa-hourglass-half"
-                                                    style={{
-                                                        fontSize: '2rem',
-                                                        border: '2px solid #f1c40f', // Yellow border color for "Pending"
-                                                        borderRadius: '50%', // To make the border circular for a "pending" appearance
-                                                        padding: '0.2rem' // Adjust padding as needed
-                                                    }}
-                                                ></i>
+                                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                                    <i
+                                                        className="fas fa-hourglass-half"
+                                                        style={{
+                                                            fontSize: '2rem',
+                                                            border: '2px solid #f1c40f', // Yellow border color for "Pending"
+                                                            borderRadius: '50%', // To make the border circular for a "pending" appearance
+                                                            padding: '0.2rem', // Adjust padding as needed
+                                                            marginRight: '0.5rem' // Add some spacing between the icon and the text
+                                                        }}
+                                                    ></i>
+                                                    <span style={{ fontSize: '1rem' }}>Pending</span>
+                                                </div>
+
 
                                             )}
                                             {/* Add more course details here as needed */}
