@@ -129,10 +129,12 @@ export default function DisableElevation() {
 
                     </select>
                     <br />
-                    <Link to="/viewmyclass" className="btn btn-primary view-classes-btn">My Enrolled Classes</Link>
+                    <Link to="/viewmyclass" className="btn btn-danger view-classes-btn">My Enrolled Classes</Link>
                   </div>
+                  
                 </div>
               </div>
+              <br></br>
 
               <div className="row mb-3 mt-3">
                 {filteredCourses.map((course) => (

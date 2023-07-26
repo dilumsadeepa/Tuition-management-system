@@ -67,6 +67,7 @@ const {
   stucourse,
   mystucourse,
   updateCS,
+  deleteCS,
 } = require("../controllers/CoursestudentController.js");
 
 const parentPaymentController = require ('../controllers/PaymentController.js');
@@ -172,6 +173,9 @@ router.get("/att/:id", getAttById);
 router.get('/attcourse/:id',getAttCourseId);
 router.post("/studentdata", createStudent);
 router.post("/enrollcourse", createApproval);
+
+router.delete("/enrollcourse/:id", deleteCS);
+
 router.get('/getStudentAtt/:id', getAttById);
 router.get('/coursebysubject/:id', CourseDatasub);
 router.get("/getstudentdata/:id", getStuData);
