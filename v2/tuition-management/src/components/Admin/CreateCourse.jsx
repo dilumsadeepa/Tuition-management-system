@@ -30,7 +30,7 @@ const CreateCourse = () => {
         'Commerce': ['Accounts', 'Business Studies', 'Economics'],
         'Arts': ['History', 'Geography', 'Political Science', 'Logic', 'Sinhala', 'Tamil', 'English'],
         'Technology': ['Engineering Technology', 'Bio System Technology', 'Science For Technology'],
-        'Common': ['Information Communication Technology'],
+        'Common': [' ', 'Information Communication Technology'],
         'Languages': ['Sinhala', 'Tamil', 'English', 'French', 'Japanese', 'Chinese'],
         'English Medium': [ 'Maths', 'Science', 'ICT'],
         'Grade 6': ['Sinhala', 'English', 'Buddhism', 'Maths', 'Science', 'History', 'ICT', 'Tamil'],
