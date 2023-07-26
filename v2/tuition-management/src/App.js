@@ -52,10 +52,14 @@ import SalaryPresent from "./components/Admin/SalaryPresent";
 import AddStudent from "./components/Admin/AddStudent";
 import AddTeacher from "./components/Admin/AddTeacher";
 import GenSalary from "./components/Admin/GenSalary";
+
+
 import Login from "./components/User/Login";
 import Register from "./components/User/Register";
 import SingleStudent from "./components/Admin/SingleStudent";
 import Income from "./components/Admin/Income";
+import ForgotPasswordForm from "./components/User/ForgotPasswordForm";
+import PasswordResetPage from "./components/User/PasswordResetPage";
 
 
 import Payment from "./components/Parent/Payment";
@@ -125,6 +129,8 @@ function App() {
           <Route path="register" element={<Register />} />
           <Route path="profile/:id" element={<Profile />} />
           <Route path="editprofile/:id" element={<EditUser />} />
+          <Route path="forgotpassword" element={<ForgotPasswordForm />} />
+          <Route path="reset-password/:token" element={<PasswordResetPage />} />
 
           {/* admin part */}
           {}

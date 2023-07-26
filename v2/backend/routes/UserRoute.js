@@ -8,6 +8,8 @@ const {
   updateUserProfile,
   getparent,
   getProfile,
+  forgotPassword,
+  resetPassword,
   
 } = require("../controllers/UserController.js");
 
@@ -131,6 +133,8 @@ router.post("/users", createUser);
 router.patch("/users/:id", updateUser);
 router.delete("/users/:id", deleteUser);
 router.patch("/updateusers/:id", updateUserProfile);
+router.post("/forgot-password", forgotPassword);
+router.post("/reset-password/:token", resetPassword);
 
 //admin
 router.get("/astudata", getStuData);
