@@ -101,7 +101,7 @@ const TeacherCourse = () =>{
                                                 <tr>
                                                 <td>{course.courseid}</td>
                                                 <td>{course.coursename}</td>
-                                                <td>Rs {course.courseprice.toFixed(2)}</td>
+                                                <td>Rs {course.courseprice}</td>
                                                 <td><Link to={`/showstudents/${course.id}`} className='btn btn-info'>View Students</Link></td>
                                                 </tr>
                                             )}
