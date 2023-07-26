@@ -17,6 +17,10 @@ const PaymentPay = db.define('PaymentPay', {
     type: DataTypes.FLOAT,
     allowNull: false,
   },
+  month: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   state: {
     type: DataTypes.ENUM('Pending', 'Approved', 'Rejected'),
     defaultValue: 'Pending',

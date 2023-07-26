@@ -172,7 +172,9 @@ router.get('/admin-dashboard-data', getAdminDashboardData);
 router.get('/calculate-income/:id', calculateIncomeForRole1);
 
 router.post('/paymentpaycreate', PaymentPayController.createPayment);
-router.patch('/paymentpayupdate-state', PaymentPayController.updatePaymentState);
+router.patch('/paymentpayupdatestate', PaymentPayController.updatePaymentState);
+router.get('/paymentpay', PaymentPayController.getAllPaymentRecords);
+router.get('/getAllPendingPaymentRecords', PaymentPayController.getAllPendingPaymentRecords);
 
 
 

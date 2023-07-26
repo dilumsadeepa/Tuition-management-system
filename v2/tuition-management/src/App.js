@@ -60,6 +60,7 @@ import SingleStudent from "./components/Admin/SingleStudent";
 import Income from "./components/Admin/Income";
 import ForgotPasswordForm from "./components/User/ForgotPasswordForm";
 import PasswordResetPage from "./components/User/PasswordResetPage";
+import PaymentRecords from "./components/Admin/PaymentRecords";
 
 
 import Payment from "./components/Parent/Payment";
@@ -154,6 +155,7 @@ function App() {
           <Route path="editcourse/:id" element={<EditCourse />} />
           <Route path="adduser" element={<AddUser />} />
           <Route path="income" element={<Income />} />
+          <Route path="paymentrecords" element={<PaymentRecords />} />
 
           {/* Teacher part */}
           <Route path="teacher" element={<Teacher />}></Route>

@@ -116,6 +116,11 @@ const Sidebar = () => {
                                     <i class="bi bi-cash-stack"></i> Income
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/paymentrecords">
+                                    <i class="bi bi-cash-stack"></i> Payment Record
+                                </a>
+                            </li>
                             {/* <li class="nav-item">
                                 <a class="nav-link" href="#s">
                                     <i class="bi bi-chat"></i> Messages
