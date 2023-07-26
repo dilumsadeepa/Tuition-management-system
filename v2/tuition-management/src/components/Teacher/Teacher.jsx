@@ -10,36 +10,58 @@ import CanvasJSReact from '@canvasjs/react-charts';
 
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-const options = {
-    title: {
-        text: "Basic Column Chart"
-    },
-    data: [
-    {
-        // Change type to "doughnut", "line", "splineArea", etc.
-        type: "column",
-        dataPoints: [
-            { label: "Apple",  y: 10  },
-            { label: "Orange", y: 15  },
-            { label: "Banana", y: 25  },
-            { label: "Mango",  y: 30  },
-            { label: "Grape",  y: 28  }
-        ]
-    }
-    ]
-}
+
 const Teacher = () =>{
 
     // const [cookies] = useCookies(['user']);
     const [courses, setCourses] = useState([]);
     const [cookies,setCookie] = useCookies(['courseids']);
     const [total,setTotal]=useState([]);
+    const[studentTotal,setCourseTotal]=useState([]);
+    const[totalStudents,setTotalStudent]=useState([]);
     
     const getTotalIncome = async(courseIds) =>{
         try {
             const response = await axios.get(`${Apiurl}/gettotalincome/${courseIds}`);
             // console.log("Income"+response.data);
             setTotal(response.data)
+        } catch (error) {
+            console.log("error in getting data")
+        }
+    }
+
+    const options = {
+        title: {
+            text: "No of Students In Classes"
+        },
+        data: [
+        {
+            // Change type to "doughnut", "line", "splineArea", etc.
+            type: "column",
+            dataPoints: studentTotal.map(item => ({
+                label: item.courseId,
+                y: item.total_students
+              }))
+        }
+        ]
+    }
+
+    const getTotalStudentByCourse = async(courseIds) =>{
+        try {
+            const response = await axios.get(`${Apiurl}/gettotalstudentbycourse/${courseIds}`);
+            // console.log("Student total"+response.data);
+            setCourseTotal(response.data)
+        } catch (error) {
+            console.log("error in getting data")
+        }
+    }
+
+
+    const getTotalStudents = async(courseIds) =>{
+        try {
+            const response = await axios.get(`${Apiurl}/gettotalstudents/${courseIds}`);
+            // console.log("Student total"+response.data);
+            setTotalStudent(response.data)
         } catch (error) {
             console.log("error in getting data")
         }
@@ -59,6 +81,8 @@ const Teacher = () =>{
         const courseIds = courses.map((course) => course.id).join(',');
         setCookie('courseids', courseIds);
         getTotalIncome(courseIds);
+        getTotalStudentByCourse(courseIds);
+        getTotalStudents(courseIds);
     },[courses, setCookie])
 
     return(
@@ -108,7 +132,7 @@ const Teacher = () =>{
                                             <div class="row">
                                                 <div class="col">
                                                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">All Students</span>
-                                                    <span class="h3 font-bold mb-0">1500</span>
+                                                    <span class="h3 font-bold mb-0">{totalStudents.map((t)=>t.total_students_sum)}</span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
