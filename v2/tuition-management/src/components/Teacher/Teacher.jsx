@@ -19,7 +19,9 @@ const Teacher = () =>{
     const [total,setTotal]=useState([]);
     const[studentTotal,setCourseTotal]=useState([]);
     const[totalStudents,setTotalStudent]=useState([]);
+    const[precentage,setPrecentage]=useState([]);
     
+
     const getTotalIncome = async(courseIds) =>{
         try {
             const response = await axios.get(`${Apiurl}/gettotalincome/${courseIds}`);
@@ -30,9 +32,28 @@ const Teacher = () =>{
         }
     }
 
+      
+    const getSalPrecentage = async(e) =>{
+        try {
+            const response = await axios.get(`${Apiurl}/salarypresentbyid/${cookies.role}`);
+            // console.log("Income"+response.data);
+            setPrecentage(response.data);
+        } catch (error) {
+            console.log("error in getting data")
+        }
+    }
+
     const options = {
         title: {
             text: "No of Students In Classes"
+        },
+        axisY: {
+            title: "Number of Students",
+            includeZero: true,
+            interval: 1, // Set the interval to 1 to show only integer values on the Y-axis
+            labelFormatter: function(e) {
+                return Math.round(e.value);
+            }
         },
         data: [
         {
@@ -83,6 +104,7 @@ const Teacher = () =>{
         getTotalIncome(courseIds);
         getTotalStudentByCourse(courseIds);
         getTotalStudents(courseIds);
+        getSalPrecentage();
     },[courses, setCookie])
 
     return(
@@ -111,7 +133,7 @@ const Teacher = () =>{
                                             <div class="row">
                                                 <div class="col">
                                                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total Income</span>
-                                                    <span class="h3 font-bold mb-0">Rs {total.map((t)=>t.total_payment)}</span>
+                                                    <span class="h3 font-bold mb-0">Rs {(parseFloat(total.map((t) => t.total_payment)) * parseFloat(precentage.presentage) / 100).toFixed(2)}</span>
                                                 </div>
                                                 <div class="col-auto">
                                                     <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">

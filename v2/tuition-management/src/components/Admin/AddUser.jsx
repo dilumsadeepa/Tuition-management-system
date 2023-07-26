@@ -160,6 +160,7 @@ const CreateUser = () => {
                                                 placeholder="Enter the full name"
                                                 value={fullname}
                                                 onChange={(e) => setFullname(e.target.value)}
+                                                required
                                             />
                                             {/* Display validation error for role */}
                                             {errors.fullname && <div className="error">{errors.fullname}</div>}
@@ -251,6 +252,7 @@ const CreateUser = () => {
                                                 placeholder="Enter the address"
                                                 value={address}
                                                 onChange={(e) => setAddress(e.target.value)}
+                                                required
                                             />
                                             {/* Display validation error for role */}
                                             {errors.address && <div className="error">{errors.address}</div>}
@@ -264,6 +266,7 @@ const CreateUser = () => {
                                                 className="form-control"
                                                 value={dob}
                                                 onChange={(e) => setDob(e.target.value)}
+                                                required
                                             />
                                             {/* Display validation error for role */}
                                             {errors.dob && <div className="error">{errors.dob}</div>}
@@ -276,6 +279,7 @@ const CreateUser = () => {
                                                 className="form-control"
                                                 value={gender}
                                                 onChange={(e) => setGender(e.target.value)}
+                                                required
                                             >
                                                 <option value="">Select a gender</option>
                                                 <option value="Male">Male</option>
@@ -295,6 +299,7 @@ const CreateUser = () => {
                                                 placeholder="Enter the NIC"
                                                 value={nic}
                                                 onChange={(e) => setNic(e.target.value)}
+                                                required
                                             />
                                             {/* Display validation error for role */}
                                             {errors.nic && <div className="error">{errors.nic}</div>}

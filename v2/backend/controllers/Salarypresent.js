@@ -10,6 +10,20 @@ const getSPs = async (req, res) => {
   }
 };
 
+const getSPById = async (req, res) => {
+  try {
+    const userrole = req.params.id;
+    const response = await Salarypresent.findOne({
+      where: {
+        userrole: userrole,
+      },
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 const createPre = async (req, res) => {
   try {
     await Salarypresent.create(req.body);
@@ -51,4 +65,5 @@ module.exports = {
   createPre,
   updateSP,
   deletespre,
+  getSPById
 };

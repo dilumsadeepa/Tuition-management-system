@@ -12,8 +12,10 @@ import { useParams } from 'react-router-dom';
 const CoursesIncome = () =>{
 
     const { id,course } = useParams();
+    const [cookies,setCookie] = useCookies(['courseids']);
     const [income, setIncome] = useState([]);
     const [coursename,SetCourse]=useState([]);
+    const[precentage,setPrecentage]=useState([]);
    
     const getIncome = async (e) => {
         try {
@@ -23,6 +25,17 @@ const CoursesIncome = () =>{
             console.log("Students "+response.data);
         } catch (error) {
             console.log("Error in getting data:", error.message);
+        }
+    }
+
+       
+    const getSalPrecentage = async(e) =>{
+        try {
+            const response = await axios.get(`${Apiurl}/salarypresentbyid/${cookies.role}`);
+            // console.log("Income"+response.data);
+            setPrecentage(response.data);
+        } catch (error) {
+            console.log("error in getting data")
         }
     }
 
@@ -41,6 +54,7 @@ const CoursesIncome = () =>{
    
     useEffect(()=>{
         getIncome();
+        getSalPrecentage();
     },[])
 
     return(
@@ -87,7 +101,7 @@ const CoursesIncome = () =>{
                                             {income.map((i) => 
                                                 <tr>
                                                 <td>{getMonthName(i.month)}</td>
-                                                <td>Rs {i.total_payment}</td>
+                                                <td>Rs {(i.total_payment*(precentage.presentage)/100).toFixed(2)}</td>
                                                 {/* <td><Link to={`/showstudents/${student.id}`} className='btn btn-info'>View Students</Link></td> */}
                                                 </tr>
                                             )}
