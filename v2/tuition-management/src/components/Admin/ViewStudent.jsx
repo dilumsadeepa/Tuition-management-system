@@ -87,7 +87,7 @@ const ViewStudent = () =>{
                                     </div>
                                 </div>
                             
-                                
+                               
                             </div>
 
 

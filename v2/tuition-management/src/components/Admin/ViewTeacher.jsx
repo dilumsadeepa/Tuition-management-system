@@ -68,45 +68,7 @@ const ViewTeacher = () =>{
                     
                         <div class="container">
 
-                            <div className="row">
-                                <div class="col-xl-4 col-sm-6 col-12">
-                                    <div class="card shadow border-0">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    {/* <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span> */}
-                                                    <span class="h4 mb-0"><a href="/assignstudent" className='debtn'>Assign Teachers</a></span>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
-                                                    <i class="fa-solid fa-chalkboard-user"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
                             
-                                <div class="col-xl-4 col-sm-6 col-12">
-                                    <div class="card shadow border-0">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    {/* <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span> */}
-                                                    <span class="h4 mb-0"><a href="/addteacher" className='debtn'>Add Teachers</a></span>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
-                                                    <i class="fa-solid fa-chalkboard-user"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
 
                             <div className="row mt-5">
