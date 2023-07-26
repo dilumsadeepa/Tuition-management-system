@@ -34,7 +34,7 @@ const AddParentData = () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: error.response.data.error,
+                text: error.response.data,
               });
             console.log(error.response.data);
         }
