@@ -8,6 +8,8 @@ const {
   updateUserProfile,
   getparent,
   getProfile,
+  forgotPassword,
+  resetPassword,
   
 } = require("../controllers/UserController.js");
 
@@ -123,6 +125,8 @@ const {
   calculateIncomeForRole1
 } = require('../controllers/AdminController');
 
+const PaymentPayController = require('../controllers/PaymentPayController');
+
 const router = express.Router();
 
 // User
@@ -133,6 +137,8 @@ router.post("/users", createUser);
 router.patch("/users/:id", updateUser);
 router.delete("/users/:id", deleteUser);
 router.patch("/updateusers/:id", updateUserProfile);
+router.post("/forgot-password", forgotPassword);
+router.post("/reset-password/:token", resetPassword);
 
 //admin
 router.get("/astudata", getStuData);
@@ -163,6 +169,9 @@ router.get('/admin-dashboard-data', getAdminDashboardData);
 
 
 router.get('/calculate-income/:id', calculateIncomeForRole1);
+
+router.post('/paymentpaycreate', PaymentPayController.createPayment);
+router.patch('/paymentpayupdate-state', PaymentPayController.updatePaymentState);
 
 
 
