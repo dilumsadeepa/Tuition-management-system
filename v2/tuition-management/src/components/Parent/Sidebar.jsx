@@ -103,6 +103,11 @@ const Sidebar =() =>{
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="/addpaymentform">
+                                <i className="bi bi-minecart-loaded"></i> Pay class fee
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="/notice">
                                     <i class="fa-regular fa-note-sticky"></i> Notices
                                     <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">{noticesCount}</span>
