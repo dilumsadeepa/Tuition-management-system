@@ -18,7 +18,7 @@ const AddParentData = () => {
         console.log('====================================');
         e.preventDefault();
         try {
-            const response = await axios.post(`${Apiurl}/parentstudents`, {
+            const response = await axios.post(`${Apiurl}/addparentdata`, {
                 parentNIC: parentNIC,
                 studentId: id,
             });
