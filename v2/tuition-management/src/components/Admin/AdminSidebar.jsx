@@ -135,7 +135,7 @@ const Sidebar = () => {
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/newtimetable">
-                                    <i class="fa-solid fa-table-cells"></i> Time Table
+                                    <i class="fa-solid fa-table-cells"></i> Timetable
                                 </a>
                             </li>
 

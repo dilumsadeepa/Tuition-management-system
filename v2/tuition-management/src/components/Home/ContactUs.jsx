@@ -23,7 +23,7 @@ function ContactUs() {
           .then(() => {
             const { name,subject, email, message } = values;
       
-            const mailtoUrl = `mailto:susipwan.edu@gmail.com?subject= ${encodeURIComponent(
+            const mailtoUrl = `mailto:susipwineducation@gmail.com?subject= ${encodeURIComponent(
               subject
             )} - Susipwan Contact Form - ${encodeURIComponent(name)} &body=${encodeURIComponent(
               message
