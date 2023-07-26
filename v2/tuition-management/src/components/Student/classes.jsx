@@ -74,6 +74,7 @@ export default function DisableElevation() {
   }, []);
 
   //-------------
+  //filter subjects
   const handleFilter = async (event) => {
     const value = event.target.value;
     console.log(value);
@@ -109,7 +110,7 @@ export default function DisableElevation() {
             <div className="container">
               <div className="row mt-3 mb-3">
                 <div className="d-flex align-items-center justify-content-between w-100">
-                  <h2><b>Classes</b></h2>
+                  <h1>Classes</h1>
                   <div className="filter-btn-wrapper">
                     <label htmlFor="subjectFilter" className="form-label">Filter by Subject:</label>
                     <select className="form-select filter-select" id="subjectFilter" onChange={handleFilter}>
