@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link,useParams} from 'react-router-dom';
 import axios from 'axios';
 import Apiurl from '../Apiurl';
 import Sidebar from './Sidebar';
@@ -63,7 +64,15 @@ return (
                     <div class="container-fluid">
                         <div className="row mb-3 mt-3">
                                 <h1>Payment</h1>
-                                            
+
+                                <div className="col-sm-12 mb-5 mt-3"></div>
+                                <div className="col-sm-12 mb-5 mt-3"></div>
+                                <form>
+                                <div>
+                                    <a href="/AddPaymentForm" class="btn btn-primary btn-outline">Pay class fee</a>
+                                </div>
+
+                                </form>         
                                         {console.log(payment)}
                                             <select name="selectedstudent" id="student" className='mt-5' onChange={(e) => setStdid(e.target.value)}>
                                                 <option selected disabled>Select Your Student</option>
