@@ -52,7 +52,13 @@ const ViewStudentDetails = () => {
                             <div className="row mb-3 mt-3">
                                 <h1>Student Data</h1>
                                 <div className="col-sm-12 mb-5 mt-3">
-                                    
+                                <div className="col-sm-12 mb-5 mt-3"></div>  
+                                <form>
+                                {/* <div>
+                                    <a href="/EditStudentProfile" class="btn btn-primary btn-outline">Edit Sudent Details</a>
+                                </div> */}
+                                <div className="col-sm-12 mb-5 mt-3"></div>
+                                </form> 
                                     <div className="table-responsive">
                                         <table className="table">
                                             <thead>

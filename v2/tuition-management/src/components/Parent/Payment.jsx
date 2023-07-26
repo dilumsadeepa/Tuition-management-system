@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link,useParams} from 'react-router-dom';
 import axios from 'axios';
 import Apiurl from '../Apiurl';
 import Sidebar from './Sidebar';
@@ -46,24 +47,6 @@ const Payment = () => {
         }
     }
 
-    //   const getStudentsPayment = async () => {
-    //     try {
-            
-    //         const userId = cookies.id;
-    //         console.log(stdid);
-    //         const response = await axios.get(`${Apiurl}/getpaymetbyparent/${stdid}`);
-    //         setStudentpay(response.data);
-    //         console.log(response.data);
-    //     } catch (error) {
-    //         console.log("Error in getting data", error);
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     getStudentsPaymnet();
-    // }, [stdid]);
-
-
 
 return (
      <section>
@@ -81,7 +64,13 @@ return (
                     <div class="container-fluid">
                         <div className="row mb-3 mt-3">
                                 <h1>Payment</h1>
-                                            
+
+                                <div className="col-sm-12 mb-5 mt-3"></div>
+                                <form>
+                                <div>
+                                    <a href="/AddPaymentForm" class="btn btn-primary btn-outline">Pay class fee</a>
+                                </div>
+                                </form>         
                                         {console.log(payment)}
                                             <select name="selectedstudent" id="student" className='mt-5' onChange={(e) => setStdid(e.target.value)}>
                                                 <option selected disabled>Select Your Student</option>
@@ -90,26 +79,6 @@ return (
                                                 ))
                                                 }
                                             </select>
-
-                                        {/* <div className="row">
-
-                                            <div className="col-lg-4">
-                                                <div className="card mb-4">
-                                                    <div className="card-body text-center">
-                                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                                                            className="rounded-circle img-fluid" style={{ width: "150px" }} />
-                                                        <h5 className="my-3">{users.username}</h5>
-                                                        <p className="text-muted mb-1">{users.email}</p>
-                                                        <div className="d-flex justify-content-center mb-2">
-                                                            <a href="/editparent" className="btn btn-primary">Pay</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="card mb-4 mb-lg-0">
-
-                                                </div>
-                                            </div>
-                                        </div> */}
 
                                         <div className="col-sm-12 mb-5 mt-3"></div>
                                         <div className="col-sm-12 mb-5 mt-3"></div>
@@ -131,7 +100,7 @@ return (
                                                             "January", "February", "March", "April", "May", "June",
                                                             "July", "August", "September", "October", "November", "December"
                                                         ];
-                                                        // Subtracting 1 from 'py.month' because JavaScript months are zero-based (0 to 11).
+                                                        
                                                         const monthName = monthNames[py.month - 1];
 
                                                         return (

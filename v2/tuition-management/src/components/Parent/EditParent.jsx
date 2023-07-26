@@ -254,29 +254,7 @@ const EditParent = () => {
                                             {/* Display validation error for password */}
                                             {errors.password && <div className="error">{errors.password}</div>}
                                         </div>
-
-                                        {/* Role */}
-                                        {/* <div className="mb-3 mt-3">
-                                            <label className="form-label">Role:</label>
-                                            <select
-                                                className="form-control"
-                                                value={role}
-                                                onChange={(e) => setRole(e.target.value)}
-                                                required
-                                            >
-                                                <option value="">Select a role</option>
-                                                <option value="1">Admin</option>
-                                                <option value="2">Staff</option>
-                                                <option value="3">Teacher</option>
-                                                <option value="4">Student</option>
-                                                <option value="5">Parent</option>
-                                            </select>
-                                            {/* Display validation error for role 
-                                            {errors.role && <div className="error">{errors.role}</div>}
-                                        </div> */}
-
-
-
+                                        
                                         {/* Address */}
                                         <div className="mb-3 mt-3">
                                             <label className="form-label">Address:</label>
