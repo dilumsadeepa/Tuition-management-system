@@ -81,4 +81,26 @@ exports.createCS = async (req, res) => {
   }
 };
 
+//delete course student
+exports.deleteCS = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedCS = await Coursestudent.destroy({
+      where: {
+        id: id
+      }
+    });
+
+    if (deletedCS === 1) {
+      res.status(200).json({ msg: "Request deleted successfully" });
+    } else {
+      res.status(404).json({ error: "Coursestudent not found" });
+    }
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+
 

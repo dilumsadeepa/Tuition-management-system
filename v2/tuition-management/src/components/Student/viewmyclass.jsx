@@ -4,6 +4,7 @@ import Apiurl from '../Apiurl';
 import { useCookies } from 'react-cookie';
 import Sidebar from './StudentSidebar';
 import Dashhead from './Dashhead';
+import Swal from 'sweetalert2';
 
 const ViewMyClass = () => {
     const [enrolledCourses, setEnrolledCourses] = useState([]);
@@ -48,6 +49,23 @@ const ViewMyClass = () => {
     // Chunk the enrolledCourses array into rows of 4 cards each
     const coursesRows = chunkArray(enrolledCourses, 4);
 
+
+    //delete enroll course
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`${Apiurl}/enrollcourse/${id}`);
+            setEnrolledCourses((prevCourses) => prevCourses.filter((course) => course.id !== id));
+            Swal.fire({
+                title: "Success!",
+                text: "Coursestudent deleted successfully",
+                icon: "success",
+            });
+        } catch (error) {
+            console.log("error on deleting Coursestudent", error);
+            Swal.fire("Error!", "Failed to delete Coursestudent.", "error");
+        }
+    };
+
     return (
         <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
             <Sidebar />
@@ -72,6 +90,7 @@ const ViewMyClass = () => {
                                             <p className="card-text">Rs. {course.course.courseprice}</p>
 
 
+
                                             {course.aprovel == 1 && (
                                                 <div style={{ display: 'flex', alignItems: 'center' }}>
                                                     <i
@@ -91,7 +110,7 @@ const ViewMyClass = () => {
                                             )}
 
                                             {course.aprovel == 0 && (
-                                                //<p>Pending</p>
+                                                
                                                 <div style={{ display: 'flex', alignItems: 'center' }}>
                                                     <i
                                                         className="fas fa-hourglass-half"
@@ -108,7 +127,12 @@ const ViewMyClass = () => {
 
 
                                             )}
-                                            {/* Add more course details here as needed */}
+                                            <br></br>
+
+                                            <button type="button" className="btn btn-secondary" onClick={() => handleDelete(course.id)}>
+                                                Delete
+                                            </button>
+
                                         </div>
                                     </div>
                                 </div>

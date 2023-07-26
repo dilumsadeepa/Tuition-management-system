@@ -37,7 +37,6 @@ const {
   createParent,
   getParentStu,
   getattendeceAtt,
-
 } = require("../controllers/ParentsController.js");
 
 const {
@@ -69,6 +68,7 @@ const {
   stucourse,
   mystucourse,
   updateCS,
+  deleteCS,
 } = require("../controllers/CoursestudentController.js");
 
 const parentPaymentController = require ('../controllers/PaymentController.js');
@@ -76,7 +76,8 @@ const {
   getPays, 
   getPaysByUserId, 
   getuserid,
-  getpayemtsbyparent 
+  getpayemtsbyparent,
+  getpayemtsbystdid,
 } = require("../controllers/PaymentController.js");
 
 const {
@@ -182,6 +183,9 @@ router.get("/att/:id", getAttById);
 router.get('/attcourse/:id',getAttCourseId);
 router.post("/studentdata", createStudent);
 router.post("/enrollcourse", createApproval);
+
+router.delete("/enrollcourse/:id", deleteCS);
+
 router.get('/getStudentAtt/:id', getAttById);
 router.get('/coursebysubject/:id', CourseDatasub);
 router.get("/getstudentdata/:id", getStuData);
@@ -207,17 +211,15 @@ router.get("/gettotalstudents/:courseIds",getTotalStudents);
 
 //parent
 router.get("/getparentstu/:id", getParentStu);
-router.get("/getattendece/:id", getattendeceAtt);
-router.post('/parentstudents', parentStudentController.createParentStudent);
 router.get('/parentstudents', parentStudentController.getAllParentStudents);
 router.get('/parentstudents/:id', parentStudentController.getParentStudentById);
 router.get('/findParentByStudentId/:studentId', parentStudentController.findParentByStudentId);
 router.put('/parentstudents/:id', parentStudentController.updateParentStudent);
-router.delete('/parentstudents/:id', parentStudentController.deleteParentStudent);
 router.get('/findParentByParentId/:id', parentStudentController.findParentByParentId);
 router.get('/getstudentbyp/:id', parentStudentController.getStudentsByP);
 router.get('/getpstudentatt/:id', parentStudentController.getStudentsAtteBystdid);
 router.get('/getpaymetbyparent/:id', getpayemtsbyparent);
+router.get("/getpayemtsbystdid/:id", getpayemtsbystdid)
 
 //other
 router.get("/stu", getsts);
