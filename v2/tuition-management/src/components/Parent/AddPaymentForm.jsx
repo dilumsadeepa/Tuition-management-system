@@ -5,18 +5,19 @@ import Sidebar from './Sidebar';
 import Dashhead from './Dashhead';
 
 const AddPaymentForm = () => {
-    const [paydate, setDate] = useState('');
+    
     const [refNumber, setRefNumber] = useState('');
     const [payment, setPayment] = useState('');
     const [courseId, setCourseId] = useState('');
+    const [month, setMonth] = useState('');
     const [userId, setUserId] = useState('');
     const [users, setUsers] = useState([]);
     const [courses, setCourses] = useState([]);
 
 
-    const selectCourse = (course) => {
-      setCourseId(course);
-    };
+    // const selectCourse = (course) => {
+    //   setCourseId(course);
+    // };
 
 
     // Fetch users data on component mount
@@ -67,6 +68,7 @@ const AddPaymentForm = () => {
                 payment,
                 courseId,
                 userId,
+                month,
             });
             console.log('Payment record created:', response.data);
             // Reset form fields after successful submission
@@ -120,8 +122,8 @@ const AddPaymentForm = () => {
                               type="date"
                               className="form-control"
                               id="paydate"
-                              value={paydate}
-                              onChange={(e) => setDate(e.target.value)}
+                              value={month}
+                              onChange={(e) => setMonth(e.target.value)}
                             />
                           </div>
 
@@ -154,7 +156,7 @@ const AddPaymentForm = () => {
                                   className="form-select"
                                   id="courseId"
                                   value={courseId}
-                                  onChange={(e) => selectCourse(e.target.value)}
+                                  onChange={(e) => selectcourse(e.target.value)}
                                 >
                                   <option value="">Select a Course</option>
                                   {courses.map((course) => (
