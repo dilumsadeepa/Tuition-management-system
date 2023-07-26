@@ -160,7 +160,7 @@ const SalaryPresent = () => {
 
                             <div className="row mt-5">
 
-                               <h2>Salary presentage</h2>
+                               <h2>Salary percentage</h2>
 
                                 <div className="d-flex justify-content-center mt-5">
                                     <form action="">
@@ -177,7 +177,7 @@ const SalaryPresent = () => {
                                         </div>
 
                                         <div class="col mb-3 mt-3">
-                                            <label className="form-label">Presentage (Enter presentage without % mark):</label>
+                                            <label className="form-label">percentage (Enter percentage without % mark):</label>
                                             <input type="text" className="form-control" id='pre' onChange={(e) => setPre(e.target.value)} placeholder="Enter presentage" />
                                         </div>
 
@@ -200,7 +200,7 @@ const SalaryPresent = () => {
                                             <thead>
                                                 <tr>
                                                     <th>User Role</th>
-                                                    <th>Salary Presentage</th>
+                                                    <th>Salary percentage</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
