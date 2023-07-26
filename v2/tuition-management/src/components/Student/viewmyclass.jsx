@@ -17,6 +17,7 @@ const ViewMyClass = () => {
         const response = await axios.get(`${Apiurl}/mystucourse/${cookies.id}`);
         setEnrolledCourses(response.data);
         setIsLoading(false);
+        console.log(response.data);
       } catch (error) {
         console.log('Error fetching enrolled courses:', error);
         setError('Error fetching enrolled courses. Please try again later.');
@@ -59,14 +60,20 @@ const ViewMyClass = () => {
                 <div className="col-md-3 mb-4" key={course.id}>
                   <div className="card">
                     <img
-                      src={course.coursebanner}
+                      src={course.course.coursebanner}
                       className="card-img-top"
                       alt="Course Banner"
                       style={{ height: '200px' }}
                     />
                     <div className="card-body">
-                      <h5 className="card-title">{course.coursename}</h5>
-                      <p className="card-text">Rs. {course.courseprice}</p>
+                      <h5 className="card-title">{course.course.coursename}</h5>
+                      <p className="card-text">Rs. {course.course.courseprice}</p>
+                      {course.aprovel == 1 && (
+                        <p>Approved</p>
+                      )}
+                      {course.aprovel == 0 && (
+                        <p>Pending</p>
+                      )}
                       {/* Add more course details here as needed */}
                     </div>
                   </div>
