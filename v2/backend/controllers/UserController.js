@@ -174,7 +174,7 @@ exports.createUser = async (req, res) => {
       </html>
     `
     sendEmail(suser,"New Account Information in Susipwin",ms);
-    sendSMS(suser, `Welcome to Susipwin Tuition Institute! Here are your login details- Username: ${suser.email}, Temp Password: ${suser.password} - Please change your password upon login for security. Susipwin Tuition Institute`);
+    sendSMS(suser, `Welcome to Susipwin Tuition Institute! Here are your login details- Username: ${suser.email}, Temp Password: ${password} - Please change your password upon login for security. Susipwin Tuition Institute`);
 
     res.status(201).json({ msg: "User Created" });
   } catch (error) {

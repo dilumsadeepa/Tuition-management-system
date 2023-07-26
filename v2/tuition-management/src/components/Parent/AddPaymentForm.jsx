@@ -4,6 +4,8 @@ import Apiurl from '../Apiurl';
 import Sidebar from './Sidebar';
 import Dashhead from './Dashhead';
 import Swal from 'sweetalert2';
+import { useCookies } from 'react-cookie';
+
 
 const AddPaymentForm = () => {
     
@@ -14,6 +16,7 @@ const AddPaymentForm = () => {
     const [userId, setUserId] = useState('');
     const [users, setUsers] = useState([]);
     const [courses, setCourses] = useState([]);
+    const [cookies, setCookie] = useCookies(['user']);
 
 
     // const selectCourse = (course) => {
@@ -29,7 +32,7 @@ const AddPaymentForm = () => {
     // Fetch users data from the API
     const getUsersData = async () => {
         try {
-            const response = await axios.get(`${Apiurl}/getstudentbyp/16`);
+            const response = await axios.get(`${Apiurl}/getstudentbyp/${cookies.id}`);
             setUsers(response.data);
         } catch (error) {
             console.error('Failed to fetch users data:', error);

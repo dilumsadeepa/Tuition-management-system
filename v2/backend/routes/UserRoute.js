@@ -176,6 +176,8 @@ router.patch('/paymentpayupdatestate', PaymentPayController.updatePaymentState);
 router.get('/paymentpay', PaymentPayController.getAllPaymentRecords);
 router.get('/getAllPendingPaymentRecords', PaymentPayController.getAllPendingPaymentRecords);
 
+router.post('/addparentdata', parentStudentController.createParentStudent);
+
 
 
 
