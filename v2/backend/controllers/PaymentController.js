@@ -48,12 +48,27 @@ const getuserid = async (req, res) => {
   }
 };
 
+const getpayemtsbyparent = async (req, res) => {
+  // Convert the comma-separated string to an array
+  const id = req.params.id;
+
+  const sql = "SELECT courses.coursename, parentstudents.*,payments.*,users.username FROM parentstudents JOIN payments ON parentstudents.studentId = payments.suid JOIN courses ON payments.cid = courses.id JOIN users ON parentstudents.studentId = users.id WHERE parentstudents.parentId ="+id;
+
+  try {
+    const response = await db.query(sql, { type: QueryTypes.SELECT });
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 
 
 module.exports = {
   getPays,
   getPaysByUserId,
   getuserid,
+  getpayemtsbyparent,
 };
 
 

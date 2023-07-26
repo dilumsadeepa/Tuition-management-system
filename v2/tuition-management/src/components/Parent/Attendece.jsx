@@ -97,7 +97,6 @@ const Attendece = () => {
                                                         <th>{att.id}</th>
                                                         <td>{att.coursename}</td>
                                                         <td>{att.coursesubject}</td>
-                              
                                                         <td>{att.aday}</td>
                                                         <td>{att.atime}</td>
                                                     </tr>

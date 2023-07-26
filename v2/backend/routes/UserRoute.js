@@ -67,6 +67,7 @@ const {
 const {
   getCSs,
   stucourse,
+  mystucourse,
   updateCS,
 } = require("../controllers/CoursestudentController.js");
 
@@ -74,7 +75,8 @@ const parentPaymentController = require ('../controllers/PaymentController.js');
 const { 
   getPays, 
   getPaysByUserId, 
-  getuserid 
+  getuserid,
+  getpayemtsbyparent 
 } = require("../controllers/PaymentController.js");
 
 const {
@@ -181,7 +183,8 @@ router.get("/getstudentdata/:id", getStuData);
 router.get("/getpaymentbyuserid/:id", getPaysByUserId);
 
 router.get("/getpaymentbyuid/:id", getuserid);
-router.get('/getunascourses/:id', getunascourses)
+router.get('/getunascourses/:id', getunascourses);
+router.get("/mystucourse/:id", mystucourse);
 
 
 
@@ -200,10 +203,6 @@ router.get("/gettotalstudents/:courseIds",getTotalStudents);
 //parent
 router.get("/getparentstu/:id", getParentStu);
 router.get("/getattendece/:id", getattendeceAtt);
-router.get("/getparentdata/:id", getparent);
-
-
-
 router.post('/parentstudents', parentStudentController.createParentStudent);
 router.get('/parentstudents', parentStudentController.getAllParentStudents);
 router.get('/parentstudents/:id', parentStudentController.getParentStudentById);
@@ -213,7 +212,7 @@ router.delete('/parentstudents/:id', parentStudentController.deleteParentStudent
 router.get('/findParentByParentId/:id', parentStudentController.findParentByParentId);
 router.get('/getstudentbyp/:id', parentStudentController.getStudentsByP);
 router.get('/getpstudentatt/:id', parentStudentController.getStudentsAtteBystdid);
-router.get('/getparentpayment/:id', parentPaymentController.getPaysByUserId);
+router.get('/getpaymetbyparent/:id', getpayemtsbyparent);
 
 //other
 router.get("/stu", getsts);
