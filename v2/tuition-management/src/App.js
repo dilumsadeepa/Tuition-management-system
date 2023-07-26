@@ -93,6 +93,7 @@ import AddParentData from "./components/Admin/AddParentsData";
 import ParentProfile from "./components/Parent/ParentProfile";
 import EditParent from "./components/Parent/EditParent";
 import Attendece from "./components/Parent/Attendece";
+import AddPaymentForm from "./components/Parent/AddPaymentForm";
 
 
 // -----------------Home Page-----------------
@@ -186,6 +187,7 @@ function App() {
           <Route path="pattendece" element={<Attendece />} />
           <Route path="parentprofile" element={<ParentProfile />} />
           <Route path="editparent" element={<EditParent />} />
+          <Route path="addpaymentform" element={<AddPaymentForm />} />
           
 
           {/* Common */}

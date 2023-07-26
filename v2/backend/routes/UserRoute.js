@@ -125,6 +125,8 @@ const {
   calculateIncomeForRole1
 } = require('../controllers/AdminController');
 
+const PaymentPayController = require('../controllers/PaymentPayController');
+
 const router = express.Router();
 
 // User
@@ -167,6 +169,9 @@ router.get('/admin-dashboard-data', getAdminDashboardData);
 
 
 router.get('/calculate-income/:id', calculateIncomeForRole1);
+
+router.post('/paymentpaycreate', PaymentPayController.createPayment);
+router.patch('/paymentpayupdate-state', PaymentPayController.updatePaymentState);
 
 
 
