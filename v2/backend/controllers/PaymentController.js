@@ -52,7 +52,7 @@ const getpayemtsbyparent = async (req, res) => {
   // Convert the comma-separated string to an array
   const id = req.params.id;
 
-  const sql = "SELECT courses.coursename, parentstudents.*,payments.*,users.username FROM parentstudents JOIN payments ON parentstudents.studentId = payments.suid JOIN courses ON payments.cid = courses.id JOIN users ON parentstudents.studentId = users.id WHERE parentstudents.parentId ="+id;
+  const sql = "SELECT courses.coursename,courses.coursesubject, parentstudents.*,payments.*,users.username FROM parentstudents JOIN payments ON parentstudents.studentId = payments.suid JOIN courses ON payments.cid = courses.id JOIN users ON parentstudents.studentId = users.id WHERE parentstudents.parentId ="+id;
 
   try {
     const response = await db.query(sql, { type: QueryTypes.SELECT });
@@ -67,7 +67,7 @@ const getpayemtsbystdid = async (req, res) => {
   // Convert the comma-separated string to an array
   const id = req.params.id;
 
-  const sql = "SELECT courses.coursename, parentstudents.*,payments.*,users.username FROM parentstudents JOIN payments ON parentstudents.studentId = payments.suid JOIN courses ON payments.cid = courses.id JOIN users ON parentstudents.studentId = users.id WHERE payments.suid ="+id;
+  const sql = "SELECT courses.coursename,courses.coursesubject, parentstudents.*,payments.*,users.username FROM parentstudents JOIN payments ON parentstudents.studentId = payments.suid JOIN courses ON payments.cid = courses.id JOIN users ON parentstudents.studentId = users.id WHERE payments.suid ="+id;
 
   try {
     const response = await db.query(sql, { type: QueryTypes.SELECT });
@@ -98,7 +98,7 @@ module.exports = {
   getPaysByUserId,
   getuserid,
   getpayemtsbyparent,
-  getpayemtsbystdid,
+  getpayemtsbystdid
 };
 
 
