@@ -1,13 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from 'axios';
 import Apiurl from '../Apiurl';
 import Sidebar from './StudentSidebar';
 import Dashhead from './Dashhead';
 import { useCookies } from 'react-cookie';
+import QRCode from "qrcode.react";
+import html2canvas from 'html2canvas'
 
 const StudentProfile = () => {
     const [students, setStudentData] = useState([]);
     const [cookies, setCookie] = useCookies(['user']);
+
+    const cardRef = useRef(null);
+
+    let count = 0;
+
+    let qrj = { 'userid': cookies.id }
+    let qrtext = JSON.stringify(qrj);
 
     const getStudent = async () => {
         try {
@@ -22,6 +31,15 @@ const StudentProfile = () => {
         } catch (error) {
             console.log("Error in getting data", error);
         }
+    }
+
+    const downloadImage = () => {
+        html2canvas(cardRef.current).then(canvas => {
+            const link = document.createElement('a');
+            link.download = 'my-card.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        });
     }
 
     useEffect(() => {
@@ -68,6 +86,13 @@ const StudentProfile = () => {
                                                         </div>
                                                         
                                                     </div>
+                                                    <div className="card mb-4 mb-lg-0">
+                                            <div className="card-body p-0">
+                                                <QRCode value={qrtext} />
+                                                <br />
+                                                <button onClick={() => downloadImage()} className='debtn'>Download student ID</button>
+                                            </div>
+                                        </div>
                                                 </div>
                                                 <div className="card mb-4 mb-lg-0">
                                                     {/* ... Some other content specific to student */}
