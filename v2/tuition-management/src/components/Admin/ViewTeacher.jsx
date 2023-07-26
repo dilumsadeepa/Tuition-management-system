@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 const ViewTeacher = () =>{
 
-    const [students, setStudents] = useState([]);
+    const [teachers, setTeachers] = useState([]);
 
     const [data, setData] = useState([]);
 
@@ -17,7 +17,7 @@ const ViewTeacher = () =>{
     const getstu = async(e) =>{
         try {
             const response = await axios.get(`${Apiurl}/teacher`);
-            setStudents(response.data);
+            setTeachers(response.data);
             setData(response.data);
             console.log(response)
         } catch (error) {
@@ -26,7 +26,7 @@ const ViewTeacher = () =>{
     }
 
     const search = () => {        
-        students.forEach(searchst);
+        teachers.forEach(searchst);
     }
 
     const searchst = (stu) => {
@@ -42,7 +42,7 @@ const ViewTeacher = () =>{
     }
 
     const reset = () => {
-        setData(students);
+        setData(teachers);
     }
 
     useEffect(()=>{
@@ -85,10 +85,11 @@ const ViewTeacher = () =>{
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>Teacher ID</th>
+                                                    {/* <th>Teacher ID</th> */}
                                                     <th>Teacher Name</th>
                                                     <th>Address</th>
                                                     <th>Gender</th>
+                                                    <th>Phone</th>
                                                     <th>Email</th>
                                                     <th>NIC</th>
                                                     <th>Description</th>
@@ -96,15 +97,16 @@ const ViewTeacher = () =>{
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            {data.map((student) => 
+                                            {data.map((teacher) => 
                                                 <tr>
-                                                <td>{student.t_userid}</td>
-                                                <td>{student.t_fullname}</td>
-                                                <td>{student.t_address}</td>
-                                                <td>{student.t_gender}</td>
-                                                <td>{student.t_nic}</td>
-                                                <td>{student.t_education}</td>
-                                                <td>{student.t_dis}</td>
+                                                {/* <td>{teacher.id}</td> */}
+                                                <td>{teacher.fullname}</td>
+                                                <td>{teacher.address}</td>
+                                                <td>{teacher.gender}</td>
+                                                <td>{teacher.tel}</td>
+                                                <td>{teacher.email}</td>
+                                                <td>{teacher.nic}</td>
+                                                <td>{teacher.edlevel}</td>
                                                 
                                                 </tr>
                                             )}
