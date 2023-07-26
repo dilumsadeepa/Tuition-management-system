@@ -5,55 +5,71 @@ import axios from 'axios';
 import Apiurl from '../Apiurl';
 import Sidebar from './AdminSidebar';
 import Dashhead from './Dashhead';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 
-const Admin = () =>{
+const Admin = () => {
 
     // const [cookies] = useCookies(['user']);
     const [income, setIncome] = useState({});
     // const [students, setStudents] = useState("");
     // const [teachers, setTeachers] = useState("");
     const [admindata, setAdminData] = useState({});
+    
+    const [courses, setCourses] = useState([]);
 
-    const getad = async(e) =>{
+    const getad = async (e) => {
         try {
             const response = await axios.get(`${Apiurl}/admin-dashboard-data`);
-            console.log('Admin data: '+response.data.stcount);
+            console.log('Admin data: ' + response.data.stcount);
             setAdminData(response.data);
         } catch (error) {
             console.log("error in getting data")
         }
     }
 
-    const getincome = async(e) =>{
+    const getincome = async (e) => {
         try {
             const currentDate = new Date();
             const currentMonth = currentDate.getMonth();
-            const response = await axios.get(`${Apiurl}/calculate-income/${currentMonth+1}`);
-            console.log('income data: '+response.data);
+            const response = await axios.get(`${Apiurl}/calculate-income/${currentMonth + 1}`);
+            console.log('income data: ' + response.data);
             setIncome(response.data);
         } catch (error) {
             console.log("error in getting data")
         }
     }
 
-    useEffect(()=>{
+    
+
+    const getCourseData = async () => {
+        try {
+            const response = await axios.get(`${Apiurl}/coursedata`);
+            setCourses(response.data);
+        } catch (error) {
+            console.log("error in getting course data", error);
+        }
+    };
+
+    useEffect(() => {
         getad();
         getincome();
-    },[])
+        
+        getCourseData();
+    }, [])
 
-    return(
+    return (
         <section>
 
             {/* <!-- Dashboard --> */}
             <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
-                
+
                 <Sidebar />
 
 
                 {/* <!-- Main content --> */}
                 <div class="h-screen flex-grow-1 overflow-y-lg-auto">
-                    
+
                     {/* <!-- Header --> */}
                     <Dashhead />
 
@@ -77,7 +93,7 @@ const Admin = () =>{
                                                 </div>
                                             </div>
                                             <div class="mt-2 mb-0 text-sm">
-                                                
+
                                                 {/* <span class="text-nowrap text-xs text-muted">Since last month</span> */}
                                             </div>
                                         </div>
@@ -98,7 +114,7 @@ const Admin = () =>{
                                                 </div>
                                             </div>
                                             <div class="mt-2 mb-0 text-sm">
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -118,7 +134,7 @@ const Admin = () =>{
                                                 </div>
                                             </div>
                                             <div class="mt-2 mb-0 text-sm">
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -138,23 +154,47 @@ const Admin = () =>{
                                                 </div>
                                             </div>
                                             <div class="mt-2 mb-0 text-sm">
-                                                
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            {/* <!-- Charts --> */}
+                            <div className="row mb-4">
+                                
+                                <div className="col-md-12">
+                                    <div className="card shadow border-0">
+                                        <div className="card-body">
+                                            <h5 className="card-title">Courses by Price Range</h5>
+                                            <ResponsiveContainer width="100%" height={300}>
+                                                <BarChart data={courses}>
+                                                    <CartesianGrid strokeDasharray="3 3" />
+                                                    <XAxis dataKey="courseid" />
+                                                    <YAxis />
+                                                    <Tooltip />
+                                                    <Bar dataKey="courseprice" fill="#219ebc" />
+                                                </BarChart>
+                                            </ResponsiveContainer>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             
+
+
                         </div>
                     </main>
                 </div>
-                
-                 
+
+
             </div>
 
 
         </section>
-        
+
     )
 }
 
