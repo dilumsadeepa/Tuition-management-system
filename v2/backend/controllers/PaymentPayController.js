@@ -45,10 +45,11 @@ exports.getAllPendingPaymentRecords = async (req, res) => {
 
 exports.createPayment = async (req, res) => {
     try {
-        const { refNumber, payment, courseId, userId } = req.body;
+        const { refNumber, payment, month, courseId, userId } = req.body;
         const paymentPay = await PaymentPay.create({
             refNumber,
             payment,
+            month,
             courseId,
             userId,
         });

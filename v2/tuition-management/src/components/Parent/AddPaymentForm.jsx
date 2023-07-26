@@ -3,6 +3,7 @@ import axios from 'axios';
 import Apiurl from '../Apiurl';
 import Sidebar from './Sidebar';
 import Dashhead from './Dashhead';
+import Swal from 'sweetalert2';
 
 const AddPaymentForm = () => {
     
@@ -66,18 +67,24 @@ const AddPaymentForm = () => {
             const response = await axios.post(`${Apiurl}/paymentpaycreate`, {
                 refNumber,
                 payment,
+                month,
                 courseId,
                 userId,
-                month,
+                
             });
             console.log('Payment record created:', response.data);
-            // Reset form fields after successful submission
+            Swal.fire({
+              title: "Success!",
+              text: "Payment record created",
+              icon: "success",
+            })
             setRefNumber('');
             setPayment('');
             setCourseId('');
             setUserId('');
         } catch (error) {
             console.error('Failed to create payment record:', error);
+            Swal.fire("Error!", error.response.data, "error");
         }
     };
 
@@ -119,7 +126,7 @@ const AddPaymentForm = () => {
                               Payment Date:
                             </label>
                             <input
-                              type="date"
+                              type="month"
                               className="form-control"
                               id="paydate"
                               value={month}
