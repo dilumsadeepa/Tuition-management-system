@@ -71,7 +71,6 @@ return (
                                 <div>
                                     <a href="/AddPaymentForm" class="btn btn-primary btn-outline">Pay class fee</a>
                                 </div>
-
                                 </form>         
                                         {console.log(payment)}
                                             <select name="selectedstudent" id="student" className='mt-5' onChange={(e) => setStdid(e.target.value)}>
