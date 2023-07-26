@@ -44,6 +44,8 @@ const {
   getTeacherById,
   getCourseIncome,
   getTotalIncome,
+  getTotalStudentByCourse,
+  getTotalStudents,
 } = require("../controllers/TeacherController.js");
 
 const {
@@ -187,6 +189,8 @@ router.get("/getteacherbyId/:t_userid", getTeacherById);
 router.get("/getAllStudentById/:courseIds",getStudentsByCourseIds)
 router.get("/getcourseincome/:id",getCourseIncome);
 router.get("/gettotalincome/:courseIds",getTotalIncome);
+router.get("/gettotalstudentbycourse/:courseIds",getTotalStudentByCourse);
+router.get("/gettotalstudents/:courseIds",getTotalStudents);
 
 
 //parent
