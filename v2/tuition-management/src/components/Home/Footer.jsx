@@ -16,8 +16,8 @@ const whatsappUrl = `https://wa.me/${phoneNumber}`;
               <li><a href="/homegallery">Gallery</a></li>
               <li><a href="#">Student</a></li>
               <li><a href="#">Lectures</a></li>
-              <li><a href="/streamwisetimetable">Time Table</a></li>
-              <li><a href="/hometimetableposts">Time Table Posts</a></li>
+              <li><a href="/streamwisetimetable">Timetable</a></li>
+              <li><a href="/hometimetableposts">Timetable Posts</a></li>
               {/* <li><a href="/altimetable">AL Time Table</a></li> */}
             </ul>
           </div>
@@ -43,7 +43,7 @@ const whatsappUrl = `https://wa.me/${phoneNumber}`;
               <li><a href="#">Dashboard</a></li>
               <li><a href="#">LMS</a></li>
               <li><a href="/publicnotices">Notices</a></li>
-              <li><a href="/streamwisetimetable">Time Table</a></li>
+              <li><a href="/streamwisetimetable">Timetable</a></li>
             </ul>
           </div>
         </div>

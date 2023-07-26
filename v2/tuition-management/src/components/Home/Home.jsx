@@ -283,7 +283,7 @@ const renderCloudFiles = () => {
           &nbsp; susipwineducation@gmail.com
         </p>
         <p className="d-xl-flex justify-content-xl-center align-items-xl-center" style={{ fontSize: 16, marginBottom: 10 }}>
-        <i class="fa-solid fa-phone"></i>&nbsp; 070124567
+        <i class="fa-solid fa-phone"></i>&nbsp; 078 9843284
         </p>
       </div>
     </div>
