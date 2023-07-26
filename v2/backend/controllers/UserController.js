@@ -158,7 +158,7 @@ exports.createUser = async (req, res) => {
                           </tr>
                           <tr>
                               <td style="text-align:center;">
-                                  <p style="font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;">&copy; <strong>htps://encode99.org.lk</strong> </p>
+                                  <p style="font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;">&copy; <strong>https://encode99.org.lk</strong> </p>
                               </td>
                           </tr>
                           <tr>
@@ -351,7 +351,7 @@ exports.forgotPassword = async (req, res) => {
     await user.save();
 
     // Send password reset email to the user
-    const resetURL = `http://localhost/reset-password/${resetToken}`;
+    const resetURL = `https://susipwin.encode99.org.lk/reset-password/${resetToken}`;
     const ms = `Click the following link to reset your password: <a href="${resetURL}">${resetURL}</a>`;
     
 
