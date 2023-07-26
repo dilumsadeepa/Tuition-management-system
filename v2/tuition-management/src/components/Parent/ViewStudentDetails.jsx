@@ -54,9 +54,9 @@ const ViewStudentDetails = () => {
                                 <div className="col-sm-12 mb-5 mt-3">
                                 <div className="col-sm-12 mb-5 mt-3"></div>  
                                 <form>
-                                <div>
+                                {/* <div>
                                     <a href="/EditStudentProfile" class="btn btn-primary btn-outline">Edit Sudent Details</a>
-                                </div>
+                                </div> */}
                                 <div className="col-sm-12 mb-5 mt-3"></div>
                                 </form> 
                                     <div className="table-responsive">

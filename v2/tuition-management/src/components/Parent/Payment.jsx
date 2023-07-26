@@ -66,7 +66,6 @@ return (
                                 <h1>Payment</h1>
 
                                 <div className="col-sm-12 mb-5 mt-3"></div>
-                                <div className="col-sm-12 mb-5 mt-3"></div>
                                 <form>
                                 <div>
                                     <a href="/AddPaymentForm" class="btn btn-primary btn-outline">Pay class fee</a>
