@@ -157,10 +157,10 @@ const Login = () => {
                                         <div className="mt-4 mb-3">
                                             <input type="button" onClick={(e) => loginuser(e)} value="Login" id="btnlogin" className="btn btn-primary w-100" />
                                         </div>
-                                        {/* <div className="mt-6">
-                                            <label className="form-check-label">Do not have an account</label>
-                                            <a href="/register" className="text-muted float-end">Register</a>
-                                        </div> */}
+                                        <div className="mt-6">
+                                            <label className="form-check-label">If you forgot password</label>
+                                            <a href="/forgotpassword" className="text-muted float-end">Reset Password</a>
+                                        </div>
                                     </div>
                                 </div>
 

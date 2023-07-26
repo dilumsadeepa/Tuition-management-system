@@ -64,6 +64,14 @@ const User = db.define('users', {
     type: DataTypes.INTEGER,
     allowNull: true,
   },
+  resetPasswordToken:{
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  resetPasswordExpires:{
+    type: DataTypes.DATE,
+    allowNull: true,
+  }
 }, {
   freezeTableName: true
 });

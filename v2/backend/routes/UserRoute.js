@@ -8,6 +8,8 @@ const {
   updateUserProfile,
   getparent,
   getProfile,
+  forgotPassword,
+  resetPassword,
   
 } = require("../controllers/UserController.js");
 
@@ -35,7 +37,6 @@ const {
   createParent,
   getParentStu,
   getattendeceAtt,
-
 } = require("../controllers/ParentsController.js");
 
 const {
@@ -74,7 +75,9 @@ const parentPaymentController = require ('../controllers/PaymentController.js');
 const { 
   getPays, 
   getPaysByUserId, 
-  getuserid 
+  getuserid,
+  getpayemtsbyparent,
+  getpayemtsbystdid,
 } = require("../controllers/PaymentController.js");
 
 const {
@@ -123,6 +126,8 @@ const {
   calculateIncomeForRole1
 } = require('../controllers/AdminController');
 
+const PaymentPayController = require('../controllers/PaymentPayController');
+
 const router = express.Router();
 
 // User
@@ -133,6 +138,8 @@ router.post("/users", createUser);
 router.patch("/users/:id", updateUser);
 router.delete("/users/:id", deleteUser);
 router.patch("/updateusers/:id", updateUserProfile);
+router.post("/forgot-password", forgotPassword);
+router.post("/reset-password/:token", resetPassword);
 
 //admin
 router.get("/astudata", getStuData);
@@ -163,6 +170,9 @@ router.get('/admin-dashboard-data', getAdminDashboardData);
 
 
 router.get('/calculate-income/:id', calculateIncomeForRole1);
+
+router.post('/paymentpaycreate', PaymentPayController.createPayment);
+router.patch('/paymentpayupdate-state', PaymentPayController.updatePaymentState);
 
 
 
@@ -201,21 +211,15 @@ router.get("/gettotalstudents/:courseIds",getTotalStudents);
 
 //parent
 router.get("/getparentstu/:id", getParentStu);
-router.get("/getattendece/:id", getattendeceAtt);
-router.get("/getparentdata/:id", getparent);
-
-
-
-router.post('/parentstudents', parentStudentController.createParentStudent);
 router.get('/parentstudents', parentStudentController.getAllParentStudents);
 router.get('/parentstudents/:id', parentStudentController.getParentStudentById);
 router.get('/findParentByStudentId/:studentId', parentStudentController.findParentByStudentId);
 router.put('/parentstudents/:id', parentStudentController.updateParentStudent);
-router.delete('/parentstudents/:id', parentStudentController.deleteParentStudent);
 router.get('/findParentByParentId/:id', parentStudentController.findParentByParentId);
 router.get('/getstudentbyp/:id', parentStudentController.getStudentsByP);
 router.get('/getpstudentatt/:id', parentStudentController.getStudentsAtteBystdid);
-router.get('/getparentpayment/:id', parentPaymentController.getPaysByUserId);
+router.get('/getpaymetbyparent/:id', getpayemtsbyparent);
+router.get("/getpayemtsbystdid/:id", getpayemtsbystdid)
 
 //other
 router.get("/stu", getsts);
