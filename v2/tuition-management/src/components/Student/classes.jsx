@@ -129,7 +129,7 @@ export default function DisableElevation() {
 
                     </select>
                     <br />
-                    <Link to="/my-classes" className="btn btn-primary view-classes-btn">My Enrolled Classes</Link>
+                    <Link to="/viewmyclass" className="btn btn-primary view-classes-btn">My Enrolled Classes</Link>
                   </div>
                 </div>
               </div>

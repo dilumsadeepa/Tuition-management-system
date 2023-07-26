@@ -69,6 +69,7 @@ import EnrollPage from "./components/Student/EnrollPage";
 import StudentProfile from "./components/Student/studentProfile";
 import StuDashboard from "./components/Student/StuDashboard";
 import EditStudentProfile from "./components/Student/EditStudentProfile";
+import ViewMyClass from "./components/Student/viewmyclass";
  
 //------------------
 
@@ -166,6 +167,7 @@ function App() {
           <Route path="Enrollpage" element={<EnrollPage />} />
           <Route path="profile" element={<StudentProfile />} />
           <Route path="mypayments" element={<MyPaymentPage />} />
+          <Route path="viewmyclass" element={<ViewMyClass />} />
 
           <Route path="studashboard" element={<StuDashboard />} />
           <Route path="EditStudentProfile" element={<EditStudentProfile />} />

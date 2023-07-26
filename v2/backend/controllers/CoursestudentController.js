@@ -1,6 +1,8 @@
 const Course = require('../models/CourseModel.js');
 const Coursestudent = require('../models/CoursestudentModel.js');
 const User = require('../models/UserModel.js');
+
+const { Op } = require('sequelize'); // Import the Op object from Sequelize
  
 exports.getCSs = async (req, res) => {
   try {
@@ -23,6 +25,36 @@ exports.stucourse = async (req, res) => {
     console.log(error.message);
   }
 }
+
+//----------------
+
+
+
+
+exports.mystucourse = async (req, res) => {
+  try {
+    const id = req.params.id;
+    console.log(id);
+    // Assuming the student ID is available in req.user.id (you may need to adjust this depending on your authentication setup)
+    
+
+    const response = await Coursestudent.findAll({
+      include: [User, Course],
+      where: {
+        userId: {
+          [Op.eq]: id // Use [Op.eq] for equality comparison
+        }
+      }
+    });
+
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+//---------------
 
 exports.updateCS = async (req, res) => {
   try {

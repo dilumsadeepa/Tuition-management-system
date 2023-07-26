@@ -63,6 +63,7 @@ const {
 const {
   getCSs,
   stucourse,
+  mystucourse,
   updateCS,
 } = require("../controllers/CoursestudentController.js");
 
@@ -170,7 +171,8 @@ router.get("/getstudentdata/:id", getStuData);
 router.get("/getpaymentbyuserid/:id", getPaysByUserId);
 
 router.get("/getpaymentbyuid/:id", getuserid);
-router.get('/getunascourses/:id', getunascourses)
+router.get('/getunascourses/:id', getunascourses);
+router.get("/mystucourse/:id", mystucourse);
 
 
 
