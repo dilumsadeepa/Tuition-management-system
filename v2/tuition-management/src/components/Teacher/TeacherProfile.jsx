@@ -22,7 +22,7 @@ const TeacherProfile = () => {
   const [succ, setSucc] = useState("");
   const navigate = useNavigate();
 
-  const [cookies] = useCookies(['email']);
+  const [cookies] = useCookies(['id']);
   const [profile,setProfile]=useState("");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -51,7 +51,7 @@ const TeacherProfile = () => {
       setErrors(validationErrors);
     } else {
       try {
-        await axios.patch(`${Apiurl}/updateusers/${cookies.email}`, {
+        await axios.patch(`${Apiurl}/users/${cookies.id}`, {
           username,
           fullname,
           nic,
