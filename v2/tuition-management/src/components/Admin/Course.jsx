@@ -101,7 +101,7 @@ const Course = () =>{
                                                 <tr>
                                                 <td>{course.courseid}</td>
                                                 <td>{course.coursename}</td>
-                                                <td>Rs. {course.courseprice}.00/=</td>
+                                                <td>Rs. {course.courseprice}</td>
                                                 <td>{course.user.fullname}</td>
                                                 <td><Link to={`/editcourse/${course.id}`} className='btn btn-info mr-3'>Edit</Link><button className='btn btn-danger ml-3' style={{marginLeft:5}} onClick={()=> deletecourse(course.id)}>Delete</button></td>
                                                 </tr>
