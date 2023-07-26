@@ -47,6 +47,14 @@ const Teacher = () =>{
         title: {
             text: "No of Students In Classes"
         },
+        axisY: {
+            title: "Number of Students",
+            includeZero: true,
+            interval: 1, // Set the interval to 1 to show only integer values on the Y-axis
+            labelFormatter: function(e) {
+                return Math.round(e.value);
+            }
+        },
         data: [
         {
             // Change type to "doughnut", "line", "splineArea", etc.
