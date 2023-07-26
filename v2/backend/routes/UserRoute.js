@@ -85,6 +85,7 @@ const {
   createPre,
   updateSP,
   deletespre,
+  getSPById,
 } = require("../controllers/Salarypresent.js");
 
 const { getsals } = require("../controllers/SalaryController.js");
@@ -232,6 +233,7 @@ router.get("/course", getCos);
 router.get("/coursestudent", getCSs);
 router.get("/payment", getPays);
 router.get("/salarypresent", getSPs);
+router.get("/salarypresentbyid/:id",getSPById)
 router.get("/salary", getsals);
 // router.get("/notice", getNotices);
 // router.get("/notice/count", getNoticesCount);
