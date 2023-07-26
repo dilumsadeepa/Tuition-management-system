@@ -83,10 +83,63 @@ const getTotalIncome = async (req, res) => {
 
 
 
+const getTotalStudents = async (req, res) => {
+  const courseIds = req.params.courseIds.split(',').map(Number);
+
+  const sql = `SELECT SUM(total_students) AS total_students_sum
+  FROM (
+      SELECT c.id AS courseId, c.coursename, c.courseStream, c.coursesubject, c.coursebanner, c.courseprofile, COUNT(cs.id) AS total_students
+      FROM courses c
+      LEFT JOIN coursestudents cs ON c.id = cs.courseId
+      WHERE c.id IN (:courseIds)
+      GROUP BY c.id, c.coursename, c.courseStream, c.coursesubject, c.coursebanner, c.courseprofile
+  ) AS subquery;
+  `;
+  try {
+    const response = await db.query(sql, {
+      type: QueryTypes.SELECT,
+      replacements: { courseIds },
+    });
+
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+
+const getTotalStudentByCourse = async (req, res) => {
+  const courseIds = req.params.courseIds.split(',').map(Number);
+
+  const sql = `SELECT c.courseid AS courseId,COUNT(cs.id) AS total_students
+  FROM courses c
+  LEFT JOIN coursestudents cs ON c.id = cs.courseId
+  WHERE c.id IN (:courseIds)
+  GROUP BY c.id, c.coursename, c.courseStream, c.coursesubject, c.coursebanner, c.courseprofile;
+  `;
+  try {
+    const response = await db.query(sql, {
+      type: QueryTypes.SELECT,
+      replacements: { courseIds },
+    });
+
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+
+
+
 module.exports = {
   getTes,
   createTeacher,
   getTeacherById,
   getCourseIncome,
-  getTotalIncome
+  getTotalIncome,
+  getTotalStudentByCourse,
+  getTotalStudents
 };
