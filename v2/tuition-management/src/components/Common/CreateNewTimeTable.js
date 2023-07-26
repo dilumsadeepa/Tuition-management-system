@@ -92,7 +92,6 @@ function CreateNewTimeTable() {
                 ))}
                 </Field>
 
-                <label htmlFor="course" className="my-2">Course Name:</label>
                 {console.log(courses)}
                 {/* <Field as="select" id="course" name="cname">
                 {courses.map((course) => (
