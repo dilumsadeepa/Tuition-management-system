@@ -22,7 +22,6 @@ const EditStudentProfile = () => {
     const [edlevel, setEdlevel] = useState('');
     const [errors, setErrors] = useState({});
     const [cookies, setCookie] = useCookies(['user']);
-    
 
     const { id } = useParams();
     
@@ -89,7 +88,6 @@ const EditStudentProfile = () => {
                     gender,
                     nic,
                     edlevel,
-                    
                 });
                 Swal.fire({
                     icon: 'success',
@@ -136,7 +134,6 @@ const EditStudentProfile = () => {
             setGender(response.data.gender);
             setNic(response.data.nic);
             setEdlevel(response.data.edlevel);
-            
 
         } catch (error) {
             console.log("error in getting data");
@@ -352,8 +349,6 @@ const EditStudentProfile = () => {
                                             {/* Display validation error for role */}
                                             {errors.edlevel && <div className="error">{errors.edlevel}</div>}
                                         </div>
-
-                                        
 
 
                                         <button type="submit" className="btn btn-primary">

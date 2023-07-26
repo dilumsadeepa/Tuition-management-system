@@ -36,7 +36,6 @@ const User = db.define('users', {
     unique: true,
     allowNull: false,
   },
-  
   password: {
     type: DataTypes.STRING,
     allowNull: false,
