@@ -73,6 +73,17 @@ exports.createUser = async (req, res) => {
     const suser = req.body;
     const password = req.body.password;
     const newUser = req.body;
+
+    const response = await User.findOne({
+      where: {
+        email: req.body.email,
+        tel: req.body.tel
+      },
+    });
+
+    if(response){
+     return res.status(404).json({ msg: "Email Or Phone number is already used" });
+    }
     
     
     // Hash the password before storing it
@@ -81,6 +92,7 @@ exports.createUser = async (req, res) => {
     newUser.password = hashedPassword; 
 
     const user = await User.create(newUser);
+    
 
     // Send email to the user
     let ms = `
@@ -179,7 +191,7 @@ exports.createUser = async (req, res) => {
     res.status(201).json({ msg: "User Created" });
   } catch (error) {
     console.log(error.message);
-    res.status(400).json({ msg: error.message });
+    res.status(400).json({ msg: error.message+" email or phone number is alredy used" });
   }
 };
 

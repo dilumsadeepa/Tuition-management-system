@@ -102,7 +102,7 @@ const CreateUser = () => {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error!',
-                    text: 'Something went wrong'+error,
+                    text: error.response.data.msg,
                   });
                 console.log(error);
             }
