@@ -87,9 +87,8 @@ return (
                                                     <thead>
                                                         <tr>
                                                             <th>ID</th>
-                                                            <th>CourseName</th>
-                                                            <th>Course Subject</th>
-                                                            <th>Student name</th>
+                                                            <th>Course Name</th>
+                                                            <th>Student Name</th>
                                                             <th>Payment On Month</th>
                                                             <th>Payment Date</th>
                                                         </tr>
@@ -108,7 +107,6 @@ return (
                                                             <tr key={py.id}>
                                                                 <td>{py.id}</td>
                                                                 <td>{py.coursename}</td>
-                                                                <td>{py.coursesubject}</td>
                                                                 <td>{py.username}</td>
                                                                 <td>{monthName}</td>
                                                                 <td>{py.createdAt}</td>
