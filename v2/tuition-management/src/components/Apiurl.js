@@ -1,3 +1,3 @@
-const Apiurl = "https://sapi.encode99.org.lk";
+const Apiurl = "http://localhost:4000";
 
 export default Apiurl;
