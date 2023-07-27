@@ -164,6 +164,7 @@ function App() {
           <Route path="teacherprofile" element={<TeacherProfile />}></Route>
           <Route path="teacherstudent" element={<TeacherStudent />}></Route>
           <Route path="showstudents/:id" element={<ViewStudents />}></Route>
+          <Route path="showstudent/:id" element={<ViewStudent />}></Route>
           <Route path="viewattendance/:id" element={<ViewAttendance />}></Route>
           <Route path="viewincome" element={<ViewIncome />}></Route>
           <Route path="courseincome/:id/:course" element={<CoursesIncome />}></Route>

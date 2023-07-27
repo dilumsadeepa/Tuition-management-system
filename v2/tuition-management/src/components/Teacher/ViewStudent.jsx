@@ -9,14 +9,14 @@ import { useParams } from 'react-router-dom';
 
 
 
-const ViewAttendance = () =>{
+const ViewStudent = () =>{
 
     const { id } = useParams();
     const [students, setStudents] = useState([]);
    
     const getstudents = async (e) => {
         try {
-            const response = await axios.get(`${Apiurl}/attcourse/${id}`);
+            const response = await axios.get(`${Apiurl}/student/${id}`);
             setStudents(response.data);
             console.log("Students "+response.data);
         } catch (error) {
@@ -25,6 +25,7 @@ const ViewAttendance = () =>{
     }
 
    
+
     useEffect(()=>{
         getstudents();
     },[])
@@ -47,7 +48,7 @@ const ViewAttendance = () =>{
                      <main>
                     
                         <div class="container">
-                            <h2 className='mt-3 mb-3'>Students attendance</h2>
+                            <h2 className='mt-3 mb-3'>Student</h2>
                             <div className="row">
                                 <div class="col-xl-4 col-sm-6 col-12">
                                     <div class="card shadow border-0">
@@ -64,18 +65,20 @@ const ViewAttendance = () =>{
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>Date</th>
-                                                    <th>Student Count</th>
-                                                    <th>Action</th>
+                                                    <th>Student Name</th>
+                                                    <th>Student Address</th>
+                                                    <th>Student Email</th>
+                                                    <th>Student Phone</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             {students.map((student) => 
                                                 <tr>
-                                                <td>{student.aday}</td>
-                                                <td>{student.count}</td>
-                                        
-                                                <td><Link to={`/showstudent/${id}`} className='btn btn-info'>View Students</Link></td>
+                                                <td>{student.student_name}</td>
+                                                <td>{student.student_address}</td>
+                                                <td>{student.student_email}</td>
+                                                <td>{student.student_tel}</td>
+                                                {/* <td><Link to={`/showstudents/${student.id}`} className='btn btn-info'>View Students</Link></td> */}
                                                 </tr>
                                             )}
                                             </tbody>
@@ -96,4 +99,4 @@ const ViewAttendance = () =>{
     )
 }
 
-export default ViewAttendance;
+export default ViewStudent;

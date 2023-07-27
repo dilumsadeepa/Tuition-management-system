@@ -20,6 +20,7 @@ const EditStudentProfile = () => {
     const [gender, setGender] = useState('');
     const [nic, setNic] = useState('');
     const [edlevel, setEdlevel] = useState('');
+    const [grade, setgrade] = useState('');
     const [errors, setErrors] = useState({});
     const [cookies, setCookie] = useCookies(['user']);
 
@@ -88,6 +89,7 @@ const EditStudentProfile = () => {
                     gender,
                     nic,
                     edlevel,
+                    grade,
                 });
                 Swal.fire({
                     icon: 'success',
@@ -134,6 +136,7 @@ const EditStudentProfile = () => {
             setGender(response.data.gender);
             setNic(response.data.nic);
             setEdlevel(response.data.edlevel);
+            setgrade(response.data.grade);
 
         } catch (error) {
             console.log("error in getting data");
@@ -349,6 +352,22 @@ const EditStudentProfile = () => {
                                             {/* Display validation error for role */}
                                             {errors.edlevel && <div className="error">{errors.edlevel}</div>}
                                         </div>
+
+                                        <div className="mb-3 mt-3">
+                                            <label className="form-label">grade:</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="Enter the grade"
+                                                value={grade}
+                                                onChange={(e) => setgrade(e.target.value)}
+                                                required
+                                            />
+                                            {/* Display validation error for username */}
+                                            {errors.username && <div className="error">{errors.username}</div>}
+                                        </div>
+
+                                        
 
 
                                         <button type="submit" className="btn btn-primary">

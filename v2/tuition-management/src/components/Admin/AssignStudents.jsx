@@ -55,22 +55,10 @@ const AssignStudents = () => {
                     <main class="py-6 bg-surface-secondary">
                     
                         <div class="container">
+                            {students && 
 
-                            {/* <div className="row">
-                                <div className="col-sm-8 d-flex justify-content-center">
-                                <div className="search">
-                                    <input 
-                                        type="text" 
-                                        className="form-control searchTerm" 
-                                        placeholder="What are you looking for?"
-                                    />
-                                    <button type="submit" className="searchButton">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </div>
-                                </div>
-                            </div> */}
-
+                            <>
+                        
                             <div className="row mt-5">
                                <h2>unapproved</h2>
                                 <div className="col-sm-12">
@@ -91,7 +79,7 @@ const AssignStudents = () => {
                                                <>
                                                 {student.aprovel === '0' &&
                                                 <tr>
-                                                    <td>{student.user.fullname}</td>
+                                                    <td>{student.user.username}</td>
                                                     <td>{student.user.nic}</td>
                                                     <td>{student.course.courseid}</td>
                                                     <td>{student.course.coursename}</td>
@@ -127,7 +115,7 @@ const AssignStudents = () => {
                                               <>
                                                {student.aprovel === '1' &&
                                                <tr>
-                                                   <td>{student.user.fullname}</td>
+                                                   <td>{student.user.username}</td>
                                                    <td>{student.user.nic}</td>
                                                    <td>{student.course.courseid}</td>
                                                    <td>{student.course.coursename}</td>
@@ -142,7 +130,8 @@ const AssignStudents = () => {
                                    </div>
                                </div>
                            </div>
-                            
+                           </>
+                            }
                         </div>
                     </main>
                 </div>

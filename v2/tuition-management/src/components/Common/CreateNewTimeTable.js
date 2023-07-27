@@ -19,6 +19,18 @@ function CreateNewTimeTable() {
       }
     };
 
+
+    // useEffect(() => {
+    //   const fetchTeachers = async () => {
+    //     try {
+    //       const response = await axios.get(`${Apiurl}/`);
+    //       setCourses(response.data);
+    //       console.log('Courses:', response.data);
+    //     } catch (error) {
+    //       console.log('Error in getting data:', error);
+    //     }
+    //   };
+
     fetchCourses();
   }, []);
 
@@ -89,6 +101,14 @@ function CreateNewTimeTable() {
                 <option value="" disabled selected>Select Course ID</option>
                 {courses.map((course) => (
                     <option key={course.id} value={course.id}>{course.courseid}</option>
+                ))}
+                </Field>
+
+
+                <Field as="select" id="course" name="cunit" className={`form-control`}>
+                <option value="" disabled selected>Select Teacher</option>
+                {courses.map((course) => (
+                    <option key={course.id} value={course.userId}>{course.userId}</option>
                 ))}
                 </Field>
 

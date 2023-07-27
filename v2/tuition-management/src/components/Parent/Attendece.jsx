@@ -9,6 +9,7 @@ const Attendece = () => {
     const [student, setStudent] = useState([]);
     const [studentAtt, setStudentAtt] = useState([]);
     const [stdid, setStdid] = useState(0);
+    const [courseid, setcourseid] = useState(0);
     const [cookies, setCookie] = useCookies(['user']);
 
     useEffect(() => {
@@ -70,6 +71,14 @@ const Attendece = () => {
                                     <option selected disabled>Select Your Student</option>
                                     {student.map((stu) =>(
                                         <option value={stu.id}>{stu.username}</option>
+                                    ))
+                                    }
+                                </select>
+
+                                <select name="selectedCourse" id="student" className='mt-5' onChange={(e) => setcourseid(e.target.value)}>
+                                    <option selected disabled>Select Your Student Course</option>
+                                    {student.map((cur) =>(
+                                        <option value={cur.id}>{cur.coursesubject}</option>
                                     ))
                                     }
                                 </select>

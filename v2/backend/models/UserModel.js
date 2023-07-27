@@ -36,6 +36,11 @@ const User = db.define('users', {
     unique: true,
     allowNull: false,
   },
+  grade: {
+    type: DataTypes.STRING,
+    unique: true,
+    allowNull: false,
+  },
   password: {
     type: DataTypes.STRING,
     allowNull: false,
